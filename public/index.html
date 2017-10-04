@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -19,14 +20,92 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <!--
+  <title>Infinity Tab Clone</title>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+
+  <div class="main">
+
+    <div class="main-top">
+
+      <div class="time">
+        11:45 PM
+      </div><!--/.time-->
+
+      <div class="search-area">
+        <div class="search-type">
+          <div class="type-item">Web</div>
+          <div class="type-item">Images</div>
+          <div class="type-item">News</div>
+          <div class="type-item">Videos</div>
+          <div class="type-item">Maps</div>
+          
+        </div><!--.search-type-->
+        <div class="search-box">
+          <div class="box-item">Google</div>
+        </div><!--/.search-box-->
+      </div><!--/.search-area-->
+
+    </div><!--/.main-top-->
+
+
+
+    <div class="main-grid">
+      <div class="item">
+        <img src="assets/Icons_COLOR_background-01.png" alt="Weather">
+        <p>Weather</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR-02.png" alt="To Dos">
+        <p>To Dos</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR-03.png" alt="Apps">
+        <p>Apps</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR-04.png" alt="Notes">
+        <p>Notes</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR-05.png" alt="Bookmarks">
+        <p>Bookmarks</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR-06.png" alt="History">
+        <p>History</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR_background-01.png" alt="Placeholder">
+        <p>Placeholder</p>
+      </div>
+      <div class="item">
+        <img src="assets/Icons_COLOR_background-01.png" alt="Placeholder">
+        <p>Placeholder</p>
+      </div>
+    </div><!--/.main-grid-->
+
+  </div><!--/.main-->
+
+
+
+
+
+
+
+
+
+
+
+  <!--This is the main app component App.js-->
+
+  <div id="root"></div>
+
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -36,5 +115,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+
+</body>
+
 </html>
