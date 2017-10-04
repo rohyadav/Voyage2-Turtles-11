@@ -1,0 +1,64 @@
+.Notes-Header {
+  background-color: #ea3939;
+  top: 0px;
+  right: 0px;
+  width: 300px;
+  position: fixed;
+  height: 140px
+}
+
+.Notes {
+  right: 0px;
+  width: 260px;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.55);
+  border: solid 0.3px #959595;
+  border: solid 0.3px var(--warm-grey);
+}
+
+.Title {
+  width: 96px;
+  height: 20px;
+  font-family: HelveticaNeue;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  color: #959595;
+  color: var(--warm-grey);
+}
+
+.Description {
+  width: 216px;
+  height: 48px;
+  font-family: HelveticaNeue;
+  font-size: 12px;
+  text-align: left;
+  color: #959595;
+  color: var(--warm-grey);
+}
+
+.SearchBox {
+  float: right;
+  right: 20px;
+  top: 160px;
+  width: 260px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.55);
+  border: solid 0.3px #959595;
+  border: solid 0.3px var(--warm-grey);
+  align-items: center;
+}
+
+.SearchBoxText {
+  width: 189px;
+  height: 14px;
+  font-family: HelveticaNeue;
+  font-size: 12px;
+  letter-spacing: 2.3px;
+  text-align: center;
+  align-items: center;
+  color: #959595;
+  color: var(--warm-grey);
+}
