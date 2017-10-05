@@ -7,10 +7,18 @@ class Notes extends Component {
     this.state = {
       quantity: 0,
       visibility: false,
+      searchInput: '',
+      searchTerm: '',
       titleInput: '',
       input: '',
-      arrayOfNotes: [['title','description'], ['2', 'description2']]
+      arrayOfNotes: [],
     }
+  }
+  handleSearch = (event) => {
+    this.setState({searchInput: event.target.value});
+  }
+  handleSearchSubmit = () => {
+    this.setState({searchTerm: this.state.searchInput})
   }
   handleInput = (event) => {
     this.setState({input: event.target.value});
@@ -29,7 +37,7 @@ class Notes extends Component {
     })
   }
   toggleVisibility = () => {
-    (this.state.quantity === 0) ? this.setState({visibility: false}) : this.setState({visibility: true});
+    (this.state.visibility) ? this.setState({visibility: false}) : this.setState({visibility: true});
   }
   keepCount = () => {
     this.setState({quantity: this.state.quantity + 1})
@@ -37,15 +45,24 @@ class Notes extends Component {
   render() {
     return (
       <div>
-        <header className='Notes-Header'><p className='SearchBoxText'>Notes</p></header>
-        <textarea className='SearchBox'>What are you looking for?</textarea>
-        <button>Search</button>
+        <header className='Notes-Header'><p>Notes</p></header>
+
+        <textarea searchInput={this.state.searchInput} className='SearchBox'>
+          <p className='SearchBoxText'>What are you looking for?</p>
+        </textarea>
+        <button onClick={this.toggleVisibility} onClick={this.handleSearchSubmit}>Search</button>
+        <Search 
+          searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
+
         <input value={this.state.titleInput} onChange={this.handleTitleInput}></input>
         <textarea value={this.state.input} onChange={this.handleInput}></textarea>
         <button onClick={this.handleSubmit}>Submit</button>
+
         <h5>Quanity of Notes: {this.state.quantity}</h5>
+
         <RenderToHtml 
           input={this.state.arrayOfNotes}/>
+
       </div>
     )
   }
@@ -58,15 +75,15 @@ class RenderToHtml extends Component {
   }
   
   render() {
-    this.mappedElements = (this.props.input).map(item =>
-      <div  className='Notes'>
+    this.mappedElements = (this.props.input).map((item,i) =>
+      <div id={'note_' + i} className='Notes'>
         <h5 className="Title">{item[0]}</h5>
         <p className="Description">{item[1]}</p>
       </div>
     );
     return (
       <div>
-        <div>
+        <div> 
             <h3>Notes:</h3>
             <p>{this.mappedElements}</p>
         </div>
@@ -75,4 +92,24 @@ class RenderToHtml extends Component {
   }
 }
 
+class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.searchResults = [];
+    const searchTerm = this.props.searchTerm;
+    const array = this.props.input;
+  }
+  if (searchTerm.length === 0) {
+    return 'Please use a longer search term';
+  } else {
+    array.forEach()
+  }
+  render() {
+    return (
+      <div>
+
+      </div>
+    )
+  };
+}
 export default Notes;

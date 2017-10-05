@@ -11,6 +11,7 @@
   right: 0px;
   width: 260px;
   height: 100px;
+  padding-left: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.55);
   border: solid 0.3px #959595;
@@ -49,6 +50,7 @@
   border: solid 0.3px #959595;
   border: solid 0.3px var(--warm-grey);
   align-items: center;
+  
 }
 
 .SearchBoxText {
