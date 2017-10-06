@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Notes.css';
-import exitSymbol from '../assets/exit tab button.png'
-import addButton from '../assets/add button.png'
 
 class Notes extends Component {
   constructor(props) {

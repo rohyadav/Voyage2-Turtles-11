@@ -23,8 +23,8 @@ h1, h2, h3, h4, h5 {
 HEADER
 ==========================
 */
-.Notes-Header {
-  background-color: #ea3939;
+.Bookmarks-Header {
+  background-color: #ffea6c;
   top: 0px;
   right: 0px;
   width: 300px;
@@ -32,7 +32,7 @@ HEADER
   height: 140px
 }
 
-.Notes-Body {
+.Bookmarks-Body {
   background: white;
   top: 140px;
   right: 0px;
@@ -40,7 +40,7 @@ HEADER
   position: fixed;
   height: 100%;
 }
-.Notes-Title-Text {
+.Bookmarks-Title-Text {
   width: 260px;
   height: 40px;
   font-size: 20px;
@@ -56,7 +56,7 @@ HEADER
 NOTES
 ==========================
 */
-.Notes {
+.Bookmarks {
   right: 0px;
   width: 260px;
   height: 100px;
@@ -70,36 +70,6 @@ NOTES
   color: #959595;
 }
 
-.NewNoteBoxTitle {
-  height: 30px;
-  border-radius: 10px 10px 0px 0px;
-  margin-top: 0px;
-  resize: none;
-}
-
-.NewNoteBoxDescription {
-  height: 60px;
-  border-radius: 0px 0px 10px 10px;
-  margin-top: 0px;
-}
-
-.Title {
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: left;
-  color: #959595;
-  padding-top: 10px;
-  padding-left: 20px;
-}
-
-.Description {
-  font-size: 12px;
-  text-align: left;
-  color: #959595;
-  padding-top: 10px;
-  padding-left: 20px;  
-}
 /*
 ==========================
 SEARCH
@@ -130,7 +100,7 @@ SEARCH
 BUTTONS
 ==========================
 */
-.exitButton {
+.bookmarksExitButton {
   border-radius: 50%;
   width: 35px;
   height: 35px;
@@ -141,7 +111,7 @@ BUTTONS
 	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ea3939;
+	color:#ffea6c;
   font-size:20px;
   font-weight: 700;
   font-style: bold;
@@ -149,12 +119,12 @@ BUTTONS
   border: none;
   background-color:#ffffff;
 }
-.exitButton:hover {
+.bookmarksExitButton:hover {
   background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
   background-color:#f6f6f6;
 }
 
-.notesButton {
+.bookmarksButton {
   width: 70px;
   height: 20px;
   margin-top: 10px;
@@ -166,37 +136,9 @@ BUTTONS
   background: white;
 }
 
-.notesButton:hover {
-  background: #ea3939;
+.bookmarksButton:hover {
+  background: #ffea6c;
   color: white;
 }
 
-/* .addNotesButton img {
-  width: 20px;
-  height: 20px;
-  display: block;
-  border-radius: 50%;
-  position: fixed;
-  top: 300px;
-  right: 25px;
-} */
 
-.addNotesButton {
-  width: 20px;
-  height: 20px;
-  position: fixed;
-  top: 300px;
-  right: 25px;
-	background-color:#ea3939;
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-  font-size:10px;
-  font-style: bold;
-  text-align: center;
-  border: none;
-}
-.addNotesButton:hover {
-	background-color:#d02718;
-}
