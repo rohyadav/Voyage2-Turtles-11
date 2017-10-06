@@ -7,6 +7,17 @@
   height: 140px
 }
 
+.Notes-Title-Text {
+  width: 260px;
+  height: 40px;
+  font-family: "Helvetica Neue";
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  text-align: left;
+  color: #ffffff;
+}
+
 .Notes {
   right: 0px;
   width: 260px;
