@@ -6,7 +6,6 @@ import exitSymbol from '../assets/exit tab button.png'
 class Notes extends Component {
   constructor(props) {
     super(props);
-    console.log("Francesca is the cutest pie.")
     this.state = {
       quantity: 0,
       visibility: true,
@@ -98,7 +97,7 @@ class RenderNotesAsList extends Component {
     return (
       <div>
         <div> 
-            <h3>Notes:</h3>
+            <h5>Notes:</h5>
             <div>{this.mappedElements}</div>
         </div>
       </div>

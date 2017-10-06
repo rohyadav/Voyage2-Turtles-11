@@ -11,7 +11,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 }
 
-p, h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5 {
   color: #959595;
 }
 /*
@@ -152,3 +152,5 @@ BUTTONS
   background: #ea3939;
   color: white;
 }
+
+
