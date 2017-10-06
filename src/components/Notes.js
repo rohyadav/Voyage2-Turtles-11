@@ -7,29 +7,6 @@ class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: false,
-    }
-  }
-  componentDidMount() {
-    document.addEventListener('onClick', this.toggleVisibility);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('onClick', this.toggleVisibility);
-  }
-  toggleVisibility = () => {
-    (this.state.visibility) ? this.setState({visibility: false}) : this.setState({visibility: true});
-  }
-  render() {
-    if (this.toggleVisibility) {
-      return (ReactDOM.render(<renderNotesToHTML />, document.getElementById('notes')) )
-    }
-  }
-}
-
-class renderNotesToHTML extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
       quantity: 0,
       visibility: true,
       searchInput: '',
@@ -92,6 +69,7 @@ class renderNotesToHTML extends Component {
       )
   }
 }
+
 class RenderNotesAsList extends Component {
   constructor(props) {
     super(props)
