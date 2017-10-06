@@ -21,7 +21,7 @@ class NotesButton extends React.Component {
     }
     render() {
         return ( <div className="item">
-                    <button className='item' onClick={this.toggleVisibility}><img src="assets/Icons_COLOR-04.png" alt="Notes"/></button>
+                    <a href="#" className='item' onClick={this.toggleVisibility}><img src="assets/Icons_COLOR-04.png" alt="Notes"/></a>
                     <p>Notes</p>
             </div> );
     }

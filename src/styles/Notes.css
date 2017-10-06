@@ -7,15 +7,25 @@
   height: 140px
 }
 
+.Notes-Body {
+  background: white;
+  top: 140px;
+  right: 0px;
+  width: 300px;
+  position: fixed;
+  height: 100%;
+}
 .Notes-Title-Text {
   width: 260px;
   height: 40px;
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 1.6px;
   text-align: left;
   color: #ffffff;
+  padding-left: 20px;
+  padding-top: 80px;
 }
 
 .Notes {
@@ -30,24 +40,26 @@
 }
 
 .Title {
-  width: 96px;
-  height: 20px;
-  font-family: HelveticaNeue;
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
   font-size: 12px;
   font-weight: bold;
   text-align: left;
   color: #959595;
   color: var(--warm-grey);
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .Description {
   width: 216px;
   height: 48px;
-  font-family: HelveticaNeue;
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
   font-size: 12px;
   text-align: left;
   color: #959595;
   color: var(--warm-grey);
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .SearchBox {
@@ -65,9 +77,12 @@
 }
 
 .SearchBoxText {
-  width: 189px;
+  width: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
   height: 14px;
-  font-family: HelveticaNeue;
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
   font-size: 12px;
   letter-spacing: 2.3px;
   text-align: center;
@@ -76,14 +91,12 @@
   color: var(--warm-grey);
 }
 
-.iconButton {
-  border-radius: 50%;
-}
-
 .exitButton {
   border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  top: 20px;
+  right: 20px;
+  position: fixed;
 }
 
-button {
-  border-radius: 50%;
-}

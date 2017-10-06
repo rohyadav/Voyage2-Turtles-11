@@ -38,17 +38,27 @@ class Notes extends Component {
       arrayOfNotes: newArray
     })
   }
+  toggleVisibility = () =>{
+    this.setState(prevState => ({visibility : !prevState.visibility}));
+    if (this.state.visibility === true) {
+        return ReactDOM.render(<Notes />, document.getElementById('notes'));
+    } else {
+        return ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+    }
+  }
   keepCount = () => {
     this.setState({quantity: this.state.quantity + 1})
   }
   render() {
       return (
         <div>
-          <header className='Notes-Header'><h1 className='Notes-Title-Text'>Notes</h1></header>
-          <button className='exitButton' onClick={this.toggleVisibility}><img src={exitSymbol} alt="exit symbol" /></button>
-
+          <div className='Notes-Header'>
+            <a href='#'><img onClick={this.toggleVisibility} className='exitButton' src={exitSymbol} alt="exit symbol" /></a>
+            <h1 className='Notes-Title-Text'>Notes</h1>
+          </div>
           {/* SEARCH FEATURE */}
-          <textarea searchInput={this.state.searchInput} onChange={this.handleSearch} className='SearchBox'>
+          <div className='Notes-Body'>
+          <textarea searchinput={this.state.searchInput} onChange={this.handleSearch} className='SearchBox'>
             <p className='SearchBoxText'>What are you looking for?</p>
           </textarea>
           <button className='iconButton' onClick={this.handleSearchSubmit}>Search</button>
@@ -64,7 +74,7 @@ class Notes extends Component {
           {/* EXISTING NOTE LISTED OUT*/}
           <RenderNotesAsList 
             input={this.state.arrayOfNotes}/>
-  
+          </div>
         </div>
       )
   }
@@ -78,16 +88,16 @@ class RenderNotesAsList extends Component {
   
   render() {
     this.mappedElements = (this.props.input).map((item,i) =>
-      <div id={'note_' + i} className='Notes'>
-        <h5 className="Title">{item[0]}</h5>
-        <p className="Description">{item[1]}</p>
+      <div id={'note_' + i} key={'key_' + i} className='Notes'>
+        <div className="Title">{item[0]}</div>
+        <div className="Description">{item[1]}</div>
       </div>
     );
     return (
       <div>
         <div> 
             <h3>Notes:</h3>
-            <p>{this.mappedElements}</p>
+            <div>{this.mappedElements}</div>
         </div>
       </div>
     )
@@ -119,6 +129,15 @@ class Search extends Component {
     
   };
 }
-
+class EmptyContainer extends React.Component {
+  constructor(props) {
+      super(props);
+  }
+  render() {
+      return (
+          <div></div>
+      )
+  }
+}
 export default Notes;
 
