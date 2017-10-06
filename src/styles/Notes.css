@@ -3,10 +3,14 @@
 GENERAL
 ==========================
 */
-textarea {
+.SearchBox{
   resize: none;
+}
+textarea {
+  resize: vertical; max-height: 300px; min-height: 40px;
   color: #959595;
 }
+
 body {
   font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 }
@@ -61,8 +65,8 @@ NOTES
   margin-right: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 4px 0 #959595;
-  border: solid 0.5px #959595;
-  border: solid 0.5px var(--warm-grey);
+  border: solid 0.2px #959595;
+  border: solid 0.2px var(--warm-grey);
   color: #959595;
 }
 
@@ -70,8 +74,6 @@ NOTES
   height: 30px;
   border-radius: 10px 10px 0px 0px;
   margin-top: 0px;
-  box-shadow: 2px 2px 4px 0 #959595;
-  
 }
 
 .NewNoteBoxDescription {
@@ -134,6 +136,21 @@ BUTTONS
   top: 20px;
   right: 20px;
   position: fixed;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ea3939;
+  font-size:20px;
+  font-weight: 700;
+  font-style: bold;
+  text-align: center;
+  border: none;
+  background-color:#ffffff;
+}
+.exitButton:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color:#f6f6f6;
 }
 
 .notesButton {
@@ -153,7 +170,7 @@ BUTTONS
   color: white;
 }
 
-.addNotesButton img {
+/* .addNotesButton img {
   width: 20px;
   height: 20px;
   display: block;
@@ -161,4 +178,24 @@ BUTTONS
   position: fixed;
   top: 300px;
   right: 25px;
+} */
+
+.addNotesButton {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  top: 300px;
+  right: 25px;
+	background-color:#ea3939;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-size:10px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.addNotesButton:hover {
+	background-color:#d02718;
 }

@@ -53,8 +53,9 @@ class Notes extends Component {
   render() {
       return (
         <div>
+          {/* HEADER */}
           <div className='Notes-Header'>
-            <a href='#'><img onClick={this.toggleVisibility} className='exitButton' src={exitSymbol} alt="exit symbol" /></a>
+            <button className='exitButton' onClick={this.toggleVisibility}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </div>
           {/* SEARCH FEATURE */}
@@ -67,7 +68,7 @@ class Notes extends Component {
             searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
 
           {/* NEW NOTE */}
-          <a className='addNotesButton' href='#'><img  onClick={this.handleSubmit} src={addButton} /></a>
+          <button className='addNotesButton' onClick={this.handleSubmit}>X</button>
           <textarea className='Notes  NewNoteBoxTitle Title' 
                     value={this.state.titleInput} 
                     onChange={this.handleTitleInput}>
