@@ -6,6 +6,7 @@ import exitSymbol from '../assets/exit tab button.png'
 class Notes extends Component {
   constructor(props) {
     super(props);
+    console.log("Francesca is the cutest pie.")
     this.state = {
       quantity: 0,
       visibility: true,
@@ -58,23 +59,24 @@ class Notes extends Component {
           </div>
           {/* SEARCH FEATURE */}
           <div className='Notes-Body'>
-          <textarea searchinput={this.state.searchInput} onChange={this.handleSearch} className='SearchBox'>
-            <p className='SearchBoxText'>What are you looking for?</p>
+          <textarea searchinput={this.state.searchInput} onChange={this.handleSearch} className='Notes SearchBox SearchBoxText'>
+            Search something!
           </textarea>
-          <button className='iconButton' onClick={this.handleSearchSubmit}>Search</button>
+          <button className='notesButton' onClick={this.handleSearchSubmit}>Search</button>
           <Search 
             searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
 
           {/* NEW NOTE */}
-          <input value={this.state.titleInput} onChange={this.handleTitleInput}></input>
-          <textarea value={this.state.input} onChange={this.handleInput}></textarea>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <textarea className='Notes  NewNoteBoxTitle Title' value={this.state.titleInput} onChange={this.handleTitleInput}>Title</textarea>
+          <textarea className='Notes  NewNoteBoxDescription Description' value={this.state.input} onChange={this.handleInput}>Description</textarea>
+          <button className='notesButton' onClick={this.handleSubmit}>Submit</button>
   
           <h5>Quanity of Notes: {this.state.quantity}</h5>
+          
           {/* EXISTING NOTE LISTED OUT*/}
           <RenderNotesAsList 
             input={this.state.arrayOfNotes}/>
-          </div>
+          </div> 
         </div>
       )
   }

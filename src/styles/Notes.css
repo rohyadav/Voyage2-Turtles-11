@@ -1,3 +1,24 @@
+/*
+==========================
+GENERAL
+==========================
+*/
+textarea {
+  resize: none;
+  color: #959595;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+}
+
+p, h1, h2, h3, h4, h5 {
+  color: #959595;
+}
+/*
+==========================
+HEADER
+==========================
+*/
 .Notes-Header {
   background-color: #ea3939;
   top: 0px;
@@ -18,7 +39,6 @@
 .Notes-Title-Text {
   width: 260px;
   height: 40px;
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 1.6px;
@@ -27,70 +47,86 @@
   padding-left: 20px;
   padding-top: 80px;
 }
-
+/*
+==========================
+NOTES
+==========================
+*/
 .Notes {
   right: 0px;
   width: 260px;
   height: 100px;
-  padding-left: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
   border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.55);
-  border: solid 0.3px #959595;
-  border: solid 0.3px var(--warm-grey);
+  box-shadow: 2px 2px 4px 0 #959595;
+  border: solid 0.5px #959595;
+  border: solid 0.5px var(--warm-grey);
+  color: #959595;
+}
+
+.NewNoteBoxTitle {
+  height: 30px;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: 0px;
+  box-shadow: 2px 2px 4px 0 #959595;
+  
+}
+
+.NewNoteBoxDescription {
+  height: 60px;
+  border-radius: 0px 0px 10px 10px;
+  margin-top: 0px;
 }
 
 .Title {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
+  text-transform: uppercase;
   text-align: left;
   color: #959595;
-  color: var(--warm-grey);
   padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .Description {
-  width: 216px;
-  height: 48px;
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
   font-size: 12px;
   text-align: left;
   color: #959595;
-  color: var(--warm-grey);
   padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 20px;  
 }
-
+/*
+==========================
+SEARCH
+==========================
+*/
 .SearchBox {
-  float: right;
   right: 20px;
   top: 160px;
   width: 260px;
   height: 40px;
   border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.55);
+  box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.3px #959595;
   border: solid 0.3px var(--warm-grey);
   align-items: center;
-  
+  color: #959595;
 }
 
 .SearchBoxText {
-  width: 300px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  height: 14px;
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+  padding-top: 15px;
   font-size: 12px;
-  letter-spacing: 2.3px;
+  letter-spacing: 2px;
   text-align: center;
-  align-items: center;
-  color: #959595;
-  color: var(--warm-grey);
 }
 
+/*
+==========================
+BUTTONS
+==========================
+*/
 .exitButton {
   border-radius: 50%;
   width: 35px;
@@ -100,3 +136,19 @@
   position: fixed;
 }
 
+.notesButton {
+  width: 70px;
+  height: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 #959595;
+  border: solid 0.5px #959595;
+  border: solid 0.5px var(--warm-grey);
+  color: #959595;
+  background: white;
+}
+
+.notesButton:hover {
+  background: #ea3939;
+  color: white;
+}
