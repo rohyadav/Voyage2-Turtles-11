@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Notes.css';
+import '../styles/Notes.css';
 
 class Bookmarks extends Component {
     constructor(props) {

@@ -1,24 +1,43 @@
 import React, { Component } from 'react';
-import './Notes.css';
+import ReactDOM from 'react-dom';
+import '../styles/Notes.css';
+import exitSymbol from '../assets/exit tab button.png'
 
 class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0,
       visibility: false,
+    }
+  }
+  componentDidMount() {
+    document.addEventListener('onClick', this.toggleVisibility);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('onClick', this.toggleVisibility);
+  }
+  toggleVisibility = () => {
+    (this.state.visibility) ? this.setState({visibility: false}) : this.setState({visibility: true});
+  }
+  render() {
+    if (this.toggleVisibility) {
+      return (ReactDOM.render(<renderNotesToHTML />, document.getElementById('notes')) )
+    }
+  }
+}
+
+class renderNotesToHTML extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 0,
+      visibility: true,
       searchInput: '',
       searchTerm: '',
       titleInput: '',
       input: '',
       arrayOfNotes: [],
     }
-  }
-  componentDidMount() {
-    document.addEventListener('click', this.toggleVisibility);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('click', this.toggleVisibility);
   }
   handleSearch = (event) => {
     this.setState({searchInput: event.target.value});
@@ -42,23 +61,20 @@ class Notes extends Component {
       arrayOfNotes: newArray
     })
   }
-  toggleVisibility = () => {
-    (this.state.visibility) ? this.setState({visibility: true}) : this.setState({visibility: false});
-  }
   keepCount = () => {
     this.setState({quantity: this.state.quantity + 1})
   }
   render() {
-    if (this.toggleVisibility) {
       return (
         <div>
           <header className='Notes-Header'><h1 className='Notes-Title-Text'>Notes</h1></header>
+          <button className='exitButton' onClick={this.toggleVisibility}><img src={exitSymbol} alt="exit symbol" /></button>
 
           {/* SEARCH FEATURE */}
           <textarea searchInput={this.state.searchInput} onChange={this.handleSearch} className='SearchBox'>
             <p className='SearchBoxText'>What are you looking for?</p>
           </textarea>
-          <button onClick={this.handleSearchSubmit}>Search</button>
+          <button className='iconButton' onClick={this.handleSearchSubmit}>Search</button>
           <Search 
             searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
 
@@ -69,21 +85,14 @@ class Notes extends Component {
   
           <h5>Quanity of Notes: {this.state.quantity}</h5>
           {/* EXISTING NOTE LISTED OUT*/}
-          <RenderToHtml 
+          <RenderNotesAsList 
             input={this.state.arrayOfNotes}/>
   
         </div>
       )
-      } else {
-      return (
-        <div>
-        </div>
-      )
-    }
   }
 }
-
-class RenderToHtml extends Component {
+class RenderNotesAsList extends Component {
   constructor(props) {
     super(props)
     this.mappedElements = [];
@@ -132,4 +141,6 @@ class Search extends Component {
     
   };
 }
+
 export default Notes;
+

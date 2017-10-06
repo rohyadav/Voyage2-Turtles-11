@@ -75,3 +75,11 @@
   color: #959595;
   color: var(--warm-grey);
 }
+
+.iconButton {
+  border-radius: 50%;
+}
+
+.exitButton {
+  border-radius: 50%;
+}
