@@ -6,10 +6,15 @@ import Notes from './components/Notes';
 import Bookmarks from './components/Bookmarks';
 import registerServiceWorker from './registerServiceWorker';
 
+
 class NotesButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {visibility: false};
+        this.state = {
+            visibility: false,
+            iconLink: './assets/Icons_COLOR-04.png',
+        };
+    
     }
     toggleVisibility = () =>{
         this.setState(prevState => ({visibility : !prevState.visibility}));
@@ -19,9 +24,23 @@ class NotesButton extends React.Component {
             return ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
         }
     }
+    iconChangeOnHover = () => {
+        console.log(this.state.iconLink);
+        this.setState({iconLink: './assets/Icons_COLOR_background-04.png'});
+    }
+    iconChangeOnOut = () => {
+        console.log(this.state.iconLink);
+        this.setState({iconLink: './assets/Icons_COLOR-04.png'});
+    }
+    
     render() {
         return ( <div className="item">
-                    <a href="#" className='item' onClick={this.toggleVisibility}><img src="assets/Icons_COLOR-04.png" alt="Notes"/></a>
+                    <a href="#"  
+                        onClick={this.toggleVisibility} 
+                        onMouseOver={this.iconChangeOnHover} 
+                        onMouseOut={this.iconChangeOnOut}>
+                        <img src={this.state.iconLink} alt="Notes"/>
+                    </a>
                     <p>Notes</p>
             </div> );
     }

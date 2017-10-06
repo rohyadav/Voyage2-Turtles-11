@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Notes.css';
 import exitSymbol from '../assets/exit tab button.png'
+import addButton from '../assets/add button.png'
 
 class Notes extends Component {
   constructor(props) {
@@ -52,29 +53,35 @@ class Notes extends Component {
   render() {
       return (
         <div>
+          {/* HEADER */}
           <div className='Notes-Header'>
-            <a href='#'><img onClick={this.toggleVisibility} className='exitButton' src={exitSymbol} alt="exit symbol" /></a>
+            <button className='exitButton' onClick={this.toggleVisibility}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </div>
           {/* SEARCH FEATURE */}
           <div className='Notes-Body'>
-          <textarea searchinput={this.state.searchInput} onChange={this.handleSearch} className='SearchBox'>
-            <p className='SearchBoxText'>What are you looking for?</p>
+          <textarea searchinput={this.state.searchInput} onChange={this.handleSearch} className='Notes SearchBox SearchBoxText'>
+            Search something!
           </textarea>
-          <button className='iconButton' onClick={this.handleSearchSubmit}>Search</button>
+          <button className='notesButton' onClick={this.handleSearchSubmit}>Search</button>
           <Search 
             searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
 
           {/* NEW NOTE */}
-          <input value={this.state.titleInput} onChange={this.handleTitleInput}></input>
-          <textarea value={this.state.input} onChange={this.handleInput}></textarea>
-          <button onClick={this.handleSubmit}>Submit</button>
-  
+          <button className='addNotesButton' onClick={this.handleSubmit}>X</button>
+          <textarea className='Notes  NewNoteBoxTitle Title' 
+                    value={this.state.titleInput} 
+                    onChange={this.handleTitleInput}>
+                    Title
+                    </textarea>
+          <textarea className='Notes  NewNoteBoxDescription Description' value={this.state.input} onChange={this.handleInput}>Description</textarea>
+      
           <h5>Quanity of Notes: {this.state.quantity}</h5>
+          
           {/* EXISTING NOTE LISTED OUT*/}
           <RenderNotesAsList 
             input={this.state.arrayOfNotes}/>
-          </div>
+          </div> 
         </div>
       )
   }
@@ -96,7 +103,7 @@ class RenderNotesAsList extends Component {
     return (
       <div>
         <div> 
-            <h3>Notes:</h3>
+            <h5>Notes:</h5>
             <div>{this.mappedElements}</div>
         </div>
       </div>
@@ -117,7 +124,7 @@ class Search extends Component {
   render() {
     if (this.state.searchTerm.length === 0) {
       return (
-        <p>Please use a longer search term</p>
+        <h5>Please use a longer search term</h5>
       )
     } else {
         return (
