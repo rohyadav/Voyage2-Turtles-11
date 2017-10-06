@@ -5,12 +5,7 @@ import App from './containers/App';
 import Notes from './components/Notes';
 import Bookmarks from './components/Bookmarks';
 import registerServiceWorker from './registerServiceWorker';
-import todosHoverIcon from './assets/Icons_COLOR_background-02.png'
-import appsHoverIcon from './assets/Icons_COLOR_background-03.png'
-import notesIcon from './assets/Icons_COLOR-04.png'
-import notesHoverIcon from './assets/Icons_COLOR_background-04.png'
-import bookmarksHoverIcon from './assets/Icons_COLOR_background-05.png'
-import historyHoverIcon from './assets/Icons_COLOR_background-06.png'
+
 
 class NotesButton extends React.Component {
     constructor(props) {

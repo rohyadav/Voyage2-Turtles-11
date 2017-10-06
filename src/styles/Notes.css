@@ -153,4 +153,12 @@ BUTTONS
   color: white;
 }
 
-
+.addNotesButton img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-radius: 50%;
+  position: fixed;
+  top: 300px;
+  right: 25px;
+}

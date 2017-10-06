@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Notes.css';
 import exitSymbol from '../assets/exit tab button.png'
+import addButton from '../assets/add button.png'
 
 class Notes extends Component {
   constructor(props) {
@@ -66,10 +67,14 @@ class Notes extends Component {
             searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
 
           {/* NEW NOTE */}
-          <textarea className='Notes  NewNoteBoxTitle Title' value={this.state.titleInput} onChange={this.handleTitleInput}>Title</textarea>
+          <a className='addNotesButton' href='#'><img  onClick={this.handleSubmit} src={addButton} /></a>
+          <textarea className='Notes  NewNoteBoxTitle Title' 
+                    value={this.state.titleInput} 
+                    onChange={this.handleTitleInput}>
+                    Title
+                    </textarea>
           <textarea className='Notes  NewNoteBoxDescription Description' value={this.state.input} onChange={this.handleInput}>Description</textarea>
-          <button className='notesButton' onClick={this.handleSubmit}>Submit</button>
-  
+      
           <h5>Quanity of Notes: {this.state.quantity}</h5>
           
           {/* EXISTING NOTE LISTED OUT*/}
@@ -118,7 +123,7 @@ class Search extends Component {
   render() {
     if (this.state.searchTerm.length === 0) {
       return (
-        <p>Please use a longer search term</p>
+        <h5>Please use a longer search term</h5>
       )
     } else {
         return (
