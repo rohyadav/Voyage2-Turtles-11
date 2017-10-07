@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Notes.css';
-import exitSymbol from '../assets/exit tab button.png'
-import addButton from '../assets/add button.png'
+
+const notesArray = [];
 
 class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
       quantity: 0,
-      visibility: true,
+      visibility: false,
       searchInput: '',
       searchTerm: '',
       titleInput: '',
       input: '',
-      arrayOfNotes: [],
+      arrayOfNotes: notesArray,
     }
   }
   handleSearch = (event) => {
     this.setState({searchInput: event.target.value});
   }
   handleSearchSubmit = () => {
-    this.setState({searchTerm: this.state.searchInput})
+    this.setState({searchTerm: this.state.searchInput});
   }
   handleInput = (event) => {
     this.setState({input: event.target.value});
@@ -38,6 +38,7 @@ class Notes extends Component {
     this.setState({
       arrayOfNotes: newArray
     })
+    notesArray.push(newArray);
   }
   toggleVisibility = () =>{
     this.setState(prevState => ({visibility : !prevState.visibility}));
@@ -65,10 +66,10 @@ class Notes extends Component {
           </textarea>
           <button className='notesButton' onClick={this.handleSearchSubmit}>Search</button>
           <Search 
-            searchTerm={this.state.searchTerm} input={this.state.arrayOfNotes}/>
+            searchTerm={this.state.searchTerm} array={this.state.arrayOfNotes}/>
 
           {/* NEW NOTE */}
-          <button className='addNotesButton' onClick={this.handleSubmit}>X</button>
+          <button className='addNotesButton' onClick={this.handleSubmit}>+</button>
           <textarea className='Notes  NewNoteBoxTitle Title' 
                     value={this.state.titleInput} 
                     onChange={this.handleTitleInput}>
@@ -116,24 +117,28 @@ class Search extends Component {
     super(props);
     this.state = {
       searchResults: [],
-      searchTerm: this.props.searchTerm,
-      array: this.props.input
     }
-    
+    this.resultOfSearchArray = [];
   }
   render() {
-    if (this.state.searchTerm.length === 0) {
-      return (
-        <h5>Please use a longer search term</h5>
-      )
-    } else {
-        return (
-          <div>
-    
-          </div>
-        )
+    const array = Array.from(this.props.array);
+    for (var i = 0; i < array.length; i++) {
+      const found = array[i].indexOf(this.props.searchTerm) !== -1;
+      if (found) {
+        this.resultOfSearchArray.push(array[i]);
+      }
     }
-    
+    const formattedSearch = this.resultOfSearchArray.map((item,i) =>
+      <div id={'note_' + i} key={'key_' + i} className='Notes'>
+        <div className="Title">{item[0]}</div>
+        <div className="Description">{item[1]}</div>
+      </div>
+    );
+    return (
+    <div>
+      <div>{formattedSearch}</div>
+    </div>
+    )
   };
 }
 class EmptyContainer extends React.Component {
