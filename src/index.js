@@ -109,6 +109,7 @@ class EmptyContainer extends React.Component {
     }
 }
 
+ReactDOM.render(<App />, document.getElementById('app'));
 ReactDOM.render(<Icons />, document.getElementById('icons'));
 ReactDOM.render(<Tabs />, document.getElementById('tabs'));
 
