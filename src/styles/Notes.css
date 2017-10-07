@@ -100,6 +100,11 @@ NOTES
   padding-top: 10px;
   padding-left: 20px;  
 }
+
+.searchNotes {
+  height: 60px;
+  padding: 20px;
+}
 /*
 ==========================
 SEARCH
@@ -185,14 +190,14 @@ BUTTONS
   width: 20px;
   height: 20px;
   position: fixed;
-  top: 300px;
-  right: 25px;
+  top: 265px;
+  right: 30px;
 	background-color:#ea3939;
 	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-  font-size:10px;
+  font-size:15px;
   font-style: bold;
   text-align: center;
   border: none;

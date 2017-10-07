@@ -11,14 +11,14 @@ class NotesButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visibility: false,
+            visibility: true,
             iconLink: './assets/Icons_COLOR-04.png',
         };
     
     }
     toggleVisibility = () =>{
         this.setState(prevState => ({visibility : !prevState.visibility}));
-        if (this.state.visibility === true) {
+        if (this.state.visibility) {
             return ReactDOM.render(<Notes />, document.getElementById('notes'));
         } else {
             return ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -50,7 +50,7 @@ class BookmarksButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visibility: false,
+            visibility: true,
             iconLink: './assets/Icons_COLOR-05.png',
         };
     
