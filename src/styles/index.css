@@ -81,7 +81,7 @@ justify-content: space-between;
 margin-bottom: 1vh;
 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-.search-box {
+.search-input-box {
   background: #FFFFFF;
   color: #7E7E7E;
   width: 40vw;
@@ -91,6 +91,7 @@ border-radius: 10px;
 /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */
 }
 
+/* The text "Google" inside the search bar */
 .box-item {
   justify-content: flex-start;
   padding-left: 40px;
