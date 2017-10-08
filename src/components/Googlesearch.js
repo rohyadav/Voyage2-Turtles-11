@@ -1,61 +1,78 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import '../styles/Googlesearch.css';
-
 // import logo from './logo.svg'; (Example of how to import images)
 
 class Googlesearch extends Component {
 
-    constructor() {
-        super()
-        this.state = {
-            userInput: ''
-        }
-    }
+googleSearch(query) {
+    let url=`https://www.google.com/search?q=${query}`
+    window.open(url,'_self'); // alternative: _blank
+}
 
-    openNewPage() {
-        let userInput = this.state.userInput;
-        userInput = this.state.userInput.trim();
-        let url = `https://www.google.com/search?q={this.state.userInput}`;
-        window.open({url}, '_blank')
-    }
-
-    handleChange(event) {
-        this.setState({userInput: event.target.value})
-    }
+// New window Google search results by search type function
 
     render() {
         return (
             <div>
-                <SearchBox
-                    onPressEnter={this.openNewPage}
-                    onChange={this.handleChange.bind(this)}/>
-            </div>
+                <SearchType />
+                <SearchBox 
+                    onSearch={this.googleSearch} />                    
+            </div> 
         )
-    }
-}
+    } 
+} //  Googlesearch Component
 
-// AJAX FUNCTION 
-// AUTOSUGGESTION COMPONENT
+class SearchType extends React.Component {
+
+    render() {
+
+        return (
+            <div className='search-type'>                
+                <span className='type-item'>Web</span>
+                <span className='type-item'>Images</span>
+                <span className='type-item'>News</span>
+                <span className='type-item'>Videos</span>
+                <span className='type-item'>Maps</span>
+          </div>
+        );
+    }
+} // SearchType Component
 
 class SearchBox extends React.Component {
-
-    handleKeyPress(event) {
-        if (event.which == 13) {
-            this.props.onPressEnter();
-        }
+    constructor(props) {
+        super(props);
+        this.state = { searchInput: ''};
     }
+    // state = {
+    //     searchInput: ''
+    //   }
+            
+      handleSubmit = event => {
+        event.preventDefault();
+        this.props.onSearch(this.state.searchInput);
+        event.currentTarget.reset();
+      }
 
     render() {
         return (
-            <form className="search-form" target="_blank">
-                <input className="search-input-box" type="search" placeholder="Google" onKeyPress={this.handleKeyPress.bind(this)} onChange={this.props.onChange}/> 
-                {/* <div className="box-item">Google</div> */}
-                {/* value={this.state.userInput} */}
+            <div>                
+            <form className='search-form'
+                  onSubmit={this.handleSubmit}> 
+                <input className='search-input-box' 
+                        type='search'                     
+                        onChange={this.onSearchChange}
+                        placeholder='Google' />
+                {/* <button>icon</button> */}
             </form>
+            </div>
         );
-    };
-}
+
+    }
+
+    onSearchChange = event => {
+        this.setState({ searchInput: event.target.value });
+    }
+
+} // SearchBox Component
 
 export default Googlesearch;
