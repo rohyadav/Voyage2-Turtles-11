@@ -70,14 +70,14 @@ NOTES
   color: #959595;
 }
 
-.NewNoteBoxTitle {
+.NoteTitleTextBox {
   height: 30px;
   border-radius: 10px 10px 0px 0px;
-  margin-top: 0px;
+  margin-top: 25px;
   resize: none;
 }
 
-.NewNoteBoxDescription {
+.NoteDescriptionTextBox {
   height: 60px;
   border-radius: 0px 0px 10px 10px;
   margin-top: 0px;
