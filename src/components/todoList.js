@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import './todoList.css';
+import '../styles/todoList.css';
 
 
 class Li extends Component {
