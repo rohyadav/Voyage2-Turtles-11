@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import './todoList.css';
+import '../styles/todoList.css';
 
 
 class Li extends Component {
@@ -14,8 +14,14 @@ class Li extends Component {
   render() {
     return (
     <form>
-      <input type="checkbox"  />
-      <label >{this.props.text}</label>
+        <div class="flex">
+          <div  class="checkbox">
+            <input type="checkbox"  />
+          </div>
+          <div  class="checkbox-label">
+            <label >{this.props.text}</label>
+          </div>
+        </div>
     </form>
     );
   }
@@ -30,6 +36,7 @@ export class TodoList extends Component {
           index: 0,
           titleInput: "",
           value: "",
+          // if this is true I am in the Todo tab else I am in Done tab
           clickTodo: true,
           // rename this arr to todoArr
           arr: [<Li text="test Todo and yes you can write in input field to add more!" />, <Li text="test Todo" />],
@@ -88,6 +95,8 @@ export class TodoList extends Component {
     if (this.state.clickTodo) {
       displayArr = (
       <div >
+          <br />
+          <br />
         {this.state.arr.map(elm => <div> {elm} </div>)} 
       </div>
       )
@@ -95,11 +104,23 @@ export class TodoList extends Component {
       displayArr = (
 <div>
         <a class="aClearTodoList" onClick={this.clearTodoList}>Clear to do list</a> 
+        <br />
+        <br />
       <div >
         {this.state.doneArr.map(elm => <div> {elm} </div>)} 
       </div>
 </div>
       )
+    }
+    // change color of Todo Done button if selected or not
+    let TodoButton;
+    let DoneButton;
+    if ( this.state.clickTodo) {
+      TodoButton = 'Todo-heading-selected'
+      DoneButton = 'Done-heading'
+    } else {
+      TodoButton = 'Todo-heading'
+      DoneButton = 'Done-heading-selected'
     }
 
     return (
@@ -112,17 +133,17 @@ export class TodoList extends Component {
 
   <div className='Todos-Body'>
     <form onSubmit={this.handleSubmit}>
-      <input class="input-box" type="text" value={this.state.value} onChange={this.handleChange} />
+      <input class="input-box" type="text" placeholder="What to do next?" value={this.state.value} onChange={this.handleChange} />
     </form>
 
     <div class="flex">
       <div class="flex1"></div>
-        <h1 class="Todo-Done-heading" onClick={this.clickTodo}>
+        <h2 class={TodoButton} onClick={this.clickTodo}>
           Todo
-        </h1>
-        <h1 class="Todo-Done-heading" onClick={this.clickDone}>
+        </h2>
+        <h2 class={DoneButton} onClick={this.clickDone}>
           Done 
-        </h1>
+        </h2>
       <div class="flex1"></div>
     </div>
 
