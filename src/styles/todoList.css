@@ -3,9 +3,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 }
 
-/* 
-this is the main blue header 
- */
+/*  main blue header */ 
 .Todos-Header {
   background-color: #00a7ff;
   top: 0px;
@@ -15,6 +13,7 @@ this is the main blue header
   height: 140px
 }
 
+/* exit button up right in the header */
 .exitButton {
   border-radius: 50%;
   width: 35px;
@@ -40,7 +39,7 @@ this is the main blue header
 }
 
 
-
+/* main title Todos in the header */
 .Todos-Title-Text {
   width: 260px;
   height: 40px;
@@ -53,8 +52,11 @@ this is the main blue header
   padding-top: 80px;
 }
 
-.Todo-Done-heading {
-  height: 40px;
+
+
+/* Todo and Done heading under the input box */
+/* Will toggle color if selected or not */
+.Todo-heading {
   font-family: HelveticaNeue;
   font-size: 16px;
   letter-spacing: 2.7px;
@@ -64,8 +66,36 @@ this is the main blue header
   flex: 1;
 }
 
+.Todo-heading-selected {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color:#00a7ff;
+  flex: 1;
+}
+
+.Done-heading {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color: #00a7ff;
+  color: var(--azure);
+  flex: 1;
+}
+
+.Done-heading-selected {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color:#00a7ff;
+  flex: 1;
+}
 
 
+/* whole body under the main heading */
 .Todos-Body {
   background: white;
   top: 140px;
@@ -73,7 +103,43 @@ this is the main blue header
   width: 300px;
   position: fixed;
   height: 100%;
-  color: initial;
+  color: #959595;
+}
+
+
+
+/* input box where I write new todos */
+.input-box {
+  margin-top: 15px;
+  width: 260px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 0 #959595;
+  border: solid 0.3px #959595;
+  border: solid 0.3px var(--warm-grey);
+  color: #959595;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* this is the link to clear to do list in Done tab */
+.aClearTodoList {
+    color: #00a7ff;
+    margin-left: 10px;
+}
+
+/* list with Todo/Done items */
+.Todo-list {
+    text-align: left;
+}
+
+.checkbox {
+    padding-left: 10px;
+}
+
+.checkbox-label {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 
@@ -86,12 +152,14 @@ this is the main blue header
     flex: 1;
 }
 
-.input-box {
-    margin-top: 10px;
-    width: 80%;
+
+
+/* This is just for testing so remove later */
+.red {
+    color: red;
 }
 
-.Todo-list {
-    text-align: left;
+.flex6 {
+    flex: 6;
 }
 
