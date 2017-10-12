@@ -1,6 +1,5 @@
-
 import React, { Component } from 'react';
-
+import ReactDOM from 'react-dom';
 import '../styles/todoList.css';
 
 
@@ -8,15 +7,32 @@ class Li extends Component {
   constructor(props) {
         super(props);
         this.state = { 
-          test: "test"
+          mouseHover: false
           };
+this.onMouseEnter = this.onMouseEnter.bind(this);
+this.onMouseLeave = this.onMouseLeave.bind(this);
   }	
+  onMouseEnter(){
+    this.setState({mouseHover: true});
+  }
+  onMouseLeave(){
+    this.setState({mouseHover: false});
+  }
   render() {
+  // check the checkbox when mouse hover over
+  let checkbox;
+  if (this.state.mouseHover) {
+      checkbox = "checked"
+  }
+  else {
+      checkbox = ""
+  }
     return (
     <form>
-        <div class="flex">
+        <div class="flex" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
           <div  class="checkbox">
-            <input type="checkbox"  />
+            <input type="checkbox"  checked={checkbox}  />
+    
           </div>
           <div  class="checkbox-label">
             <label >{this.props.text}</label>
@@ -26,6 +42,20 @@ class Li extends Component {
     );
   }
 }
+
+class Empty extends React.Component {
+    render() {
+        return (
+            <div></div>
+        )
+    }
+}
+
+// TODO
+// *** when click a Todo element it should be moved to the Done tab
+// *** Have to have a local storage so the Todo is remembered when I close the tab
+// *** bug with close button inside Todo tab (see comments below toggleVisibility())
+// *** should be able to move the elements inside the Todo tab list.  And add some icon for that.
 
 
 export class TodoList extends Component {
@@ -52,8 +82,13 @@ export class TodoList extends Component {
   }
   addTodo() {
     var arr = this.state.arr.slice()
-    arr.push(<Li text={this.state.titleInput}/>)
+    arr.unshift(<Li text={this.state.titleInput}/>)
     this.setState({ arr: arr })
+    // focus Todo tab after write in input bar in Done tab
+    if ( !this.state.clickTodo ) {
+        this.setState({clickTodo: true});
+    }
+
   }
   clickTodo() {
     this.setState({clickTodo: true});
@@ -84,9 +119,12 @@ export class TodoList extends Component {
     this.setState({doneArr: [] });
   }
 
+  // there is a bug here cause I have to double click on Todo button in main page
+  // to reopen the Todos tab.  So how do i send a message to the main page (App.js) and toggle
+  // of this visibility: true, 
   toggleVisibility(){
-    // this.setState({doneArr: [] });
-    alert("work in progress. not finish");
+    // alert("work in progress. not finish");
+    return ReactDOM.render(<Empty />, document.getElementById('todo'));
 
   }
   render() {
