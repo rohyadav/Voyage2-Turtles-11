@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Notes.css';
+import PropTypes from 'prop-types'; // ES6
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { combineReducers } from 'redux';
 
+/* NOTES FEATURE */
 export class Notes extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +15,6 @@ export class Notes extends Component {
       searchTerm: '',
       noteTitle: '',
       noteDescription: '',
-      arrayOfNotes: [],
     }
   }
   setSearchQuery = (event) => {
@@ -26,9 +30,15 @@ export class Notes extends Component {
     console.log(this.state.noteDescription);
     const title = this.state.noteTitle;
     const value = this.state.noteDescription;
-    this.setState(prevState => ({ arrayOfNotes: prevState.arrayOfNotes.concat([{ 'title': title, 'description': value }]) }));
-  }
-  closeNotes = () => {
+    var prevState = localStorage.getItem('arrayOfNotes');
+    if (prevState === null) {
+      prevState = [];
+    } else {
+      prevState = JSON.parse(prevState);
+      console.log("prevState is :" +  prevState);
+    }
+    var newState = prevState.concat(  [{ 'title': title, 'description': value }]  );
+    localStorage.setItem('arrayOfNotes', JSON.stringify(newState) ) ;
   }
   render() {
     return (
@@ -52,8 +62,7 @@ export class Notes extends Component {
           <h5>Quantity of Notes: {this.state.quantity}</h5>
 
           {/* EXISTING NOTE LISTED OUT*/}
-          <RenderNotesAsList
-            input={this.state.arrayOfNotes} />
+          {<RenderNotesAsList />}
         </div>
       </div>
     )
@@ -67,7 +76,15 @@ class RenderNotesAsList extends Component {
   }
 
   render() {
-    this.mappedElements = (this.props.input).map((item, i) =>
+    var array = localStorage.getItem('arrayOfNotes');
+    console.log("local storage array is an array: " + Array.isArray(array));
+    if (array === null) {
+      var parsedArray = [];
+    } else {
+      parsedArray = JSON.parse(array);
+      console.log("parsedArray is an array: " + Array.isArray(parsedArray));
+    }
+    this.mappedElements = parsedArray.map((item, i) =>
       <div id={'note_' + i} key={'key_' + i} className='Notes'>
         <div className="Title">{item.title}</div>
         <div className="Description">{item.description}</div>
@@ -81,6 +98,11 @@ class RenderNotesAsList extends Component {
     )
   }
 }
+
+RenderNotesAsList.propTypes = {
+  array: PropTypes.array,
+  mappedElements: PropTypes.array
+};
 
 class Search extends Component {
   constructor(props) {
