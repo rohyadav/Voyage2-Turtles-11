@@ -2,9 +2,40 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Notes.css';
 import PropTypes from 'prop-types'; // ES6
-import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { combineReducers } from 'redux';
+import notesApp from '../reducers/Notes_Reducers';
+import {
+  addNotes,
+  toggleNotes, 
+  deleteNotes, 
+  setNotesVisibilityFilter,
+  NotesVisibilityFilters
+} from '../actions/Notes_Actions';
+//creating the redux store for entire application
+let store = createStore(notesApp, window.STATE_FROM_SERVER);
+
+
+// log the initial state
+console.log(store.getState());
+
+// every time the state changes, log it
+// Note that subscribe() returns a function for unregistering the listener
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
+// dispatch some actions
+store.dispatch(addNotes('Francesca Sadikin'));
+store.dispatch(addNotes('Natasha Sadikin'));
+store.dispatch(addNotes('Yenny Sadikin'));
+store.dispatch(addNotes('Xin Liu'));
+store.dispatch(toggleNotes(0));
+store.dispatch(toggleNotes(1));
+store.dispatch(setNotesVisibilityFilter(NotesVisibilityFilters.SHOW_ACTIVE));
+store.dispatch(deleteNotes(3));
+
+// stop listening to state updates
+unsubscribe();
 
 /* NOTES FEATURE */
 export class Notes extends Component {

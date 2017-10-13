@@ -1,11 +1,11 @@
 // redux - reducers for Notes
-import { NotesVisibilityFilters } from '../actions/Notes_Actions';
 import { combineReducers } from 'redux';
 import {
     ADD_NOTES,
     TOGGLE_NOTES, 
     DELETE_NOTES, 
-    SET_NOTES_VISIBILITY_FILTER
+    SET_NOTES_VISIBILITY_FILTER,
+    NotesVisibilityFilters
 } from '../actions/Notes_Actions';
 
 const { SHOW_ACTIVE } = NotesVisibilityFilters
@@ -30,16 +30,24 @@ function notes(state = [], action) {
                 return notes;
             })
         case DELETE_NOTES:
-            return [
-                ...state.slice(0, index)
-                ...state.slice(index + 1)
-            ];
+            var shouldDelete = false;
+            state.map((notes, index) => {
+                if (index === action.index) {
+                    shouldDelete = true;
+                }
+            })
+            if (shouldDelete) {
+                return [
+                    ...state.slice(0, action.index),
+                    ...state.slice(action.index + 1)
+                ]; 
+            }
         default:
             return state;
     }
 }
 
-function NotesVisibilityFilters(state = SHOW_ACTIVE, action) {
+function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
     switch (action.type) {
         case SET_NOTES_VISIBILITY_FILTER:
             return action.filter
@@ -49,8 +57,8 @@ function NotesVisibilityFilters(state = SHOW_ACTIVE, action) {
 }
 
 const notesApp = combineReducers({
-    visibilityFilter,
-    notes
+    notesVisibilityFilters,
+    notes,
 })
 
 export default notesApp

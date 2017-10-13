@@ -5,11 +5,7 @@ import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
-import PropTypes from 'prop-types'; // ES6
 import { TodoList } from '../components/todoList.js';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { combineReducers } from 'redux';
 
 class NotesButton extends React.Component {
   constructor(props) {
