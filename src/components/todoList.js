@@ -168,14 +168,6 @@ export class TodoList extends Component {
         this.setState({ arr: arr });
     }
     render() {
-        // check the checkbox when mouse hover over
-        let checkbox;
-        if (this.state.mouseHover) {
-            checkbox = "checked"
-        }
-        else {
-            checkbox = ""
-        }
         // toogle between display Todo list or Done list
         let displayArr;
         if (this.state.isInTodoTab) {
@@ -190,7 +182,7 @@ export class TodoList extends Component {
                             </div>
                             <div class="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
                                 <span>
-                                    <img class="imgMoveUp" src={require('../assets/move_waiting_up_grey.png')} />
+                                    <img class="imgMoveUp" src={require('../assets/move_waiting_up_grey.png')} alt="move elm up"/>
                                 </span>
                             </div>
                         </div>
@@ -210,7 +202,7 @@ export class TodoList extends Component {
                             </div>
                             <div class="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
                                 <span>
-                                    <img class="imgDelete" src={require('../assets/trash_full.png')} />
+                                    <img class="imgDelete" src={require('../assets/trash_full.png')} alt="delete one element" />
                                 </span>
                             </div>
                         </div>
