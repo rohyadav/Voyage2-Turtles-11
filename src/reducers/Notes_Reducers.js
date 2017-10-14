@@ -4,6 +4,7 @@ import {
     ADD_NOTES,
     TOGGLE_NOTES, 
     DELETE_NOTES, 
+    PIN_NOTES,
     SEARCH_NOTES,
     CLOSE_NOTES_SEARCH,
     SET_NOTES_VISIBILITY_FILTER,
@@ -35,7 +36,8 @@ function notes(state = [], action) {
                 {
                     text: action.text,
                     completed: false,
-                    search: false
+                    search: false,
+                    pinned: false
                 }
             ]
         case TOGGLE_NOTES:
@@ -46,6 +48,14 @@ function notes(state = [], action) {
                     })
                 }
                 return notes;
+            })
+        case PIN_NOTES:
+            return state.map((notes, index) => {
+                if (index === action.index) {
+                    return Object.assign({}, notes, {
+                        pinned: !notes.pinned
+                    })
+                }
             })
         case DELETE_NOTES:
             var shouldDelete = false;

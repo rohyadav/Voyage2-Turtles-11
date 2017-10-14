@@ -7,6 +7,7 @@ import {
     searchNotes,
     setNotesVisibilityFilter,
     closeNotesSearch,
+    pinNotes,
     NotesVisibilityFilters
   } from '../actions/Notes_Actions';
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
@@ -18,7 +19,8 @@ describe('testing Redux Store', () => {
                 notes: [{
                     text: "Francesca Sadikin",
                     completed: false,
-                    search: false
+                    search: false,
+                    pinned: false
                 }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
@@ -36,12 +38,14 @@ describe('testing Redux Store', () => {
                         {
                             text: "Francesca Sadikin",
                             completed: false,
-                            search: false
+                            search: false,
+                            pinned: false
                         },
                         {
                             text: "Natasha Sadikin",
                             completed: false,
-                            search: false
+                            search: false,
+                            pinned: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ACTIVE"
@@ -60,12 +64,40 @@ describe('testing Redux Store', () => {
                         {
                             text: "Francesca Sadikin",
                             completed: true,
-                            search: false
+                            search: false,
+                            pinned: false
                         },
                         {
                             text: "Natasha Sadikin",
                             completed: false,
-                            search: false
+                            search: false,
+                            pinned: false
+                        }
+                    ],
+                notesVisibilityFilters: "SHOW_ACTIVE"
+            });
+            done();
+        }
+        store.dispatch(toggleNotes(0));
+        callback(store.getState());
+    });
+
+    test('toggle visibility of first note AGAIN', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [
+                        {
+                            text: "Francesca Sadikin",
+                            completed: false,
+                            search: false,
+                            pinned: false
+                        },
+                        {
+                            text: "Natasha Sadikin",
+                            completed: false,
+                            search: false,
+                            pinned: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ACTIVE"
@@ -83,13 +115,15 @@ describe('testing Redux Store', () => {
                     [
                         {
                             text: "Francesca Sadikin",
-                            completed: true,
-                            search: false
+                            completed: false,
+                            search: false,
+                            pinned: false
                         },
                         {
                             text: "Natasha Sadikin",
                             completed: false,
-                            search: false
+                            search: false,
+                            pinned: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ARCHIVED"
@@ -107,13 +141,15 @@ describe('testing Redux Store', () => {
                     [
                         {
                             text: "Francesca Sadikin",
-                            completed: true,
-                            search: false
+                            completed: false,
+                            search: false,
+                            pinned: false
                         },
                         {
                             text: "Natasha Sadikin",
                             completed: false,
-                            search: false
+                            search: false,
+                            pinned: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ACTIVE"
@@ -131,7 +167,8 @@ describe('testing Redux Store', () => {
                     [{
                         text: "Natasha Sadikin",
                         completed: false,
-                        search: false
+                        search: false,
+                        pinned: false
                     }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
@@ -148,7 +185,8 @@ describe('testing Redux Store', () => {
                     [{
                         text: "Natasha Sadikin",
                         completed: false,
-                        search: true
+                        search: true,
+                        pinned: false
                     }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
@@ -165,13 +203,32 @@ describe('testing Redux Store', () => {
                     [{
                         text: "Natasha Sadikin",
                         completed: false,
-                        search: false
+                        search: false,
+                        pinned: false
                     }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
             done();
         }
-        store.dispatch(searchNotes('Sadikin'));
+        store.dispatch(closeNotesSearch());
+        callback(store.getState());
+    });
+
+    test('search should work with lowercase or uppercase search terms', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: true,
+                        pinned: false
+                    }],
+                notesVisibilityFilters: "SHOW_ACTIVE"
+            });
+            done();
+        }
+        store.dispatch(searchNotes('SADIKIN'));
         callback(store.getState());
     });
 
@@ -182,13 +239,69 @@ describe('testing Redux Store', () => {
                     [{
                         text: "Natasha Sadikin",
                         completed: false,
-                        search: false
+                        search: false,
+                        pinned: false
                     }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
             done();
         }
+        store.dispatch(closeNotesSearch());
         store.dispatch(searchNotes('Hello'));
+        callback(store.getState());
+    });
+
+    test('setting the notesVisibilityFilter to SHOW_PINNED', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: false
+                    }],
+                notesVisibilityFilters: "SHOW_PINNED"
+            });
+            done();
+        }
+        store.dispatch(setNotesVisibilityFilter(NotesVisibilityFilters.SHOW_PINNED));
+        callback(store.getState());
+    });
+
+    test('pinning note 0 should set pin to true', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: true
+                    }],
+                notesVisibilityFilters: "SHOW_PINNED"
+            });
+            done();
+        }
+        store.dispatch(pinNotes(0));
+        callback(store.getState());
+    });
+
+    test('pinning note 0 again set pin to false', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: false
+                    }],
+                notesVisibilityFilters: "SHOW_PINNED"
+            });
+            done();
+        }
+        store.dispatch(pinNotes(0));
         callback(store.getState());
     });
 });
