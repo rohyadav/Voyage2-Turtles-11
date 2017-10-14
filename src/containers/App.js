@@ -5,8 +5,7 @@ import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
-
-import {TodoList} from '../components/todoList.js';
+import { TodoList } from '../components/todoList.js';
 
 class NotesButton extends React.Component {
   constructor(props) {
