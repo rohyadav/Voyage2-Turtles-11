@@ -4,11 +4,28 @@ import {
     ADD_NOTES,
     TOGGLE_NOTES, 
     DELETE_NOTES, 
+    SEARCH_NOTES,
+    CLOSE_NOTES_SEARCH,
     SET_NOTES_VISIBILITY_FILTER,
     NotesVisibilityFilters
 } from '../actions/Notes_Actions';
 
 const { SHOW_ACTIVE } = NotesVisibilityFilters
+
+// adding the string.includes() method to search for strings
+if (!String.prototype.includes) {
+    String.prototype.includes = function (search, start) {
+        'use strict';
+        if (typeof start !== 'number') {
+            start = 0;
+        }
+        if (start + search.length > this.length) {
+            return false;
+        } else {
+            return this.indexOf(search, start) !== -1;
+        }
+    };
+}
 
 function notes(state = [], action) {
     switch (action.type) {
@@ -17,7 +34,8 @@ function notes(state = [], action) {
                 ...state,
                 {
                     text: action.text,
-                    completed: false
+                    completed: false,
+                    search: false
                 }
             ]
         case TOGGLE_NOTES:
@@ -42,6 +60,26 @@ function notes(state = [], action) {
                     ...state.slice(action.index + 1)
                 ]; 
             }
+        case SEARCH_NOTES:
+            return state.map((notes) => {
+                var lowerCaseSearch = (action.text).toLowerCase();
+                var lowerCaseNotes = (notes.text).toLowerCase();
+                if (lowerCaseNotes.includes(lowerCaseSearch) === true) {
+                    return Object.assign({}, notes, {
+                        search: !notes.search
+                    });
+                } else {
+                    return Object.assign({}, notes, {
+                        search: notes.search
+                    });
+                }
+            });
+        case CLOSE_NOTES_SEARCH:
+            return state.map((notes) => {
+                return Object.assign({}, notes, {
+                    search: false
+                });
+            })
         default:
             return state;
     }
@@ -62,11 +100,5 @@ const notesApp = combineReducers({
 })
 
 export default notesApp
-// the above notesApp is really this but with a handy combineReducers utility
-// export default function notesApp(state = {}}, action) {
-//     return {
-//         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-//         notes: notes(state.notes, action)
-//     }
-// }
+
 

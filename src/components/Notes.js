@@ -8,15 +8,13 @@ import {
   addNotes,
   toggleNotes, 
   deleteNotes, 
+  searchNotes,
   setNotesVisibilityFilter,
+  closeNotesSearch,
   NotesVisibilityFilters
 } from '../actions/Notes_Actions';
 //creating the redux store for entire application
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
-
-
-// log the initial state
-console.log(store.getState());
 
 // every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
@@ -33,6 +31,8 @@ store.dispatch(toggleNotes(0));
 store.dispatch(toggleNotes(1));
 store.dispatch(setNotesVisibilityFilter(NotesVisibilityFilters.SHOW_ACTIVE));
 store.dispatch(deleteNotes(3));
+store.dispatch(addNotes('Xin Liu number 2'));
+store.dispatch(searchNotes("Xin"));
 
 // stop listening to state updates
 unsubscribe();
@@ -44,19 +44,15 @@ export class Notes extends Component {
     this.state = {
       quantity: 0,
       searchTerm: '',
-      noteTitle: '',
-      noteDescription: '',
     }
   }
   setSearchQuery = (event) => {
     this.setState({ searchInput: event.target.value });
   }
-  setNoteDescription = (event) => {
-    this.setState({ noteDescription: event.target.value });
+  setNote = (event) => {
+    store.dispatch(addNotes(event.target.value));
   }
-  setNoteTitle = (event) => {
-    this.setState({ noteTitle: event.target.value });
-  }
+ 
   handleNoteSubmit = () => {
     console.log(this.state.noteDescription);
     const title = this.state.noteTitle;

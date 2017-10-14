@@ -4,7 +4,9 @@ import {
     addNotes,
     toggleNotes, 
     deleteNotes, 
+    searchNotes,
     setNotesVisibilityFilter,
+    closeNotesSearch,
     NotesVisibilityFilters
   } from '../actions/Notes_Actions';
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
@@ -15,7 +17,8 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: [{
                     text: "Francesca Sadikin",
-                    completed: false
+                    completed: false,
+                    search: false
                 }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
@@ -32,11 +35,13 @@ describe('testing Redux Store', () => {
                     [
                         {
                             text: "Francesca Sadikin",
-                            completed: false
+                            completed: false,
+                            search: false
                         },
                         {
                             text: "Natasha Sadikin",
-                            completed: false
+                            completed: false,
+                            search: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ACTIVE"
@@ -54,11 +59,13 @@ describe('testing Redux Store', () => {
                     [
                         {
                             text: "Francesca Sadikin",
-                            completed: true
+                            completed: true,
+                            search: false
                         },
                         {
                             text: "Natasha Sadikin",
-                            completed: false
+                            completed: false,
+                            search: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ACTIVE"
@@ -76,11 +83,13 @@ describe('testing Redux Store', () => {
                     [
                         {
                             text: "Francesca Sadikin",
-                            completed: true
+                            completed: true,
+                            search: false
                         },
                         {
                             text: "Natasha Sadikin",
-                            completed: false
+                            completed: false,
+                            search: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ARCHIVED"
@@ -98,11 +107,13 @@ describe('testing Redux Store', () => {
                     [
                         {
                             text: "Francesca Sadikin",
-                            completed: true
+                            completed: true,
+                            search: false
                         },
                         {
                             text: "Natasha Sadikin",
-                            completed: false
+                            completed: false,
+                            search: false
                         }
                     ],
                 notesVisibilityFilters: "SHOW_ACTIVE"
@@ -119,13 +130,65 @@ describe('testing Redux Store', () => {
                 notes: 
                     [{
                         text: "Natasha Sadikin",
-                        completed: false
+                        completed: false,
+                        search: false
                     }],
                 notesVisibilityFilters: "SHOW_ACTIVE"
             });
             done();
         }
         store.dispatch(deleteNotes(0));
+        callback(store.getState());
+    });
+
+    test('search for Sadikin keyword', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: true
+                    }],
+                notesVisibilityFilters: "SHOW_ACTIVE"
+            });
+            done();
+        }
+        store.dispatch(searchNotes('Sadikin'));
+        callback(store.getState());
+    });
+
+    test('clear search box', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false
+                    }],
+                notesVisibilityFilters: "SHOW_ACTIVE"
+            });
+            done();
+        }
+        store.dispatch(searchNotes('Sadikin'));
+        callback(store.getState());
+    });
+
+    test('search for HELLO keyword should return false', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false
+                    }],
+                notesVisibilityFilters: "SHOW_ACTIVE"
+            });
+            done();
+        }
+        store.dispatch(searchNotes('Hello'));
         callback(store.getState());
     });
 });

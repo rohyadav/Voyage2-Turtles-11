@@ -10,6 +10,8 @@ export const NotesVisibilityFilters = {
 export const ADD_NOTES = 'ADD_NOTES'
 export const TOGGLE_NOTES = 'TOGGLE_NOTES'
 export const DELETE_NOTES = 'DELETE_NOTES'
+export const SEARCH_NOTES = 'SEARCH_NOTES'
+export const CLOSE_NOTES_SEARCH = 'CLOSE_NOTES_SEARCH'
 export const SET_NOTES_VISIBILITY_FILTER = 'SET_NOTES_VISIBILITY_FILTER'
 
 export function addNotes(text) {
@@ -22,6 +24,14 @@ export function toggleNotes(index) {
 
 export function deleteNotes(index) {
     return { type: DELETE_NOTES, index }
+}
+
+export function searchNotes(text) {
+    return { type: SEARCH_NOTES, text }
+}
+
+export function closeNotesSearch() {
+    return { type: CLOSE_NOTES_SEARCH }
 }
 
 export function setNotesVisibilityFilter(filter) {
