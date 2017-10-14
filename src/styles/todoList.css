@@ -1,0 +1,165 @@
+
+body {
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+}
+
+/*  main blue header */ 
+.Todos-Header {
+  background-color: #00a7ff;
+  top: 0px;
+  right: 0px;
+  width: 300px;
+  position: fixed;
+  height: 140px
+}
+
+/* exit button up right in the header */
+.exitButton {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  top: 20px;
+  right: 20px;
+  position: fixed;
+  background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#00a7ff;
+  font-size:20px;
+  font-weight: 700;
+  font-style: bold;
+  text-align: center;
+  border: none;
+  background-color:#ffffff;
+}
+.exitButton:hover {
+  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  background-color:#f6f6f6;
+}
+
+
+/* main title Todos in the header */
+.Todos-Title-Text {
+  width: 260px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  text-align: left;
+  color: #ffffff;
+  padding-left: 20px;
+  padding-top: 80px;
+}
+
+
+
+/* Todo and Done heading under the input box */
+/* Will toggle color if selected or not */
+.Todo-heading {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color: #00a7ff;
+  color: var(--azure);
+  flex: 1;
+}
+
+.Todo-heading-selected {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color:#00a7ff;
+  flex: 1;
+}
+
+.Done-heading {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color: #00a7ff;
+  color: var(--azure);
+  flex: 1;
+}
+
+.Done-heading-selected {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color:#00a7ff;
+  flex: 1;
+}
+
+
+/* whole body under the main heading */
+.Todos-Body {
+  background: white;
+  top: 140px;
+  right: 0px;
+  width: 300px;
+  position: fixed;
+  height: 100%;
+  color: #959595;
+}
+
+
+
+/* input box where I write new todos */
+.input-box {
+  margin-top: 15px;
+  width: 260px;
+  height: 40px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 0 #959595;
+  border: solid 0.3px #959595;
+  border: solid 0.3px var(--warm-grey);
+  color: #959595;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* this is the link to clear to do list in Done tab */
+.aClearTodoList {
+    color: #00a7ff;
+    margin-left: 10px;
+}
+
+/* list with Todo/Done items */
+.Todo-list {
+    text-align: left;
+}
+
+.checkbox {
+    padding-left: 10px;
+}
+
+.checkbox-label {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+
+.flex {
+    display: flex;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+
+
+/* This is just for testing so remove later */
+.red {
+    color: red;
+}
+
+.flex6 {
+    flex: 6;
+}
+
