@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import '../styles/todoList.css';
 
 
+
 class Li extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            mouseHover: false
+            mouseHover: false,
         };
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
@@ -27,18 +28,16 @@ class Li extends Component {
         else {
             checkbox = ""
         }
+
         return (
-            <form>
-                <div class="flex" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                    <div  class="checkbox">
+            <div class="flex"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+                <div  class="checkbox flex1">
                     <input type="checkbox"  checked={checkbox}  />
-            
                 </div>
-                    <div  class="checkbox-label">
-                        <label >{this.props.text}</label>
-                    </div>
+                <div  class="checkbox-label flex12">
+                    <label >{this.props.text}</label>
                 </div>
-            </form>
+            </div>
         );
     }
 }
@@ -54,21 +53,29 @@ class Empty extends React.Component {
 // TODO
 // *** Have to have a local storage so the Todo is remembered when I close the tab
 // *** bug with close button inside Todo tab (see comments below toggleVisibility())
-// *** should be able to move the elements inside the Todo tab list.  And add some icon for that.
 
 
 export class TodoList extends Component {
-    // thoughts do I really need this state thing and how do we store variables when tab close
+    // thoughts do I really need this state thing.. in this class? 
     constructor(props) {
         super(props);
         this.state = { 
+            mouseHover: false,
             inputText: "",
             value: "",
             // if this is true I am in the Todo tab else I am in Done tab
             isInTodoTab: true,
             // rename this arr to todoArr
-            arr: [<Li text="test Todo and yes you can write in input field to add more!" />, <Li text="test Todo" />],
-            doneArr: [<Li text="test Done" />, <Li text="test Done" />],
+            arr:    [<Li text="Welcome to Todo tab!" />, 
+                        <Li text="write in input bar to add new Todo" />,
+                        <Li text="click marked item to move to Done tab" />,
+                        <Li text="move mouse to right and click icon to move item to top" />
+                        ],
+            doneArr: [<Li text="Welcome to Done tab!" />, 
+                        <Li text="click marked item to move back to Todo tab" />,
+                        <Li text="move mouse to right and click icon to delete one item" />,
+                        <Li text="click link at top to delete all items" />
+                        ],
         };
         this.addTodo = this.addTodo.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -76,7 +83,10 @@ export class TodoList extends Component {
         this.clickTodo = this.clickTodo.bind(this);
         this.clickDone = this.clickDone.bind(this);
         this.clearTodoList = this.clearTodoList.bind(this);
-        this.todoElmClick = this.todoElmClick.bind(this);
+        this.todoElmMoveDoneTab = this.todoElmMoveDoneTab.bind(this);
+        this.todoElmMoveTop = this.todoElmMoveTop.bind(this);
+        this.doneElmDelete = this.doneElmDelete.bind(this);
+        this.doneElmMoveTodoTab = this.doneElmMoveTodoTab.bind(this);
     }
     addTodo() {
         var arr = this.state.arr.slice()
@@ -110,12 +120,12 @@ export class TodoList extends Component {
     // there is a bug here cause I have to double click on Todo button in main page
     // to reopen the Todos tab.  So how do i send a message to the main page (App.js) and toggle
     // of this visibility: true, 
+    // I have to import a function from the parent class I think..
     toggleVisibility(){
-        // alert("work in progress. not finish");
         return ReactDOM.render(<Empty />, document.getElementById('todo'));
     }
     // get the index of the todo element which is clicked
-    todoElmClick(i, event) {
+    todoElmMoveDoneTab(i, event) {
         var elmToMove = this.state.arr[i];
         // remove the Todo element at index i
         var array = this.state.arr;
@@ -126,12 +136,36 @@ export class TodoList extends Component {
         arr.unshift(elmToMove);
         this.setState({ doneArr: arr });
     }
+    // move Done elm to Todo tab
+    doneElmMoveTodoTab(i, event) {
+        var elmToMove = this.state.doneArr[i];
+        // remove the Todo element at index i
+        var array = this.state.doneArr;
+        array.splice(i, 1);
+        this.setState({doneArr: array });
+        // and then add the removed element to the Done array
+        var arr = this.state.arr.slice();
+        arr.unshift(elmToMove);
+        this.setState({ arr: arr });
+    }
     // get the index of the done element which is clicked
-    doneElmClick(i, event) {
+    doneElmDelete(i, event) {
         // remove the Todo element at index i
         var array = this.state.doneArr;
         array.splice(i, 1);
         this.setState({arr: array });
+    }
+    // move Todo elm to top of list 
+    todoElmMoveTop(i, event) {
+        var elmToMove = this.state.arr[i];
+        // remove the Todo element at index i
+        var array = this.state.arr;
+        array.splice(i, 1);
+        this.setState({arr: array });
+        // and then add the removed element to the Todo array at front
+        var arr = this.state.arr.slice();
+        arr.unshift(elmToMove);
+        this.setState({ arr: arr });
     }
     render() {
         // toogle between display Todo list or Done list
@@ -141,8 +175,18 @@ export class TodoList extends Component {
                 <div >
                     <br />
                     <br />
-                    {this.state.arr.map((elm, i) => 
-                        <div onClick={this.todoElmClick.bind(this, i)}>{elm}</div>)} 
+                    {this.state.arr.map( (elm, i) => 
+                        <div class="flex">
+                            <div class="flex12" onClick={this.todoElmMoveDoneTab.bind(this, i)}>
+                                <div >{elm}</div>
+                            </div>
+                            <div class="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
+                                <span>
+                                    <img class="imgMoveUp" src={require('../assets/move_waiting_up_grey.png')} alt="move elm up"/>
+                                </span>
+                            </div>
+                        </div>
+                    )} 
                 </div>
             )
         } else {
@@ -151,10 +195,18 @@ export class TodoList extends Component {
                     <a class="aClearTodoList" onClick={this.clearTodoList}>Clear to do list</a> 
                     <br />
                     <br />
-                    <div >
-                        {this.state.doneArr.map((elm, i) => 
-                            <div onClick={this.doneElmClick.bind(this, i)}>{elm}</div>)} 
-                    </div>
+                    {this.state.doneArr.map( (elm, i) => 
+                        <div class="flex">
+                            <div class="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
+                                <div >{elm}</div>
+                            </div>
+                            <div class="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
+                                <span>
+                                    <img class="imgDelete" src={require('../assets/trash_full.png')} alt="delete one element" />
+                                </span>
+                            </div>
+                        </div>
+                    )} 
                 </div>
             )
         }
@@ -194,10 +246,11 @@ export class TodoList extends Component {
                     </div>
 
                     <div class="Todo-list">
-                    { displayArr }
+                        { displayArr }
                     </div>
 
                 </div> 
+
             </div>
         );
     }
