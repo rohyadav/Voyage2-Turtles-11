@@ -4,6 +4,7 @@ import '../styles/Notes.css';
 import PropTypes from 'prop-types'; // ES6
 import { createStore } from 'redux';
 import notesApp from '../reducers/Notes_Reducers';
+import { connect } from 'react-redux';
 import {
   addNotes,
   toggleNotes, 
@@ -27,6 +28,37 @@ let unsubscribe = store.subscribe(() =>
 // stop listening to state updates
 // unsubscribe();
 
+const getVisibleNotes = (notes, filter) => {
+  switch (filter) {
+    case "SHOW_ACTIVE":
+      return notes.filter(n => n.completed)
+    case "SHOW_ARCHIVED":
+      return notes.filter(n => !n.completed)
+    case "SEARCH_NOTES":
+      return notes.filter(n => n.search)
+    case "PINNED_NOTES":
+      return notes.filter(n => n.pinned)
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    notes: getVisibleNotes(state.notes, state.NotesVisibilityFilters)
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onNotesClick: id => {
+      dispatch(toggleNotes(id))
+    }
+  }
+}
+
+const VisibleNotesList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotesList)
 /* NOTES FEATURE */
 export class Notes extends Component {
   constructor(props) {
@@ -41,8 +73,11 @@ export class Notes extends Component {
   }
   handleNoteSearch = () => {
     store.dispatch(searchNotes(this.state.searchTerm));
-    // renders the search results
+    // render the search results
   }
+
+  // clear search history method
+
   setNote = (event) => {
     this.setState({note: event.target.value});
   }
@@ -69,6 +104,13 @@ export class Notes extends Component {
           <textarea className='Notes NoteTitleTextBox Title' onChange={this.setNote} defaultValue='New Note' />
 
           {/* NOTES LISTED OUT*/}
+          {/* <FilterLink filter="SHOW_ACTIVE">
+            ACTIVE
+          </FilterLink>
+          {'  |  '}
+          <FilterLink filter="SHOW_ARCHIVED">
+            ARCHIVED
+          </FilterLink> */}
           {<RenderNotesAsList />}
         </div>
       </div>
@@ -105,11 +147,6 @@ class RenderNotesAsList extends Component {
     )
   }
 }
-
-RenderNotesAsList.propTypes = {
-  array: PropTypes.array,
-  mappedElements: PropTypes.array
-};
 
 export class EmptyContainer extends React.Component {
   constructor(props) {
