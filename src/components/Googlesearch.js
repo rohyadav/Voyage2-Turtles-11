@@ -16,7 +16,7 @@ googleSearch(query) {
 
         return (
             <div>
-                <SearchType types={types}/> 
+                <SearchType types={types} selected={types[0]}/> 
                 <SearchBox 
                     onSearch={this.googleSearch} />                    
             </div> 
