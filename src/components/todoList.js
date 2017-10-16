@@ -10,18 +10,16 @@ class Li extends Component {
         this.state = { 
             mouseHover: false,
         };
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
     }	
-    onMouseEnter(){
+    onMouseEnter = () => {
         this.setState({mouseHover: true});
     }
-    onMouseLeave(){
+    onMouseLeave = () => {
         this.setState({mouseHover: false});
     }
     render() {
         // check the checkbox when mouse hover over
-        let checkbox;
+        var checkbox;
         if (this.state.mouseHover) {
             checkbox = "checked"
         }
@@ -51,134 +49,125 @@ class Empty extends React.Component {
 }
 
 // TODO
-// *** Have to have a local storage so the Todo is remembered when I close the tab
 // *** bug with close button inside Todo tab (see comments below toggleVisibility())
 
-
 export class TodoList extends Component {
-    // thoughts do I really need this state thing.. in this class? 
     constructor(props) {
         super(props);
         this.state = { 
-            mouseHover: false,
             inputText: "",
             value: "",
             // if this is true I am in the Todo tab else I am in Done tab
             isInTodoTab: true,
-            // rename this arr to todoArr
-            arr:    [<Li text="Welcome to Todo tab!" />, 
-                        <Li text="write in input bar to add new Todo" />,
-                        <Li text="click marked item to move to Done tab" />,
-                        <Li text="move mouse to right and click icon to move item to top" />
-                        ],
-            doneArr: [<Li text="Welcome to Done tab!" />, 
-                        <Li text="click marked item to move back to Todo tab" />,
-                        <Li text="move mouse to right and click icon to delete one item" />,
-                        <Li text="click link at top to delete all items" />
-                        ],
+            todoArr: JSON.parse(localStorage["todoData-todoArr"] || JSON.stringify([
+                "Welcome to Todo tab!", 
+                "write in input bar to add new Todo",
+                "click marked item to move to Done tab",
+                "move mouse to right and click icon to move item to top" ]) ),
+            doneArr: JSON.parse(localStorage["todoData-doneArr"] || JSON.stringify([
+                "Welcome to Done tab!", 
+                "click marked item to move back to Todo tab",
+                "move mouse to right and click icon to delete one item",
+                "click link at top to delete all items" ]) ),
         };
-        this.addTodo = this.addTodo.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.clickTodo = this.clickTodo.bind(this);
-        this.clickDone = this.clickDone.bind(this);
-        this.clearTodoList = this.clearTodoList.bind(this);
-        this.todoElmMoveDoneTab = this.todoElmMoveDoneTab.bind(this);
-        this.todoElmMoveTop = this.todoElmMoveTop.bind(this);
-        this.doneElmDelete = this.doneElmDelete.bind(this);
-        this.doneElmMoveTodoTab = this.doneElmMoveTodoTab.bind(this);
     }
-    addTodo() {
-        var arr = this.state.arr.slice()
-        arr.unshift(<Li text={this.state.inputText}/>)
-        this.setState({ arr: arr })
+    addTodo = () => {
+        var arr = this.state.todoArr.slice()
+        arr.unshift(this.state.inputText)
+        this.setState({ todoArr: arr })
+        localStorage.setItem("todoData-todoArr", JSON.stringify(arr));
         // focus Todo tab after write in input bar in Done tab
         if ( !this.state.isInTodoTab ) {
             this.setState({isInTodoTab: true});
         }
     }
-    clickTodo() {
+    clickTodo = () => {
         this.setState({isInTodoTab: true});
     }
-    clickDone() {
+    clickDone = () => {
         this.setState({isInTodoTab: false});
     }
     // used to get text from input bar in todoTab
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({value: event.target.value});
         this.setState({inputText: event.target.value});
     }
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         this.addTodo();
         this.setState({value: ''});
         event.preventDefault();
     }
-    clearTodoList(){
+    clearDoneList = () => {
         this.setState({doneArr: [] });
+        localStorage.setItem("todoData-doneArr", JSON.stringify([]));
     }
 
     // there is a bug here cause I have to double click on Todo button in main page
     // to reopen the Todos tab.  So how do i send a message to the main page (App.js) and toggle
     // of this visibility: true, 
     // I have to import a function from the parent class I think..
-    toggleVisibility(){
+    toggleVisibility = () => {
         return ReactDOM.render(<Empty />, document.getElementById('todo'));
     }
     // get the index of the todo element which is clicked
-    todoElmMoveDoneTab(i, event) {
-        var elmToMove = this.state.arr[i];
+    todoElmMoveDoneTab = (i, event) => {
+        var elmToMove = this.state.todoArr[i];
         // remove the Todo element at index i
-        var array = this.state.arr;
-        array.splice(i, 1);
-        this.setState({arr: array });
+        var arr = this.state.todoArr.slice();
+        arr.splice(i, 1);
+        localStorage.setItem("todoData-todoArr", JSON.stringify(arr));
+        this.setState({todoArr: arr });
         // and then add the removed element to the Done array
-        var arr = this.state.doneArr.slice();
+        arr = this.state.doneArr.slice();
         arr.unshift(elmToMove);
+        localStorage.setItem("todoData-doneArr", JSON.stringify(arr));
         this.setState({ doneArr: arr });
     }
     // move Done elm to Todo tab
-    doneElmMoveTodoTab(i, event) {
+    doneElmMoveTodoTab = (i, event) => {
         var elmToMove = this.state.doneArr[i];
-        // remove the Todo element at index i
-        var array = this.state.doneArr;
-        array.splice(i, 1);
-        this.setState({doneArr: array });
+        // remove the Done element at index i
+        var arr = this.state.doneArr.slice();
+        arr.splice(i, 1);
+        localStorage.setItem("todoData-doneArr", JSON.stringify(arr));
+        this.setState({doneArr: arr });
         // and then add the removed element to the Done array
-        var arr = this.state.arr.slice();
+        arr = this.state.todoArr.slice();
         arr.unshift(elmToMove);
-        this.setState({ arr: arr });
+        localStorage.setItem("todoData-todoArr", JSON.stringify(arr));
+        this.setState({ todoArr: arr });
     }
     // get the index of the done element which is clicked
-    doneElmDelete(i, event) {
+    doneElmDelete = (i, event) => {
         // remove the Todo element at index i
-        var array = this.state.doneArr;
-        array.splice(i, 1);
-        this.setState({arr: array });
+        var arr = this.state.doneArr.slice();
+        arr.splice(i, 1);
+        localStorage.setItem("todoData-doneArr", JSON.stringify(arr));
+        this.setState({doneArr: arr });
     }
     // move Todo elm to top of list 
-    todoElmMoveTop(i, event) {
-        var elmToMove = this.state.arr[i];
+    todoElmMoveTop = (i, event) => {
+        var elmToMove = this.state.todoArr[i];
         // remove the Todo element at index i
-        var array = this.state.arr;
-        array.splice(i, 1);
-        this.setState({arr: array });
+        var arr = this.state.todoArr.slice();
+        arr.splice(i, 1);
         // and then add the removed element to the Todo array at front
-        var arr = this.state.arr.slice();
         arr.unshift(elmToMove);
-        this.setState({ arr: arr });
+        localStorage.setItem("todoData-todoArr", JSON.stringify(arr));
+        this.setState({ todoArr: arr });
     }
     render() {
         // toogle between display Todo list or Done list
-        let displayArr;
+        var displayArr;
         if (this.state.isInTodoTab) {
             displayArr = (
                 <div >
                     <br />
                     <br />
-                    {this.state.arr.map( (elm, i) => 
+                    {this.state.todoArr.map( (elm, i) => 
                         <div class="flex">
                             <div class="flex12" onClick={this.todoElmMoveDoneTab.bind(this, i)}>
-                                <div >{elm}</div>
+                                <Li text={elm} />
                             </div>
                             <div class="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
                                 <span>
@@ -192,13 +181,13 @@ export class TodoList extends Component {
         } else {
             displayArr = (
                 <div>
-                    <a class="aClearTodoList" onClick={this.clearTodoList}>Clear to do list</a> 
+                    <a class="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
                     <br />
                     <br />
                     {this.state.doneArr.map( (elm, i) => 
                         <div class="flex">
                             <div class="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
-                                <div >{elm}</div>
+                                <Li text={elm} />
                             </div>
                             <div class="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
                                 <span>
@@ -211,8 +200,8 @@ export class TodoList extends Component {
             )
         }
         // change color of Todo Done button if selected or not
-        let TodoButton;
-        let DoneButton;
+        var TodoButton;
+        var DoneButton;
         if ( this.state.isInTodoTab) {
             TodoButton = 'Todo-heading-selected'
             DoneButton = 'Done-heading'
@@ -248,7 +237,7 @@ export class TodoList extends Component {
                     <div class="Todo-list">
                         { displayArr }
                     </div>
-
+                    
                 </div> 
 
             </div>
