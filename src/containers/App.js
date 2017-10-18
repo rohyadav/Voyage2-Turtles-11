@@ -124,7 +124,6 @@ class App extends Component {
 
   toggleNotesVisibility = () => {
     const newVisibility = !this.state.notesVisibility;
-    console.log(newVisibility);
     this.setState(prevState => ({ notesVisibility: !prevState.notesVisibility }));
     if (newVisibility) {
       ReactDOM.render(<Notes closeHandler={this.toggleNotesVisibility} />, document.getElementById('notes'));

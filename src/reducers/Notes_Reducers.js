@@ -12,11 +12,10 @@ import {
 } from '../actions/Notes_Actions';
 
 const { SHOW_ACTIVE } = NotesVisibilityFilters
-
+var globalCounter = 0;
 // adding the string.includes() method to search for strings
 if (!String.prototype.includes) {
     String.prototype.includes = function (search, start) {
-        'use strict';
         if (typeof start !== 'number') {
             start = 0;
         }
@@ -34,6 +33,7 @@ function notes(state = [], action) {
             return [
                 ...state,
                 {
+                    id: globalCounter++,
                     text: action.text,
                     completed: false,
                     search: false,
@@ -56,6 +56,7 @@ function notes(state = [], action) {
                         pinned: !notes.pinned
                     })
                 }
+                return notes;
             })
         case DELETE_NOTES:
             var shouldDelete = false;
@@ -63,6 +64,7 @@ function notes(state = [], action) {
                 if (index === action.index) {
                     shouldDelete = true;
                 }
+                return notes;
             })
             if (shouldDelete) {
                 return [
@@ -70,6 +72,7 @@ function notes(state = [], action) {
                     ...state.slice(action.index + 1)
                 ]; 
             }
+            return notes;
         case SEARCH_NOTES:
             return state.map((notes) => {
                 var lowerCaseSearch = (action.text).toLowerCase();
@@ -84,6 +87,7 @@ function notes(state = [], action) {
                     });
                 }
             });
+            
         case CLOSE_NOTES_SEARCH:
             return state.map((notes) => {
                 return Object.assign({}, notes, {

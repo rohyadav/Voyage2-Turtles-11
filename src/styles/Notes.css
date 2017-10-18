@@ -71,26 +71,10 @@ NOTES
 }
 
 .NoteTitleTextBox {
-  height: 30px;
-  border-radius: 10px 10px 0px 0px;
+  height: 60px;
+  border-radius: 10px;
   margin-top: 25px;
   resize: none;
-}
-
-.NoteDescriptionTextBox {
-  height: 60px;
-  border-radius: 0px 0px 10px 10px;
-  margin-top: 0px;
-}
-
-.Title {
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: left;
-  color: #959595;
-  padding-top: 10px;
-  padding-left: 20px;
 }
 
 .Description {
@@ -203,5 +187,59 @@ BUTTONS
   border: none;
 }
 .addNotesButton:hover {
+	background-color:#d02718;
+}
+
+.deleteNotesButton {
+  width: 20px;
+  height: 20px;
+  right: 30px;
+	background-color:#ea3939;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-size:15px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.deleteNotesButton:hover {
+	background-color:#d02718;
+}
+
+.archiveNotesButton {
+  width: 20px;
+  height: 20px;
+  right: 50px;
+	background-color:#ea3939;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-size:15px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.archiveNotesButton:hover {
+	background-color:#d02718;
+}
+
+.pinNotesButton {
+  width: 20px;
+  height: 20px;
+  right:70px;
+	background-color:#ea3939;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-size:15px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.pinNotesButton:hover {
 	background-color:#d02718;
 }
