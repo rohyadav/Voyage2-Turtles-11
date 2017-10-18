@@ -113,7 +113,7 @@ class App extends Component {
                 <div className="type-item">Videos</div>
                 <div className="type-item">Maps</div>
               </div> */}
-              <Googlesearch />
+              <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
               {/* <div className="search-box">
                   <div className="box-item">Google</div>
                 </div> */}
