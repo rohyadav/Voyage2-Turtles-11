@@ -52,6 +52,14 @@ body {
     padding-top: 80px;
 }
 
+.TodoButtonHover:hover {
+    color: #4F7B9C;
+}
+
+.DoneButtonHover:hover {
+    color: #4F7B9C;
+}
+
 
 
 /* Todo and Done heading under the input box */
@@ -128,19 +136,16 @@ body {
     margin-left: 10px;
 }
 
+.aClearTodoList:hover {
+    color: #4F7B9C;
+    margin-left: 10px;
+}
+
 /* list with Todo/Done items */
 .Todo-list {
     text-align: left;
 }
 
-.checkbox {
-    padding-left: 10px;
-}
-
-.checkbox-label {
-    padding-left: 10px;
-    padding-right: 10px;
-}
 
 
 /* flexboxes */
@@ -189,4 +194,174 @@ body {
     padding-right: 10px;
 }
 
+.blue {
+    color: #00a7ff;
+}
 
+
+/* 
+                    *** checkbox styling Todo tab***
+*/
+/* https://kyusuf.com/post/completely-css-custom-checkbox-radio-buttons-and-select-boxes */
+
+
+.todo-control-group {
+	display: inline-block;
+	margin-left: 10px;
+	text-align: left;
+	vertical-align: top;
+}
+
+
+.todo-control {
+	position: relative;
+	display: block;
+	margin-bottom: 15px;
+	padding-left: 30px;
+	cursor: pointer;
+}
+
+.todo-control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+
+.todo-control__indicator {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	opacity: 0.2;
+	background: #00a7ff;
+}
+
+
+/* Hover and focus states */
+.todo-control:hover input ~ .todo-control__indicator,
+.todo-control input:focus ~ .todo-control__indicator {
+	background: #00a7ff;
+	opacity: 1;
+}
+
+/* Checked state */
+.todo-control input:checked ~ .todo-control__indicator {
+	background: #00a7ff;
+}
+
+/* Hover state whilst checked */
+.todo-control:hover input:not([disabled]):checked ~ .todo-control__indicator,
+.todo-control input:checked:focus ~ .todo-control__indicator {
+	background: #00a7ff;
+}
+
+
+/* Check mark */
+.todo-control__indicator:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+
+/* Show check mark */
+.todo-control input:checked ~ .todo-control__indicator:after {
+	display: block;
+}
+
+/* Checkbox tick */
+.todo-control--checkbox .todo-control__indicator:after {
+	top: 4px;
+	left: 8px;
+	width: 3px;
+	height: 8px;
+	transform: rotate(45deg);
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+}
+
+/* 
+                    *** checkbox styling Done tab***
+*/
+/* https://kyusuf.com/post/completely-css-custom-checkbox-radio-buttons-and-select-boxes */
+
+.done-control-group {
+	display: inline-block;
+	margin-left: 10px;
+	text-align: left;
+	vertical-align: top;
+}
+
+
+.done-control {
+	position: relative;
+	display: block;
+	margin-bottom: 15px;
+	padding-left: 30px;
+	cursor: pointer;
+}
+
+.done-control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+
+.done-control__indicator {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	opacity: 0.3;
+	background: #959595;
+}
+
+
+/* Hover and focus states */
+.done-control:hover input ~ .done-control__indicator,
+.done-control input:focus ~ .done-control__indicator {
+	background: #959595;
+	opacity: 0.3;
+}
+
+/* Checked state */
+.done-control input:checked ~ .done-control__indicator {
+	background: #959595;
+}
+
+/* Hover state whilst checked */
+.done-control:hover input:not([disabled]):checked ~ .done-control__indicator,
+.done-control input:checked:focus ~ .done-control__indicator {
+	background: #959595;
+}
+
+
+/* Check mark */
+.done-control__indicator:after {
+	position: absolute;
+	display: none;
+	content: '';
+}
+
+/* Show check mark */
+.done-control input:checked ~ .done-control__indicator:after {
+	display: block;
+}
+
+/* Checkbox tick */
+.done-control--checkbox .done-control__indicator:after {
+	top: 4px;
+	left: 8px;
+	width: 3px;
+	height: 8px;
+	transform: rotate(45deg);
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+}
+
+.line {
+    text-decoration: line-through;
+}
