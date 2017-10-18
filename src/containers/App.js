@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
+import { TodoList } from '../components/todoList.js';
 
 class NotesButton extends React.Component {
   constructor(props) {
@@ -72,6 +73,46 @@ class BookmarksButton extends React.Component {
     </div>);
   }
 }
+
+
+class TodosButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: true,
+      iconLink: './assets/Icons_COLOR-02.png',
+    };
+
+  }
+  toggleVisibility = () => {
+    this.setState(prevState => ({ visibility: !prevState.visibility }));
+    if (this.state.visibility === true) {
+      return ReactDOM.render(<TodoList />, document.getElementById('todo'));
+    } else {
+      return ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+    }
+  }
+  iconChangeOnHover = () => {
+    this.setState({ iconLink: './assets/Icons_COLOR_background-02.png' });
+  }
+  iconChangeOnOut = () => {
+    this.setState({ iconLink: './assets/Icons_COLOR-02.png' });
+  }
+
+  render() {
+    return (<div className="item">
+      <a href="#"
+        onClick={this.toggleVisibility}
+        onMouseOver={this.iconChangeOnHover}
+        onMouseOut={this.iconChangeOnOut}>
+        <img src={this.state.iconLink} alt="Bookmarks" />
+      </a>
+      <p>Todoes</p>
+    </div>);
+  }
+}
+
+
 
 class App extends Component {
   constructor(props) {
@@ -145,10 +186,11 @@ class App extends Component {
                   <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
                   <p>Weather</p>
                 </div>
-                <div className="item">
+                { /*<div className="item">
                   <img src="assets/Icons_COLOR-02.png" alt="To Dos" />
                   <p>To Dos</p>
-                </div>
+                </div> */ }
+                <TodosButton />
                 <div className="item">
                   <img src="assets/Icons_COLOR-03.png" alt="Apps" />
                   <p>Apps</p>
