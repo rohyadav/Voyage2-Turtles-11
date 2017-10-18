@@ -4,7 +4,7 @@ import '../styles/todoList.css';
 
 
 
-class Li extends Component {
+class TodoListElem extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -28,13 +28,49 @@ class Li extends Component {
         }
 
         return (
-            <div class="flex"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                <div  class="checkbox flex1">
-                    <input type="checkbox"  checked={checkbox}  />
-                </div>
-                <div  class="checkbox-label flex12">
-                    <label >{this.props.text}</label>
-                </div>
+            <div class="todo-control-group"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+                <label class="todo-control todo-control--checkbox blue">{this.props.text}
+                    <input type="checkbox" checked={checkbox}/>
+                    <div class="todo-control__indicator"></div>
+                </label>
+            </div>
+        );
+    }
+}
+
+
+class DoneListElem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            mouseHover: false,
+        };
+    }	
+    onMouseEnter = () => {
+        this.setState({mouseHover: true});
+    }
+    onMouseLeave = () => {
+        this.setState({mouseHover: false});
+    }
+    render() {
+        // check the checkbox when mouse hover over
+        var checkbox;
+        var label;
+        if (this.state.mouseHover) {
+            checkbox = ""
+            label = "done-control done-control--checkbox ";
+        }
+        else {
+            checkbox = "checked"
+            label = "done-control done-control--checkbox line";
+        }
+
+        return (
+            <div class="done-control-group"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+                <label class={label}>{this.props.text}
+                    <input type="checkbox" checked={checkbox}/>
+                    <div class="done-control__indicator"></div>
+                </label>
             </div>
         );
     }
@@ -109,7 +145,7 @@ export class TodoList extends Component {
     toggleVisibility = () => {
         return ReactDOM.render(<Empty />, document.getElementById('todo'));
     }
-    // get the index of the todo element which is clicked
+    // move Todo elm to Done tab
     todoElmMoveDoneTab = (i, event) => {
         var elmToMove = this.state.todoArr[i];
         // remove the Todo element at index i
@@ -122,6 +158,7 @@ export class TodoList extends Component {
         arr.unshift(elmToMove);
         localStorage.setItem("todoData-doneArr", JSON.stringify(arr));
         this.setState({ doneArr: arr });
+        event.preventDefault();
     }
     // move Done elm to Todo tab
     doneElmMoveTodoTab = (i, event) => {
@@ -136,6 +173,7 @@ export class TodoList extends Component {
         arr.unshift(elmToMove);
         localStorage.setItem("todoData-todoArr", JSON.stringify(arr));
         this.setState({ todoArr: arr });
+        event.preventDefault();
     }
     // get the index of the done element which is clicked
     doneElmDelete = (i, event) => {
@@ -167,7 +205,7 @@ export class TodoList extends Component {
                     {this.state.todoArr.map( (elm, i) => 
                         <div class="flex">
                             <div class="flex12" onClick={this.todoElmMoveDoneTab.bind(this, i)}>
-                                <Li text={elm} />
+                                <TodoListElem text={elm} />
                             </div>
                             <div class="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
                                 <span>
@@ -187,7 +225,7 @@ export class TodoList extends Component {
                     {this.state.doneArr.map( (elm, i) => 
                         <div class="flex">
                             <div class="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
-                                <Li text={elm} />
+                                <DoneListElem text={elm} />
                             </div>
                             <div class="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
                                 <span>
@@ -226,10 +264,14 @@ export class TodoList extends Component {
                     <div class="flex">
                         <div class="flex1"></div>
                             <h2 class={TodoButton} onClick={this.clickTodo}>
+                                <div class="TodoButtonHover">
                                 Todo
+                                </div>
                             </h2>
                             <h2 class={DoneButton} onClick={this.clickDone}>
+                                <div class="DoneButtonHover">
                                 Done 
+                                </div>
                             </h2>
                         <div class="flex1"></div>
                     </div>
@@ -237,6 +279,7 @@ export class TodoList extends Component {
                     <div class="Todo-list">
                         { displayArr }
                     </div>
+
                     
                 </div> 
 
