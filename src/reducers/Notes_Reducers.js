@@ -86,7 +86,6 @@ function notes(state = [], action) {
                     });
                 }
             });
-            
         case CLOSE_NOTES_SEARCH:
             return state.map((notes) => {
                 return Object.assign({}, notes, {
@@ -114,5 +113,6 @@ export default function notesApp(state = {}, action) {
         notes: notes(state.notes, action)
     }
 }
+
 
 

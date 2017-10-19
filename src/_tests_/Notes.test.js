@@ -10,10 +10,10 @@ import {
     pinNotes,
     NotesVisibilityFilters
   } from '../actions/Notes_Actions';
+
 import { connect } from 'react-redux';
 import { NotesList } from '../components/NotesBundler';
 import { NotesVisibleList } from '../components/NotesVisibileList';
-
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
 
 describe('testing Redux Store', () => {
@@ -327,7 +327,7 @@ describe('testing Redux Store', () => {
         store.dispatch(pinNotes(0));
         callback(store.getState());
     });
-
+  
     test('new note ID should not overlap with existing IDs', done => {
         function callback(data) {
             expect(data).toEqual({

@@ -1,76 +1,76 @@
 import React, {Component} from 'react';
 import '../styles/Googlesearch.css';
-// import logo from './logo.svg'; (Example of how to import images)
 
-class Googlesearch extends Component {
+class Googlesearch extends Component { // Parent component
 
+    constructor(props) {
+        super(props);
+        this.state = { 
+            selected: this.props.types[0] // types array was passed down as a prop
+        };
+        this.handleClick = this.handleClick.bind(this); // Lexical scope
+    }
 
-googleSearch(query) {
-    let url=`https://www.google.com/search?q=${query}`
-    window.open(url,'_self'); // alternative: _blank
-}
+    handleClick = (type, event) => {
+        event.preventDefault();
+        this.setState({
+          selected: type // Click event in SearchType invokes this function 
+        });
+    }
+
+    googleSearch = (query) => {
+        let urlType;
+        switch(this.state.selected) {
+            case 'Web': 
+                urlType = 'https://www.google.com/search?q=';
+                break;
+            case 'Images':
+                urlType = 'https://www.google.com/search?tbm=isch&q=';
+                break;
+            case 'News':
+                urlType = 'https://www.google.com/search?tbm=nws&q=';
+                break;
+            case 'Videos':
+                urlType = 'https://www.google.com/search?tbm=vid&q=';
+                break;
+            case 'Maps':
+                urlType = 'https://www.google.com/maps/preview?q=';
+                break;
+            default: 
+                urlType = 'https://www.google.com/search?q='
+        }  
+        let url = urlType + query
+        window.open(url,'_self'); // alternative: _blank
+    }
 
     render() {
-
-        const types = ['Web', 'Images', 'News', 'Videos', 'Maps'] // 'TYPES' ARRAY GETS PASSED DOWN AS A PROP
-
         return (
             <div>
-                <SearchType types={types} selected={types[0]}/> 
+                <SearchType 
+                    types={this.props.types} 
+                    selected={this.state.selected}
+                    handleClick={this.handleClick}/> 
                 <SearchBox 
                     onSearch={this.googleSearch} />                    
             </div> 
         )
     } 
+
 } //  Googlesearch Component
 
 class SearchType extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { 
-            // active: false // STYLES OBJECT METHOD
-            selected: this.props.selected
-        };
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    // STYLES OBJECT METHOD: 
-    // Works, but all items get selected. This is bc event.target.key always == type. Therefore,state.active will always be true. Since all spans' styles are dependent on the state being active, if the state is active, then all the spans become styled. Need to do something that targets only one span.
-
-    // handleClick = (event, type) => {      
-    //     if (type == event.target.key) {
-    //         this.setState({ active: true})
-    //     } else this.setState( {active: false})
-    // }
-
-    handleClick(type, event) {
-        event.preventDefault();
-        this.setState({
-          selected: type
-        });
-      }
     
     render() {
 
-        // STYLES OBJECT METHOD
-        // const styles = {
-        //     active: {
-        //         borderBottom: '2px solid #2ECC71',
-        //     },
-        //     inactive: {
-        //         borderBottom: ''
-        //     }
-        // }
-        
-        // const stateStyle = this.state.active ? styles.active : styles.inactive;
-
         const types = this.props.types; 
-        // let activeClass = (this.state.selected === type ? 'is-active' : '');
 
         const spanItems = types.map((type) =>        
-            <span key={type} className={this.state.selected === type ? 'is-active' : ''} onClick={this.handleClick.bind(this, type)}>{type}</span>
-            // style={stateStyle} STYLES OBJECT METHOD
+            <span 
+                key={type} 
+                className={this.props.selected === type ? 'is-active' : ''} 
+                onClick={this.props.handleClick.bind(this, type)}>
+                    {type}
+            </span>
         );
 
         return (
@@ -79,38 +79,41 @@ class SearchType extends React.Component {
             </div>
         );
     }
+
 } // SearchType Component
 
 class SearchBox extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = { searchInput: ''};
     }
+
+    onSearchChange = event => {
+        this.setState({ searchInput: event.target.value });
+    }
             
-      handleSubmit = event => {
+    handleSubmit = event => {
         event.preventDefault();
         this.props.onSearch(this.state.searchInput);
         event.currentTarget.reset();
-      }
-
-      onSearchChange = event => {
-        this.setState({ searchInput: event.target.value });
     }
 
     render() {
         return (
             <div>                
-            <form className='search-form'
-                  onSubmit={this.handleSubmit}> 
-                <input className='search-input-box' 
+            <form 
+                className='search-form'
+                onSubmit={this.handleSubmit}> 
+                    <input 
+                        className='search-input-box' 
                         type='search'                     
                         onChange={this.onSearchChange}
                         placeholder='Google' />
-                {/* <button>icon</button> */}
+                    {/* <button>icon</button> */}
             </form>
             </div>
         );
-
     }
 
 } // SearchBox Component

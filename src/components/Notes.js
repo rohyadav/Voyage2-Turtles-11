@@ -18,6 +18,7 @@ let store = createStore(notesApp, window.STATE_FROM_SERVER);
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 )
+
 export class Notes extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,7 @@ export class Notes extends Component {
       searchTerm: '',
       note: '',
       searchButton: 'Search'
+
     }
   }
   // HANDLES SEARCH
@@ -75,13 +77,13 @@ export class Notes extends Component {
             <section>
               <NotesVisibleList />
             </section>
-
           </div>
         </div>
       </Provider>
     )
   }
 }
+
 
 export class EmptyContainer extends React.Component {
   render() {
