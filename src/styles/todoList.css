@@ -60,7 +60,24 @@ body {
     color: #4F7B9C;
 }
 
+.Done-heading {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color: #00a7ff;
+  color: var(--azure);
+  flex: 1;
+}
 
+.Done-heading-selected {
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  letter-spacing: 2.7px;
+  text-align: center;
+  color:#00a7ff;
+  flex: 1;
+}
 
 /* Todo and Done heading under the input box */
 /* Will toggle color if selected or not */
@@ -145,7 +162,6 @@ body {
 .Todo-list {
     text-align: left;
 }
-
 
 
 /* flexboxes */
@@ -307,7 +323,6 @@ body {
 	z-index: -1;
 	opacity: 0;
 }
-
 
 .done-control__indicator {
 	position: absolute;

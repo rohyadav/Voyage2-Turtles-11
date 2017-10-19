@@ -63,7 +63,7 @@ NOTES
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.2px #959595;
   border: solid 0.2px var(--warm-grey);
@@ -71,26 +71,10 @@ NOTES
 }
 
 .NoteTitleTextBox {
-  height: 30px;
-  border-radius: 10px 10px 0px 0px;
+  height: 60px;
+  border-radius: 10px;
   margin-top: 25px;
   resize: none;
-}
-
-.NoteDescriptionTextBox {
-  height: 60px;
-  border-radius: 0px 0px 10px 10px;
-  margin-top: 0px;
-}
-
-.Title {
-  font-size: 13px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: left;
-  color: #959595;
-  padding-top: 10px;
-  padding-left: 20px;
 }
 
 .Description {
@@ -104,6 +88,43 @@ NOTES
 .searchNotes {
   height: 60px;
   padding: 20px;
+}
+.buttonBox {
+  right: 0px;
+  width: 260px;
+  height: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 #959595;
+  border-top: solid 0.2px #959595;
+  border-bottom: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right: none;
+  color: #959595;
+}
+.existingNotes {
+  right: 0px;
+  width: 260px;
+  height: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: solid 0.2px #959595;
+  border-top: none;
+  box-shadow: 2px 2px 4px 0 #959595;
+  color: #959595;
+  border-right: none;
+}
+.existingNotesButtonBox {
+  float: right;
 }
 /*
 ==========================
@@ -190,7 +211,7 @@ BUTTONS
   width: 20px;
   height: 20px;
   position: fixed;
-  top: 265px;
+  top: 275px;
   right: 30px;
 	background-color:#ea3939;
 	border-radius:50%;
@@ -204,4 +225,58 @@ BUTTONS
 }
 .addNotesButton:hover {
 	background-color:#d02718;
+}
+
+.deleteNotesButton {
+  width: 20px;
+  height: 20px;
+  right: 30px;
+  background-color: #ffffff;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ea3939;
+  font-size:  12px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.deleteNotesButton:hover {
+	color:#c02419;
+}
+
+.archiveNotesButton {
+  width: 20px;
+  height: 20px;
+  right: 50px;
+  background-color: #ffffff;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ea3939;
+  font-size: 12px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.archiveNotesButton:hover {
+	color:#c02419;
+}
+
+.pinNotesButton {
+  width: 20px;
+  height: 20px;
+  right:70px;
+  background-color: #ffffff;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ea3939;
+  font-size: 12px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+}
+.pinNotesButton:hover {
+	color:#c02419;
 }
