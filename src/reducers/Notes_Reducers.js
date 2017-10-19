@@ -1,5 +1,4 @@
 // redux - reducers for Notes
-import { combineReducers } from 'redux';
 import {
     ADD_NOTES,
     TOGGLE_NOTES, 
@@ -7,16 +6,16 @@ import {
     PIN_NOTES,
     SEARCH_NOTES,
     CLOSE_NOTES_SEARCH,
+    UPDATE_NOTES,
     SET_NOTES_VISIBILITY_FILTER,
     NotesVisibilityFilters
 } from '../actions/Notes_Actions';
 
 const { SHOW_ACTIVE } = NotesVisibilityFilters
-
+var globalCounter = 0;
 // adding the string.includes() method to search for strings
 if (!String.prototype.includes) {
     String.prototype.includes = function (search, start) {
-        'use strict';
         if (typeof start !== 'number') {
             start = 0;
         }
@@ -29,17 +28,28 @@ if (!String.prototype.includes) {
 }
 
 function notes(state = [], action) {
+    console.log("Executing Notes Function")
     switch (action.type) {
         case ADD_NOTES:
             return [
                 ...state,
                 {
+                    id: globalCounter++,
                     text: action.text,
                     completed: false,
                     search: false,
                     pinned: false
                 }
             ]
+        case UPDATE_NOTES:
+            return state.map((notes, index) => {
+                if (index === action.index) {
+                    return Object.assign({}, notes, {
+                        text: action.text
+                    })
+                }
+                return notes;
+            })
         case TOGGLE_NOTES:
             return state.map((notes, index) => {
                 if (index === action.index) {
@@ -56,20 +66,12 @@ function notes(state = [], action) {
                         pinned: !notes.pinned
                     })
                 }
+                return notes;
             })
         case DELETE_NOTES:
-            var shouldDelete = false;
-            state.map((notes, index) => {
-                if (index === action.index) {
-                    shouldDelete = true;
-                }
+            return state.filter((singleNote) => {
+                return singleNote.id !== action.index
             })
-            if (shouldDelete) {
-                return [
-                    ...state.slice(0, action.index),
-                    ...state.slice(action.index + 1)
-                ]; 
-            }
         case SEARCH_NOTES:
             return state.map((notes) => {
                 var lowerCaseSearch = (action.text).toLowerCase();
@@ -95,7 +97,8 @@ function notes(state = [], action) {
     }
 }
 
-function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
+export function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
+    console.log("Executing notesVisibilityFilters Function")
     switch (action.type) {
         case SET_NOTES_VISIBILITY_FILTER:
             return action.filter
@@ -104,11 +107,12 @@ function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
     }
 }
 
-const notesApp = combineReducers({
-    notesVisibilityFilters,
-    notes,
-})
+export default function notesApp(state = {}, action) {
+    return {
+        notesVisibilityFilters: notesVisibilityFilters(state.notesVisibilityFilters, action),
+        notes: notes(state.notes, action)
+    }
+}
 
-export default notesApp
 
 

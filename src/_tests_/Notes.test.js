@@ -10,6 +10,10 @@ import {
     pinNotes,
     NotesVisibilityFilters
   } from '../actions/Notes_Actions';
+
+import { connect } from 'react-redux';
+import { NotesList } from '../components/NotesBundler';
+import { NotesVisibleList } from '../components/NotesVisibileList';
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
 
 describe('testing Redux Store', () => {
@@ -17,6 +21,7 @@ describe('testing Redux Store', () => {
         function callback(data) {
             expect(data).toEqual({
                 notes: [{
+                    id: 0,
                     text: "Francesca Sadikin",
                     completed: false,
                     search: false,
@@ -36,12 +41,14 @@ describe('testing Redux Store', () => {
                 notes: 
                     [
                         {
+                            id: 0,
                             text: "Francesca Sadikin",
                             completed: false,
                             search: false,
                             pinned: false
                         },
                         {
+                            id: 1,
                             text: "Natasha Sadikin",
                             completed: false,
                             search: false,
@@ -62,12 +69,14 @@ describe('testing Redux Store', () => {
                 notes: 
                     [
                         {
+                            id: 0,
                             text: "Francesca Sadikin",
                             completed: true,
                             search: false,
                             pinned: false
                         },
                         {
+                            id: 1,
                             text: "Natasha Sadikin",
                             completed: false,
                             search: false,
@@ -88,12 +97,14 @@ describe('testing Redux Store', () => {
                 notes: 
                     [
                         {
+                            id: 0,
                             text: "Francesca Sadikin",
                             completed: false,
                             search: false,
                             pinned: false
                         },
                         {
+                            id: 1,
                             text: "Natasha Sadikin",
                             completed: false,
                             search: false,
@@ -114,12 +125,14 @@ describe('testing Redux Store', () => {
                 notes: 
                     [
                         {
+                            id: 0,
                             text: "Francesca Sadikin",
                             completed: false,
                             search: false,
                             pinned: false
                         },
                         {
+                            id: 1,
                             text: "Natasha Sadikin",
                             completed: false,
                             search: false,
@@ -140,12 +153,14 @@ describe('testing Redux Store', () => {
                 notes: 
                     [
                         {
+                            id: 0,
                             text: "Francesca Sadikin",
                             completed: false,
                             search: false,
                             pinned: false
                         },
                         {
+                            id: 1,
                             text: "Natasha Sadikin",
                             completed: false,
                             search: false,
@@ -165,6 +180,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: false,
@@ -183,6 +199,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: true,
@@ -201,6 +218,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: false,
@@ -219,6 +237,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: true,
@@ -237,6 +256,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: false,
@@ -256,6 +276,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: false,
@@ -274,6 +295,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: false,
@@ -292,6 +314,7 @@ describe('testing Redux Store', () => {
             expect(data).toEqual({
                 notes: 
                     [{
+                        id: 1,
                         text: "Natasha Sadikin",
                         completed: false,
                         search: false,
@@ -303,5 +326,63 @@ describe('testing Redux Store', () => {
         }
         store.dispatch(pinNotes(0));
         callback(store.getState());
+    });
+  
+    test('new note ID should not overlap with existing IDs', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        id: 1,
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: false
+                    }, 
+                    {
+                        id: 2,
+                        text: "Francesca Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: false
+                    }
+                ],
+                notesVisibilityFilters: "SHOW_PINNED"
+            });
+            done();
+        }
+        store.dispatch(addNotes('Francesca Sadikin'));
+        callback(store.getState());
+    });
+});
+
+describe('Rendering a visible list in React', () => {
+    test('notesVisibleList should render a list', done => {
+        function callback(data) {
+            expect(data).toEqual({
+                notes: 
+                    [{
+                        id: 1,
+                        text: "Natasha Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: false
+                    }, 
+                    {
+                        id: 2,
+                        text: "Francesca Sadikin",
+                        completed: false,
+                        search: false,
+                        pinned: false
+                    }
+                ],
+                notesVisibilityFilters: "SHOW_PINNED"
+            });
+            done();
+        }
+        store.dispatch(deleteNotes(0));
+        store.dispatch(deleteNotes(1));
+        store.dispatch(addNotes('Francesca Sadikin'));
+        callback(<NotesVisibleList />);
     });
 });

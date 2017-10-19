@@ -124,7 +124,6 @@ class App extends Component {
 
   toggleNotesVisibility = () => {
     const newVisibility = !this.state.notesVisibility;
-    console.log(newVisibility);
     this.setState(prevState => ({ notesVisibility: !prevState.notesVisibility }));
     if (newVisibility) {
       ReactDOM.render(<Notes closeHandler={this.toggleNotesVisibility} />, document.getElementById('notes'));
@@ -147,14 +146,14 @@ class App extends Component {
               </div>
 
             <div className="search-area">
-              <div className="search-type">
+              {/* <div className="search-type">
                 <div className="type-item">Web</div>
                 <div className="type-item">Images</div>
                 <div className="type-item">News</div>
                 <div className="type-item">Videos</div>
                 <div className="type-item">Maps</div>
-              </div>
-              <Googlesearch />
+              </div> */}
+              <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
               {/* <div className="search-box">
                   <div className="box-item">Google</div>
                 </div> */}
