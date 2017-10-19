@@ -55,14 +55,14 @@ export class Notes extends Component {
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <textarea onChange={this.setSearchQuery} className='Notes SearchBox SearchBoxText' defaultValue="Search" />
+            <textarea onChange={this.setSearchQuery} className='Notes SearchBox SearchBoxText' required placeholder="Search"/>
             <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
             <br />
             <NotesFilterLink filter="SHOW_SEARCH">Search Results:</NotesFilterLink>
 
             {/* NEW NOTE */}
             <button className='addNotesButton' onClick={this.handleNoteSubmit}>+</button>
-            <textarea className='Notes' onChange={this.setNote} defaultValue='New Note'/>
+            <textarea className='Notes' onChange={this.setNote} required placeholder='New Note'/>
 
             {/* NOTES LISTED OUT*/}
             <span>

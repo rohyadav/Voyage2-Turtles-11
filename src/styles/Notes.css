@@ -63,7 +63,7 @@ NOTES
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.2px #959595;
   border: solid 0.2px var(--warm-grey);
@@ -88,6 +88,43 @@ NOTES
 .searchNotes {
   height: 60px;
   padding: 20px;
+}
+.buttonBox {
+  right: 0px;
+  width: 260px;
+  height: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 #959595;
+  border-top: solid 0.2px #959595;
+  border-bottom: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right: none;
+  color: #959595;
+}
+.existingNotes {
+  right: 0px;
+  width: 260px;
+  height: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: solid 0.2px #959595;
+  border-top: none;
+  box-shadow: 2px 2px 4px 0 #959595;
+  color: #959595;
+  border-right: none;
+}
+.existingNotesButtonBox {
+  float: right;
 }
 /*
 ==========================
@@ -174,7 +211,7 @@ BUTTONS
   width: 20px;
   height: 20px;
   position: fixed;
-  top: 265px;
+  top: 275px;
   right: 30px;
 	background-color:#ea3939;
 	border-radius:50%;
@@ -194,52 +231,52 @@ BUTTONS
   width: 20px;
   height: 20px;
   right: 30px;
-	background-color:#ea3939;
+  background-color: #ffffff;
 	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
-  font-size:15px;
+	color:#ea3939;
+  font-size:  12px;
   font-style: bold;
   text-align: center;
   border: none;
 }
 .deleteNotesButton:hover {
-	background-color:#d02718;
+	color:#c02419;
 }
 
 .archiveNotesButton {
   width: 20px;
   height: 20px;
   right: 50px;
-	background-color:#ea3939;
+  background-color: #ffffff;
 	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
-  font-size:15px;
+	color:#ea3939;
+  font-size: 12px;
   font-style: bold;
   text-align: center;
   border: none;
 }
 .archiveNotesButton:hover {
-	background-color:#d02718;
+	color:#c02419;
 }
 
 .pinNotesButton {
   width: 20px;
   height: 20px;
   right:70px;
-	background-color:#ea3939;
+  background-color: #ffffff;
 	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
-  font-size:15px;
+	color:#ea3939;
+  font-size: 12px;
   font-style: bold;
   text-align: center;
   border: none;
 }
 .pinNotesButton:hover {
-	background-color:#d02718;
+	color:#c02419;
 }
