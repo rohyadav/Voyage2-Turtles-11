@@ -8,13 +8,7 @@ import  NotesVisibleList  from './NotesVisibileList';
 import { NotesVisibleSearch } from './NotesVisibleSearch';
 import {
   addNotes,
-  //toggleNotes,
-  //deleteNotes,
   searchNotes,
-  //setNotesVisibilityFilter,
-  closeNotesSearch,
-  //pinNotes,
-  //NotesVisibilityFilters
 } from '../actions/Notes_Actions';
 //creating the redux store for entire application
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
@@ -33,6 +27,7 @@ export class Notes extends Component {
       searchButton: 'Search'
     }
   }
+  // HANDLES SEARCH
   setSearchQuery = (event) => {
     this.setState({ searchTerm: event.target.value });
   }
@@ -41,6 +36,7 @@ export class Notes extends Component {
     this.state.searchButton === 'Search' ? this.setState({searchButton: "Clear"}) : this.setState({searchButton: "Search"});
     <NotesVisibleSearch />
   }
+  // HANDLES ADDING NEW NOTES
   setNote = (event) => {
     this.setState({ note: event.target.value });
   }

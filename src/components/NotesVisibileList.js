@@ -9,13 +9,13 @@ import { Note } from './NotesBundler';
 const getVisibleNotes = (notes, filter) => {
     switch (filter) {
         case "SHOW_ACTIVE":
-            return notes.filter(n => !n.completed)
+            return notes.filter(n => !n.completed);
         case "SHOW_ARCHIVED":
-            return notes.filter(n => n.completed)
+            return notes.filter(n => n.completed);
         case "PINNED_NOTES":
-            return notes.filter(n => n.pinned)
+            return notes.filter(n => n.pinned);
         default:
-            return notes
+            return notes.filter(n => !n.completed);
     }
 }
 
@@ -27,14 +27,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDeleteClick: id => {
-            dispatch(deleteNotes(id))
-        },
         onPinClick: id => {
             dispatch(pinNotes(id))
+            console.log("pinNotes id is : " + id )
         },
         onArchiveClick: id => {
             dispatch(toggleNotes(id))
+            console.log("toggleNotes id is : " + id )
+        },
+        onDeleteClick: id => {
+            dispatch(deleteNotes(id))
+            console.log("deleteNotes id is : " + id )
         }
     }
 }

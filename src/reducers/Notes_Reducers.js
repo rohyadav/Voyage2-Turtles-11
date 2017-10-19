@@ -10,6 +10,7 @@ import {
     SET_NOTES_VISIBILITY_FILTER,
     NotesVisibilityFilters
 } from '../actions/Notes_Actions';
+import { VisibilityFilter } from './Notes_VisibilityFilter';
 
 const { SHOW_ACTIVE } = NotesVisibilityFilters
 var globalCounter = 0;
@@ -109,7 +110,7 @@ function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
 }
 
 const notesApp = combineReducers({
-    notesVisibilityFilters,
+    VisibilityFilter,
     notes,
 })
 
