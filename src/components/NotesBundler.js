@@ -18,9 +18,9 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
                 {/* this is the delete button */}
                 <button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}>X</button>
                 {/* this is the archive button */}
-                {/* <button className='archiveNotesButton existingNotesButtonBox' onClick={onArchiveClick}>A</button> */}
+                {<button className='archiveNotesButton existingNotesButtonBox' onClick={onArchiveClick}>A</button>}
                 {/* this is the pin button */}
-                {/* <button className='pinNotesButton existingNotesButtonBox' onClick={onPinClick}>P</button> */}
+                {<button className='pinNotesButton existingNotesButtonBox' onClick={onPinClick}>P</button>}
             </div>
             <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/>
         </div>
@@ -44,7 +44,10 @@ export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick
             {notes.map((singleNote, index) => (
                 <Note key={index} {...singleNote} 
                 onDeleteClick={() => onDeleteNoteClick(singleNote.id)} 
-                onUpdateClick={() => onUpdateClick(singleNote.id)} />
+                onUpdateClick={() => onUpdateClick(singleNote.id)} 
+                onArchiveClick={() => onArchiveClick(singleNote.id)} 
+                onPinClick={() => onPinClick(singleNote.id)} 
+            />
             ))}
         </div>
     )
