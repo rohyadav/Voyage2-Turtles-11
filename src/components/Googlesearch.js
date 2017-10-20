@@ -1,24 +1,51 @@
 import React, {Component} from 'react';
 import '../styles/Googlesearch.css';
 
+import GoogleAutocomplete from './GoogleAutocomplete'
+
 class Googlesearch extends Component { // Parent component
 
     constructor(props) {
         super(props);
         this.state = { 
-            selected: this.props.types[0] // types array was passed down as a prop
+            selected: this.props.types[0], // Default value is inherited prop. 'selected' property determines URL
+            suggestions: [] // API data 
         };
-        this.handleClick = this.handleClick.bind(this); // Lexical scope
+        this.handleClick = this.handleClick.bind(this); // Optional bc of arrow fxn's lexical scope
     }
 
-    handleClick = (type, event) => {
+    handleClick = (type, event) => { // Click event in SearchType invokes this fxn
         event.preventDefault();
         this.setState({
-          selected: type // Click event in SearchType invokes this function 
+          selected: type  
         });
     }
 
-    googleSearch = (query) => {
+    componentDidMount() {
+        this.autoSuggest()
+    }
+
+    autoSuggest = (autoQuery) => {
+        let apiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&redirects=return&search=${autoQuery}`; // Resolve No 'Access-Control-Allow-Origin' header error with '&origin=*'
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(responseData => {
+                console.log(responseData);
+                this.setState({ suggestions: responseData[1] });          
+            })
+            .catch(error => {
+                console.log('Problem fetching data', error);
+            })
+    }
+
+    // autoSearch = (autoSelect) => {
+    //     fired by clicking a suggestionItem
+    //     same body code as googleSearch()
+    //     requires the 'selected' state property
+    //     make sure autoSelect variable gets passed up from GoogleAutocomplete
+    // }
+
+    googleSearch = (query) => { // Submit event in SearchBox invokes this fxn
         let urlType;
         switch(this.state.selected) {
             case 'Web': 
@@ -51,7 +78,10 @@ class Googlesearch extends Component { // Parent component
                     selected={this.state.selected}
                     handleClick={this.handleClick}/> 
                 <SearchBox 
-                    onSearch={this.googleSearch} />                    
+                    onSearch={this.googleSearch} 
+                    onAutoSuggest={this.autoSuggest}/>   
+                <GoogleAutocomplete 
+                    />
             </div> 
         )
     } 
@@ -64,7 +94,7 @@ class SearchType extends React.Component {
 
         const types = this.props.types; 
 
-        const spanItems = types.map((type) =>        
+        const spanItems = types.map((type) => // type variable is accessible in handleClick() bc of closure       
             <span 
                 key={type} 
                 className={this.props.selected === type ? 'is-active' : ''} 
@@ -86,14 +116,17 @@ class SearchBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { searchInput: ''};
+        this.state = { 
+            searchInput: ''
+        };
     }
 
-    onSearchChange = event => {
-        this.setState({ searchInput: event.target.value });
+    handleChange = event => { // Fxn sets state and sends it to parent
+        this.setState({ searchInput: event.target.value }); 
+        this.props.onAutoSuggest(this.state.searchInput);
     }
             
-    handleSubmit = event => {
+    handleSubmit = event => { // Ditto: fxn sends data to parent
         event.preventDefault();
         this.props.onSearch(this.state.searchInput);
         event.currentTarget.reset();
@@ -108,10 +141,10 @@ class SearchBox extends React.Component {
                     <input 
                         className='search-input-box' 
                         type='search'                     
-                        onChange={this.onSearchChange}
+                        onChange={this.handleChange}
                         placeholder='Google' />
                     {/* <button>icon</button> */}
-            </form>
+            </form>            
             </div>
         );
     }

@@ -1,19 +1,31 @@
-// import React from 'react';
+import React, {Component} from 'react';
 
-// const AutoList = (props) => {
-//   const autoItems = props.autos.map(() => {
-//     return <AutoListItem auto={auto} />
-//   });
+class GoogleAutocomplete extends Component { 
+    
+        // constructor(props) {
+        //     super(props);
+        //     this.state = { 
+        //         
+        //     };
+        // }
+    
+        // handleClick = (type, event) => {
+        //     event.preventDefault();
+        //     this.setState({
+        //       selected: type // Click event in SearchType invokes this function 
+        //     });
+        // }
+    
+        
+    
+        render() {
+            return (
+                <div>                
 
-//   return (
-//     <ul className="col">
-//       {autoItems}
-//     </ul>
-//   );
-// };
-
-// const AutoListItem = (props) => {
-//     return <li>Autocomplete</li>;
-//   };
-
-// export default AutocompleteList;
+                </div>
+            );
+        }
+    
+    } // GoogleAutocomplete Component
+    
+    export default GoogleAutocomplete
