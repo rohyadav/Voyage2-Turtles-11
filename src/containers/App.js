@@ -49,9 +49,11 @@ class BookmarksButton extends React.Component {
   toggleVisibility = () => {
     this.setState(prevState => ({ visibility: !prevState.visibility }));
     if (this.state.visibility === true) {
-      return ReactDOM.render(<Bookmarks />, document.getElementById('bookmarks'));
+      ReactDOM.render(<Bookmarks />, document.getElementById('bookmarks'));
+      tab_open();
     } else {
-      return ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+      ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+      tab_close();
     }
   }
   iconChangeOnHover = () => {
@@ -87,9 +89,11 @@ class TodosButton extends React.Component {
   toggleVisibility = () => {
     this.setState(prevState => ({ visibility: !prevState.visibility }));
     if (this.state.visibility === true) {
-      return ReactDOM.render(<TodoList />, document.getElementById('todo'));
+      ReactDOM.render(<TodoList />, document.getElementById('todo'));
+      tab_open();
     } else {
-      return ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+      ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+      tab_close();
     }
   }
   iconChangeOnHover = () => {
@@ -123,11 +127,6 @@ class GmailButton extends React.Component {
         <p>Gmail</p>
       </div>);
   }
-}
-
-
-var tabStyle = {
-  display: 'none'
 }
 
 function tab_open() {
