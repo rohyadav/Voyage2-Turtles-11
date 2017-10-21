@@ -116,17 +116,27 @@ class TodosButton extends React.Component {
 class GmailButton extends React.Component {
   render() {
     return (
-        <div className="item">
-          <a href="https://accounts.google.com/signin/v2/sl/pwd?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%3Ftab%3Dwm&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
-            <img src={require('../assets/mail.png')} alt="gmail" />
-          </a>
-          <p>Gmail</p>
-        </div>);
+      <div className="item">
+        <a href="https://accounts.google.com/signin/v2/sl/pwd?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%3Ftab%3Dwm&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin">
+          <img src={require('../assets/mail.png')} alt="gmail" />
+        </a>
+        <p>Gmail</p>
+      </div>);
   }
 }
 
 
+var tabStyle = {
+  display: 'none'
+}
 
+function tab_open() {
+  document.getElementById("main").style.marginRight = "300px";
+}
+
+function tab_close() {
+  document.getElementById("main").style.marginRight = "0%";
+}
 class App extends Component {
   constructor(props) {
     super(props);
@@ -140,8 +150,10 @@ class App extends Component {
     this.setState(prevState => ({ notesVisibility: !prevState.notesVisibility }));
     if (newVisibility) {
       ReactDOM.render(<Notes closeHandler={this.toggleNotesVisibility} />, document.getElementById('notes'));
+      tab_open();
     } else {
       ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+      tab_close();
     }
   }
 
@@ -152,7 +164,7 @@ class App extends Component {
 
         <div className="main">
 
-          <div className="main-top">
+          <div className="main-top" id="main">
 
             <div className="time">
               11:45 PM
@@ -172,26 +184,7 @@ class App extends Component {
                 </div> */}
             </div>
 
-            <div id='tabs'>
-              <aside>
-                <div id="weather">
-                </div>
-                <div id="todo">
-                </div>
-                <div id="apps">
-                </div>
-                <div id="notes">
-                </div>
-                <div id="bookmarks">
-                </div>
-                <div id="history">
-                </div>
-                <div id="placeholder1">
-                </div>
-                <div id="placeholder2">
-                </div>
-              </aside>
-            </div>
+
             <div id='icons'>
               <div className="main-grid">
                 <div className="item">
@@ -216,6 +209,27 @@ class App extends Component {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div id='tabs'>
+            <aside>
+              <div id="weather">
+              </div>
+              <div id="todo">
+              </div>
+              <div id="apps">
+              </div>
+              <div id="notes" >
+              </div>
+              <div id="bookmarks">
+              </div>
+              <div id="history">
+              </div>
+              <div id="placeholder1">
+              </div>
+              <div id="placeholder2">
+              </div>
+            </aside>
           </div>
 
         </div>
