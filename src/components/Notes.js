@@ -68,11 +68,11 @@ export class Notes extends Component {
 
             {/* NOTES LISTED OUT*/}
             <span>
-              <NotesFilterLink className="Description" filter="SHOW_ACTIVE">Active</NotesFilterLink>
+              <NotesFilterLink  filter="SHOW_ACTIVE">Active</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink className="Description" filter="SHOW_PINNED">Pinned</NotesFilterLink>
+              <NotesFilterLink  filter="SHOW_PINNED">Pinned</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink className="Description" filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
+              <NotesFilterLink  filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>
               <NotesVisibleList />
