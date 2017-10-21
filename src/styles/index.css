@@ -37,7 +37,11 @@ body {
 
 .main {
   text-align: center;
-  
+}
+
+/* controls pop-out tab */
+#main {
+  margin-right: 0px;
 }
 
 /* ===================================== 
@@ -88,6 +92,7 @@ text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   height: 5vh;
 display: flex;
 border-radius: 10px;
+margin-bottom: 40px;
 /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */
 }
 
@@ -99,9 +104,6 @@ border-radius: 10px;
   font-size: .9rem;
   letter-spacing: 3px;
 }
-
-
-
 
 
 /* ===================================== 
@@ -157,3 +159,4 @@ img {
 /* ================================= 
   Media Queries
 ==================================== */
+
