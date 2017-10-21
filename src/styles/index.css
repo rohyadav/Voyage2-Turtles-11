@@ -9,9 +9,8 @@
 }
 
 body {
-	/* font-size: 1.4em; */
-	font-family: 'Varela Round', sans-serif;
-  /* font-weight: bold; */
+  /* font-size: 1.4em; */
+	font-family: sans-serif;
 	color: #FFFFFF;
   padding: 0;
   margin: 0;
@@ -25,11 +24,6 @@ body {
   background-size: cover; (makes image too short)
   min-height/height: 100vh; (creates scrollbar)*/
 }
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
 
 /* ===================================== 
    Main Layout Styles
@@ -78,32 +72,45 @@ body {
 }
 
 .search-type {
-  font-size: 1rem;
-display: flex;
-width: 38vw;
-justify-content: space-between;
-margin-bottom: 1vh;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.3rem;
+  letter-spacing: .2rem;
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  width: 46vw;
+  margin: 0 auto 20px; /* 'margin: auto' also makes m-top and m-bottom 0 */
+  display: flex;
+  justify-content: space-between;
 }
+
+.search-form {
+  margin-bottom: 40px; /* Apply m-bottom to parent container */
+}
+
 .search-input-box {
   background: #FFFFFF;
+  width: 50vw;
+  height: 4.3vw;
+  /* display: inline-block for adjacent img, flex for flex-items; */
+  border-radius: 2vw;
+  line-height: 4.3vw;
+  font-size: 1.5vw;
   color: #7E7E7E;
-  width: 40vw;
-  height: 5vh;
-display: flex;
-border-radius: 10px;
-margin-bottom: 40px;
+  text-align: center;
 /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */
+  background-image: url('../assets/Icons_google logo-13.png');
+  background-size: 4vw;
+  background-position: 10px 50%; /* image, horizontal, vertical */
+  background-repeat: no-repeat;
+  padding-left: 40px;
 }
 
 /* The text "Google" inside the search bar */
-.box-item {
+/* .box-item {
   justify-content: flex-start;
   padding-left: 40px;
   align-self: center;
   font-size: .9rem;
   letter-spacing: 3px;
-}
+} */
 
 
 /* ===================================== 
@@ -120,7 +127,7 @@ margin-bottom: 40px;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   grid-column-gap: 4rem;
   grid-row-gap: 2rem;
-margin: auto;
+  margin: auto;
   /* grid-auto-columns: 1fr; */
   /* grid-auto-flow: column; */
   

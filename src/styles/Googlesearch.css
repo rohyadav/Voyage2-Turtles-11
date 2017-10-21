@@ -1,3 +1,26 @@
+/* The rest of the Search Area CSS is in index.css */
+
+/* Selected search type */
+
 .is-active {
+    padding-bottom: 5px;
     border-bottom: 2px solid #2ECC71
+}
+
+/* Input */
+
+input::placeholder {
+    font-size: 1.5vw;
+    text-indent: 2vw;
+    text-align: left;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Search icon */
+
+.search-icon {
+    
 }

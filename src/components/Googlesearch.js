@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../styles/Googlesearch.css';
-
 import GoogleAutocomplete from './GoogleAutocomplete'
 
 class Googlesearch extends Component { // Parent component
@@ -144,6 +143,7 @@ class SearchBox extends React.Component {
                         onChange={this.handleChange}
                         placeholder='Google' />
                     {/* <button>icon</button> */}
+                   
             </form>            
             </div>
         );
