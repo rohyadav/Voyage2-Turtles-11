@@ -26,10 +26,10 @@ class TodoListElem extends Component {
         }
 
         return (
-            <div class="todo-control-group"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                <label class="todo-control todo-control--checkbox blue">{this.props.text}
+            <div className="todo-control-group"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+                <label className="todo-control todo-control--checkbox blue">{this.props.text}
                     <input type="checkbox" checked={checkbox}/>
-                    <div class="todo-control__indicator"></div>
+                    <div className="todo-control__indicator"></div>
                 </label>
             </div>
         );
@@ -64,10 +64,10 @@ class DoneListElem extends Component {
         }
 
         return (
-            <div class="done-control-group"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                <label class={label}>{this.props.text}
+            <div className="done-control-group"  onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+                <label className={label}>{this.props.text}
                     <input type="checkbox" checked={checkbox}/>
-                    <div class="done-control__indicator"></div>
+                    <div className="done-control__indicator"></div>
                 </label>
             </div>
         );
@@ -201,13 +201,13 @@ export class TodoList extends Component {
                     <br />
                     <br />
                     {this.state.todoArr.map( (elm, i) => 
-                        <div class="flex">
-                            <div class="flex12" onClick={this.todoElmMoveDoneTab.bind(this, i)}>
+                        <div className="flex">
+                            <div className="flex12" onClick={this.todoElmMoveDoneTab.bind(this, i)}>
                                 <TodoListElem text={elm} />
                             </div>
-                            <div class="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
+                            <div className="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
                                 <span>
-                                    <img class="imgMoveUp" src={require('../assets/move_waiting_up_grey.png')} alt="move elm up"/>
+                                    <img className="imgMoveUp" src={require('../assets/move_waiting_up_grey.png')} alt="move elm up"/>
                                 </span>
                             </div>
                         </div>
@@ -217,17 +217,17 @@ export class TodoList extends Component {
         } else {
             displayArr = (
                 <div>
-                    <a class="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
+                    <a className="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
                     <br />
                     <br />
                     {this.state.doneArr.map( (elm, i) => 
-                        <div class="flex">
-                            <div class="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
+                        <div className="flex">
+                            <div className="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
                                 <DoneListElem text={elm} />
                             </div>
-                            <div class="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
+                            <div className="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
                                 <span>
-                                    <img class="imgDelete" src={require('../assets/trash_full.png')} alt="delete one element" />
+                                    <img className="imgDelete" src={require('../assets/trash_full.png')} alt="delete one element" />
                                 </span>
                             </div>
                         </div>
@@ -255,26 +255,26 @@ export class TodoList extends Component {
 
                 <div className='Todos-Body'>
                     <form onSubmit={this.handleSubmit}>
-                        <input class="input-box" type="text" placeholder="What to do next?" 
+                        <input className="input-box" type="text" placeholder="What to do next?" 
                             value={this.state.value} onChange={this.handleChange} />
                     </form>
 
-                    <div class="flex">
-                        <div class="flex1"></div>
-                            <h2 class={TodoButton} onClick={this.clickTodo}>
-                                <div class="TodoButtonHover">
+                    <div className="flex">
+                        <div className="flex1"></div>
+                            <h2 className={TodoButton} onClick={this.clickTodo}>
+                                <div className="TodoButtonHover">
                                 Todo
                                 </div>
                             </h2>
-                            <h2 class={DoneButton} onClick={this.clickDone}>
-                                <div class="DoneButtonHover">
+                            <h2 className={DoneButton} onClick={this.clickDone}>
+                                <div className="DoneButtonHover">
                                 Done 
                                 </div>
                             </h2>
-                        <div class="flex1"></div>
+                        <div className="flex1"></div>
                     </div>
 
-                    <div class="Todo-list">
+                    <div className="Todo-list">
                         { displayArr }
                     </div>
 
