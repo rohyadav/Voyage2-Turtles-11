@@ -16,11 +16,11 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
         <div>
             <div className="buttonBox">
                 {/* this is the delete button */}
-                <button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}>X</button>
+                {<button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}></button>}
                 {/* this is the archive button */}
-                {<button className='archiveNotesButton existingNotesButtonBox' onClick={onArchiveClick}>A</button>}
+                {<button className='archiveNotesButton existingNotesButtonBox' onClick={onArchiveClick}></button>}
                 {/* this is the pin button */}
-                {<button className='pinNotesButton existingNotesButtonBox' onClick={onPinClick}>P</button>}
+                {<button className='pinNotesButton existingNotesButtonBox' onClick={onPinClick}></button>}
             </div>
             <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/>
         </div>

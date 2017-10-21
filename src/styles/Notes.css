@@ -79,10 +79,18 @@ NOTES
 
 .Description {
   font-size: 12px;
-  text-align: left;
-  color: #959595;
+  text-align: center;
+  color: #ea3939;
   padding-top: 10px;
   padding-left: 20px;  
+  text-decoration: underline;
+}
+.Description:enabled {
+  color:#959595;
+  text-decoration: none;
+}
+.Description:hover {
+  color: #ea3939; 
 }
 
 .searchNotes {
@@ -125,6 +133,7 @@ NOTES
 }
 .existingNotesButtonBox {
   float: right;
+  margin-right: 10px;
 }
 /*
 ==========================
@@ -228,55 +237,52 @@ BUTTONS
 }
 
 .deleteNotesButton {
+  background-image: url('../assets/trash.png');
   width: 20px;
   height: 20px;
   right: 30px;
   background-color: #ffffff;
-	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ea3939;
-  font-size:  12px;
-  font-style: bold;
-  text-align: center;
   border: none;
 }
 .deleteNotesButton:hover {
-	color:#c02419;
+  background-image: url('../assets/trash – 1.png');
 }
 
+
 .archiveNotesButton {
+  background-image: url('../assets/archive.png');
   width: 20px;
   height: 20px;
-  right: 50px;
+  right: 60px;
   background-color: #ffffff;
-	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ea3939;
-  font-size: 12px;
-  font-style: bold;
-  text-align: center;
   border: none;
 }
 .archiveNotesButton:hover {
-	color:#c02419;
+  background-image: url('../assets/archive – 1.png');
+}
+
+.archiveNotesButton:active {
+  background-image: url('../assets/archive – 1.png');
 }
 
 .pinNotesButton {
+  background-image: url('../assets/pin_transparent.png');
   width: 20px;
   height: 20px;
-  right:70px;
+  right:90px;
   background-color: #ffffff;
-	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
-	color:#ea3939;
-  font-size: 12px;
-  font-style: bold;
-  text-align: center;
   border: none;
 }
 .pinNotesButton:hover {
-	color:#c02419;
+	background-image: url('../assets/pin – 1.png');
 }
+
+/* .pinNotesButton:enabled {
+	background-image: url('../assets/pin – 1.png');
+} */
