@@ -30,9 +30,13 @@ class GoogleAutocomplete extends Component {
             ); 
 
             return (
-                <ul className='auto-list'>
-                    {autoList}
-                </ul>
+                <div className='auto-container'>
+                    <div className='auto-list'>
+                    {/* <ul className='auto-list'> */}
+                        {autoList}
+                    {/* </ul> */}
+                    </div>
+                </div>
             );
         } // render()
     
@@ -45,11 +49,11 @@ GoogleAutocomplete.propTypes = {
 const AutoItem = (props) => {
     const currentAuto = props.suggestion;
     return ( // return keyword is necessary
-    <li className='auto-list'>
-        <a href={`https://www.google.com/search?q=&${currentAuto}`}>
+    // <li className='auto-item'>
+        <a className='auto-link' href={`https://www.google.com/search?q=&${currentAuto}`}>
             {props.suggestion}
         </a>
-    </li>
+    // </li>
   );
 };
 
