@@ -1,23 +1,44 @@
+@charset "UTF-8";
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+/*
+==========================
+COLORS
+==========================
+*/
+/*
+==========================
+FONTS
+==========================
+*/
+/*
+==========================
+COMPONENTS
+==========================
+*/
 /*
 ==========================
 GENERAL
 ==========================
 */
-.SearchBox{
-  resize: none;
-}
+.SearchBox {
+  resize: none; }
+
 textarea {
-  resize: vertical; max-height: 300px; min-height: 40px;
-  color: #959595;
-}
+  resize: vertical;
+  max-height: 300px;
+  min-height: 40px;
+  color: #959595; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
-}
+  font-family: "Helvetica Neue", Helvetica, "Varela Round", sans-serif; }
 
 h1, h2, h3, h4, h5 {
-  color: #959595;
-}
+  color: #959595; }
+
 /*
 ==========================
 HEADER
@@ -29,8 +50,7 @@ HEADER
   right: 0px;
   width: 300px;
   position: fixed;
-  height: 140px
-}
+  height: 140px; }
 
 .Notes-Body {
   background: white;
@@ -38,8 +58,8 @@ HEADER
   right: 0px;
   width: 300px;
   position: fixed;
-  height: 100%;
-}
+  height: 100%; }
+
 .Notes-Title-Text {
   width: 260px;
   height: 40px;
@@ -49,8 +69,8 @@ HEADER
   text-align: left;
   color: #ffffff;
   padding-left: 20px;
-  padding-top: 80px;
-}
+  padding-top: 80px; }
+
 /*
 ==========================
 NOTES
@@ -66,29 +86,31 @@ NOTES
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.2px #959595;
-  border: solid 0.2px var(--warm-grey);
-  color: #959595;
-}
+  color: #959595; }
 
 .NoteTitleTextBox {
   height: 60px;
   border-radius: 10px;
   margin-top: 25px;
-  resize: none;
-}
+  resize: none; }
 
 .Description {
   font-size: 12px;
-  text-align: left;
-  color: #959595;
+  text-align: center;
+  color: #ea3939;
   padding-top: 10px;
-  padding-left: 20px;  
-}
+  padding-left: 20px;
+  text-decoration: underline; }
+  .Description:enabled {
+    color: #959595;
+    text-decoration: none; }
+  .Description:hover {
+    color: #ea3939; }
 
 .searchNotes {
   height: 60px;
-  padding: 20px;
-}
+  padding: 20px; }
+
 .buttonBox {
   right: 0px;
   width: 260px;
@@ -105,8 +127,8 @@ NOTES
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-right: none;
-  color: #959595;
-}
+  color: #959595; }
+
 .existingNotes {
   right: 0px;
   width: 260px;
@@ -121,11 +143,12 @@ NOTES
   border-top: none;
   box-shadow: 2px 2px 4px 0 #959595;
   color: #959595;
-  border-right: none;
-}
+  border-right: none; }
+
 .existingNotesButtonBox {
   float: right;
-}
+  margin-right: 10px; }
+
 /*
 ==========================
 SEARCH
@@ -141,44 +164,39 @@ SEARCH
   border: solid 0.3px #959595;
   border: solid 0.3px var(--warm-grey);
   align-items: center;
-  color: #959595;
-}
+  color: #959595; }
 
 .SearchBoxText {
   padding-top: 15px;
   font-size: 12px;
   letter-spacing: 2px;
-  text-align: center;
-}
+  text-align: center; }
 
 /*
 ==========================
 BUTTONS
 ==========================
 */
-.exitButton {
+.notesExitButton {
   border-radius: 50%;
   width: 35px;
   height: 35px;
   top: 20px;
   right: 20px;
+  color: #ea3939;
   position: fixed;
   background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
-	color:#ea3939;
-  font-size:20px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 20px;
   font-weight: 700;
   font-style: bold;
   text-align: center;
   border: none;
-  background-color:#ffffff;
-}
-.exitButton:hover {
-  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-  background-color:#f6f6f6;
-}
+  background-color: #ffffff; }
+  .notesExitButton:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color: #f6f6f6; }
 
 .notesButton {
   width: 70px;
@@ -187,25 +205,11 @@ BUTTONS
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.5px #959595;
-  border: solid 0.5px var(--warm-grey);
   color: #959595;
-  background: white;
-}
-
-.notesButton:hover {
-  background: #ea3939;
-  color: white;
-}
-
-/* .addNotesButton img {
-  width: 20px;
-  height: 20px;
-  display: block;
-  border-radius: 50%;
-  position: fixed;
-  top: 300px;
-  right: 25px;
-} */
+  background: white; }
+  .notesButton:hover {
+    background: #ea3939;
+    color: white; }
 
 .addNotesButton {
   width: 20px;
@@ -213,70 +217,56 @@ BUTTONS
   position: fixed;
   top: 275px;
   right: 30px;
-	background-color:#ea3939;
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-  font-size:15px;
+  background-color: #ea3939;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
   font-style: bold;
   text-align: center;
-  border: none;
-}
-.addNotesButton:hover {
-	background-color:#d02718;
-}
+  border: none; }
+  .addNotesButton:hover {
+    background-color: #d02718; }
 
 .deleteNotesButton {
+  background-image: url("../assets/trash.png");
   width: 20px;
   height: 20px;
   right: 30px;
   background-color: #ffffff;
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
-	color:#ea3939;
-  font-size:  12px;
-  font-style: bold;
-  text-align: center;
-  border: none;
-}
-.deleteNotesButton:hover {
-	color:#c02419;
-}
+  display: inline-block;
+  cursor: pointer;
+  border: none; }
+  .deleteNotesButton:hover {
+    background-image: url("../assets/trash – 1.png"); }
 
 .archiveNotesButton {
+  background-image: url("../assets/archive.png");
   width: 20px;
   height: 20px;
-  right: 50px;
+  right: 60px;
   background-color: #ffffff;
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
-	color:#ea3939;
-  font-size: 12px;
-  font-style: bold;
-  text-align: center;
-  border: none;
-}
-.archiveNotesButton:hover {
-	color:#c02419;
-}
+  display: inline-block;
+  cursor: pointer;
+  border: none; }
+  .archiveNotesButton:hover {
+    background-image: url("../assets/archive – 1.png"); }
+  .archiveNotesButton:active {
+    background-image: url("../assets/archive – 1.png"); }
 
 .pinNotesButton {
+  background-image: url("../assets/pin_transparent.png");
   width: 20px;
   height: 20px;
-  right:70px;
+  right: 90px;
   background-color: #ffffff;
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
-	color:#ea3939;
-  font-size: 12px;
-  font-style: bold;
-  text-align: center;
-  border: none;
-}
-.pinNotesButton:hover {
-	color:#c02419;
-}
+  display: inline-block;
+  cursor: pointer;
+  border: none; }
+  .pinNotesButton:hover {
+    background-image: url("../assets/pin – 1.png"); }
+
+/* .pinNotesButton:enabled {
+	background-image: url('../assets/pin – 1.png');
+} */

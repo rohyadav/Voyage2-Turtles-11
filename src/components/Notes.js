@@ -26,7 +26,6 @@ export class Notes extends Component {
       searchTerm: '',
       note: '',
       searchButton: 'Search'
-
     }
   }
   // HANDLES SEARCH
@@ -52,7 +51,7 @@ export class Notes extends Component {
         <div>
           {/* HEADER */}
           <header className='Notes-Header'>
-            <button className='exitButton' onClick={this.props.closeHandler}>X</button>
+            <button className='notesExitButton' onClick={this.props.closeHandler}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </header>
           <div className='Notes-Body'>
@@ -68,11 +67,11 @@ export class Notes extends Component {
 
             {/* NOTES LISTED OUT*/}
             <span>
-              <NotesFilterLink className="Description" filter="SHOW_ACTIVE">Active</NotesFilterLink>
+              <NotesFilterLink  filter="SHOW_ACTIVE">Active</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink className="Description" filter="SHOW_PINNED">Pinned</NotesFilterLink>
+              <NotesFilterLink  filter="SHOW_PINNED">Pinned</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink className="Description" filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
+              <NotesFilterLink  filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>
               <NotesVisibleList />
