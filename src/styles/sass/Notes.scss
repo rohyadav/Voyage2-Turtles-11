@@ -14,15 +14,15 @@ GENERAL
 }
 textarea {
   resize: vertical; max-height: 300px; min-height: 40px;
-  color: #959595;
+  color: $default-grey;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+  font-family: $tab-font;
 }
 
 h1, h2, h3, h4, h5 {
-  color: #959595;
+  color: $default-grey;
 }
 /*
 ==========================
@@ -30,21 +30,11 @@ HEADER
 ==========================
 */
 .Notes-Header {
-  background-color: #ea3939;
-  top: 0px;
-  right: 0px;
-  width: 300px;
-  position: fixed;
-  height: 140px
+  @include tab-header($notes-red);
 }
 
 .Notes-Body {
-  background: white;
-  top: 140px;
-  right: 0px;
-  width: 300px;
-  position: fixed;
-  height: 100%;
+  @include tab-body;
 }
 .Notes-Title-Text {
   @include tab-title
@@ -63,10 +53,9 @@ NOTES
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 5px;
-  box-shadow: 2px 2px 4px 0 #959595;
-  border: solid 0.2px #959595;
-  border: solid 0.2px var(--warm-grey);
-  color: #959595;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  border: solid 0.2px $default-grey;
+  color: $default-grey;
 }
 
 .NoteTitleTextBox {
@@ -79,17 +68,18 @@ NOTES
 .Description {
   font-size: 12px;
   text-align: center;
-  color: #ea3939;
+  color: $notes-red;
   padding-top: 10px;
   padding-left: 20px;  
   text-decoration: underline;
-}
-.Description:enabled {
-  color:#959595;
-  text-decoration: none;
-}
-.Description:hover {
-  color: #ea3939; 
+
+  &:enabled {
+    color:$default-grey;
+    text-decoration: none;
+  }
+  &:hover {
+    color: $notes-red; 
+  }
 }
 
 .searchNotes {
@@ -104,15 +94,15 @@ NOTES
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 5px;
-  box-shadow: 2px 2px 4px 0 #959595;
-  border-top: solid 0.2px #959595;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  border-top: solid 0.2px $default-grey;
   border-bottom: none;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-right: none;
-  color: #959595;
+  color: $default-grey;
 }
 .existingNotes {
   right: 0px;
@@ -124,10 +114,10 @@ NOTES
   border-top-right-radius: 0px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-bottom: solid 0.2px #959595;
+  border-bottom: solid 0.2px $default-grey;
   border-top: none;
-  box-shadow: 2px 2px 4px 0 #959595;
-  color: #959595;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  color: $default-grey;
   border-right: none;
 }
 .existingNotesButtonBox {
@@ -152,13 +142,13 @@ SEARCH
 BUTTONS
 ==========================
 */
-.exitButton {
-  @include tab-exit-button;
-	color:#ea3939;
-}
-.exitButton:hover {
-  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-  background-color:#f6f6f6;
+.notesExitButton {
+  @include tab-exit-button($notes-red);
+
+  &:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color:#f6f6f6;
+  }
 }
 
 .notesButton {
@@ -166,27 +156,16 @@ BUTTONS
   height: 20px;
   margin-top: 10px;
   border-radius: 5px;
-  box-shadow: 2px 2px 4px 0 #959595;
-  border: solid 0.5px #959595;
-  border: solid 0.5px var(--warm-grey);
-  color: #959595;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  border: solid 0.5px $default-grey;
+  color: $default-grey;
   background: white;
-}
 
-.notesButton:hover {
-  background: #ea3939;
-  color: white;
+  &:hover {
+    background: $notes-red;
+    color: white;
+  }
 }
-
-/* .addNotesButton img {
-  width: 20px;
-  height: 20px;
-  display: block;
-  border-radius: 50%;
-  position: fixed;
-  top: 300px;
-  right: 25px;
-} */
 
 .addNotesButton {
   width: 20px;
@@ -194,7 +173,7 @@ BUTTONS
   position: fixed;
   top: 275px;
   right: 30px;
-	background-color:#ea3939;
+	background-color:$notes-red;
 	border-radius:50%;
 	display:inline-block;
 	cursor:pointer;
@@ -203,10 +182,12 @@ BUTTONS
   font-style: bold;
   text-align: center;
   border: none;
+
+  &:hover {
+    background-color:#d02718;
+  }
 }
-.addNotesButton:hover {
-	background-color:#d02718;
-}
+
 
 .deleteNotesButton {
   background-image: url('../assets/trash.png');
@@ -217,11 +198,11 @@ BUTTONS
 	display:inline-block;
 	cursor:pointer;
   border: none;
-}
-.deleteNotesButton:hover {
-  background-image: url('../assets/trash – 1.png');
-}
 
+  &:hover {
+    background-image: url('../assets/trash – 1.png');
+  }
+}
 
 .archiveNotesButton {
   background-image: url('../assets/archive.png');
@@ -232,13 +213,14 @@ BUTTONS
 	display:inline-block;
 	cursor:pointer;
   border: none;
-}
-.archiveNotesButton:hover {
-  background-image: url('../assets/archive – 1.png');
-}
 
-.archiveNotesButton:active {
-  background-image: url('../assets/archive – 1.png');
+  &:hover {
+    background-image: url('../assets/archive – 1.png');
+  }
+
+  &:active {
+    background-image: url('../assets/archive – 1.png');
+  }
 }
 
 .pinNotesButton {
@@ -250,11 +232,11 @@ BUTTONS
 	display:inline-block;
 	cursor:pointer;
   border: none;
-}
-.pinNotesButton:hover {
-	background-image: url('../assets/pin – 1.png');
-}
 
+  &:hover {
+    background-image: url('../assets/pin – 1.png');
+  }
+}
 /* .pinNotesButton:enabled {
 	background-image: url('../assets/pin – 1.png');
 } */

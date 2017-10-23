@@ -51,7 +51,7 @@ export class Notes extends Component {
         <div>
           {/* HEADER */}
           <header className='Notes-Header'>
-            <button className='exitButton' onClick={this.props.closeHandler}>X</button>
+            <button className='notesExitButton' onClick={this.props.closeHandler}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </header>
           <div className='Notes-Body'>

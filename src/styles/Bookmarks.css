@@ -1,5 +1,25 @@
 /*
 ==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+/*
+==========================
+COLORS
+==========================
+*/
+/*
+==========================
+FONTS
+==========================
+*/
+/*
+==========================
+COMPONENTS
+==========================
+*/
+/*
+==========================
 GENERAL
 ==========================
 */
@@ -13,7 +33,7 @@ textarea {
   color: #959595; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif; }
+  font-family: "Helvetica Neue", Helvetica, "Varela Round", sans-serif; }
 
 h1, h2, h3, h4, h5 {
   color: #959595; }
@@ -56,16 +76,7 @@ NOTES
 ==========================
 */
 .Bookmarks {
-  right: 0px;
-  width: 260px;
-  height: 100px;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.2px #959595;
-  border: solid 0.2px var(--warm-grey);
   color: #959595; }
 
 /*
@@ -102,34 +113,17 @@ BUTTONS
   height: 35px;
   top: 20px;
   right: 20px;
+  color: #ffea6c;
   position: fixed;
   background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
   border-radius: 50%;
   display: inline-block;
-  cursor: pointer;
-  color: #ffea6c;
   font-size: 20px;
   font-weight: 700;
   font-style: bold;
   text-align: center;
   border: none;
   background-color: #ffffff; }
-
-.bookmarksExitButton:hover {
-  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-  background-color: #f6f6f6; }
-
-.bookmarksButton {
-  width: 70px;
-  height: 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 4px 0 #959595;
-  border: solid 0.5px #959595;
-  border: solid 0.5px var(--warm-grey);
-  color: #959595;
-  background: white; }
-
-.bookmarksButton:hover {
-  background: #ffea6c;
-  color: white; }
+  .bookmarksExitButton:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color: #f6f6f6; }

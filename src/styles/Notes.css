@@ -34,7 +34,7 @@ textarea {
   color: #959595; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif; }
+  font-family: "Helvetica Neue", Helvetica, "Varela Round", sans-serif; }
 
 h1, h2, h3, h4, h5 {
   color: #959595; }
@@ -86,7 +86,6 @@ NOTES
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.2px #959595;
-  border: solid 0.2px var(--warm-grey);
   color: #959595; }
 
 .NoteTitleTextBox {
@@ -102,13 +101,11 @@ NOTES
   padding-top: 10px;
   padding-left: 20px;
   text-decoration: underline; }
-
-.Description:enabled {
-  color: #959595;
-  text-decoration: none; }
-
-.Description:hover {
-  color: #ea3939; }
+  .Description:enabled {
+    color: #959595;
+    text-decoration: none; }
+  .Description:hover {
+    color: #ea3939; }
 
 .searchNotes {
   height: 60px;
@@ -180,12 +177,13 @@ SEARCH
 BUTTONS
 ==========================
 */
-.exitButton {
+.notesExitButton {
   border-radius: 50%;
   width: 35px;
   height: 35px;
   top: 20px;
   right: 20px;
+  color: #ea3939;
   position: fixed;
   background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
   border-radius: 50%;
@@ -195,12 +193,10 @@ BUTTONS
   font-style: bold;
   text-align: center;
   border: none;
-  background-color: #ffffff;
-  color: #ea3939; }
-
-.exitButton:hover {
-  background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-  background-color: #f6f6f6; }
+  background-color: #ffffff; }
+  .notesExitButton:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color: #f6f6f6; }
 
 .notesButton {
   width: 70px;
@@ -209,23 +205,12 @@ BUTTONS
   border-radius: 5px;
   box-shadow: 2px 2px 4px 0 #959595;
   border: solid 0.5px #959595;
-  border: solid 0.5px var(--warm-grey);
   color: #959595;
   background: white; }
+  .notesButton:hover {
+    background: #ea3939;
+    color: white; }
 
-.notesButton:hover {
-  background: #ea3939;
-  color: white; }
-
-/* .addNotesButton img {
-  width: 20px;
-  height: 20px;
-  display: block;
-  border-radius: 50%;
-  position: fixed;
-  top: 300px;
-  right: 25px;
-} */
 .addNotesButton {
   width: 20px;
   height: 20px;
@@ -241,9 +226,8 @@ BUTTONS
   font-style: bold;
   text-align: center;
   border: none; }
-
-.addNotesButton:hover {
-  background-color: #d02718; }
+  .addNotesButton:hover {
+    background-color: #d02718; }
 
 .deleteNotesButton {
   background-image: url("../assets/trash.png");
@@ -254,9 +238,8 @@ BUTTONS
   display: inline-block;
   cursor: pointer;
   border: none; }
-
-.deleteNotesButton:hover {
-  background-image: url("../assets/trash – 1.png"); }
+  .deleteNotesButton:hover {
+    background-image: url("../assets/trash – 1.png"); }
 
 .archiveNotesButton {
   background-image: url("../assets/archive.png");
@@ -267,12 +250,10 @@ BUTTONS
   display: inline-block;
   cursor: pointer;
   border: none; }
-
-.archiveNotesButton:hover {
-  background-image: url("../assets/archive – 1.png"); }
-
-.archiveNotesButton:active {
-  background-image: url("../assets/archive – 1.png"); }
+  .archiveNotesButton:hover {
+    background-image: url("../assets/archive – 1.png"); }
+  .archiveNotesButton:active {
+    background-image: url("../assets/archive – 1.png"); }
 
 .pinNotesButton {
   background-image: url("../assets/pin_transparent.png");
@@ -283,9 +264,8 @@ BUTTONS
   display: inline-block;
   cursor: pointer;
   border: none; }
-
-.pinNotesButton:hover {
-  background-image: url("../assets/pin – 1.png"); }
+  .pinNotesButton:hover {
+    background-image: url("../assets/pin – 1.png"); }
 
 /* .pinNotesButton:enabled {
 	background-image: url('../assets/pin – 1.png');
