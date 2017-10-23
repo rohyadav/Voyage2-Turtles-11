@@ -101,7 +101,7 @@ class TodosButton extends React.Component {
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Todos button" />
       </a>
-      <p>Todoes</p>
+      <p>Todos</p>
     </div>);
   }
 }
