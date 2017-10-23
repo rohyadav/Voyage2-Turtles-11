@@ -51,6 +51,24 @@ $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 COMPONENTS
 ==========================
 */
+@mixin tab-header($color) {
+    background-color: $color;
+    top: 0px;
+    right: 0px;
+    width: 300px;
+    position: fixed;
+    height: 140px
+}
+
+@mixin tab-body {
+    background: white;
+    top: 140px;
+    right: 0px;
+    width: 300px;
+    position: fixed;
+    height: 100%;
+}
+
 @mixin search-box {
     right: 20px;
     top: 160px;
@@ -64,12 +82,13 @@ COMPONENTS
     color: #959595;
 }
 
-@mixin tab-exit-button {
+@mixin tab-exit-button($color) {
     border-radius: 50%;
     width: 35px;
     height: 35px;
     top: 20px;
     right: 20px;
+    color: $color;
     position: fixed;
     background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
     border-radius:50%;
