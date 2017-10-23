@@ -77,24 +77,14 @@ class BookmarksButton extends React.Component {
 }
 
 
+
 class TodosButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: true,
       iconLink: './assets/Icons_COLOR-02.png',
     };
 
-  }
-  toggleVisibility = () => {
-    this.setState(prevState => ({ visibility: !prevState.visibility }));
-    if (this.state.visibility === true) {
-      ReactDOM.render(<TodoList />, document.getElementById('todo'));
-      tab_open();
-    } else {
-      ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-      tab_close();
-    }
   }
   iconChangeOnHover = () => {
     this.setState({ iconLink: './assets/Icons_COLOR_background-02.png' });
@@ -106,7 +96,7 @@ class TodosButton extends React.Component {
   render() {
     return (<div className="item">
       <a href="#"
-        onClick={this.toggleVisibility}
+        onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Todos button" />
@@ -115,6 +105,7 @@ class TodosButton extends React.Component {
     </div>);
   }
 }
+
 
 
 class GmailButton extends React.Component {
@@ -183,6 +174,7 @@ class App extends Component {
     super(props);
     this.state = {
       notesVisibility: false,
+      todovisibility: false
     };
   }
 
@@ -196,6 +188,18 @@ class App extends Component {
       ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
       tab_close();
     }
+  }
+  
+  toggleTodosVisibility = () => {
+      if (this.state.todoVisibility) {
+        ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+        tab_close();
+        this.setState({todoVisibility: false});
+      } else {
+      ReactDOM.render(<TodoList closeHandler={this.toggleTodosVisibility} />, document.getElementById('todo'));
+      tab_open();
+      this.setState({todoVisibility: true});
+      }
   }
 
   render() {
@@ -232,7 +236,7 @@ class App extends Component {
                   <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
                   <p>Weather</p>
                 </div>
-                <TodosButton />
+                  <TodosButton clickHandler={this.toggleTodosVisibility}   />
                 <div className="item">
                   <img src="assets/Icons_COLOR-03.png" alt="Apps" />
                   <p>Apps</p>
