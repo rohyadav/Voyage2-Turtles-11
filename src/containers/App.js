@@ -205,7 +205,7 @@ class App extends Component {
   render() {
     console.log("render app");
     return (
-      <div className="App">
+      <div id="#App" className="App">
 
         <div className="main">
 

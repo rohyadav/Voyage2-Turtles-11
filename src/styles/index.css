@@ -38,7 +38,9 @@ body {
 .main {
   text-align: center;
 }
-
+#App {
+  width: 100%;
+}
 /* controls pop-out tab */
 #main {
   margin-right: 0px;
@@ -120,7 +122,7 @@ margin-bottom: 40px;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   grid-column-gap: 4rem;
   grid-row-gap: 2rem;
-margin: auto;
+  margin: auto;
   /* grid-auto-columns: 1fr; */
   /* grid-auto-flow: column; */
   
@@ -138,8 +140,15 @@ margin: auto;
 	margin: 45px auto;
 } */
 
-.item img{
+div .item img{
   border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.item {
+  text-align: center;
 }
 
 /* .item {
@@ -154,6 +163,7 @@ margin: auto;
 img {
   display: block;
   width: 100%; 
+  max-width: 121px;
 }
 
 /* ================================= 
