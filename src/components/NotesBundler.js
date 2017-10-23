@@ -1,14 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { pinNotes } from '../actions/Notes_Actions';
-import { deleteNotes } from '../actions/Notes_Actions';
-import { toggleNotes } from '../actions/Notes_Actions';
-import { updateNotes } from '../actions/Notes_Actions';
-import notesApp from '../reducers/Notes_Reducers';
-import { createStore } from 'redux';
-let store = createStore(notesApp,
-                        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-                        );
 
 export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text }) => {
     console.log("Note text is: " + text);

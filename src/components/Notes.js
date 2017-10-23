@@ -26,7 +26,6 @@ export class Notes extends Component {
       searchTerm: '',
       note: '',
       searchButton: 'Search'
-
     }
   }
   // HANDLES SEARCH
