@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
-// import logo from './logo.svg'; (Example of how to import images)
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
@@ -75,7 +74,6 @@ class BookmarksButton extends React.Component {
     </div>);
   }
 }
-
 
 class TodosButton extends React.Component {
   constructor(props) {
@@ -178,6 +176,7 @@ function tab_open() {
 function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -201,7 +200,7 @@ class App extends Component {
   render() {
     console.log("render app");
     return (
-      <div className="App">
+      // <div className="App">
 
         <div className="main">
 
@@ -209,35 +208,36 @@ class App extends Component {
 
             <div className="time">
               11:45 PM
-              </div>
+            </div>
 
             <div className="search-area">
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
             </div>
 
+          </div> {/* .main-top */}
 
-            <div id='icons'>
-              <div className="main-grid">
-                <div className="item">
-                  <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
-                  <p>Weather</p>
-                </div>
-                <TodosButton />
-                <div className="item">
-                  <img src="assets/Icons_COLOR-03.png" alt="Apps" />
-                  <p>Apps</p>
-                </div>
-                <BookmarksButton />
-                <NotesButton clickHandler={this.toggleNotesVisibility} />
-                <div className="item">
-                  <img src="assets/Icons_COLOR-06.png" alt="History" />
-                  <p>History</p>
-                </div>
-                <GmailButton />
-                <GithubButton />
+          <div id='icons'>
+            <div className="main-grid">
+              <div className="item"> {/* Only direct children are grid items */}
+                <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
+                <p>Weather</p>
               </div>
+              <TodosButton />
+              <div className="item">
+                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
+                <p>Apps</p>
+              </div>
+              <BookmarksButton />
+              <NotesButton clickHandler={this.toggleNotesVisibility} />
+              <div className="item">
+                <img src="assets/Icons_COLOR-06.png" alt="History" />
+                <p>History</p>
+              </div>
+              <GmailButton />
+              <GithubButton />
             </div>
-          </div>
+          </div> {/* #icons */}
+          
 
           <div id='tabs'>
             <aside>
@@ -262,7 +262,7 @@ class App extends Component {
 
         </div>
 
-      </div>
+      // </div>
     );
   }
 }
