@@ -90,9 +90,9 @@ body {
   background: #FFFFFF;
   color: #7E7E7E;
   width: 40vw;
-  height: 5vh;
+  height: 4vh;
   display: flex;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 60px;
 /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */
 }
@@ -100,10 +100,10 @@ body {
 /* The text "Google" inside the search bar */
 .box-item {
   justify-content: flex-start;
-  padding-left: 40px;
+  padding-left: 20px;
   align-self: center;
   font-size: .9rem;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 
@@ -139,7 +139,7 @@ body {
 	margin: 45px auto;
 } */
 
-div .item img{
+.item img{
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;

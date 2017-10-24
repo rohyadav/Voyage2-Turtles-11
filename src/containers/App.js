@@ -13,6 +13,7 @@ class NotesButton extends React.Component {
     this.state = {
       visibility: false,
       iconLink: './assets/Icons_COLOR-04.png',
+      quantity: 0
     };
 
   }
@@ -25,6 +26,7 @@ class NotesButton extends React.Component {
 
   render() {
     return (<div className="item">
+      <button className="countButton">{this.state.quantity}</button>
       <a href="#"
         onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}

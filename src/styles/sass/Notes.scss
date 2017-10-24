@@ -240,3 +240,19 @@ BUTTONS
 /* .pinNotesButton:enabled {
 	background-image: url('../assets/pin – 1.png');
 } */
+
+.item .countButton {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: 50px;
+  top: 30px;
+	background-color: $notes-red;
+	border-radius:50%;
+	color:#ffffff;
+  font-size:15px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+  display: inline;
+}
