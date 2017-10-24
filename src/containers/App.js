@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
-// import logo from './logo.svg'; (Example of how to import images)
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
@@ -11,8 +10,9 @@ class NotesButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: false,
+      // visibility: false,
       iconLink: './assets/Icons_COLOR-04.png',
+      quantity: 0
     };
 
   }
@@ -24,14 +24,17 @@ class NotesButton extends React.Component {
   }
 
   render() {
-    return (<div className="item">
+    return (<div className="item note-item">
+      {/* <div className='notes-wrapper'>      */}
+      {/* <div className='notes-text'> */}
       <a href="#"
-        onClick={this.props.clickHandler}
+        // onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
+      <button className="countButton">{this.state.quantity}</button>
     </div>
     );
   }
@@ -41,20 +44,9 @@ class BookmarksButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: true,
       iconLink: './assets/Icons_COLOR-05.png',
     };
 
-  }
-  toggleVisibility = () => {
-    this.setState(prevState => ({ visibility: !prevState.visibility }));
-    if (this.state.visibility === true) {
-      ReactDOM.render(<Bookmarks />, document.getElementById('bookmarks'));
-      tab_open();
-    } else {
-      ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-      tab_close();
-    }
   }
   iconChangeOnHover = () => {
     this.setState({ iconLink: './assets/Icons_COLOR_background-05.png' });
@@ -66,7 +58,6 @@ class BookmarksButton extends React.Component {
   render() {
     return (<div className="item">
       <a href="#"
-        onClick={this.toggleVisibility}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Bookmarks" />
@@ -75,8 +66,6 @@ class BookmarksButton extends React.Component {
     </div>);
   }
 }
-
-
 
 class TodosButton extends React.Component {
   constructor(props) {
@@ -106,8 +95,6 @@ class TodosButton extends React.Component {
   }
 }
 
-
-
 class GmailButton extends React.Component {
   constructor(props) {
     super(props);
@@ -132,7 +119,7 @@ class GmailButton extends React.Component {
         <p>Gmail</p>
       </div>
     );
-  } 
+  }
 }
 
 class GithubButton extends React.Component {
@@ -159,7 +146,7 @@ class GithubButton extends React.Component {
         <p>Github</p>
       </div>
     );
-  } 
+  }
 }
 
 function tab_open() {
@@ -169,114 +156,190 @@ function tab_open() {
 function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
+
+const Time = () => {
+  let currentDate = new Date();
+  let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
+  let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
+  let timeString = timeHourString + ":" + timeMinuteString;
+  currentDate.getHours() > 12 ? timeString += " PM" : timeString += " AM";
+
+  return (
+    <div>{timeString}</div>
+  )
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notesVisibility: false,
-      todovisibility: false
+      todoTabOpen: "false",
+      notesTabOpen: "false",
+      bookmarksTabOpen: "false",
     };
   }
 
-  toggleNotesVisibility = () => {
-    const newVisibility = !this.state.notesVisibility;
-    this.setState(prevState => ({ notesVisibility: !prevState.notesVisibility }));
-    if (newVisibility) {
-      ReactDOM.render(<Notes closeHandler={this.toggleNotesVisibility} />, document.getElementById('notes'));
-      tab_open();
-    } else {
-      ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-      tab_close();
-    }
+  time = () => {
+    let d = new Date();
+    this.setState({ time: d.toLocaleTimeString() });
+    return this.state.time;
   }
-  
-  toggleTodosVisibility = () => {
-      if (this.state.todoVisibility) {
+  toogleVisibility = (param, event) => {
+    switch (param) {
+      // todo icon pressed
+      case "todo":
+        switch (this.state.todoTabOpen) {
+          case "true":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_close();
+            break;
+          case "false":
+            this.setState({ todoTabOpen: "true" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+      // notes icon pressed
+      case "notes":
+        switch (this.state.notesTabOpen) {
+          case "true":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_close();
+            break;
+          case "false":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "true" });
+            this.setState({ bookmarksTabOpen: "false" });
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+      // bookmarks icon pressed
+      case "bookmarks":
+        switch (this.state.bookmarksTabOpen) {
+          case "true":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_close();
+            break;
+          case "false":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "true" });
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+      // the exit button from one of the open tabs have been pressed
+      default:
+        this.setState({ todoTabOpen: "false" });
+        this.setState({ notesTabOpen: "false" });
+        this.setState({ bookmarksTabOpen: "false" });
         ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+        ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+        ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
         tab_close();
-        this.setState({todoVisibility: false});
-      } else {
-      ReactDOM.render(<TodoList closeHandler={this.toggleTodosVisibility} />, document.getElementById('todo'));
-      tab_open();
-      this.setState({todoVisibility: true});
-      }
-  }
+    }
 
+  }
   render() {
     console.log("render app");
     return (
-      <div className="App">
+      <div id="#App" className="App">
 
-        <div className="main">
-
-          <div className="main-top" id="main">
+        <div className="main" id="main">
+          <div className="main-top" >
 
             <div className="time">
-              11:45 PM
-              </div>
-
+              <Time />
+            </div>
             <div className="search-area">
-              {/* <div className="search-type">
-                <div className="type-item">Web</div>
-                <div className="type-item">Images</div>
-                <div className="type-item">News</div>
-                <div className="type-item">Videos</div>
-                <div className="type-item">Maps</div>
-              </div> */}
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
-              {/* <div className="search-box">
-                  <div className="box-item">Google</div>
-                </div> */}
             </div>
-
-
-            <div id='icons'>
-              <div className="main-grid">
-                <div className="item">
-                  <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
-                  <p>Weather</p>
-                </div>
-                  <TodosButton clickHandler={this.toggleTodosVisibility}   />
-                <div className="item">
-                  <img src="assets/Icons_COLOR-03.png" alt="Apps" />
-                  <p>Apps</p>
-                </div>
+          </div> {/* .main-top */}
+          <div id='icons'>
+            <div className="main-grid">
+              <div className="item">
+                <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
+                <p>Weather</p>
+              </div>
+              <div onClick={this.toogleVisibility.bind(this, "todo")}>
+                <TodosButton />
+              </div>
+              <div className="item">
+                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
+                <p>Apps</p>
+              </div>
+              <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
                 <BookmarksButton />
-                <NotesButton clickHandler={this.toggleNotesVisibility} />
-                <div className="item">
-                  <img src="assets/Icons_COLOR-06.png" alt="History" />
-                  <p>History</p>
-                </div>
-                <GmailButton />
-                <GithubButton />
               </div>
+
+              <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                <NotesButton />
+              </div>
+
+              <div className="item">
+                <img src="assets/Icons_COLOR-06.png" alt="History" />
+                <p>History</p>
+              </div>
+              <GmailButton />
+              <GithubButton />
+            </div> {/* .main-grid */}
+          </div> {/* #icons */}
+        </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
+
+        <div id='tabs'>
+          <aside>
+            <div id="weather">
             </div>
-          </div>
-
-          <div id='tabs'>
-            <aside>
-              <div id="weather">
-              </div>
-              <div id="todo">
-              </div>
-              <div id="apps">
-              </div>
-              <div id="notes" >
-              </div>
-              <div id="bookmarks">
-              </div>
-              <div id="history">
-              </div>
-              <div id="placeholder1">
-              </div>
-              <div id="placeholder2">
-              </div>
-            </aside>
-          </div>
-
+            <div id="todo">
+            </div>
+            <div id="apps">
+            </div>
+            <div id="notes" >
+            </div>
+            <div id="bookmarks">
+            </div>
+            <div id="history">
+            </div>
+          </aside>
         </div>
-
-      </div>
+        <footer className="footerText">
+          <p className="rightFooter">Project by Chingu Turtles Team 11</p>
+          <p className="leftFooter">Photos by Natasha Sadikin</p>
+        </footer>
+      </div> // end of .App container
     );
   }
 }

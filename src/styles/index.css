@@ -1,135 +1,137 @@
-
-
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+/*
+==========================
+COLORS
+==========================
+*/
+/*
+==========================
+FONTS
+==========================
+*/
+/*
+==========================
+COMPONENTS
+==========================
+*/
 /* ===================================== 
    Base Element Styles
 ======================================== */
-
 * {
-	box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 body {
-	/* font-size: 1.4em; */
-	font-family: 'Varela Round', sans-serif;
+  /* font-size: 1.4em; */
+  font-family: 'Varela Round', sans-serif;
   /* font-weight: bold; */
-	color: #FFFFFF;
+  color: #FFFFFF;
   padding: 0;
   margin: 0;
-  background-color: #7E7E7E;
-  background-image: url("/assets/background.jpg");
+  height: 100%;
+  background-color: body light-grey;
+  background-image: url("/assets/wallpapers/18.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  /* 
-  background-size: cover; (makes image too short)
-  min-height/height: 100vh; (creates scrollbar)*/
-}
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
+  overflow: hidden;
+  /* background-size: cover; */ }
 
 /* ===================================== 
    Main Layout Styles
 ======================================== */
-
 .main {
-  text-align: center;
-}
+  text-align: center; }
+
+#App {
+  width: 100%; }
 
 /* controls pop-out tab */
 #main {
-  margin-right: 0px;
-}
+  margin-right: 0px; }
 
 /* ===================================== 
    Main Top Layout
 ======================================== */
-
 .main-top {
-  margin-bottom: 8vh; /*this will cause overflow*/
+  margin-bottom: 8vh;
+  /*this will cause overflow*/
   /* display: flex; */
   /* height: 33vh; */
-  /* justify-content: center; */
-}
+  /* justify-content: center; */ }
 
 /* ---- Time ---- */
-
 .time {
   text-transform: uppercase;
   font-size: 600%;
   font-weight: bold;
-  text-shadow: 0 3px 8px rgba(57, 57, 57, 0.46);
+  text-shadow: 0 2px 6px rgba(57, 57, 57, 0.26);
   margin-top: 15vh;
-  margin-bottom: 5vh;
-}
-
-
+  margin-bottom: 5vh; }
 
 /* ---- Search Area ---- */
-
 .search-area {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .search-type {
-  font-size: 1rem;
-display: flex;
-width: 38vw;
-justify-content: space-between;
-margin-bottom: 1vh;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
+  font-size: .8rem;
+  display: flex;
+  width: 38vw;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  padding-left: 5%;
+  padding-right: 15%; }
+
 .search-input-box {
+  min-width: 300px;
   background: #FFFFFF;
   color: #7E7E7E;
   width: 40vw;
-  height: 5vh;
-display: flex;
-border-radius: 10px;
-margin-bottom: 40px;
-/* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */
-}
+  height: 4vh;
+  display: flex;
+  border-radius: 20px;
+  box-shadow: none;
+  border: none;
+  margin-bottom: 60px;
+  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */ }
 
 /* The text "Google" inside the search bar */
 .box-item {
   justify-content: flex-start;
-  padding-left: 40px;
+  padding-left: 20px;
   align-self: center;
   font-size: .9rem;
-  letter-spacing: 3px;
-}
-
+  letter-spacing: 2px; }
 
 /* ===================================== 
    Main Grid Layout
 ======================================== */
-
-
 .main-grid {
-  max-width: 64vw;
+  max-width: 60vw;
   /* height: 66vh; */
   display: grid;
   /* grid-template-columns: 1fr 1fr 1fr; */
   /* grid-template-rows: 100px 100px; */
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-column-gap: 4rem;
-  grid-row-gap: 2rem;
-margin: auto;
+  grid-row-gap: 0.5rem;
+  margin: auto;
   /* grid-auto-columns: 1fr; */
-  /* grid-auto-flow: column; */
-  
-}
+  /* grid-auto-flow: column; */ }
+
 .main-grid p {
   font-size: .8rem;
   letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
 
 /* .main-grid {
   background: #fff;
@@ -137,10 +139,14 @@ margin: auto;
   box-shadow: 0 0.1em 0 0 rgba(0,0,0,0.1);
 	margin: 45px auto;
 } */
+.item {
+  text-align: center;
+  margin: auto; }
 
-.item img{
+.item img {
   border-radius: 50%;
-}
+  margin-left: auto;
+  margin-right: auto; }
 
 /* .item {
   color: #fff;
@@ -150,13 +156,30 @@ margin: auto;
   border: solid 1px rgba(110,133,156,0.15);
   border-radius: 0.3em;
 } */
-
 img {
   display: block;
-  width: 100%; 
-}
+  width: 100%;
+  max-width: 110px;
+  min-width: 100px; }
 
 /* ================================= 
   Media Queries
 ==================================== */
+/* ================================= 
+  Footer
+==================================== */
+.leftFooter, .rightFooter {
+  font-size: 0.75rem;
+  display: inline-block;
+  bottom: 0.5%;
+  position: fixed;
+  text-transform: lowercase;
+  color: #cecece; }
 
+.rightFooter {
+  float: right;
+  right: 20px; }
+
+.leftFooter {
+  float: left;
+  left: 20px; }

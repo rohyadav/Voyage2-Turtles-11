@@ -23,21 +23,21 @@ class Bookmarks extends Component {
           arrayOfNotes: newArray
         })
       }
-      toggleVisibility = () =>{
-        this.setState(prevState => ({visibility : !prevState.visibility}));
-        if (this.state.visibility === true) {
-            return ReactDOM.render(<Bookmarks />, document.getElementById('bookmarks'));
-        } else {
-            return ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-        }
-      }
+      // toggleVisibility = () =>{
+      //   this.setState(prevState => ({visibility : !prevState.visibility}));
+      //   if (this.state.visibility === true) {
+      //       return ReactDOM.render(<Bookmarks />, document.getElementById('bookmarks'));
+      //   } else {
+      //       return ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+      //   }
+      // }
 
       render() {
           return (
             <div>
               {/* HEADER */}
               <div className='Bookmarks-Header'>
-                <button className='bookmarksExitButton' onClick={this.toggleVisibility}>X</button>
+                <button className='bookmarksExitButton' onClick={this.props.closeHandler}>X</button>
                 <h1 className='Bookmarks-Title-Text'>Bookmarks</h1>
               </div>
               {/* SEARCH FEATURE */}
