@@ -299,10 +299,9 @@ class App extends Component {
                     <BookmarksButton />
                   </div>
                 
-                  {/* <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                  <div onClick={this.toogleVisibility.bind(this, "notes")}>
                     <NotesButton  />
-                  </div> */}
-                <NotesButton clickHandler={this.toggleNotesVisibility} />
+                  </div> 
 
                 <div className="item">
                   <img src="assets/Icons_COLOR-06.png" alt="History" />
