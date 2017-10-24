@@ -162,6 +162,8 @@ function tab_open() {
 function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -169,9 +171,16 @@ class App extends Component {
       todoTabOpen: "false",
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
+      time: new Date().toLocaleTimeString(),
     };
+    console.log(this.state.time);
   }
 
+  time = () => {
+    let d = new Date();
+    this.setState({time: d.toLocaleTimeString() });
+    return this.state.time;
+  }
     toogleVisibility = (param, event) => {
     switch(param) {
       // todo icon pressed
@@ -271,7 +280,7 @@ class App extends Component {
           <div className="main-top" id="main">
 
             <div className="time">
-              11:45 PM
+              {this.state.time}
               </div>
 
             <div className="search-area">
