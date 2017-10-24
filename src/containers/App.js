@@ -162,7 +162,7 @@ const Time = () => {
   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
   let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
   let timeString = timeHourString + ":" + timeMinuteString;
-  currentDate.getHours() > 12 ? timeString += " PM" : timeString += " AM";
+  currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
 
   return (
     <div>{timeString}</div>
@@ -184,7 +184,7 @@ class App extends Component {
     this.setState({ time: d.toLocaleTimeString() });
     return this.state.time;
   }
-  toogleVisibility = (param, event) => {
+  toggleVisibility = (param, event) => {
     switch (param) {
       // todo icon pressed
       case "todo":
@@ -202,7 +202,7 @@ class App extends Component {
             this.setState({ todoTabOpen: "true" });
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
-            ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
+            ReactDOM.render(<TodoList closeHandler={this.toggleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_open();
@@ -228,7 +228,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "true" });
             this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-            ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
+            ReactDOM.render(<Notes closeHandler={this.toggleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_open();
             break;
@@ -254,7 +254,7 @@ class App extends Component {
             this.setState({ bookmarksTabOpen: "true" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-            ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
+            ReactDOM.render(<Bookmarks closeHandler={this.toggleVisibility} />, document.getElementById('bookmarks'));
             tab_open();
             break;
           default:
@@ -294,18 +294,18 @@ class App extends Component {
                 <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
                 <p>Weather</p>
               </div>
-              <div onClick={this.toogleVisibility.bind(this, "todo")}>
+              <div onClick={this.toggleVisibility.bind(this, "todo")}>
                 <TodosButton />
               </div>
               <div className="item">
                 <img src="assets/Icons_COLOR-03.png" alt="Apps" />
                 <p>Apps</p>
               </div>
-              <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
+              <div onClick={this.toggleVisibility.bind(this, "bookmarks")}>
                 <BookmarksButton />
               </div>
 
-              <div onClick={this.toogleVisibility.bind(this, "notes")}>
+              <div onClick={this.toggleVisibility.bind(this, "notes")}>
                 <NotesButton />
               </div>
 
@@ -317,6 +317,10 @@ class App extends Component {
               <GithubButton />
             </div> {/* .main-grid */}
           </div> {/* #icons */}
+          <footer className="footerText">
+            <p className="rightFooter">Project by Chingu Turtles Team 11</p>
+            <p className="leftFooter">Photos by Natasha Sadikin</p>
+          </footer>
         </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
 
         <div id='tabs'>
@@ -335,10 +339,7 @@ class App extends Component {
             </div>
           </aside>
         </div>
-        <footer className="footerText">
-          <p className="rightFooter">Project by Chingu Turtles Team 11</p>
-          <p className="leftFooter">Photos by Natasha Sadikin</p>
-        </footer>
+
       </div> // end of .App container
     );
   }

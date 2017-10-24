@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
-//import { setNotesVisibilityFilter } from '../actions/Notes_Actions';
 import { toggleNotes } from '../actions/Notes_Actions';
 import { pinNotes } from '../actions/Notes_Actions';
 import { deleteNotes } from '../actions/Notes_Actions';
 import { updateNotes } from '../actions/Notes_Actions';
 import { NotesList } from './NotesBundler';
-import { Note } from './NotesBundler';
 
 const getVisibleNotes = (notes, filter) => {
     switch (filter) {

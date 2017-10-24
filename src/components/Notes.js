@@ -60,6 +60,7 @@ export class Notes extends Component {
             <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
             <br />
             <NotesFilterLink filter="SHOW_SEARCH">Search Results:</NotesFilterLink>
+            <NotesVisibleSearch />
 
             {/* NEW NOTE */}
             <button className='addNotesButton' onClick={this.handleNoteSubmit}>+</button>
