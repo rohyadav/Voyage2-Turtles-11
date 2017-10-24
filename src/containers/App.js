@@ -286,8 +286,6 @@ class App extends Component {
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
             </div>
 
-          </div> {/* .main-top */}
-
             <div id='icons'>
               <div className="main-grid">
                 <div className="item">
@@ -316,24 +314,8 @@ class App extends Component {
                 <GmailButton />
                 <GithubButton />
               </div> {/* .main-grid */}
-              
-              {/* <div> DUPLICATE
-              <TodosButton />
-              <div className="item">
-                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
-                <p>Apps</p>
-              </div>
-              <BookmarksButton />
-              <NotesButton clickHandler={this.toggleNotesVisibility} />
-              <div className="item">
-                <img src="assets/Icons_COLOR-06.png" alt="History" />
-                <p>History</p>
-              </div>
-              <GmailButton />
-              <GithubButton />
-            </div> */}
-
-          </div> {/* #icons */}
+              </div> {/* #icons */}
+          </div> {/* .main-top */}
           
 
           <div id='tabs'>
