@@ -1,0 +1,102 @@
+/*
+==========================
+COLORS
+==========================
+*/
+$notes-red: #ea3939;
+$history-orange:#f9a819;
+$default-grey: #959595;
+$apps-green: #39b54a;
+$weather-light-blue: #99dcff;
+$todos-blue: #00a7ff;
+$bookmarks-yellow: #ffea6c;
+
+/*
+==========================
+FONTS
+==========================
+*/
+$tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+
+@mixin tab-title { 
+    width: 260px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1.6px;
+    text-align: left;
+    color: #ffffff;
+    padding-left: 20px;
+    padding-top: 80px;
+}
+
+@mixin main-time {
+    text-transform: uppercase;
+    font-size: 600%;
+    font-weight: bold;
+    text-shadow: 0 3px 8px rgba(57, 57, 57, 0.46);
+    margin-top: 15vh;
+    margin-bottom: 5vh;
+}
+
+@mixin tab-search-text {
+    padding-top: 15px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/*
+==========================
+COMPONENTS
+==========================
+*/
+@mixin tab-header($color) {
+    background-color: $color;
+    top: 0px;
+    right: 0px;
+    width: 300px;
+    position: fixed;
+    height: 140px
+}
+
+@mixin tab-body {
+    background: white;
+    top: 140px;
+    right: 0px;
+    width: 300px;
+    position: fixed;
+    height: 100%;
+}
+
+@mixin search-box {
+    right: 20px;
+    top: 160px;
+    width: 260px;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 0 #959595;
+    border: solid 0.3px #959595;
+    border: solid 0.3px var(--warm-grey);
+    align-items: center;
+    color: #959595;
+}
+
+@mixin tab-exit-button($color) {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    top: 20px;
+    right: 20px;
+    color: $color;
+    position: fixed;
+    background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+    border-radius:50%;
+    display:inline-block;
+    font-size:20px;
+    font-weight: 700;
+    font-style: bold;
+    text-align: center;
+    border: none;
+    background-color:#ffffff;
+}

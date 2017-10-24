@@ -1,0 +1,258 @@
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+@import "variables"; //standard variables throughout project
+/*
+==========================
+GENERAL
+==========================
+*/
+.SearchBox{
+  resize: none;
+}
+textarea {
+  resize: vertical; max-height: 300px; min-height: 40px;
+  color: $default-grey;
+}
+
+body {
+  font-family: $tab-font;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $default-grey;
+}
+/*
+==========================
+HEADER
+==========================
+*/
+.Notes-Header {
+  @include tab-header($notes-red);
+}
+
+.Notes-Body {
+  @include tab-body;
+}
+.Notes-Title-Text {
+  @include tab-title
+}
+
+/*
+==========================
+NOTES
+==========================
+*/
+.Notes {
+  right: 0px;
+  width: 260px;
+  height: 100px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  border: solid 0.2px $default-grey;
+  color: $default-grey;
+}
+
+.NoteTitleTextBox {
+  height: 60px;
+  border-radius: 10px;
+  margin-top: 25px;
+  resize: none;
+}
+
+.Description {
+  font-size: 12px;
+  text-align: center;
+  color: $notes-red;
+  padding-top: 10px;
+  padding-left: 20px;  
+  text-decoration: underline;
+
+  &:enabled {
+    color:$default-grey;
+    text-decoration: none;
+  }
+  &:hover {
+    color: $notes-red; 
+  }
+}
+
+.searchNotes {
+  height: 60px;
+  padding: 20px;
+}
+.buttonBox {
+  right: 0px;
+  width: 260px;
+  height: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  border-top: solid 0.2px $default-grey;
+  border-bottom: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-right: none;
+  color: $default-grey;
+}
+.existingNotes {
+  right: 0px;
+  width: 260px;
+  height: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom: solid 0.2px $default-grey;
+  border-top: none;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  color: $default-grey;
+  border-right: none;
+}
+.existingNotesButtonBox {
+  float: right;
+  margin-right: 10px;
+}
+/*
+==========================
+SEARCH
+==========================
+*/
+.SearchBox {
+  @include search-box;
+}
+
+.SearchBoxText {
+  @include tab-search-text;
+}
+
+/*
+==========================
+BUTTONS
+==========================
+*/
+.notesExitButton {
+  @include tab-exit-button($notes-red);
+
+  &:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color:#f6f6f6;
+  }
+}
+
+.notesButton {
+  width: 70px;
+  height: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0 $default-grey;
+  border: solid 0.5px $default-grey;
+  color: $default-grey;
+  background: white;
+
+  &:hover {
+    background: $notes-red;
+    color: white;
+  }
+}
+
+.addNotesButton {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  top: 275px;
+  right: 30px;
+	background-color:$notes-red;
+	border-radius:50%;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+  font-size:15px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+
+  &:hover {
+    background-color:#d02718;
+  }
+}
+
+
+.deleteNotesButton {
+  background-image: url('../assets/trash.png');
+  width: 20px;
+  height: 20px;
+  right: 30px;
+  background-color: #ffffff;
+	display:inline-block;
+	cursor:pointer;
+  border: none;
+
+  &:hover {
+    background-image: url('../assets/trash – 1.png');
+  }
+}
+
+.archiveNotesButton {
+  background-image: url('../assets/archive.png');
+  width: 20px;
+  height: 20px;
+  right: 60px;
+  background-color: #ffffff;
+	display:inline-block;
+	cursor:pointer;
+  border: none;
+
+  &:hover {
+    background-image: url('../assets/archive – 1.png');
+  }
+
+  &:active {
+    background-image: url('../assets/archive – 1.png');
+  }
+}
+
+.pinNotesButton {
+  background-image: url('../assets/pin_transparent.png');
+  width: 20px;
+  height: 20px;
+  right:90px;
+  background-color: #ffffff;
+	display:inline-block;
+	cursor:pointer;
+  border: none;
+
+  &:hover {
+    background-image: url('../assets/pin – 1.png');
+  }
+}
+/* .pinNotesButton:enabled {
+	background-image: url('../assets/pin – 1.png');
+} */
+
+.item .countButton {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: 50px;
+  top: 30px;
+	background-color: $notes-red;
+	border-radius:50%;
+	color:#ffffff;
+  font-size:15px;
+  font-style: bold;
+  text-align: center;
+  border: none;
+  display: inline;
+}

@@ -179,7 +179,7 @@ class SearchBox extends React.Component {
                 className='search-form'
                 onSubmit={this.handleSubmit}> 
                     <input 
-                        className='search-input-box' 
+                        className='search-input-box box-item' 
                         type='search'                     
                         onChange={this.handleChange}
                         placeholder='Google' />
