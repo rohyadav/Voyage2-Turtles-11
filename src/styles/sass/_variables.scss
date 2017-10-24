@@ -68,6 +68,7 @@ COMPONENTS
     width: 300px;
     position: fixed;
     height: 100%;
+    overflow: auto;
 }
 
 @mixin search-box {
