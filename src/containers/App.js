@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
-// import logo from './logo.svg'; (Example of how to import images)
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
@@ -25,8 +24,9 @@ class NotesButton extends React.Component {
   }
 
   render() {
-    return (<div className="item">
-      <button className="countButton">{this.state.quantity}</button>
+    return (<div className="item note-item">
+      {/* <div className='notes-wrapper'>      */}
+      {/* <div className='notes-text'> */}
       <a href="#"
         // onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
@@ -34,6 +34,7 @@ class NotesButton extends React.Component {
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
+      <button className="countButton">{this.state.quantity}</button>
     </div>
     );
   }
@@ -163,7 +164,6 @@ function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -282,21 +282,11 @@ class App extends Component {
             <div className="time">
               {this.state.time}
               </div>
-
             <div className="search-area">
-              {/* <div className="search-type">
-                <div className="type-item">Web</div>
-                <div className="type-item">Images</div>
-                <div className="type-item">News</div>
-                <div className="type-item">Videos</div>
-                <div className="type-item">Maps</div>
-              </div> */}
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
-              {/* <div className="search-box">
-                  <div className="box-item">Google</div>
-                </div> */}
             </div>
 
+          </div> {/* .main-top */}
 
             <div id='icons'>
               <div className="main-grid">
@@ -317,16 +307,34 @@ class App extends Component {
                 
                   <div onClick={this.toogleVisibility.bind(this, "notes")}>
                     <NotesButton  />
-                  </div>
+                  </div> 
+
                 <div className="item">
                   <img src="assets/Icons_COLOR-06.png" alt="History" />
                   <p>History</p>
                 </div>
                 <GmailButton />
                 <GithubButton />
+              </div> {/* .main-grid */}
+              
+              {/* <div> DUPLICATE
+              <TodosButton />
+              <div className="item">
+                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
+                <p>Apps</p>
               </div>
-            </div>
-          </div>
+              <BookmarksButton />
+              <NotesButton clickHandler={this.toggleNotesVisibility} />
+              <div className="item">
+                <img src="assets/Icons_COLOR-06.png" alt="History" />
+                <p>History</p>
+              </div>
+              <GmailButton />
+              <GithubButton />
+            </div> */}
+
+          </div> {/* #icons */}
+          
 
           <div id='tabs'>
             <aside>
@@ -348,14 +356,12 @@ class App extends Component {
               </div>
             </aside>
           </div>
-
-        </div>
+        </div> {/* .main */}
         <footer className="footerText">
           <p className="rightFooter">Project by Chingu Turtles Team 11</p>
           <p className="leftFooter">Photos by Natasha Sadikin</p>
         </footer>
-
-      </div>
+      </div> // .App
     );
   }
 }

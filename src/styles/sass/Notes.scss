@@ -246,14 +246,17 @@ BUTTONS
   width: 30px;
   height: 30px;
   position: relative;
-  left: 50px;
-  top: 30px;
-	background-color: $notes-red;
-	border-radius:50%;
-	color:#ffffff;
-  font-size:15px;
+  /* left: 50px; */
+  /* top: 30px; */
+  z-index: 2;
+  margin-left: 70%;
+  margin-top: -140%;
+  background-color: #ea3939;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 15px;
   font-style: bold;
   text-align: center;
   border: none;
-  display: inline;
+  display: block; 
 }
