@@ -277,6 +277,10 @@ class App extends Component {
           </div>
 
         </div>
+        <footer className="footerText">
+          <p className="rightFooter">Project by Chingu Turtles Team 11</p>
+          <p className="leftFooter">Photos by Natasha Sadikin</p>
+        </footer>
 
       </div>
     );

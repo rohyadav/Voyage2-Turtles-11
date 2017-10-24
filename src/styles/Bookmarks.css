@@ -89,10 +89,10 @@ SEARCH
   top: 160px;
   width: 260px;
   height: 40px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 4px 0 #959595;
-  border: solid 0.3px #959595;
-  border: solid 0.3px var(--warm-grey);
+  border-radius: 20px;
+  box-shadow: none;
+  border: none;
+  box-shadow: 1px 1.2px 3px 0 #cecece;
   align-items: center;
   color: #959595; }
 
