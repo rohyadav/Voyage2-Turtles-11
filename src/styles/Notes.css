@@ -270,12 +270,18 @@ BUTTONS
 /* .pinNotesButton:enabled {
 	background-image: url('../assets/pin – 1.png');
 } */
+
+/* Added edits here bc scss isn't compiling */
+
 .item .countButton {
   width: 30px;
   height: 30px;
   position: relative;
-  left: 50px;
-  top: 30px;
+  /* left: 50px; */
+  /* top: 30px; */
+  z-index: 2;
+  margin-left: 70%;
+  margin-top: -140%;
   background-color: #ea3939;
   border-radius: 50%;
   color: #ffffff;
@@ -283,4 +289,5 @@ BUTTONS
   font-style: bold;
   text-align: center;
   border: none;
-  display: inline; }
+  display: block; 
+}
