@@ -171,9 +171,16 @@ class App extends Component {
       todoTabOpen: "false",
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
+      time: new Date().toLocaleTimeString(),
     };
+    console.log(this.state.time);
   }
 
+  time = () => {
+    let d = new Date();
+    this.setState({time: d.toLocaleTimeString() });
+    return this.state.time;
+  }
     toogleVisibility = (param, event) => {
     switch(param) {
       // todo icon pressed
@@ -273,9 +280,8 @@ class App extends Component {
           <div className="main-top" id="main">
 
             <div className="time">
-              11:45 PM
-            </div>
-
+              {this.state.time}
+              </div>
             <div className="search-area">
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
             </div>
@@ -350,9 +356,11 @@ class App extends Component {
               </div>
             </aside>
           </div>
-
         </div> {/* .main */}
-
+        <footer className="footerText">
+          <p className="rightFooter">Project by Chingu Turtles Team 11</p>
+          <p className="leftFooter">Photos by Natasha Sadikin</p>
+        </footer>
       </div> // .App
     );
   }
