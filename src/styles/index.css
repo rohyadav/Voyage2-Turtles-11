@@ -33,7 +33,7 @@ body {
   margin: 0;
   height: 100%;
   background-color: body light-grey;
-  background-image: url("/assets/wallpapers/18.jpg");
+  background-image: url("./assets/wallpapers/18.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
