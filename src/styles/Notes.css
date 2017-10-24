@@ -271,9 +271,6 @@ BUTTONS
 /* .pinNotesButton:enabled {
 	background-image: url('../assets/pin – 1.png');
 } */
-
-/* Added edits here bc scss isn't compiling */
-
 .item .countButton {
   width: 30px;
   height: 30px;
@@ -290,5 +287,4 @@ BUTTONS
   font-style: bold;
   text-align: center;
   border: none;
-  display: block; 
-}
+  display: block; }
