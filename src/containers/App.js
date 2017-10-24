@@ -11,7 +11,7 @@ class NotesButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: false,
+      // visibility: false,
       iconLink: './assets/Icons_COLOR-04.png',
       quantity: 0
     };
@@ -28,7 +28,7 @@ class NotesButton extends React.Component {
     return (<div className="item">
       <button className="countButton">{this.state.quantity}</button>
       <a href="#"
-        onClick={this.props.clickHandler}
+        // onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
@@ -39,24 +39,14 @@ class NotesButton extends React.Component {
   }
 }
 
+
 class BookmarksButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: true,
       iconLink: './assets/Icons_COLOR-05.png',
     };
 
-  }
-  toggleVisibility = () => {
-    this.setState(prevState => ({ visibility: !prevState.visibility }));
-    if (this.state.visibility === true) {
-      ReactDOM.render(<Bookmarks />, document.getElementById('bookmarks'));
-      tab_open();
-    } else {
-      ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-      tab_close();
-    }
   }
   iconChangeOnHover = () => {
     this.setState({ iconLink: './assets/Icons_COLOR_background-05.png' });
@@ -68,7 +58,6 @@ class BookmarksButton extends React.Component {
   render() {
     return (<div className="item">
       <a href="#"
-        onClick={this.toggleVisibility}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Bookmarks" />
@@ -77,6 +66,8 @@ class BookmarksButton extends React.Component {
     </div>);
   }
 }
+
+
 
 
 
@@ -175,35 +166,101 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notesVisibility: false,
-      todovisibility: false
+      todoTabOpen: "false",
+      notesTabOpen: "false",
+      bookmarksTabOpen: "false",
     };
   }
 
-  toggleNotesVisibility = () => {
-    const newVisibility = !this.state.notesVisibility;
-    this.setState(prevState => ({ notesVisibility: !prevState.notesVisibility }));
-    if (newVisibility) {
-      ReactDOM.render(<Notes closeHandler={this.toggleNotesVisibility} />, document.getElementById('notes'));
-      tab_open();
-    } else {
-      ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-      tab_close();
-    }
-  }
-  
-  toggleTodosVisibility = () => {
-      if (this.state.todoVisibility) {
+    toogleVisibility = (param, event) => {
+    switch(param) {
+      // todo icon pressed
+      case "todo":
+        switch (this.state.todoTabOpen) {
+          case "true":
+            this.setState({todoTabOpen: "false"});
+            this.setState({notesTabOpen: "false"});
+            this.setState({bookmarksTabOpen: "false"});
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_close();
+            break;
+          case "false":
+            this.setState({todoTabOpen: "true"});
+            this.setState({notesTabOpen: "false"});
+            this.setState({bookmarksTabOpen: "false"});
+            ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+      // notes icon pressed
+      case "notes":
+        switch (this.state.notesTabOpen) {
+          case "true":
+            this.setState({todoTabOpen: "false"});
+            this.setState({notesTabOpen: "false"});
+            this.setState({bookmarksTabOpen: "false"});
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_close();
+            break;
+          case "false":
+            this.setState({todoTabOpen: "false"});
+            this.setState({notesTabOpen: "true"});
+            this.setState({bookmarksTabOpen: "false"});
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+      // bookmarks icon pressed
+      case "bookmarks":
+        switch (this.state.bookmarksTabOpen) {
+          case "true":
+            this.setState({todoTabOpen: "false"});
+            this.setState({notesTabOpen: "false"});
+            this.setState({bookmarksTabOpen: "false"});
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            tab_close();
+            break;
+          case "false":
+            this.setState({todoTabOpen: "false"});
+            this.setState({notesTabOpen: "false"});
+            this.setState({bookmarksTabOpen: "true"});
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+    // the exit button from one of the open tabs have been pressed
+    default:
+        this.setState({todoTabOpen: "false"});
+        this.setState({notesTabOpen: "false"});
+        this.setState({bookmarksTabOpen: "false"});
         ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+        ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+        ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
         tab_close();
-        this.setState({todoVisibility: false});
-      } else {
-      ReactDOM.render(<TodoList closeHandler={this.toggleTodosVisibility} />, document.getElementById('todo'));
-      tab_open();
-      this.setState({todoVisibility: true});
-      }
-  }
+    }
 
+  }
   render() {
     console.log("render app");
     return (
@@ -238,13 +295,20 @@ class App extends Component {
                   <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
                   <p>Weather</p>
                 </div>
-                  <TodosButton clickHandler={this.toggleTodosVisibility}   />
+                  <div onClick={this.toogleVisibility.bind(this, "todo")}>
+                    <TodosButton  />
+                  </div>
                 <div className="item">
                   <img src="assets/Icons_COLOR-03.png" alt="Apps" />
                   <p>Apps</p>
                 </div>
-                <BookmarksButton />
-                <NotesButton clickHandler={this.toggleNotesVisibility} />
+                  <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
+                    <BookmarksButton />
+                  </div>
+                
+                  <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                    <NotesButton  />
+                  </div>
                 <div className="item">
                   <img src="assets/Icons_COLOR-06.png" alt="History" />
                   <p>History</p>
