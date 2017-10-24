@@ -40,7 +40,6 @@ class NotesButton extends React.Component {
   }
 }
 
-
 class BookmarksButton extends React.Component {
   constructor(props) {
     super(props);
@@ -67,10 +66,6 @@ class BookmarksButton extends React.Component {
     </div>);
   }
 }
-
-
-
-
 
 class TodosButton extends React.Component {
   constructor(props) {
@@ -100,8 +95,6 @@ class TodosButton extends React.Component {
   }
 }
 
-
-
 class GmailButton extends React.Component {
   constructor(props) {
     super(props);
@@ -126,7 +119,7 @@ class GmailButton extends React.Component {
         <p>Gmail</p>
       </div>
     );
-  } 
+  }
 }
 
 class GithubButton extends React.Component {
@@ -153,7 +146,7 @@ class GithubButton extends React.Component {
         <p>Github</p>
       </div>
     );
-  } 
+  }
 }
 
 function tab_open() {
@@ -178,27 +171,27 @@ class App extends Component {
 
   time = () => {
     let d = new Date();
-    this.setState({time: d.toLocaleTimeString() });
+    this.setState({ time: d.toLocaleTimeString() });
     return this.state.time;
   }
-    toogleVisibility = (param, event) => {
-    switch(param) {
+  toogleVisibility = (param, event) => {
+    switch (param) {
       // todo icon pressed
       case "todo":
         switch (this.state.todoTabOpen) {
           case "true":
-            this.setState({todoTabOpen: "false"});
-            this.setState({notesTabOpen: "false"});
-            this.setState({bookmarksTabOpen: "false"});
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_close();
             break;
           case "false":
-            this.setState({todoTabOpen: "true"});
-            this.setState({notesTabOpen: "false"});
-            this.setState({bookmarksTabOpen: "false"});
+            this.setState({ todoTabOpen: "true" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -212,18 +205,18 @@ class App extends Component {
       case "notes":
         switch (this.state.notesTabOpen) {
           case "true":
-            this.setState({todoTabOpen: "false"});
-            this.setState({notesTabOpen: "false"});
-            this.setState({bookmarksTabOpen: "false"});
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_close();
             break;
           case "false":
-            this.setState({todoTabOpen: "false"});
-            this.setState({notesTabOpen: "true"});
-            this.setState({bookmarksTabOpen: "false"});
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "true" });
+            this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -237,18 +230,18 @@ class App extends Component {
       case "bookmarks":
         switch (this.state.bookmarksTabOpen) {
           case "true":
-            this.setState({todoTabOpen: "false"});
-            this.setState({notesTabOpen: "false"});
-            this.setState({bookmarksTabOpen: "false"});
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_close();
             break;
           case "false":
-            this.setState({todoTabOpen: "false"});
-            this.setState({notesTabOpen: "false"});
-            this.setState({bookmarksTabOpen: "true"});
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "true" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
@@ -258,11 +251,11 @@ class App extends Component {
             break;
         }
         break;
-    // the exit button from one of the open tabs have been pressed
-    default:
-        this.setState({todoTabOpen: "false"});
-        this.setState({notesTabOpen: "false"});
-        this.setState({bookmarksTabOpen: "false"});
+      // the exit button from one of the open tabs have been pressed
+      default:
+        this.setState({ todoTabOpen: "false" });
+        this.setState({ notesTabOpen: "false" });
+        this.setState({ bookmarksTabOpen: "false" });
         ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
         ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
         ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -275,75 +268,68 @@ class App extends Component {
     return (
       <div id="#App" className="App">
 
-        <div className="main">
-
-          <div className="main-top" id="main">
+        <div className="main" id="main">
+          <div className="main-top" >
 
             <div className="time">
               {this.state.time}
-              </div>
+            </div>
             <div className="search-area">
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
             </div>
-
-            <div id='icons'>
-              <div className="main-grid">
-                <div className="item">
-                  <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
-                  <p>Weather</p>
-                </div>
-                  <div onClick={this.toogleVisibility.bind(this, "todo")}>
-                    <TodosButton  />
-                  </div>
-                <div className="item">
-                  <img src="assets/Icons_COLOR-03.png" alt="Apps" />
-                  <p>Apps</p>
-                </div>
-                  <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
-                    <BookmarksButton />
-                  </div>
-                
-                  <div onClick={this.toogleVisibility.bind(this, "notes")}>
-                    <NotesButton  />
-                  </div> 
-
-                <div className="item">
-                  <img src="assets/Icons_COLOR-06.png" alt="History" />
-                  <p>History</p>
-                </div>
-                <GmailButton />
-                <GithubButton />
-              </div> {/* .main-grid */}
-              </div> {/* #icons */}
           </div> {/* .main-top */}
-          
+          <div id='icons'>
+            <div className="main-grid">
+              <div className="item">
+                <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
+                <p>Weather</p>
+              </div>
+              <div onClick={this.toogleVisibility.bind(this, "todo")}>
+                <TodosButton />
+              </div>
+              <div className="item">
+                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
+                <p>Apps</p>
+              </div>
+              <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
+                <BookmarksButton />
+              </div>
 
-          <div id='tabs'>
-            <aside>
-              <div id="weather">
+              <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                <NotesButton />
               </div>
-              <div id="todo">
+
+              <div className="item">
+                <img src="assets/Icons_COLOR-06.png" alt="History" />
+                <p>History</p>
               </div>
-              <div id="apps">
-              </div>
-              <div id="notes" >
-              </div>
-              <div id="bookmarks">
-              </div>
-              <div id="history">
-              </div>
-              <div id="placeholder1">
-              </div>
-              <div id="placeholder2">
-              </div>
-            </aside>
-          </div>
-        </div> {/* .main */}
+              <GmailButton />
+              <GithubButton />
+            </div> {/* .main-grid */}
+          </div> {/* #icons */}
+        </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
+
+        <div id='tabs'>
+          <aside>
+            <div id="weather">
+            </div>
+            <div id="todo">
+            </div>
+            <div id="apps">
+            </div>
+            <div id="notes" >
+            </div>
+            <div id="bookmarks">
+            </div>
+            <div id="history">
+            </div>
+          </aside>
+        </div>
         <footer className="footerText">
           <p className="rightFooter">Project by Chingu Turtles Team 11</p>
           <p className="leftFooter">Photos by Natasha Sadikin</p>
         </footer>
-      </div> // .App
+      </div> // end of .App container
     );
   }
 }
