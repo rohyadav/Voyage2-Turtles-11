@@ -6,12 +6,11 @@ import { updateNotes } from '../actions/Notes_Actions';
 import { NotesSearchList } from './NotesBundlerSearch';
 
 const getVisibleSearchResults = (notes, filter) => {
-    switch (filter) {
-        case "SEARCH_NOTES":
-            console.log("filtering only through search_notes")
-            return notes.filter(n => n.search)
-        default:
-            return null;
+    let results = notes.filter(n => n.search);
+    if (results.length === 0) {
+        return null;
+    } else {
+        return results;
     }
 }
 

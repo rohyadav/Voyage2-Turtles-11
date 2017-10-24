@@ -59,7 +59,7 @@ export class Notes extends Component {
             <textarea onChange={this.setSearchQuery} className='Notes SearchBox SearchBoxText' required placeholder="Search"/>
             <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
             <br />
-            <NotesFilterLink filter="SHOW_SEARCH">Search Results:</NotesFilterLink>
+            <p class="Description">Search Results:</p>
             <NotesVisibleSearch />
 
             {/* NEW NOTE */}
