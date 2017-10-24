@@ -24,8 +24,9 @@ class NotesButton extends React.Component {
   }
 
   render() {
-    return (<div className="item">
-      <button className="countButton">{this.state.quantity}</button>
+    return (<div className="item note-item">
+      {/* <div className='notes-wrapper'>      */}
+      {/* <div className='notes-text'> */}
       <a href="#"
         // onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
@@ -33,6 +34,7 @@ class NotesButton extends React.Component {
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
+      <button className="countButton">{this.state.quantity}</button>
     </div>
     );
   }
@@ -297,16 +299,20 @@ class App extends Component {
                     <BookmarksButton />
                   </div>
                 
-                  <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                  {/* <div onClick={this.toogleVisibility.bind(this, "notes")}>
                     <NotesButton  />
-                  </div>
+                  </div> */}
+                <NotesButton clickHandler={this.toggleNotesVisibility} />
+
                 <div className="item">
                   <img src="assets/Icons_COLOR-06.png" alt="History" />
                   <p>History</p>
                 </div>
                 <GmailButton />
                 <GithubButton />
-              </div>
+              </div> {/* .main-grid */}
+              
+              {/* <div> DUPLICATE
               <TodosButton />
               <div className="item">
                 <img src="assets/Icons_COLOR-03.png" alt="Apps" />
@@ -320,7 +326,8 @@ class App extends Component {
               </div>
               <GmailButton />
               <GithubButton />
-            </div>
+            </div> */}
+
           </div> {/* #icons */}
           
 
@@ -345,9 +352,9 @@ class App extends Component {
             </aside>
           </div>
 
-        </div>
+        </div> {/* .main */}
 
-      // </div>
+      </div> // .App
     );
   }
 }

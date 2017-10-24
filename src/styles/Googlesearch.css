@@ -3,15 +3,15 @@
 /* Selected search type */
 
 .is-active {
-    padding-bottom: 5px;
-    border-bottom: 2px solid #2ECC71
+    padding-bottom: .2rem;
+    border-bottom: 0.15rem solid #2ECC71
 }
 
 /* Input */
 
 input::placeholder {
-    font-size: 1.5vw;
-    text-indent: 2vw;
+    font-size: .8rem;
+    text-indent: .6vw;
     text-align: left;
 }
 
@@ -28,25 +28,26 @@ input:focus {
 /* Autosuggestion Dropdown */
 
 .auto-container {
-    width: 50vw;
     position: relative; /*relative parent and absolute child is needed to overlay*/
 }
 
 .auto-list {
-    position: absolute;
-    background-color: white;
-    z-index: 1;
-    opacity: 0.8;
-    display: block;
-    width: 50vw;
+    /* display: block; */
+    width: 40vw;
+    border-radius: 1vw;
     margin-top: -20px;
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    opacity: 0.8;
 }
 
 .auto-link {
     color: #2ECC71;
-    padding: 12px 16px;
+    padding: 5px 5px;
+    font-size: 1vw;
     text-decoration: none;
-    display: block
+    display: block;
 }
 
 .auto-link:hover {
