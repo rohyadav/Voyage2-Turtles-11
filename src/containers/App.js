@@ -157,6 +157,18 @@ function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
 
+const Time = () => {
+  let currentDate = new Date();
+  let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
+  let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
+  let timeString = timeHourString + ":" + timeMinuteString;
+  currentDate.getHours() > 12 ? timeString += " PM" : timeString += " AM";
+
+  return (
+    <div>{timeString}</div>
+  )
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -164,9 +176,7 @@ class App extends Component {
       todoTabOpen: "false",
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
-      time: new Date().toLocaleTimeString(),
     };
-    console.log(this.state.time);
   }
 
   time = () => {
@@ -272,7 +282,7 @@ class App extends Component {
           <div className="main-top" >
 
             <div className="time">
-              {this.state.time}
+              <Time />
             </div>
             <div className="search-area">
               <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
