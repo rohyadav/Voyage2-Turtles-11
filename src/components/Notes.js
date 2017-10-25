@@ -25,7 +25,7 @@ export class Notes extends Component {
     this.state = {
       searchTerm: '',
       note: '',
-      searchButton: 'Search'
+      searchButton: '../assets/search_transparent.png'
     }
   }
   // HANDLES SEARCH
@@ -37,7 +37,7 @@ export class Notes extends Component {
       return null;
     } else {
       store.dispatch(searchNotes(this.state.searchTerm));
-      this.state.searchButton === 'Search' ? this.setState({searchButton: "Clear"}) : this.setState({searchButton: "Search"});
+      (this.state.searchButton === '../assets/search_transparent.png') ? this.setState({searchButton: '../assets/search – 2.png'}) : this.setState({searchButton: "../assets/search_transparent.png'"});
     }
 
   }
@@ -60,10 +60,11 @@ export class Notes extends Component {
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search"/>
-            <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
+            <div>
+              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search"/>
+              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+            </div>
             <br />
-            <p class="Description">Search Results:</p>
             <NotesVisibleSearch />
 
             {/* NEW NOTE */}
