@@ -26,7 +26,6 @@ export class Notes extends Component {
       searchTerm: '',
       note: '',
       searchButton: '../assets/search_transparent.png',
-      notesQuantity: 1
     }
   }
 
@@ -48,9 +47,8 @@ export class Notes extends Component {
     this.setState({ note: event.target.value });
   }
   handleNoteSubmit = () => {
-    this.setState({ notesQuantity: this.state.notesQuantity + 1 });
     store.dispatch(addNotes(this.state.note));
-    document.getElementById("notesQty").innerText = this.state.notesQuantity;
+    document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
     console.log("inside Notes.js, the notes qty is " + this.state.notesQuantity)
   }
 
