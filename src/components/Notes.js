@@ -11,13 +11,37 @@ import {
   searchNotes,
 } from '../actions/Notes_Actions';
 //creating the redux store for entire application
-let store = createStore(notesApp, window.STATE_FROM_SERVER);
+
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState === null) {
+      return undefined;
+    } 
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+
+  }
+}
+const persistedState = loadState();
+let store = createStore(notesApp, persistedState);
 // every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
 
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState()),
-)
+store.subscribe(() => {
+  saveState({
+    notes: store.getState().notes
+  });
+})
 
 export class Notes extends Component {
   constructor(props) {
@@ -48,7 +72,8 @@ export class Notes extends Component {
   }
   handleNoteSubmit = () => {
     store.dispatch(addNotes(this.state.note));
-    document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
+    // document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
+    document.getElementById("notesQty").innerText = store.getState().notes.length;
     console.log("inside Notes.js, the notes qty is " + this.state.notesQuantity)
   }
 
