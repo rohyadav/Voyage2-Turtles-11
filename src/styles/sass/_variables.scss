@@ -19,7 +19,7 @@ FONTS
 */
 $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 
-@mixin tab-title { 
+@mixin tab-title {
     width: 260px;
     height: 40px;
     font-size: 20px;
@@ -33,11 +33,11 @@ $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 
 @mixin main-time {
     text-transform: uppercase;
-    font-size: 600%;
+    font-size: 15vh;
     font-weight: bold;
     text-shadow: 0 2px 6px rgba(57, 57, 57, 0.26);
-    margin-top: 15vh;
-    margin-bottom: 5vh;
+    margin-bottom: 4vh;
+    padding-top: 2vh;
 }
 
 @mixin tab-search-text {
@@ -68,6 +68,7 @@ COMPONENTS
     width: 300px;
     position: fixed;
     height: 100%;
+    overflow: auto;
 }
 
 @mixin search-box {
@@ -78,6 +79,9 @@ COMPONENTS
     border-radius: 20px;
     box-shadow: none;
     border: 1px solid #e9e9e9;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     // box-shadow: 1px 1.2px 3px 0 $light-grey;
     align-items: center;
     color: $default-grey;

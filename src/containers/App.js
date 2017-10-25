@@ -6,13 +6,14 @@ import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
 import { TodoList } from '../components/todoList.js';
 
+//document.getElementById('notesQty').innerText;
+
 class NotesButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // visibility: false,
       iconLink: './assets/Icons_COLOR-04.png',
-      quantity: 0
     };
 
   }
@@ -25,16 +26,13 @@ class NotesButton extends React.Component {
 
   render() {
     return (<div className="item note-item">
-      {/* <div className='notes-wrapper'>      */}
-      {/* <div className='notes-text'> */}
       <a href="#"
-        // onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
-      <button className="countButton">{this.state.quantity}</button>
+      <button id="notesQty" className="countButton">0</button>
     </div>
     );
   }
@@ -162,7 +160,7 @@ const Time = () => {
   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
   let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
   let timeString = timeHourString + ":" + timeMinuteString;
-  currentDate.getHours() > 12 ? timeString += " PM" : timeString += " AM";
+  currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
 
   return (
     <div>{timeString}</div>
@@ -276,7 +274,7 @@ class App extends Component {
   render() {
     console.log("render app");
     return (
-      <div id="#App" className="App">
+      <div id="App" className="App">
 
         <div className="main" id="main">
           <div className="main-top" >
@@ -317,6 +315,10 @@ class App extends Component {
               <GithubButton />
             </div> {/* .main-grid */}
           </div> {/* #icons */}
+          <footer className="footerText">
+            <p className="rightFooter">Project by Chingu Turtles Team 11</p>
+            <p className="leftFooter">Photos by Natasha Sadikin</p>
+          </footer>
         </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
 
         <div id='tabs'>
@@ -335,10 +337,7 @@ class App extends Component {
             </div>
           </aside>
         </div>
-        <footer className="footerText">
-          <p className="rightFooter">Project by Chingu Turtles Team 11</p>
-          <p className="leftFooter">Photos by Natasha Sadikin</p>
-        </footer>
+
       </div> // end of .App container
     );
   }
