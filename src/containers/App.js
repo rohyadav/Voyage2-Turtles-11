@@ -6,13 +6,14 @@ import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
 import { TodoList } from '../components/todoList.js';
 
+//document.getElementById('notesQty').innerText;
+
 class NotesButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // visibility: false,
       iconLink: './assets/Icons_COLOR-04.png',
-      quantity: 0
     };
 
   }
@@ -25,16 +26,13 @@ class NotesButton extends React.Component {
 
   render() {
     return (<div className="item note-item">
-      {/* <div className='notes-wrapper'>      */}
-      {/* <div className='notes-text'> */}
       <a href="#"
-        // onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
-      <button className="countButton">{this.state.quantity}</button>
+      <button id="notesQty" className="countButton">0</button>
     </div>
     );
   }
@@ -184,7 +182,7 @@ class App extends Component {
     this.setState({ time: d.toLocaleTimeString() });
     return this.state.time;
   }
-  toggleVisibility = (param, event) => {
+  toogleVisibility = (param, event) => {
     switch (param) {
       // todo icon pressed
       case "todo":
@@ -202,7 +200,7 @@ class App extends Component {
             this.setState({ todoTabOpen: "true" });
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
-            ReactDOM.render(<TodoList closeHandler={this.toggleVisibility} />, document.getElementById('todo'));
+            ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_open();
@@ -228,7 +226,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "true" });
             this.setState({ bookmarksTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-            ReactDOM.render(<Notes closeHandler={this.toggleVisibility} />, document.getElementById('notes'));
+            ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             tab_open();
             break;
@@ -254,7 +252,7 @@ class App extends Component {
             this.setState({ bookmarksTabOpen: "true" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-            ReactDOM.render(<Bookmarks closeHandler={this.toggleVisibility} />, document.getElementById('bookmarks'));
+            ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
             tab_open();
             break;
           default:
@@ -294,18 +292,18 @@ class App extends Component {
                 <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
                 <p>Weather</p>
               </div>
-              <div onClick={this.toggleVisibility.bind(this, "todo")}>
+              <div onClick={this.toogleVisibility.bind(this, "todo")}>
                 <TodosButton />
               </div>
               <div className="item">
                 <img src="assets/Icons_COLOR-03.png" alt="Apps" />
                 <p>Apps</p>
               </div>
-              <div onClick={this.toggleVisibility.bind(this, "bookmarks")}>
+              <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
                 <BookmarksButton />
               </div>
 
-              <div onClick={this.toggleVisibility.bind(this, "notes")}>
+              <div onClick={this.toogleVisibility.bind(this, "notes")}>
                 <NotesButton />
               </div>
 
