@@ -26,10 +26,10 @@ Note.propTypes = {
 
 export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick , onUpdateClick}) => {
     console.log("Rebuild notes list because state changed.");
-    for (const singleNote of notes)
-    {
-        console.log(singleNote.text);
-    }
+    // for (const singleNote of notes)
+    // {
+    //     console.log(singleNote.text);
+    // }
     return (
         <div>
             {notes.map((singleNote, index) => (

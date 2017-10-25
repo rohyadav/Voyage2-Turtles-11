@@ -33,9 +33,13 @@ export class Notes extends Component {
     this.setState({ searchTerm: event.target.value });
   }
   handleNoteSearch = () => {
-    store.dispatch(searchNotes(this.state.searchTerm));
-    this.state.searchButton === 'Search' ? this.setState({searchButton: "Clear"}) : this.setState({searchButton: "Search"});
-    <NotesVisibleSearch />
+    if (this.state.searchTerm === '') {
+      return null;
+    } else {
+      store.dispatch(searchNotes(this.state.searchTerm));
+      this.state.searchButton === 'Search' ? this.setState({searchButton: "Clear"}) : this.setState({searchButton: "Search"});
+    }
+
   }
   // HANDLES ADDING NEW NOTES
   setNote = (event) => {
@@ -56,17 +60,20 @@ export class Notes extends Component {
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <textarea onChange={this.setSearchQuery} className='Notes SearchBox SearchBoxText' required placeholder="Search"/>
+            <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search"/>
             <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
             <br />
-            <NotesFilterLink filter="SHOW_SEARCH">Search Results:</NotesFilterLink>
+            <p class="Description">Search Results:</p>
+            <NotesVisibleSearch />
 
             {/* NEW NOTE */}
+            <div>
             <button className='addNotesButton' onClick={this.handleNoteSubmit}>+</button>
             <textarea className='Notes' onChange={this.setNote} required placeholder='New Note'/>
+            </div>
 
             {/* NOTES LISTED OUT*/}
-            <span>
+            <span className="filterBox">
               <NotesFilterLink  filter="SHOW_ACTIVE">Active</NotesFilterLink>
               {'  |  '}
               <NotesFilterLink  filter="SHOW_PINNED">Pinned</NotesFilterLink>
