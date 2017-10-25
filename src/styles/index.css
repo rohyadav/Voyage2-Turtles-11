@@ -455,7 +455,8 @@ body {
   font-size: 15vh;
   font-weight: bold;
   text-shadow: 0 2px 6px rgba(57, 57, 57, 0.26);
-  margin-bottom: 5vh; }
+  margin-bottom: 4vh;
+  padding-top: 2vh; }
 
 /* ---- Search Area ---- */
 .search-area {
