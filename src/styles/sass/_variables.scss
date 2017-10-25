@@ -19,7 +19,7 @@ FONTS
 */
 $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 
-@mixin tab-title { 
+@mixin tab-title {
     width: 260px;
     height: 40px;
     font-size: 20px;
@@ -33,10 +33,9 @@ $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 
 @mixin main-time {
     text-transform: uppercase;
-    font-size: 600%;
+    font-size: 15vh;
     font-weight: bold;
     text-shadow: 0 2px 6px rgba(57, 57, 57, 0.26);
-    margin-top: 15vh;
     margin-bottom: 5vh;
 }
 
