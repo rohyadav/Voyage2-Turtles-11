@@ -7,7 +7,7 @@ class Googlesearch extends Component { // Parent component
     constructor(props) {
         super(props);
         this.state = { 
-            selected: this.props.types[0], // Default value is inherited prop. 'selected' property determines URL
+            selected: 'Web', // 'selected' property determines URL (Is there a concise way to target first key in object) 
             suggestions: ['intialized state'], // API data 
             autoSelected: null,
             expanded: false
@@ -23,26 +23,9 @@ class Googlesearch extends Component { // Parent component
     }
 
     googleSearch = (query) => { // Submit event in SearchBox invokes this fxn
-        let urlType;
-        switch(this.state.selected) {
-            case 'Web': 
-                urlType = 'https://www.google.com/search?q=';
-                break;
-            case 'Images':
-                urlType = 'https://www.google.com/search?tbm=isch&q=';
-                break;
-            case 'News':
-                urlType = 'https://www.google.com/search?tbm=nws&q=';
-                break;
-            case 'Videos':
-                urlType = 'https://www.google.com/search?tbm=vid&q=';
-                break;
-            case 'Maps':
-                urlType = 'https://www.google.com/maps/preview?q=';
-                break;
-            default: 
-                urlType = 'https://www.google.com/search?q='
-        }  
+        let selected = this.state.selected; // which type is selected
+        let collection = this.props.types[0]; // [{web: url, images, url}] | prev vrsn [{web: url}, etc]
+        let urlType = collection[selected];
         let url = urlType + query
         window.open(url,'_self'); // alternative: _blank
     }
@@ -79,28 +62,11 @@ class Googlesearch extends Component { // Parent component
     // make sure the selected suggestion variable gets passed up from GoogleAutocomplete
     // append selected suggestion to URL
     autoSearch = (autoSelect) => {
-        let urlType;
-        switch(this.state.selected) {
-            case 'Web': 
-                urlType = 'https://www.google.com/search?q=';
-                break;
-            case 'Images':
-                urlType = 'https://www.google.com/search?tbm=isch&q=';
-                break;
-            case 'News':
-                urlType = 'https://www.google.com/search?tbm=nws&q=';
-                break;
-            case 'Videos':
-                urlType = 'https://www.google.com/search?tbm=vid&q=';
-                break;
-            case 'Maps':
-                urlType = 'https://www.google.com/maps/preview?q=';
-                break;
-            default: 
-                urlType = 'https://www.google.com/search?q='
-        }  
-        let url = urlType + autoSelect
-        window.open(url,'_self');
+        let selected = this.state.selected; 
+        let collection = this.props.types[0]; 
+        let urlType = collection[selected];
+        let url = urlType + autoSelect;
+        window.open(url,'_self'); // alternative: _blank
     }
 
     
@@ -109,7 +75,7 @@ class Googlesearch extends Component { // Parent component
         return (
             <div>
                 <SearchType 
-                    types={this.props.types} 
+                    types={Object.keys(this.props.types[0])} 
                     selected={this.state.selected}
                     handleClick={this.handleClick}/> 
                 <SearchBox 
