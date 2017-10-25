@@ -10,6 +10,7 @@ import {
   addNotes,
   searchNotes,
 } from '../actions/Notes_Actions';
+import throttle from 'lodash/throttle';
 //creating the redux store for entire application
 
 export const loadState = () => {
@@ -37,11 +38,11 @@ export let store = createStore(notesApp, persistedState);
 // every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
 
-export let subscribe = store.subscribe(() => {
+export let subscribe = store.subscribe(throttle(() => {
   saveState({
     notes: store.getState().notes
   });
-})
+}, 1000));
 
 export const NotesQty = () => {
   return (
