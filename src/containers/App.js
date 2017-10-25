@@ -5,8 +5,8 @@ import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
 import { TodoList } from '../components/todoList.js';
+import { NotesQty } from '../components/Notes.js';
 
-//document.getElementById('notesQty').innerText;
 
 class NotesButton extends React.Component {
   constructor(props) {
@@ -32,11 +32,13 @@ class NotesButton extends React.Component {
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
-      <button id="notesQty" className="countButton">0</button>
+      <button id="notesQty" className="countButton"><NotesQty /></button>
     </div>
     );
+
   }
 }
+
 
 class BookmarksButton extends React.Component {
   constructor(props) {
@@ -167,6 +169,7 @@ const Time = () => {
   )
 }
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -269,13 +272,11 @@ class App extends Component {
         ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
         tab_close();
     }
-
   }
+
   render() {
-    console.log("render app");
     return (
       <div id="App" className="App">
-
         <div className="main" id="main">
           <div className="main-top" >
 
@@ -305,8 +306,8 @@ class App extends Component {
 
               <div onClick={this.toogleVisibility.bind(this, "notes")}>
                 <NotesButton />
+                
               </div>
-
               <div className="item">
                 <img src="assets/Icons_COLOR-06.png" alt="History" />
                 <p>History</p>
@@ -342,5 +343,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
