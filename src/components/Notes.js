@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import notesApp from '../reducers/Notes_Reducers';
 import { NotesFilterLink } from './NotesFilterLink';
-import  NotesVisibleList  from './NotesVisibileList';
+import NotesVisibleList from './NotesVisibileList';
 import { NotesVisibleSearch } from './NotesVisibleSearch';
 import {
   addNotes,
@@ -12,11 +12,11 @@ import {
 } from '../actions/Notes_Actions';
 //creating the redux store for entire application
 let store = createStore(notesApp, window.STATE_FROM_SERVER);
-
 // every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
+
 let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
+  console.log(store.getState()),
 )
 
 export class Notes extends Component {
@@ -25,9 +25,11 @@ export class Notes extends Component {
     this.state = {
       searchTerm: '',
       note: '',
-      searchButton: 'Search'
+      searchButton: '../assets/search_transparent.png',
+      notesQuantity: 1
     }
   }
+
   // HANDLES SEARCH
   setSearchQuery = (event) => {
     this.setState({ searchTerm: event.target.value });
@@ -37,7 +39,7 @@ export class Notes extends Component {
       return null;
     } else {
       store.dispatch(searchNotes(this.state.searchTerm));
-      this.state.searchButton === 'Search' ? this.setState({searchButton: "Clear"}) : this.setState({searchButton: "Search"});
+      (this.state.searchButton === '../assets/search_transparent.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search_transparent.png'" });
     }
 
   }
@@ -46,7 +48,10 @@ export class Notes extends Component {
     this.setState({ note: event.target.value });
   }
   handleNoteSubmit = () => {
+    this.setState({ notesQuantity: this.state.notesQuantity + 1 });
     store.dispatch(addNotes(this.state.note));
+    document.getElementById("notesQty").innerText = this.state.notesQuantity;
+    console.log("inside Notes.js, the notes qty is " + this.state.notesQuantity)
   }
 
   render() {
@@ -60,25 +65,26 @@ export class Notes extends Component {
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search"/>
-            <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
+            <div>
+              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search" />
+              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+            </div>
             <br />
-            <p class="Description">Search Results:</p>
             <NotesVisibleSearch />
 
             {/* NEW NOTE */}
             <div>
-            <button className='addNotesButton' onClick={this.handleNoteSubmit}>+</button>
-            <textarea className='Notes' onChange={this.setNote} required placeholder='New Note'/>
+              <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>
+              <textarea className='Notes' onChange={this.setNote} required placeholder='New Note' />
             </div>
 
             {/* NOTES LISTED OUT*/}
             <span className="filterBox">
-              <NotesFilterLink  filter="SHOW_ACTIVE">Active</NotesFilterLink>
+              <NotesFilterLink filter="SHOW_ACTIVE">Active</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink  filter="SHOW_PINNED">Pinned</NotesFilterLink>
+              <NotesFilterLink filter="SHOW_PINNED">Pinned</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink  filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
+              <NotesFilterLink filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>
               <NotesVisibleList />

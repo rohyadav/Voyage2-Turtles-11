@@ -116,6 +116,9 @@ NOTES
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border-top: none;
+  padding-left: 10px;
+  font-family: $tab-font;
+  font-size: 12px;
 }
 .existingNotesButtonBox {
   float: right;
@@ -155,17 +158,18 @@ BUTTONS
 }
 
 .notesButton {
-  width: 70px;
-  height: 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 1.2px 3px 0 $light-grey;
+  background-image: img("../assets/search.png");
+  width: 30px;
+  max-width: 30px;
+  min-width: 30px;
+  border-radius: 50%;
   border: none;
-  color: $default-grey;
-  background: white;
+  position: relative;
+  z-index: 2;
+  margin-left: 80%;
+  margin-top: -13%;
   &:hover {
-    background: $notes-red;
-    color: white;
+    background-image: img("../assets/search – 1.png");
   }
 }
 

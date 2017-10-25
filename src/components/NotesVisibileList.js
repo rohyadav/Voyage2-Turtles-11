@@ -33,11 +33,13 @@ const mapDispatchToProps = dispatch => {
             console.log("pinNotes id is : " + id )
         },
         onArchiveClick: id => {
-            dispatch(toggleNotes(id))
+            dispatch(toggleNotes(id)),
             console.log("toggleNotes id is : " + id )
         },
         onDeleteNoteClick: id => {
-            dispatch(deleteNotes(id))
+            dispatch(deleteNotes(id));
+            this.setState({ notesQuantity: this.state.notesQuantity - 1 });
+            document.getElementById("notesQty").innerText = this.state.notesQuantity;
             console.log("deleteNotes id is : " + id )
         },
         onUpdateClick: (id, text) => {
