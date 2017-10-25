@@ -138,7 +138,10 @@ NOTES
   border-top-right-radius: 0px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-top: none; }
+  border-top: none;
+  padding-left: 10px;
+  font-family: "Helvetica Neue", Helvetica, "Varela Round", sans-serif;
+  font-size: 12px; }
 
 .existingNotesButtonBox {
   float: right;
@@ -203,17 +206,18 @@ BUTTONS
     background-color: #f6f6f6; }
 
 .notesButton {
-  width: 70px;
-  height: 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  box-shadow: 1px 1.2px 3px 0 #cecece;
+  background-image: img("../assets/search.png");
+  width: 30px;
+  max-width: 30px;
+  min-width: 30px;
+  border-radius: 50%;
   border: none;
-  color: #959595;
-  background: white; }
+  position: relative;
+  z-index: 2;
+  margin-left: 80%;
+  margin-top: -13%; }
   .notesButton:hover {
-    background: #ea3939;
-    color: white; }
+    background-image: img("../assets/search – 1.png"); }
 
 .addNotesButton {
   width: 20px;

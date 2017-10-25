@@ -96,6 +96,12 @@ body {
   box-shadow: none;
   border: none;
   margin-bottom: 60px;
+  /* Google icon */
+  background-image: url('../assets/Icons_google logo-13.png');
+  background-size: 2vw;
+  background-position: 10px 50%; /* (img) (horizontal, vertical) */
+  background-repeat: no-repeat;
+  padding-left: 40px;
   
 /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); */
 }
