@@ -274,7 +274,7 @@ class App extends Component {
   render() {
     console.log("render app");
     return (
-      <div id="#App" className="App">
+      <div id="App" className="App">
 
         <div className="main" id="main">
           <div className="main-top" >
