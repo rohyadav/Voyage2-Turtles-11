@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
-//import { setNotesVisibilityFilter } from '../actions/Notes_Actions';
 import { toggleNotes } from '../actions/Notes_Actions';
 import { pinNotes } from '../actions/Notes_Actions';
 import { deleteNotes } from '../actions/Notes_Actions';
 import { updateNotes } from '../actions/Notes_Actions';
 import { NotesList } from './NotesBundler';
-import { Note } from './NotesBundler';
 
 const getVisibleNotes = (notes, filter) => {
     switch (filter) {
@@ -35,11 +33,12 @@ const mapDispatchToProps = dispatch => {
             console.log("pinNotes id is : " + id )
         },
         onArchiveClick: id => {
-            dispatch(toggleNotes(id))
+            dispatch(toggleNotes(id)),
             console.log("toggleNotes id is : " + id )
         },
         onDeleteNoteClick: id => {
-            dispatch(deleteNotes(id))
+            dispatch(deleteNotes(id));
+            document.getElementById("notesQty").innerText = document.getElementById("notesQty").innerText - 1;
             console.log("deleteNotes id is : " + id )
         },
         onUpdateClick: (id, text) => {

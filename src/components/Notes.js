@@ -4,39 +4,73 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import notesApp from '../reducers/Notes_Reducers';
 import { NotesFilterLink } from './NotesFilterLink';
-import  NotesVisibleList  from './NotesVisibileList';
+import NotesVisibleList from './NotesVisibileList';
 import { NotesVisibleSearch } from './NotesVisibleSearch';
 import {
   addNotes,
   searchNotes,
 } from '../actions/Notes_Actions';
+import throttle from 'lodash/throttle';
 //creating the redux store for entire application
-let store = createStore(notesApp, window.STATE_FROM_SERVER);
 
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState === null) {
+      return undefined;
+    } 
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+export const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+
+  }
+}
+export const persistedState = loadState();
+export let store = createStore(notesApp, persistedState);
 // every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
 
+export let subscribe = store.subscribe(throttle(() => {
+  saveState({
+    notes: store.getState().notes
+  });
+}, 1000));
+
+export const NotesQty = () => {
+  return (
+    store.getState().notes.length
+  )
+}
 export class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: '',
       note: '',
-      searchButton: 'Search'
-
+      searchButton: '../assets/search_transparent.png',
     }
   }
+
   // HANDLES SEARCH
   setSearchQuery = (event) => {
     this.setState({ searchTerm: event.target.value });
   }
   handleNoteSearch = () => {
-    store.dispatch(searchNotes(this.state.searchTerm));
-    this.state.searchButton === 'Search' ? this.setState({searchButton: "Clear"}) : this.setState({searchButton: "Search"});
-    <NotesVisibleSearch />
+    if (this.state.searchTerm === '') {
+      return null;
+    } else {
+      store.dispatch(searchNotes(this.state.searchTerm));
+      (this.state.searchButton === '../assets/search_transparent.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search_transparent.png'" });
+    }
+
   }
   // HANDLES ADDING NEW NOTES
   setNote = (event) => {
@@ -44,6 +78,8 @@ export class Notes extends Component {
   }
   handleNoteSubmit = () => {
     store.dispatch(addNotes(this.state.note));
+    // document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
+    document.getElementById("notesQty").innerText = store.getState().notes.length;
   }
 
   render() {
@@ -52,27 +88,31 @@ export class Notes extends Component {
         <div>
           {/* HEADER */}
           <header className='Notes-Header'>
-            <button className='exitButton' onClick={this.props.closeHandler}>X</button>
+            <button className='notesExitButton' onClick={this.props.closeHandler}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <textarea onChange={this.setSearchQuery} className='Notes SearchBox SearchBoxText' required placeholder="Search"/>
-            <button className='notesButton' onClick={this.handleNoteSearch}>{this.state.searchButton}</button>
+            <div>
+              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search" />
+            </div>
             <br />
-            <NotesFilterLink filter="SHOW_SEARCH">Search Results:</NotesFilterLink>
+            <NotesVisibleSearch />
 
             {/* NEW NOTE */}
-            <button className='addNotesButton' onClick={this.handleNoteSubmit}>+</button>
-            <textarea className='Notes' onChange={this.setNote} required placeholder='New Note'/>
+            <div>
+              <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>
+              <textarea className='Notes' onChange={this.setNote} required placeholder='New Note' />
+            </div>
 
             {/* NOTES LISTED OUT*/}
-            <span>
-              <NotesFilterLink className="Description" filter="SHOW_ACTIVE">Active</NotesFilterLink>
+            <span className="filterBox">
+              <NotesFilterLink filter="SHOW_ACTIVE">Active</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink className="Description" filter="SHOW_PINNED">Pinned</NotesFilterLink>
+              <NotesFilterLink filter="SHOW_PINNED">Pinned</NotesFilterLink>
               {'  |  '}
-              <NotesFilterLink className="Description" filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
+              <NotesFilterLink filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>
               <NotesVisibleList />
