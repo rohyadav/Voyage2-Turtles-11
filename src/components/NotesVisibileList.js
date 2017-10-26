@@ -38,8 +38,7 @@ const mapDispatchToProps = dispatch => {
         },
         onDeleteNoteClick: id => {
             dispatch(deleteNotes(id));
-            this.setState({ notesQuantity: this.state.notesQuantity - 1 });
-            document.getElementById("notesQty").innerText = this.state.notesQuantity;
+            document.getElementById("notesQty").innerText = document.getElementById("notesQty").innerText - 1;
             console.log("deleteNotes id is : " + id )
         },
         onUpdateClick: (id, text) => {

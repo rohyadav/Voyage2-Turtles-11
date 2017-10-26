@@ -5,8 +5,8 @@ import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
 import { TodoList } from '../components/todoList.js';
-
-//document.getElementById('notesQty').innerText;
+import { Weather, Empty } from '../components/Weather.js';
+import { NotesQty } from '../components/Notes.js';
 
 class NotesButton extends React.Component {
   constructor(props) {
@@ -32,11 +32,13 @@ class NotesButton extends React.Component {
         <img src={this.state.iconLink} alt="Notes" />
       </a>
       <p>Notes</p>
-      <button id="notesQty" className="countButton">0</button>
+      <button id="notesQty" className="countButton"><NotesQty /></button>
     </div>
     );
+
   }
 }
+
 
 class BookmarksButton extends React.Component {
   constructor(props) {
@@ -144,6 +146,45 @@ class GithubButton extends React.Component {
         <p>Github</p>
       </div>
     );
+  }
+}
+
+class WeatherButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: true,
+      iconLink: 'assets/Icons_COLOR_background-01.png',
+    };
+
+  }
+  toggleVisibility = () => {
+    this.setState(prevState => ({ visibility: !prevState.visibility }));
+    if (this.state.visibility === true) {
+      ReactDOM.render(<Weather />, document.getElementById('weather'));
+      tab_open();
+    } else {
+      ReactDOM.render(<Empty />, document.getElementById('weather'));
+      tab_close();
+    }
+  }
+  iconChangeOnHover = () => {
+    this.setState({ iconLink: 'assets/Icons_google logo-13.png' });
+  }
+  iconChangeOnOut = () => {
+    this.setState({ iconLink: 'assets/Icons_COLOR_background-01.png' });
+  }
+
+  render() {
+    return (<div className="item">
+      <a href="#"
+        onClick={this.toggleVisibility}
+        onMouseOver={this.iconChangeOnHover}
+        onMouseOut={this.iconChangeOnOut}>
+        <img src={this.state.iconLink} alt="Weather Button" />
+      </a>
+      <p>Weather</p>
+    </div>);
   }
 }
 
@@ -269,13 +310,11 @@ class App extends Component {
         ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
         tab_close();
     }
-
   }
+
   render() {
-    console.log("render app");
     return (
       <div id="App" className="App">
-
         <div className="main" id="main">
           <div className="main-top" >
 
@@ -317,8 +356,8 @@ class App extends Component {
 
               <div onClick={this.toogleVisibility.bind(this, "notes")}>
                 <NotesButton />
+                
               </div>
-
               <div className="item">
                 <img src="assets/Icons_COLOR-06.png" alt="History" />
                 <p>History</p>
@@ -354,5 +393,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

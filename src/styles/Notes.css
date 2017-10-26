@@ -213,9 +213,9 @@ BUTTONS
   border-radius: 50%;
   border: none;
   position: relative;
-  z-index: 2;
   margin-left: 80%;
-  margin-top: -13%; }
+  margin-bottom: -20%;
+  z-index: 2; }
   .notesButton:hover {
     background-image: img("../assets/search – 1.png"); }
 
@@ -279,7 +279,7 @@ BUTTONS
   /* top: 30px; */
   z-index: 2;
   margin-left: 70%;
-  margin-top: -140%;
+  margin-top: -150%;
   background-color: #ea3939;
   border-radius: 50%;
   color: #ffffff;
