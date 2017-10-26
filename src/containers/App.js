@@ -177,7 +177,7 @@ class WeatherButton extends React.Component {
     super(props);
     this.state = {
       visibility: true,
-      iconLink: 'assets/Icons_COLOR_background-01.png',
+      iconLink: './assets/Icons_COLOR_background-01.png',
     };
 
   }
@@ -192,10 +192,10 @@ class WeatherButton extends React.Component {
     }
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: 'assets/Icons_google logo-13.png' });
+    this.setState({ iconLink: './assets/Icons_google logo-13.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: 'assets/Icons_COLOR_background-01.png' });
+    this.setState({ iconLink: './assets/Icons_COLOR_background-01.png' });
   }
 
   render() {
@@ -266,19 +266,18 @@ class App extends Component {
                 </div> */}
             </div>
 
-
             <div id='icons'>
               <div className="main-grid">
                 <WeatherButton />
                 <TodosButton />
                 <div className="item">
-                  <img src="assets/Icons_COLOR-03.png" alt="Apps" />
+                  <img src="./assets/Icons_COLOR-03.png" alt="Apps" />
                   <p>Apps</p>
                 </div>
                 <BookmarksButton />
                 <NotesButton clickHandler={this.toggleNotesVisibility} />
                 <div className="item">
-                  <img src="assets/Icons_COLOR-06.png" alt="History" />
+                  <img src="./assets/Icons_COLOR-06.png" alt="History" />
                   <p>History</p>
                 </div>
                 <GmailButton />
