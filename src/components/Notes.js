@@ -10,7 +10,7 @@ import {
   addNotes,
   searchNotes,
 } from '../actions/Notes_Actions';
-import throttle from 'lodash/throttle';
+import throttle from 'lodash.throttle';
 //creating the redux store for entire application
 
 export const loadState = () => {
