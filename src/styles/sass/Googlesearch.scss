@@ -62,6 +62,7 @@ input {
     font-size: 1vw;
     text-decoration: none;
     display: block;
+    cursor: pointer;
     &:hover {
       color: white;
       background-color: $apps-green;

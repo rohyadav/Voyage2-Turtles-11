@@ -3,7 +3,7 @@ import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
-import Googlesearch from '../components/Googlesearch';
+import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
@@ -322,7 +322,7 @@ class App extends Component {
               <Time />
             </div>
             <div className="search-area">
-              <Googlesearch 
+              <GoogleSearch 
                 types={ 
                   [ 
                     {

@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
-import '../styles/Googlesearch.css';
-import GoogleAutocomplete from './GoogleAutocomplete'
+import '../styles/GoogleSearch.css';
+import GoogleAutosuggest from './GoogleAutosuggest'
 
-class Googlesearch extends Component { // Parent component
+class GoogleSearch extends Component { // Parent component
 
     constructor(props) {
         super(props);
         this.state = {
             selected: 'Web', // 'selected' property determines URL (Is there a concise way to target first key in object)
             suggestions: ['initialized state'], // API data
-            autoSelected: null,
             expanded: false
         };
         this.handleClick = this.handleClick.bind(this); // binding is optional bc of arrow fxn's lexical scope
@@ -17,9 +16,7 @@ class Googlesearch extends Component { // Parent component
 
     handleClick = (type, event) => { // Click event in SearchType invokes this fxn. Fxn updates state with selected type
         event.preventDefault();
-        this.setState({
-          selected: type
-        });
+        this.setState({selected: type});
     }
 
     googleSearch = (query) => { // Submit event in SearchBox invokes this fxn
@@ -49,28 +46,20 @@ class Googlesearch extends Component { // Parent component
     }
 
     toggleExpand = () => {
-        this.setState({expanded: true})
+        this.setState({expanded: true});
+        // As of right now this is useless/redundant
+        // TO DO: 
+        // Set to false when input text value is empty. 
+        // add a way to set to false when clicking outside of the autolist        
     }
 
-    handleClickAuto = (suggestion) => {
-        this.setState({autoSelected: suggestion})
-    }
-
-    // PSEUDOCODE
-    // fired by clicking a suggestionItem
-    // same body code as googleSearch()
-    // requires the 'selected' state property -> to pick Google engine URL
-    // make sure the selected suggestion variable gets passed up from GoogleAutocomplete
-    // append selected suggestion to URL
-    autoSearch = (autoSelect) => {
+    handleClickAuto = (currentAuto) => {
         let selected = this.state.selected;
         let collection = this.props.types[0];
         let urlType = collection[selected];
-        let url = urlType + autoSelect;
-        window.open(url,'_self'); // alternative: _blank
+        let url = urlType + currentAuto;
+        window.open(url, '_self');
     }
-
-
 
     render() {
         return (
@@ -83,16 +72,16 @@ class Googlesearch extends Component { // Parent component
                     onSearch={this.googleSearch}
                     onAutoSuggest={this.autoSuggest}
                     onToggleExpand={this.toggleExpand}/>
-                <GoogleAutocomplete
+                <GoogleAutosuggest
                     onAutoSearch={this.autoSearch}
                     suggestions={this.state.suggestions}
                     expanded={this.state.expanded}
-                    handleClickAuto={this.handleClickAuto}/>
+                    handleClickAuto={this.handleClickAuto} />
             </div>
         )
     }
 
-} //  Googlesearch Component
+} //  GoogleSearch Component
 
 class SearchType extends React.Component {
 
@@ -162,4 +151,4 @@ class SearchBox extends React.Component {
 
 } // SearchBox Component
 
-export default Googlesearch
+export default GoogleSearch
