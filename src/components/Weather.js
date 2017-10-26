@@ -12,6 +12,20 @@ export class Weather extends React.Component {
 		super(props);
 	};
 
+	sendRequest = (url) => {
+		console.log('sending weather request');
+		console.log(url);
+		const request = new XMLHttpRequest();
+		request.open('GET', url);
+		request.responseType = 'json';
+		request.send();
+
+		request.onload = () => {
+			console.log('running request.onload');
+			currentWeather = request.response;
+		}
+	}
+
 	getCurrentWeather() {
 		console.log('getCurrentWeather running');
 
@@ -26,9 +40,7 @@ export class Weather extends React.Component {
 			const endpoint = 'https://api.openweathermap.org/data/2.5/weather' + currentLocation + apiKey;
 			requestURL = endpoint;
 			console.log(requestURL);
-
-			sendRequest(requestURL);
-
+			this.sendRequest(requestURL);
 		}
 
 		function error() {
@@ -36,20 +48,6 @@ export class Weather extends React.Component {
 		}
 
 		navigator.geolocation.getCurrentPosition(success, error);
-	}
-
-	sendRequest(url) {
-		console.log('sending weather request');
-		console.log(url);
-		const request = new XMLHttpRequest();
-		request.open('GET', url);
-		request.responseType = 'json';
-		request.send();
-
-		request.onload = () => {
-			console.log('running request.onload');
-			currentWeather = request.response;
-		}
 	}
 
 	requestGeolocation() {

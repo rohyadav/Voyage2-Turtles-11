@@ -5,7 +5,7 @@ import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
 import { TodoList } from '../components/todoList.js';
-import { Weather } from '../components/Weather.js';
+import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
 
 class NotesButton extends React.Component {
