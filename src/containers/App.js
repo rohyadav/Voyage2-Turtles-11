@@ -6,6 +6,7 @@ import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import Googlesearch from '../components/Googlesearch';
 import { TodoList } from '../components/todoList.js';
+import { Weather, Empty } from '../components/Weather.js';
 
 class NotesButton extends React.Component {
   constructor(props) {
@@ -171,6 +172,45 @@ class GithubButton extends React.Component {
   } 
 }
 
+class WeatherButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: true,
+      iconLink: 'assets/Icons_COLOR_background-01.png',
+    };
+
+  }
+  toggleVisibility = () => {
+    this.setState(prevState => ({ visibility: !prevState.visibility }));
+    if (this.state.visibility === true) {
+      ReactDOM.render(<Weather />, document.getElementById('weather'));
+      tab_open();
+    } else {
+      ReactDOM.render(<Empty />, document.getElementById('weather'));
+      tab_close();
+    }
+  }
+  iconChangeOnHover = () => {
+    this.setState({ iconLink: 'assets/Icons_google logo-13.png' });
+  }
+  iconChangeOnOut = () => {
+    this.setState({ iconLink: 'assets/Icons_COLOR_background-01.png' });
+  }
+
+  render() {
+    return (<div className="item">
+      <a href="#"
+        onClick={this.toggleVisibility}
+        onMouseOver={this.iconChangeOnHover}
+        onMouseOut={this.iconChangeOnOut}>
+        <img src={this.state.iconLink} alt="Weather Button" />
+      </a>
+      <p>Weather</p>
+    </div>);
+  }
+}
+
 function tab_open() {
   document.getElementById("main").style.marginRight = "300px";
 }
@@ -178,6 +218,7 @@ function tab_open() {
 function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -228,10 +269,7 @@ class App extends Component {
 
             <div id='icons'>
               <div className="main-grid">
-                <div className="item">
-                  <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
-                  <p>Weather</p>
-                </div>
+                <WeatherButton />
                 <TodosButton />
                 <div className="item">
                   <img src="assets/Icons_COLOR-03.png" alt="Apps" />
