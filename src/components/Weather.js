@@ -29,6 +29,10 @@ export class Weather extends React.Component {
 	getCurrentWeather() {
 		console.log('getCurrentWeather running');
 
+		// function preSend(url) {
+		// 	sendRequest(url);
+		// }
+
 		function success(position) {
 			console.log('getCurrentPosition(success) running');
 			const request = new XMLHttpRequest();
@@ -40,7 +44,7 @@ export class Weather extends React.Component {
 			const endpoint = 'https://api.openweathermap.org/data/2.5/weather' + currentLocation + apiKey;
 			requestURL = endpoint;
 			console.log(requestURL);
-			this.sendRequest(requestURL);
+			// preSend(requestURL);
 		}
 
 		function error() {
