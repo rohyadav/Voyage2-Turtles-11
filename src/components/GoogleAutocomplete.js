@@ -1,33 +1,33 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-// Wikipedia initial autosuggestion array (before typing)
-// 9 items
-// ["Undefined", "Undefined behavior", "Undefined (mathematics)", "Undefined variable", "Undefined Fantastic Object", "Undefined value", "Undefined citizenship", "Undefined primitive", "Unrefined sweetener"]
+class GoogleAutocomplete extends Component {
 
-// Wikipedia autosuggestion array
-// 10 items
-// ["Tria", "Triangle", "Triad (organized crime)", "Triathlon", "Trial of Michael Jackson", "Triage", "Trial of George Zimmerman", "Triassic", "Triangle Shirtwaist Factory fire", "Trial by ordeal"]
-
-class GoogleAutocomplete extends Component { 
-    
         render() {
-            if (!this.props.suggestions) { // Wait for fetch, if array is undefined, return empty div.
-                return <div></div>
-            }
-            else if(this.props.suggestions[0] === 'Undefined') { // If user hasn't typed anything, return empty div
-                return <div></div>
-            }
-            const suggestions = this.props.suggestions.slice(0,6); // Slice autosuggestion array to 5 items
-            let autoList;
-            console.log(suggestions); // This is the initial state bc AJAX hasn't kicked in yet
 
-            autoList = suggestions.map((suggestion, index) =>
-                <AutoItem 
+            if (!this.props.suggestions) { // Wait for fetch, if array is undefined, return empty div.
+                return (<div></div>); // parens necessary
+                // console.log('[2] Array is undefined', this.props.suggestions[0]); PropTypes will give an error message
+            }
+            else if (this.props.suggestions[0] === 'initialized state') { //
+              console.log('([2] Before state is updated with Wiki\'s data)', this.props.suggestions[0]); // This is 'initialized state' bc AJAX hasn't kicked in yet
+              return (<div></div>);
+            }
+            else if (this.props.suggestions[0] === 'Undefined') { // If user hasn't typed anything, return empty div
+                console.log('([2] State has been updated with Wiki\'s default data, no user input)', this.props.suggestions[0]);
+                return (<div></div>);
+            }
+
+            const suggestions = this.props.suggestions.slice(0,6); // Slice autosuggestion array to 6 items
+            // console.log('[2] Sliced data from user input', suggestions);
+            let autoList;
+
+            autoList = suggestions.map( (suggestion, index) =>
+                <AutoItem
                     key={index}
                     suggestion={suggestion} />
                     // return keyword unnecessary
-            ); 
+            );
 
             return (
                 <div className='auto-container'>
@@ -39,12 +39,12 @@ class GoogleAutocomplete extends Component {
                 </div>
             );
         } // render()
-    
+
     } // GoogleAutocomplete Component
-    
+
 GoogleAutocomplete.propTypes = {
     suggestions: PropTypes.array.isRequired // Check if array prop is passed down
-}  
+}
 
 const AutoItem = (props) => {
     const currentAuto = props.suggestion;

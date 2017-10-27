@@ -322,7 +322,19 @@ class App extends Component {
               <Time />
             </div>
             <div className="search-area">
-              <Googlesearch types={['Web', 'Images', 'News', 'Videos', 'Maps']} />
+              <Googlesearch 
+                types={ 
+                  [ 
+                    {
+                      'Web': 'https://www.google.com/search?q=',
+                      'Images': 'https://www.google.com/search?tbm=isch&q=',
+                      'News': 'https://www.google.com/search?tbm=nws&q=',
+                      'Videos': 'https://www.google.com/search?tbm=vid&q=',
+                      'Maps': 'https://www.google.com/maps/preview?q='
+                    } 
+                  ]
+                }
+             />
             </div>
           </div> {/* .main-top */}
           <div id='icons'>
