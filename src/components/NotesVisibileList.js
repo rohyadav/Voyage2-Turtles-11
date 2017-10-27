@@ -29,8 +29,17 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onPinClick: id => {
-            dispatch(pinNotes(id))
+            dispatch(pinNotes(id));
+            console.log("grabbing data by id and class " + 
+                document.getElementById(id).querySelectorAll(".pinNotesButton")[0]
+            );
+            if ( document.getElementById(id).querySelectorAll(".pinNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/pin_transparent.png")' ) {
+                document.getElementById(id).querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin – 1.png')";
+            } else {
+                document.getElementById(id).querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin_transparent.png')";
+            }
             console.log("pinNotes id is : " + id )
+            //console.log(document.getElementById("notes_0").querySelectorAll(".pinNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/pin_transparent.png")');
         },
         onArchiveClick: id => {
             dispatch(toggleNotes(id)),

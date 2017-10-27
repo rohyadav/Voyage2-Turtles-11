@@ -79,7 +79,7 @@ export class Notes extends Component {
   }
   handleNoteSubmit = () => {
     store.dispatch(addNotes(this.state.note));
-    // document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
+    // updates the notes qty button on main Notes icon
     document.getElementById("notesQty").innerText = store.getState().notes.length;
   }
 

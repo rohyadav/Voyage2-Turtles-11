@@ -5,7 +5,7 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
     console.log("Note text is: " + text);
     return (
         <div>
-            <div className="buttonBox">
+            <div  className="buttonBox">
                 {/* this is the delete button */}
                 {<button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}></button>}
                 {/* this is the archive button */}
@@ -26,14 +26,10 @@ Note.propTypes = {
 
 export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick , onUpdateClick}) => {
     console.log("Rebuild notes list because state changed.");
-    // for (const singleNote of notes)
-    // {
-    //     console.log(singleNote.text);
-    // }
     return (
         <div>
             {notes.map((singleNote, index) => (
-                <Note key={index} {...singleNote} 
+                <Note id={index} key={index} {...singleNote} 
                 onDeleteClick={() => onDeleteNoteClick(singleNote.id)} 
                 onUpdateClick={() => onUpdateClick(singleNote.id)} 
                 onArchiveClick={() => onArchiveClick(singleNote.id)} 
