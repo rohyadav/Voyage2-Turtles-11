@@ -11,50 +11,27 @@ body {
     font-family: $tab-font;
 }
 
+h1, h2, h3, h4, h5 {
+  color: $default-grey;
+}
+
 /*  main blue header */ 
 .Todos-Header {
   @include tab-header($todos-blue);
 }
 
-/* exit button up right in the header */
+
 .exitButton {
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    top: 20px;
-    right: 20px;
-    position: fixed;
-    background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    border-radius:50%;
-    display:inline-block;
-    cursor:pointer;
-    color:$todos-blue;
-    font-size:20px;
-    font-weight: 700;
-    font-style: bold;
-    text-align: center;
-    border: none;
-    background-color:#ffffff;
-}
-.exitButton:hover {
-    background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-    background-color:#f6f6f6;
+  @include tab-exit-button($todos-blue);
 }
 
 
 /* main title Todos in the header */
 .Todos-Title-Text {
-    width: 260px;
-    height: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 1.6px;
-    text-align: left;
-    color: #ffffff;
-    padding-left: 20px;
-    padding-top: 80px;
+  @include tab-title
 }
 
+// this is for the hover effect over Todo and Done links to change tab
 .TodoButtonHover:hover {
     color: #4F7B9C;
 }
@@ -132,6 +109,7 @@ body {
     position: fixed;
     height: 100%;
     color: #959595;
+    font-size: 16px;
 }
 
 
