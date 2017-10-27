@@ -9,19 +9,6 @@
     border-bottom: 0.15rem solid $apps-green;
 }
 
-/* Input */
-
-input {
-    &::placeholder {
-      font-size: .8rem;
-      text-indent: .6vw;
-      text-align: left;
-    }
-    &:focus {
-      outline: none;
-    }
-}
-
 /* Search icon */
 
 .search-icon {

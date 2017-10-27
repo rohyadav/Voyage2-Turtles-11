@@ -105,7 +105,19 @@ body {
 	background-size: 2vw;
 	background-position: 10px 50%; /* (img) (horizontal, vertical) */
 	background-repeat: no-repeat;
-	padding-left: 40px;
+  padding-left: 40px;
+    &::-webkit-search-cancel-button {
+      position: relative;
+      right: 2vw;
+    }
+    &::placeholder {
+      font-size: .8rem;
+      text-indent: .6vw;
+      text-align: left;
+    }
+    &:focus {
+      outline: none;
+    }
 }
 
 /* =====================================
