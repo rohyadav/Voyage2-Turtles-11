@@ -8,7 +8,7 @@ import { NotesList } from './NotesBundler';
 const getVisibleNotes = (notes, filter) => {
     switch (filter) {
         case "SHOW_PINNED":
-        return notes.filter(n => n.pinned);
+            return notes.filter(n => n.pinned);
         case "SHOW_ACTIVE":
             return notes.filter(n => !n.completed);
         case "SHOW_ARCHIVED":
@@ -30,21 +30,23 @@ const mapDispatchToProps = dispatch => {
     return {
         onPinClick: id => {
             dispatch(pinNotes(id));
-            if ( document.getElementById("note_" + id).querySelectorAll(".pinNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/pin_transparent.png")' ) {
-                document.getElementById("note_" + id).querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin – 1.png')";
-            } else {
-                document.getElementById("note_" + id).querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin_transparent.png')";
-            }
             console.log("pinNotes id is : " + id )
+            console.log("pinNotes button id is : " + "note_" + id )
+            if ( document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/pin_transparent.png")' ) {
+                document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin – 1.png')";
+            } else {
+                document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin_transparent.png')";
+            }
+        
         },
         onArchiveClick: id => {
             dispatch(toggleNotes(id));
-            if ( document.getElementById("note_" + id).querySelectorAll(".archiveNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/archive_transparent.png")' ) {
-                document.getElementById("note_" + id).querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive – 1.png')";
-            } else {
-                document.getElementById("note_" + id).querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive_transparent.png')";
-            }
             console.log("toggleNotes id is : " + id )
+            if ( document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/archive_transparent.png")' ) {
+                document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive – 1.png')";
+            } else {
+                document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive_transparent.png')";
+            }
         },
         onDeleteNoteClick: id => {
             dispatch(deleteNotes(id));
