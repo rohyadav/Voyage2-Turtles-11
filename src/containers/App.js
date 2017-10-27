@@ -339,9 +339,8 @@ class App extends Component {
           </div> {/* .main-top */}
           <div id='icons'>
             <div className="main-grid">
-              <div className="item">
-                <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
-                <p>Weather</p>
+              <div onClick={this.toogleVisibility.bind(this, "weather")}>
+                <WeatherButton />
               </div>
               <div onClick={this.toogleVisibility.bind(this, "todo")}>
                 <TodosButton />
