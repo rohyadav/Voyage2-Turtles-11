@@ -7,12 +7,12 @@ import { NotesList } from './NotesBundler';
 
 const getVisibleNotes = (notes, filter) => {
     switch (filter) {
+        case "SHOW_PINNED":
+        return notes.filter(n => n.pinned);
         case "SHOW_ACTIVE":
             return notes.filter(n => !n.completed);
         case "SHOW_ARCHIVED":
             return notes.filter(n => n.completed);
-        case "PINNED_NOTES":
-            return notes.filter(n => n.pinned);
         default:
             return notes;
     }
