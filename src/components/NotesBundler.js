@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text }) => {
+let pinStyle = {
+    backgroundImage: "url('../assets/pin_transparent.png')"
+}
+let archiveStyle = {
+    backgroundImage: "url('../assets/archive_transparent.png')"
+}
+export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id }) => {
     console.log("Note text is: " + text);
     return (
-        <div>
+        <div id={"note_" + id}>
             <div  className="buttonBox">
                 {/* this is the delete button */}
                 {<button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}></button>}
                 {/* this is the archive button */}
-                {<button className='archiveNotesButton existingNotesButtonBox' onClick={onArchiveClick}></button>}
+                {<button className='archiveNotesButton existingNotesButtonBox' style={archiveStyle} onClick={onArchiveClick}></button>}
                 {/* this is the pin button */}
-                {<button className='pinNotesButton existingNotesButtonBox' onClick={onPinClick}></button>}
+                {<button className='pinNotesButton existingNotesButtonBox' style={pinStyle} onClick={onPinClick}></button>}
             </div>
             <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/>
         </div>
@@ -29,7 +35,7 @@ export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick
     return (
         <div>
             {notes.map((singleNote, index) => (
-                <Note id={index} key={index} {...singleNote} 
+                <Note id={"note_" + singleNote.id} key={index} {...singleNote} 
                 onDeleteClick={() => onDeleteNoteClick(singleNote.id)} 
                 onUpdateClick={() => onUpdateClick(singleNote.id)} 
                 onArchiveClick={() => onArchiveClick(singleNote.id)} 
