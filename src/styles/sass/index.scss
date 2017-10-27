@@ -35,11 +35,13 @@ body {
 
 .main {
   text-align: center;
-	height: 85vh;
+	height: 100vh;
+	display: flex;
+  flex-direction: column;
 }
 
 .main-top {
-  margin-top: 10vh;
+	padding-top: 10vh;
 }
 
 #App {
@@ -126,9 +128,9 @@ body {
 
 #icons { /* Define parent container so you can use percentages in child (grid container) */
   max-width: 60vw;
-  max-height: 66vh;
+  // max-height: 66vh;
   margin: 20px auto 0;
-
+	flex: 1;
 }
 
 .main-grid {
@@ -196,8 +198,8 @@ body {
 .leftFooter, .rightFooter {
   font-size: 0.75rem;
   display: inline-block;
-  bottom: 0.5%;
-  position: fixed;
+  // bottom: 0.5%;
+  // position: fixed;
   text-transform: lowercase;
   color: $light-grey;
 }
@@ -210,4 +212,14 @@ body {
 .leftFooter {
   float: left;
   left: 20px;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+}
+
+.footerIcon {
+	width: 35px;
+	align-self: flex-end;
 }
