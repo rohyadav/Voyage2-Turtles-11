@@ -45,6 +45,7 @@ export let subscribe = store.subscribe(throttle(() => {
   });
 }, 1000));
 
+
 export const NotesQty = () => {
   return (
     store.getState().notes.length

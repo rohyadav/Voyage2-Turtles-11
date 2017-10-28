@@ -41,8 +41,9 @@ const mapDispatchToProps = dispatch => {
             document.getElementById("notesQty").innerText = document.getElementById("notesQty").innerText - 1;
             console.log("deleteNotes id is : " + id )
         },
-        onUpdateClick: (id, text) => {
+        onUpdateClick: (text, id) => {
             dispatch(updateNotes(text, id))
+            console.log("onUpdateClick value is : " + text + "; id is: " + id )
         }
     }
 }

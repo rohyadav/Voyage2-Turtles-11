@@ -48,6 +48,7 @@ function notes(state = [], action) {
                         text: action.text
                     })
                 }
+                
                 return notes;
             })
         case TOGGLE_NOTES:
