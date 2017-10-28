@@ -236,7 +236,7 @@ export class TodoList extends Component {
 
                 <div className='Todos-Body'>
                     <form onSubmit={this.handleSubmit}>
-                        <input className="input-box" type="text" placeholder="What to do next?" 
+                        <input className="input-box inputBoxText" type="text" placeholder="What to do next?" 
                             value={this.state.value} onChange={this.handleChange} />
                     </form>
 

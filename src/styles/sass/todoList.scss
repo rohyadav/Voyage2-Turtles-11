@@ -109,27 +109,23 @@ h1, h2, h3, h4, h5 {
     position: fixed;
     height: 100%;
     color: #959595;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 
-
-/* input box where I write new todos */
+/* input box where I write new Todos */
 .input-box {
-    margin-top: 15px;
-    width: 260px;
-    height: 40px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px 0 #959595;
-    border: solid 0.3px #959595;
-    border: solid 0.3px var(--warm-grey);
-    color: #959595;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-
+  @include search-box;
+  
 }
+
+// text inside input box
+.inputBoxText {
+  @include tab-search-text;
+}
+
+
+
 
 /* this is the link to clear to do list in Done tab */
 .aClearTodoList {
@@ -145,6 +141,8 @@ h1, h2, h3, h4, h5 {
 /* list with Todo/Done items */
 .Todo-list {
     text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 
