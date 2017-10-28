@@ -33,19 +33,18 @@ const mapDispatchToProps = dispatch => {
             console.log("pinNotes id is : " + id )
             console.log("pinNotes button id is : " + "note_" + id )
             if ( document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/pin_transparent.png")' ) {
-                document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin – 1.png')";
+                return document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin – 1.png')";
             } else {
-                document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin_transparent.png')";
+                return document.getElementsByName("note_" + id)[0].querySelectorAll(".pinNotesButton")[0].style.backgroundImage = "url('../assets/pin_transparent.png')";
             }
-        
         },
         onArchiveClick: id => {
             dispatch(toggleNotes(id));
             console.log("toggleNotes id is : " + id )
             if ( document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.getPropertyValue("background-image") === 'url("../assets/archive_transparent.png")' ) {
-                document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive – 1.png')";
+                return document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive – 1.png')";
             } else {
-                document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive_transparent.png')";
+                return document.getElementsByName("note_" + id)[0].querySelectorAll(".archiveNotesButton")[0].style.backgroundImage = "url('../assets/archive_transparent.png')";
             }
         },
         onDeleteNoteClick: id => {
