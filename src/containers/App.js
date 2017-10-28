@@ -7,7 +7,27 @@ import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
-import rndomImgIcon from '../assets/turtle_green.png'
+import rndomImgIcon from '../assets/turtle_green.png';
+
+import bg1 from '../assets/wallpapers/01.jpg';
+import bg2 from '../assets/wallpapers/02.JPG';
+import bg3 from '../assets/wallpapers/03.JPG';
+import bg4 from '../assets/wallpapers/04.JPG';
+import bg5 from '../assets/wallpapers/05.JPG';
+import bg6 from '../assets/wallpapers/06.JPG';
+import bg7 from '../assets/wallpapers/07.JPG';
+import bg8 from '../assets/wallpapers/08.jpg';
+import bg9 from '../assets/wallpapers/09.JPG';
+import bg10 from '../assets/wallpapers/10.jpg';
+import bg11 from '../assets/wallpapers/11.JPG';
+import bg12 from '../assets/wallpapers/12.JPG';
+import bg13 from '../assets/wallpapers/13.JPG';
+import bg14 from '../assets/wallpapers/14.JPG';
+import bg15 from '../assets/wallpapers/15.jpg';
+import bg16 from '../assets/wallpapers/16.JPG';
+import bg17 from '../assets/wallpapers/17.jpg';
+import bg18 from '../assets/wallpapers/18.jpg';
+
 class NotesButton extends React.Component {
   constructor(props) {
     super(props);
@@ -215,6 +235,7 @@ class App extends Component {
       todoTabOpen: "false",
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
+      image: bg1
     };
   }
 
@@ -311,10 +332,28 @@ class App extends Component {
         tab_close();
     }
   }
-
+  
+  backgroundChange = () => {
+    let bgImage = this.state.image;
+    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, 
+    bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17, bg18];
+    let randomNumber = Math.floor(Math.random() * (bgArray.length));
+    bgImage = bgArray[randomNumber];
+    this.setState({image: bgImage});
+  }
+    
   render() {
+
+    let bgStyle = {
+      backgroundImage: `url(${this.state.image})`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      minHeight: '100vh',
+    }
+
     return (
-      <div className="App">
+      <div className="App" style={bgStyle}>
         <div className="main" id="main">
           <div className="main-top" >
 
@@ -366,7 +405,11 @@ class App extends Component {
             </div> {/* .main-grid */}
           </div> {/* #icons */}
           <footer>
-            <img className="footerIcon" src={rndomImgIcon} alt="Turtles Cohort" />
+            <img 
+              className="footerIcon" 
+              src={rndomImgIcon} 
+              alt="Turtles Cohort" 
+              onClick={this.backgroundChange} />
             <div className="footerText">
               <p className="rightFooter">Project by Chingu Turtles Team 11</p>
               <p className="leftFooter">Photos by Natasha Sadikin</p>

@@ -20,12 +20,8 @@ body {
   padding: 0;
   margin: 0;
   background-color: $light-grey;
-  background-image: url("../assets/wallpapers/18.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  overflow: hidden;
+  // min-height: 100vh;
+  // overflow: hidden;
 }
 
 
@@ -221,5 +217,6 @@ footer {
 
 .footerIcon {
 	width: 35px;
-	align-self: flex-end;
+  align-self: flex-end;
+  cursor: pointer;
 }
