@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-class GoogleAutocomplete extends Component {
+class GoogleAutosuggest extends Component {
 
         render() {
 
@@ -25,35 +25,35 @@ class GoogleAutocomplete extends Component {
             autoList = suggestions.map( (suggestion, index) =>
                 <AutoItem
                     key={index}
-                    suggestion={suggestion} />
-                    // return keyword unnecessary
+                    suggestion={suggestion} 
+                    handleClickAuto={this.props.handleClickAuto}/>
+                    // return keyword unnecessary                    
             );
 
             return (
                 <div className='auto-container'>
                     <div className='auto-list'>
-                    {/* <ul className='auto-list'> */}
                         {autoList}
-                    {/* </ul> */}
                     </div>
                 </div>
             );
         } // render()
 
-    } // GoogleAutocomplete Component
+    } // GoogleAutosuggest Component
 
-GoogleAutocomplete.propTypes = {
+GoogleAutosuggest.propTypes = {
     suggestions: PropTypes.array.isRequired // Check if array prop is passed down
 }
 
 const AutoItem = (props) => {
     const currentAuto = props.suggestion;
+
     return ( // return keyword is necessary
-    // <li className='auto-item'>
-        <a className='auto-link' href={`https://www.google.com/search?q=&${currentAuto}`}>
-            {props.suggestion}
-        </a>
-    // </li>
+        <span 
+            className='auto-link' 
+            onClick={props.handleClickAuto.bind(this, currentAuto)}>            
+                {currentAuto}
+        </span>
   );
 };
 
@@ -61,4 +61,4 @@ AutoItem.propTypes = {
     suggestion: PropTypes.string.isRequired
 }
 
-export default GoogleAutocomplete;
+export default GoogleAutosuggest;

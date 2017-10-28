@@ -3,11 +3,11 @@ import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
-import Googlesearch from '../components/Googlesearch';
+import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
-
+import rndomImgIcon from '../assets/turtle_green.png'
 class NotesButton extends React.Component {
   constructor(props) {
     super(props);
@@ -314,7 +314,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id="App" className="App">
+      <div className="App">
         <div className="main" id="main">
           <div className="main-top" >
 
@@ -322,16 +322,16 @@ class App extends Component {
               <Time />
             </div>
             <div className="search-area">
-              <Googlesearch 
-                types={ 
-                  [ 
+              <GoogleSearch
+                types={
+                  [
                     {
                       'Web': 'https://www.google.com/search?q=',
                       'Images': 'https://www.google.com/search?tbm=isch&q=',
                       'News': 'https://www.google.com/search?tbm=nws&q=',
                       'Videos': 'https://www.google.com/search?tbm=vid&q=',
                       'Maps': 'https://www.google.com/maps/preview?q='
-                    } 
+                    }
                   ]
                 }
              />
@@ -339,9 +339,8 @@ class App extends Component {
           </div> {/* .main-top */}
           <div id='icons'>
             <div className="main-grid">
-              <div className="item">
-                <img src="assets/Icons_COLOR_background-01.png" alt="Weather" />
-                <p>Weather</p>
+              <div onClick={this.toogleVisibility.bind(this, "weather")}>
+                <WeatherButton />
               </div>
               <div onClick={this.toogleVisibility.bind(this, "todo")}>
                 <TodosButton />
@@ -356,7 +355,7 @@ class App extends Component {
 
               <div onClick={this.toogleVisibility.bind(this, "notes")}>
                 <NotesButton />
-                
+
               </div>
               <div className="item">
                 <img src="assets/Icons_COLOR-06.png" alt="History" />
@@ -366,9 +365,12 @@ class App extends Component {
               <GithubButton />
             </div> {/* .main-grid */}
           </div> {/* #icons */}
-          <footer className="footerText">
-            <p className="rightFooter">Project by Chingu Turtles Team 11</p>
-            <p className="leftFooter">Photos by Natasha Sadikin</p>
+          <footer>
+            <img className="footerIcon" src={rndomImgIcon} alt="Turtles Cohort" />
+            <div className="footerText">
+              <p className="rightFooter">Project by Chingu Turtles Team 11</p>
+              <p className="leftFooter">Photos by Natasha Sadikin</p>
+            </div>
           </footer>
         </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
 
