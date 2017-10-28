@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// let pinStyle = {
-//     backgroundImage: "url('../assets/pin_transparent.png')"
-// }
-// let archiveStyle = {
-//     backgroundImage: "url('../assets/archive_transparent.png')"
-// }
-export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id }) => {
+export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id, pinned, completed }) => {
     console.log("Note text is: " + text);
+    console.log(pinned);
+    let pinStyle;
+    let archiveStyle;
+    if (pinned) {
+        pinStyle = {backgroundImage: "url('../assets/pin – 1.png')"}
+    } else {
+        pinStyle = { backgroundImage: "url('../assets/pin_transparent.png')" }
+    }
+    if (completed) {
+        archiveStyle = {backgroundImage: "url('../assets/archive – 1.png')"}
+    } else {
+        archiveStyle = { backgroundImage: "url('../assets/archive_transparent.png')" }
+    }
     return (
         <div id={id} name={"note_" + id}>
             <div  className="buttonBox">
@@ -17,12 +24,12 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
                 {/* this is the archive button */}
                 {<button 
                     className='archiveNotesButton existingNotesButtonBox' 
-                    style={{backgroundImage: "url('../assets/archive_transparent.png')"}} 
+                    style={archiveStyle} 
                     onClick={onArchiveClick}></button>}
                 {/* this is the pin button */}
                 {<button 
                     className='pinNotesButton existingNotesButtonBox' 
-                    style={{backgroundImage: "url('../assets/pin_transparent.png')"}} 
+                    style={pinStyle} 
                     onClick={onPinClick}>
                 </button>}
             </div>
