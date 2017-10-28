@@ -1,57 +1,37 @@
 
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+@import "variables"; //standard variables throughout project
+
+
 body {
-    font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+    font-family: $tab-font;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $default-grey;
 }
 
 /*  main blue header */ 
 .Todos-Header {
-    background-color: #00a7ff;
-    top: 0px;
-    right: 0px;
-    width: 300px;
-    position: fixed;
-    height: 140px
+  @include tab-header($todos-blue);
 }
 
-/* exit button up right in the header */
+
 .exitButton {
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    top: 20px;
-    right: 20px;
-    position: fixed;
-    background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    border-radius:50%;
-    display:inline-block;
-    cursor:pointer;
-    color:#00a7ff;
-    font-size:20px;
-    font-weight: 700;
-    font-style: bold;
-    text-align: center;
-    border: none;
-    background-color:#ffffff;
-}
-.exitButton:hover {
-    background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
-    background-color:#f6f6f6;
+  @include tab-exit-button($todos-blue);
 }
 
 
 /* main title Todos in the header */
 .Todos-Title-Text {
-    width: 260px;
-    height: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 1.6px;
-    text-align: left;
-    color: #ffffff;
-    padding-left: 20px;
-    padding-top: 80px;
+  @include tab-title
 }
 
+// this is for the hover effect over Todo and Done links to change tab
 .TodoButtonHover:hover {
     color: #4F7B9C;
 }
@@ -61,61 +41,61 @@ body {
 }
 
 .Done-heading {
-  font-family: HelveticaNeue;
+  font-family: $tab-font;
   font-size: 16px;
   letter-spacing: 2.7px;
   text-align: center;
-  color: #00a7ff;
+  color: $todos-blue;
   color: var(--azure);
   flex: 1;
 }
 
 .Done-heading-selected {
-  font-family: HelveticaNeue;
+  font-family: $tab-font;
   font-size: 16px;
   letter-spacing: 2.7px;
   text-align: center;
-  color:#00a7ff;
+  color:$todos-blue;
   flex: 1;
 }
 
 /* Todo and Done heading under the input box */
 /* Will toggle color if selected or not */
 .Todo-heading {
-    font-family: HelveticaNeue;
+    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
-    color: #00a7ff;
+    color: $todos-blue;
     color: var(--azure);
     flex: 1;
 }
 
 .Todo-heading-selected {
-    font-family: HelveticaNeue;
+    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
-    color:#00a7ff;
+    color:$todos-blue;
     flex: 1;
 }
 
 .Done-heading {
-    font-family: HelveticaNeue;
+    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
-    color: #00a7ff;
+    color: $todos-blue;
     color: var(--azure);
     flex: 1;
 }
 
 .Done-heading-selected {
-    font-family: HelveticaNeue;
+    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
-    color:#00a7ff;
+    color:$todos-blue;
     flex: 1;
 }
 
@@ -129,6 +109,7 @@ body {
     position: fixed;
     height: 100%;
     color: #959595;
+    font-size: 16px;
 }
 
 
@@ -145,11 +126,14 @@ body {
     color: #959595;
     padding-left: 20px;
     padding-right: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
 }
 
 /* this is the link to clear to do list in Done tab */
 .aClearTodoList {
-    color: #00a7ff;
+    color: $todos-blue;
     margin-left: 10px;
 }
 
@@ -192,6 +176,12 @@ body {
     height: 30px;
 }
 
+.test-trash {
+  margin-right: 20px;
+  background-color: red;
+  border: solid;
+}
+
 
 /* Make the img appear when mouse hover over */
 /* https://stackoverflow.com/questions/10769016/display-image-on-text-link-hover-css-only */
@@ -211,7 +201,7 @@ body {
 }
 
 .blue {
-    color: #00a7ff;
+    color: $todos-blue;
 }
 
 
@@ -251,26 +241,26 @@ body {
 	width: 20px;
 	height: 20px;
 	opacity: 0.2;
-	background: #00a7ff;
+	background: $todos-blue;
 }
 
 
 /* Hover and focus states */
 .todo-control:hover input ~ .todo-control__indicator,
 .todo-control input:focus ~ .todo-control__indicator {
-	background: #00a7ff;
+	background: $todos-blue;
 	opacity: 1;
 }
 
 /* Checked state */
 .todo-control input:checked ~ .todo-control__indicator {
-	background: #00a7ff;
+	background: $todos-blue;
 }
 
 /* Hover state whilst checked */
 .todo-control:hover input:not([disabled]):checked ~ .todo-control__indicator,
 .todo-control input:checked:focus ~ .todo-control__indicator {
-	background: #00a7ff;
+	background: $todos-blue;
 }
 
 

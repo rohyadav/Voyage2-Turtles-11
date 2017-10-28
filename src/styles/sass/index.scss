@@ -16,16 +16,12 @@ IMPORT PARTIAL SASS FILES
 body {
 	font-size: 1.4rem;
 	font-family: "Varela Round", sans-serif;
-	color: #FFFFFF;
+	color: white;
   padding: 0;
   margin: 0;
-  background-color: &light-grey;
-  background-image: url("../assets/wallpapers/18.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  overflow: hidden;
+  background-color: $light-grey;
+  // min-height: 100vh;
+  // overflow: hidden;
 }
 
 
@@ -35,11 +31,13 @@ body {
 
 .main {
   text-align: center;
-	height: 85vh;
+	height: 100vh;
+	display: flex;
+  flex-direction: column;
 }
 
 .main-top {
-  margin-top: 10vh;
+	padding-top: 10vh;
 }
 
 #App {
@@ -88,7 +86,7 @@ body {
 }
 
 .search-input-box {
-  background: #FFFFFF;
+  background: white;
 	min-width: 300px;
   width: 40vw;
   height: 4vh;
@@ -96,7 +94,7 @@ body {
   box-shadow: none;
   border: none;
 	/* font properties */
-	color: #7E7E7E;
+	color: $default-grey;
 	line-height: 4vh;
 	font-size: .8rem;
 	text-align: center;
@@ -105,7 +103,19 @@ body {
 	background-size: 2vw;
 	background-position: 10px 50%; /* (img) (horizontal, vertical) */
 	background-repeat: no-repeat;
-	padding-left: 40px;
+  padding-left: 40px;
+    &::-webkit-search-cancel-button {
+      position: relative;
+      right: 2vw;
+    }
+    &::placeholder {
+      font-size: .8rem;
+      text-indent: .6vw;
+      text-align: left;
+    }
+    &:focus {
+      outline: none;
+    }
 }
 
 /* =====================================
@@ -114,9 +124,9 @@ body {
 
 #icons { /* Define parent container so you can use percentages in child (grid container) */
   max-width: 60vw;
-  max-height: 66vh;
+  // max-height: 66vh;
   margin: 20px auto 0;
-
+	flex: 1;
 }
 
 .main-grid {
@@ -184,8 +194,8 @@ body {
 .leftFooter, .rightFooter {
   font-size: 0.75rem;
   display: inline-block;
-  bottom: 0.5%;
-  position: fixed;
+  // bottom: 0.5%;
+  // position: fixed;
   text-transform: lowercase;
   color: $light-grey;
 }
@@ -198,4 +208,15 @@ body {
 .leftFooter {
   float: left;
   left: 20px;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+}
+
+.footerIcon {
+	width: 35px;
+  align-self: flex-end;
+  cursor: pointer;
 }

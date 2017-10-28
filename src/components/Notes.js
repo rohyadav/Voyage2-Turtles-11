@@ -10,15 +10,47 @@ import {
   addNotes,
   searchNotes,
 } from '../actions/Notes_Actions';
+import throttle from 'lodash/throttle';
+
 //creating the redux store for entire application
-let store = createStore(notesApp, window.STATE_FROM_SERVER);
+
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState === null) {
+      return undefined;
+    } 
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+export const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+
+  }
+}
+export const persistedState = loadState();
+export let store = createStore(notesApp, persistedState);
 // every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
 
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState()),
-)
+export let subscribe = store.subscribe(throttle(() => {
+  saveState({
+    notes: store.getState().notes
+  });
+}, 1000));
 
+
+export const NotesQty = () => {
+  return (
+    store.getState().notes.length
+  )
+}
 export class Notes extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +80,8 @@ export class Notes extends Component {
   }
   handleNoteSubmit = () => {
     store.dispatch(addNotes(this.state.note));
-    document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
-    console.log("inside Notes.js, the notes qty is " + this.state.notesQuantity)
+    // updates the notes qty button on main Notes icon
+    document.getElementById("notesQty").innerText = store.getState().notes.length;
   }
 
   render() {
