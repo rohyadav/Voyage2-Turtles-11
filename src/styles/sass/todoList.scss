@@ -122,7 +122,8 @@ h1, h2, h3, h4, h5 {
 // text inside input box
 .inputBoxText {
   @include tab-search-text;
-  padding: 20px;
+  padding-bottom: 12px;
+  text-align: center;
 }
 
 
