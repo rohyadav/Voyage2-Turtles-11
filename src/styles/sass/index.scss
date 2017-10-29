@@ -202,21 +202,31 @@ body {
 
 .rightFooter {
   float: right;
-  right: 20px;
+  // right: 20px;
+	padding-right: 20px;
 }
 
 .leftFooter {
   float: left;
-  left: 20px;
+  // left: 20px;
+	padding-left: 20px;
 }
 
 footer {
 	display: flex;
 	flex-direction: column;
+	height: 10vh;
+	p {
+		-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+	}
 }
 
 .footerIcon {
-	width: 35px;
+	// height; 35px;
+	height: 60%;
   align-self: flex-end;
   cursor: pointer;
+	padding-right: 20px;
+	margin-bottom: 5px;
 }
