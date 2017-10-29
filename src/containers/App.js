@@ -355,55 +355,56 @@ class App extends Component {
     return (
       <div className="App" style={bgStyle}>
         <div className="main" id="main">
-          <div className="main-top" >
+          <div className="main-content">
+            <div className="main-top" >
+              <div className="time">
+                <Time />
+              </div>
+              <div className="search-area">
+                <GoogleSearch
+                  types={
+                    [
+                      {
+                        'Web': 'https://www.google.com/search?q=',
+                        'Images': 'https://www.google.com/search?tbm=isch&q=',
+                        'News': 'https://www.google.com/search?tbm=nws&q=',
+                        'Videos': 'https://www.google.com/search?tbm=vid&q=',
+                        'Maps': 'https://www.google.com/maps/preview?q='
+                      }
+                    ]
+                  }
+              />
+              </div>
+            </div> {/* .main-top */}
+            <div id='icons'>
+              <div className="main-grid">
+                <div onClick={this.toogleVisibility.bind(this, "weather")}>
+                  <WeatherButton />
+                </div>
+                <div onClick={this.toogleVisibility.bind(this, "todo")}>
+                  <TodosButton />
+                </div>
+                <div className="item">
+                  <img src="assets/Icons_COLOR-03.png" alt="Apps" />
+                  <p>Apps</p>
+                </div>
+                <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
+                  <BookmarksButton />
+                </div>
 
-            <div className="time">
-              <Time />
-            </div>
-            <div className="search-area">
-              <GoogleSearch
-                types={
-                  [
-                    {
-                      'Web': 'https://www.google.com/search?q=',
-                      'Images': 'https://www.google.com/search?tbm=isch&q=',
-                      'News': 'https://www.google.com/search?tbm=nws&q=',
-                      'Videos': 'https://www.google.com/search?tbm=vid&q=',
-                      'Maps': 'https://www.google.com/maps/preview?q='
-                    }
-                  ]
-                }
-             />
-            </div>
-          </div> {/* .main-top */}
-          <div id='icons'>
-            <div className="main-grid">
-              <div onClick={this.toogleVisibility.bind(this, "weather")}>
-                <WeatherButton />
-              </div>
-              <div onClick={this.toogleVisibility.bind(this, "todo")}>
-                <TodosButton />
-              </div>
-              <div className="item">
-                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
-                <p>Apps</p>
-              </div>
-              <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
-                <BookmarksButton />
-              </div>
+                <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                  <NotesButton />
 
-              <div onClick={this.toogleVisibility.bind(this, "notes")}>
-                <NotesButton />
-
-              </div>
-              <div className="item">
-                <img src="assets/Icons_COLOR-06.png" alt="History" />
-                <p>History</p>
-              </div>
-              <GmailButton />
-              <GithubButton />
-            </div> {/* .main-grid */}
-          </div> {/* #icons */}
+                </div>
+                <div className="item">
+                  <img src="assets/Icons_COLOR-06.png" alt="History" />
+                  <p>History</p>
+                </div>
+                <GmailButton />
+                <GithubButton />
+              </div> {/* .main-grid */}
+            </div> {/* #icons */}
+          </div> {/* .main-content */}
           <footer>
             <img 
               className="footerIcon" 

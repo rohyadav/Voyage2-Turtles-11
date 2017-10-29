@@ -31,9 +31,9 @@ body {
 
 .main {
   text-align: center;
-	height: 100vh;
-	display: flex;
-  flex-direction: column;
+	// height: 100vh;
+	// display: flex;
+  // flex-direction: column; (to apply flex grow to #icons)
 }
 
 .main-top {
@@ -46,6 +46,14 @@ body {
 /* controls pop-out tab */
 #main {
   margin-right: 0px;
+}
+
+.main-content {
+	height: 90vh;
+	display: flex;
+  flex-direction: column;
+	justify-content: center;
+	align-self: center;
 }
 
 /* =====================================
@@ -126,14 +134,14 @@ body {
   max-width: 60vw;
   // max-height: 66vh;
   margin: 20px auto 0;
-	flex: 1;
+	// flex: 1;
 }
 
 .main-grid {
   display: grid;
   grid-column-gap: 10%;
   grid-row-gap: 20%;
-  grid-template-columns: repeat(5, minmax(50px, 1fr)); /* Set to 5 cols instead of auto wrapping */
+  grid-template-columns: repeat(5, minmax(25px, 1fr)); /* Set to 5 cols instead of auto wrapping */
   grid-template-rows: 1fr 1fr;
 	p {
 	  font-size: .8rem;
@@ -157,7 +165,7 @@ body {
 		display: block;
 	  width: 100%;
 		max-width: 110px;
-		min-width: 50px;
+		// min-width: 50px;
 	  // margin-left: auto;
 	  // margin-right: auto;
 		// height: auto;
@@ -223,7 +231,6 @@ footer {
 }
 
 .footerIcon {
-	// height; 35px;
 	height: 60%;
   align-self: flex-end;
   cursor: pointer;
