@@ -97,7 +97,8 @@ body {
   background: white;
 	min-width: 300px;
   width: 40vw;
-  height: 4vh;
+  height: 5vh;
+	min-height: 20px;
   border-radius: 2vw;
   box-shadow: none;
   border: none;
@@ -131,7 +132,7 @@ body {
 ======================================== */
 
 #icons { /* Define parent container so you can use percentages in child (grid container) */
-  max-width: 60vw;
+  width: 62vw;
   // max-height: 66vh;
   margin: 20px auto 0;
 	// flex: 1;
