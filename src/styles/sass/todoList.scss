@@ -116,7 +116,6 @@ h1, h2, h3, h4, h5 {
 /* input box where I write new Todos */
 .input-box {
   @include search-box;
-  
 }
 
 // text inside input box
