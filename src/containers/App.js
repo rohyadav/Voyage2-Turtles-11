@@ -412,7 +412,6 @@ class App extends Component {
               alt="Turtles Cohort" 
               onClick={this.backgroundChange} />
             <div className="footerText">
-              <p className="rightFooter">Project by Chingu Turtles Team 11</p>
               <p className="leftFooter">Photos by Natasha Sadikin</p>
             </div>
           </footer>

@@ -97,7 +97,7 @@ body {
   background: white;
 	min-width: 300px;
   width: 40vw;
-  height: 5vh;
+  height: 4.5vh;
 	min-height: 20px;
   border-radius: 2vw;
   box-shadow: none;
@@ -105,7 +105,8 @@ body {
 	/* font properties */
 	color: $default-grey;
 	line-height: 4vh;
-	font-size: .8rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
 	text-align: center;
 	/* Google icon */
 	background-image: url("../assets/Icons_google logo-13.png");
@@ -132,8 +133,7 @@ body {
 ======================================== */
 
 #icons { /* Define parent container so you can use percentages in child (grid container) */
-  width: 62vw;
-  // max-height: 66vh;
+  width: 60vw;
   margin: 20px auto 0;
 	// flex: 1;
 }
@@ -162,11 +162,12 @@ body {
   text-align: center;
   margin: auto 0;
   width: 100%;
+  margin-bottom: 25px;
 	img {
 	  border-radius: 50%;
 		display: block;
 	  width: 100%;
-    max-width: 110px;
+    max-width: 100px;
     margin: auto;
   }
 }
@@ -184,8 +185,6 @@ body {
 .leftFooter, .rightFooter {
   font-size: 0.75rem;
   display: inline-block;
-  // bottom: 0.5%;
-  // position: fixed;
   text-transform: lowercase;
   color: $light-grey;
 }
@@ -204,8 +203,8 @@ body {
 
 footer {
 	display: flex;
-	flex-direction: column;
-	height: 10vh;
+  flex-direction: column;
+  height: 10vh;
 	p {
 		-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
@@ -213,9 +212,8 @@ footer {
 }
 
 .footerIcon {
-	height: 60%;
+	height: 50px;
   align-self: flex-end;
   cursor: pointer;
 	padding-right: 20px;
-	margin-bottom: 5px;
 }
