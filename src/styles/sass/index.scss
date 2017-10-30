@@ -161,35 +161,16 @@ body {
 .item {
   text-align: center;
   margin: auto 0;
+  width: 100%;
 	img {
 	  border-radius: 50%;
 		display: block;
 	  width: 100%;
-		max-width: 110px;
-		// min-width: 50px;
-	  // margin-left: auto;
-	  // margin-right: auto;
-		// height: auto;
-	}
+    max-width: 110px;
+    margin: auto;
+  }
 }
 
-
-
-/* .item {
-  color: #fff;
-  text-shadow: 0 2px 0 rgba(110,133,156,0.18);
-  padding: 0.85em;
-  background: #6e859c;
-  border: solid 1px rgba(110,133,156,0.15);
-  border-radius: 0.3em;
-} */
-
-/* img {
-  display: block;
-  width: 100%;
-  max-width: 110px;
-  min-width: 100px;
-} */
 
 /* =================================
   Media Queries
