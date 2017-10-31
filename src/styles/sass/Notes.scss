@@ -95,7 +95,7 @@ NOTES
 .existingNotes {
   right: 0px;
   width: 284px;
-  height: 75px;
+  height: 100px;
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 8px;
@@ -103,7 +103,7 @@ NOTES
   box-shadow: none;
   color: $default-grey;
   padding-left: 10px;
-  padding-top: 20px;
+  padding-top: 24px;
   font-family: $tab-font;
   font-size: 12px;
   background-color: white;
@@ -197,8 +197,8 @@ BUTTONS
   z-index: 3;
   float: right;
   background-color: white;
-  margin-bottom: -30px;
-  margin-top: 12px;
+  margin-bottom: -35px;
+  margin-top: 14px;
   position: relative;
 }
 .deleteNotesButton {
