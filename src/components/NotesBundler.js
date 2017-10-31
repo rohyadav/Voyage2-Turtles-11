@@ -8,26 +8,30 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
     if (pinned) {
         pinStyle = { backgroundImage: "url('../assets/pin – 1.png')"}
     } else {
-        pinStyle = { backgroundImage: "url('../assets/pin_transparent.png')" }
+        pinStyle = { backgroundImage: "url('../assets/pin.png')" }
     }
     if (completed) {
         archiveStyle = { backgroundImage: "url('../assets/archive – 1.png')"}
     } else {
-        archiveStyle = { backgroundImage: "url('../assets/archive_transparent.png')" }
+        archiveStyle = { backgroundImage: "url('../assets/archive.png')" }
     }
     return (
         <div id={id} name={"note_" + id}>
-            <div  className="buttonBox">
+            <div>
                 {/* this is the delete button */}
-                {<button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}></button>}
+                {<button 
+                    className='deleteNotesButton' 
+                    onClick={onDeleteClick}>
+                </button>}
                 {/* this is the archive button */}
                 {<button 
-                    className='archiveNotesButton existingNotesButtonBox' 
+                    className='archiveNotesButton' 
                     style={archiveStyle} 
-                    onClick={onArchiveClick}></button>}
+                    onClick={onArchiveClick}>
+                </button>}
                 {/* this is the pin button */}
                 {<button 
-                    className='pinNotesButton existingNotesButtonBox' 
+                    className='pinNotesButton' 
                     style={pinStyle} 
                     onClick={onPinClick}>
                 </button>}

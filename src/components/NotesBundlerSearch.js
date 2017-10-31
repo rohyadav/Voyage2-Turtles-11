@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text }) => (
     <div>
-        <div className="buttonBox">
+        <div className="existingNotesButtonBox">
             {/* this is the delete button */}
-            {<button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}></button>}
+            {<button className='deleteNotesButton' onClick={onDeleteClick}></button>}
             {/* this is the archive button */}
-            {<button className='archiveNotesButton existingNotesButtonBox' onClick={onArchiveClick}></button>}
+            {<button className='archiveNotesButton' onClick={onArchiveClick}></button>}
             {/* this is the pin button */}
-            {<button className='pinNotesButton existingNotesButtonBox' onClick={onPinClick}></button>}
+            {<button className='pinNotesButton' onClick={onPinClick}></button>}
         </div>
         <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick} />
     </div>
