@@ -210,7 +210,7 @@ BUTTONS
   background-image: url('../assets/trash.png');
   right: 30px;
 
-  &:hover {
+  &:focus {
     background-image: url('../assets/trash – 1.png');
   }
 }
@@ -219,7 +219,7 @@ BUTTONS
   background-image: url('../assets/archive.png');
   right: 60px;
 
-  &:hover {
+  &:focus {
     background-image: url('../assets/archive – 1.png');
   }
 
@@ -229,7 +229,7 @@ BUTTONS
   background-image: url('../assets/pin_transparent.png');
   right:90px;
 
-  &:hover {
+  &:focus {
     background-image: url('../assets/pin – 1.png');
   }
 }
