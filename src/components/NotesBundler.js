@@ -17,22 +17,22 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
     }
     return (
         <div id={id} name={"note_" + id}>
-            <div  className="buttonBox">
+            <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/>
+            <div>
                 {/* this is the delete button */}
-                {<button className='deleteNotesButton existingNotesButtonBox' onClick={onDeleteClick}></button>}
+                {<button className='deleteNotesButton' onClick={onDeleteClick}></button>}
                 {/* this is the archive button */}
                 {<button 
-                    className='archiveNotesButton existingNotesButtonBox' 
+                    className='archiveNotesButton' 
                     style={archiveStyle} 
                     onClick={onArchiveClick}></button>}
                 {/* this is the pin button */}
                 {<button 
-                    className='pinNotesButton existingNotesButtonBox' 
+                    className='pinNotesButton' 
                     style={pinStyle} 
                     onClick={onPinClick}>
                 </button>}
             </div>
-            <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/>
         </div>
     )
 }
