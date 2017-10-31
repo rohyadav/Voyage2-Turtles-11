@@ -83,10 +83,11 @@ body {
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   width: 38vw;
   margin: 0 auto .6rem;
-  padding-left: 5%;
+  padding-left: 10%;
   padding-right: 15%;
 	display: flex;
-	justify-content: space-between;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .search-form {
@@ -102,8 +103,9 @@ body {
   border-radius: 2vw;
   box-shadow: none;
   border: none;
+  margin: auto;
 	/* font properties */
-	color: $default-grey;
+	color: $light-grey;
 	line-height: 4vh;
   font-size: 1rem;
   letter-spacing: 2px;
@@ -133,7 +135,7 @@ body {
 ======================================== */
 
 #icons { /* Define parent container so you can use percentages in child (grid container) */
-  width: 60vw;
+  width: 43vw;
   margin: 20px auto 0;
 	// flex: 1;
 }
@@ -142,7 +144,7 @@ body {
   display: grid;
   grid-column-gap: 10%;
   grid-row-gap: 20%;
-  grid-template-columns: repeat(5, minmax(25px, 1fr)); /* Set to 5 cols instead of auto wrapping */
+  grid-template-columns: repeat(4, minmax(25px, 1fr)); /* Set to 5 cols instead of auto wrapping */
   grid-template-rows: 1fr 1fr;
 	p {
 	  font-size: .8rem;
@@ -167,9 +169,14 @@ body {
 	  border-radius: 50%;
 		display: block;
 	  width: 100%;
-    max-width: 100px;
+    max-width: 90px;
     margin: auto;
+    @include gridIcons;
   }
+}
+
+.blur {
+  filter: blur(5px);
 }
 
 
@@ -189,12 +196,6 @@ body {
   color: $light-grey;
 }
 
-.rightFooter {
-  float: right;
-  // right: 20px;
-	padding-right: 20px;
-}
-
 .leftFooter {
   float: left;
   // left: 20px;
@@ -204,7 +205,7 @@ body {
 footer {
 	display: flex;
   flex-direction: column;
-  height: 10vh;
+  height: 1vh;
 	p {
 		-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
@@ -212,7 +213,7 @@ footer {
 }
 
 .footerIcon {
-	height: 50px;
+	height: 40px;
   align-self: flex-end;
   cursor: pointer;
 	padding-right: 20px;
