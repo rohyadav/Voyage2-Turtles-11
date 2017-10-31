@@ -105,7 +105,7 @@ body {
   border: none;
   margin: auto;
 	/* font properties */
-	color: $default-grey;
+	color: $light-grey;
 	line-height: 4vh;
   font-size: 1rem;
   letter-spacing: 2px;
@@ -173,6 +173,10 @@ body {
     margin: auto;
     @include gridIcons;
   }
+}
+
+.blur {
+  filter: blur(5px);
 }
 
 

@@ -31,7 +31,7 @@ HEADER
 }
 
 .Notes-Body {
-  @include tab-body;
+  @include tab-body($bkg-grey);
 }
 .Notes-Title-Text {
   @include tab-title
@@ -43,14 +43,12 @@ NOTES
 ==========================
 */
 .Notes {
-  right: 0px;
-  width: 260px;
-  height: 100px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 40px;
-  border-radius: 8px;
-  // box-shadow: 1px 1.2px 5px 0 $light-grey;
+  width: 284px;
+  height: 200px;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   box-shadow: none;
   border: 1px solid #e9e9e9;
   color: $default-grey;
@@ -58,6 +56,7 @@ NOTES
   font-family: $tab-font;
   font-size: 12px;
   position: relative;
+  z-index: 1;
 }
 
 .NoteTitleTextBox {
@@ -66,18 +65,20 @@ NOTES
   margin-top: 25px;
   resize: none;
 }
-
+// filter text
 .Description {
   font-size: 12px;
   text-align: center;
   color: $notes-red;
-  padding-top: 10px;
-  padding-left: 20px;  
+  padding-top: 12px;
+  padding-left: 40px;  
   text-decoration: underline;
+  font-weight: 700;
 
   &:enabled {
     color:$default-grey;
     text-decoration: none;
+    font-weight: 300;
   }
   &:hover {
     color: $notes-red; 
@@ -91,9 +92,9 @@ NOTES
 
 .buttonBox, .existingNotes {
   right: 0px;
-  width: 260px;
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 284px;
+  margin-left: 8px;
+  margin-right: 8px;
   border: 1px solid #e9e9e9;
   box-shadow: none;
   color: $default-grey;
@@ -102,33 +103,29 @@ NOTES
 .buttonBox {
   height: 25px;
   margin-top: 20px;
-  border-radius: 5px;
   border-bottom: none;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  background-color: white;
 }
 .existingNotes {
   height: 50px;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   border-top: none;
   padding-left: 10px;
   font-family: $tab-font;
   font-size: 12px;
+  background-color: white;
 }
 .existingNotesButtonBox {
   float: right;
   margin-right: 10px;
+  background-color: white;
 }
 
 .filterBox {
   align-content: center;
-  margin-left: 10%;
-  margin-right: 10%;
+  text-align: center;
+  margin: auto;
+  padding-left: 10px;
+  padding-top: 12px;
 }
 /*
 ==========================
@@ -141,6 +138,23 @@ SEARCH
 
 .SearchBoxText {
   @include tab-search-text;
+}
+// search icon in search bar
+.notesButton {
+  background-image: img("../assets/search.png");
+  width: 25px;
+  max-width: 25px;
+  min-width: 25px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  float: right;
+  margin-right: 16px;
+  margin-top: -37px;
+  z-index: 2;
+  &:hover {
+    background-image: img("../assets/search – 1.png");
+  }
 }
 
 /*
@@ -157,33 +171,18 @@ BUTTONS
   }
 }
 
-.notesButton {
-  background-image: img("../assets/search.png");
-  width: 25px;
-  max-width: 25px;
-  min-width: 25px;
-  border-radius: 50%;
-  border: none;
-  position: relative;
-  margin-left: 80%;
-  margin-bottom: -19%;
-  z-index: 2;
-  &:hover {
-    background-image: img("../assets/search – 1.png");
-  }
-}
+
 
 .addNotesButton {
   width: 20px;
   height: 20px;
   z-index: 2;
-  margin-top: 20px;
-  margin-left: 83%;
-  margin-bottom: -22%;
+  float: right;
+  margin-right: 16px;
+  margin-top: -204px;
   position: relative;
 	background-color:$notes-red;
 	border-radius:50%;
-	display:block;
 	cursor:pointer;
 	color:#ffffff;
   font-size:15px;

@@ -34,7 +34,7 @@ HEADER
 }
 
 .Bookmarks-Body {
-  @include tab-body;
+  @include tab-body($light-grey);
 }
 
 .Bookmarks-Title-Text {

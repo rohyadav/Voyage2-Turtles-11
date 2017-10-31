@@ -96,24 +96,22 @@ export class Notes extends Component {
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div>
-              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search" />
+              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
             </div>
             <br />
             <NotesVisibleSearch />
 
             {/* NEW NOTE */}
             <div>
-              <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>
               <textarea className='Notes' onChange={this.setNote} required placeholder='New Note' />
+              <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>
             </div>
 
             {/* NOTES LISTED OUT*/}
             <span className="filterBox">
               <NotesFilterLink filter="SHOW_ACTIVE">Active</NotesFilterLink>
-              {'  |  '}
               <NotesFilterLink filter="SHOW_PINNED">Pinned</NotesFilterLink>
-              {'  |  '}
               <NotesFilterLink filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>

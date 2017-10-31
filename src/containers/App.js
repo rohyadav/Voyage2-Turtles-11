@@ -28,7 +28,7 @@ import bg14 from '../assets/wallpapers/14.JPG';
 import bg15 from '../assets/wallpapers/15.jpg';
 import bg16 from '../assets/wallpapers/16.JPG';
 import bg17 from '../assets/wallpapers/17.jpg';
-import bg18 from '../assets/wallpapers/18.jpg';
+// import bg18 from '../assets/wallpapers/18.jpg';
 /* =========================
  BUTTONS
  =========================== */
@@ -409,7 +409,7 @@ class App extends Component {
   backgroundChange = () => {
     let bgImage = this.state.image;
     const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, 
-    bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17, bg18];
+    bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
     bgImage = bgArray[randomNumber];
     this.setState({image: bgImage});
