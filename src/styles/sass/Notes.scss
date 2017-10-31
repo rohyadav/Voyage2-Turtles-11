@@ -130,6 +130,11 @@ SEARCH
 .SearchBoxText {
   @include tab-search-text;
 }
+
+.searchBackground {
+  background: $notes-red-bkg;
+  // overflow: auto;
+}
 // search icon in search bar
 .notesButton {
   background-image: img("../assets/search.png");
@@ -141,7 +146,7 @@ SEARCH
   position: relative;
   float: right;
   margin-right: 16px;
-  margin-top: -37px;
+  margin-top: -49px;
   z-index: 2;
   &:hover {
     background-image: img("../assets/search – 1.png");
@@ -221,7 +226,7 @@ BUTTONS
 }
 
 .pinNotesButton {
-  background-image: url('../assets/pin_transparent.png');
+  background-image: url('../assets/pin.png');
   right:62px;
 
   &:focus {

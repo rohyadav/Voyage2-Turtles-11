@@ -8,12 +8,12 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
     if (pinned) {
         pinStyle = { backgroundImage: "url('../assets/pin – 1.png')"}
     } else {
-        pinStyle = { backgroundImage: "url('../assets/pin_transparent.png')" }
+        pinStyle = { backgroundImage: "url('../assets/pin.png')" }
     }
     if (completed) {
         archiveStyle = { backgroundImage: "url('../assets/archive – 1.png')"}
     } else {
-        archiveStyle = { backgroundImage: "url('../assets/archive_transparent.png')" }
+        archiveStyle = { backgroundImage: "url('../assets/archive.png')" }
     }
     return (
         <div id={id} name={"note_" + id}>
