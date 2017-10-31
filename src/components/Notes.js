@@ -104,8 +104,8 @@ export class Notes extends Component {
 
             {/* NEW NOTE */}
             <div>
-              <textarea className='Notes' onChange={this.setNote} required placeholder='New Note' />
               <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>
+              <textarea className='Notes' onChange={this.setNote} required placeholder='New Note' />
             </div>
 
             {/* NOTES LISTED OUT*/}

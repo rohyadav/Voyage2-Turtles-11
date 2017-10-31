@@ -196,12 +196,6 @@ body {
   color: $light-grey;
 }
 
-.rightFooter {
-  float: right;
-  // right: 20px;
-	padding-right: 20px;
-}
-
 .leftFooter {
   float: left;
   // left: 20px;
@@ -211,7 +205,7 @@ body {
 footer {
 	display: flex;
   flex-direction: column;
-  height: 10vh;
+  height: 1vh;
 	p {
 		-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
@@ -219,7 +213,7 @@ footer {
 }
 
 .footerIcon {
-	height: 50px;
+	height: 40px;
   align-self: flex-end;
   cursor: pointer;
 	padding-right: 20px;
