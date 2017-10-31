@@ -8,7 +8,9 @@ import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
 import rndomImgIcon from '../assets/turtle_green.png';
-
+/* =========================
+ WALLPAPER LINKS
+ =========================== */
 import bg1 from '../assets/wallpapers/01.jpg';
 import bg2 from '../assets/wallpapers/02.JPG';
 import bg3 from '../assets/wallpapers/03.JPG';
@@ -27,7 +29,9 @@ import bg15 from '../assets/wallpapers/15.jpg';
 import bg16 from '../assets/wallpapers/16.JPG';
 import bg17 from '../assets/wallpapers/17.jpg';
 import bg18 from '../assets/wallpapers/18.jpg';
-
+/* =========================
+ BUTTONS
+ =========================== */
 class NotesButton extends React.Component {
   constructor(props) {
     super(props);
@@ -268,6 +272,9 @@ class HistoryButton extends React.Component {
   }
 }
 
+/* =========================
+ CONTROLS TAB OPENING AND CLOSING
+ =========================== */
 function tab_open() {
   document.getElementById("main").style.marginRight = "300px";
 }
@@ -276,6 +283,9 @@ function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
 
+/* =========================
+ MAIN TIME FORMATTING
+ =========================== */
 const Time = () => {
   let currentDate = new Date();
   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
@@ -288,6 +298,9 @@ const Time = () => {
   )
 }
 
+/* =========================
+ MAIN APP COMPONENT - RENDERS ENTIRE PAGE
+ =========================== */
 class App extends Component {
   constructor(props) {
     super(props);

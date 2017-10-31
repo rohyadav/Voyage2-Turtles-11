@@ -149,11 +149,11 @@ BUTTONS
 ==========================
 */
 .notesExitButton {
-  @include tab-exit-button($notes-red);
+  @include tab-exit-button(white);
 
   &:hover {
-    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
-    background-color:#f6f6f6;
+    // background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
   }
 }
 
@@ -223,9 +223,6 @@ BUTTONS
     background-image: url('../assets/archive – 1.png');
   }
 
-  &:focus {
-    background-image: url('../assets/archive – 1.png');
-  }
 }
 
 .pinNotesButton {
@@ -233,9 +230,6 @@ BUTTONS
   right:90px;
 
   &:hover {
-    background-image: url('../assets/pin – 1.png');
-  }
-  &:visited {
     background-image: url('../assets/pin – 1.png');
   }
 }
@@ -250,7 +244,7 @@ BUTTONS
   margin-top: -120%;
   background-color: white;
   border-radius: 50%;
-  color: $default-grey;
+  color: $notes-red;
   font-size: 15px;
   font-weight: 700;
   text-align: center;

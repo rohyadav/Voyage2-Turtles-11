@@ -22,13 +22,13 @@ $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
 @mixin tab-title {
     width: 260px;
     height: 40px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     letter-spacing: 1.6px;
     text-align: left;
     color: #ffffff;
     padding-left: 20px;
-    padding-top: 80px;
+
 }
 
 @mixin main-time {
@@ -59,12 +59,12 @@ COMPONENTS
     right: 0px;
     width: 300px;
     position: fixed;
-    height: 140px
+    height: 45px
 }
 
 @mixin tab-body {
-    background: white;
-    top: 140px;
+    background: rgba(255, 255, 255, 1);
+    top: 45px;
     right: 0px;
     width: 300px;
     position: fixed;
@@ -92,21 +92,21 @@ COMPONENTS
 
 @mixin tab-exit-button($color) {
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    top: 20px;
+    width: 25px;
+    height: 25px;
+    top: 10px;
     right: 20px;
     color: $color;
     position: fixed;
-    background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
-    border-radius:50%;
+    // background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
     display:inline-block;
     font-size:18px;
     font-weight: 700;
     font-style: bold;
     text-align: center;
     border: none;
-    background-color:#ffffff;
+    background-color: none;
+    background:rgba(255, 255, 255, 0);
 }
 
 /*
@@ -116,8 +116,9 @@ ICONS
 */
 @mixin gridIcons {
     transition: transform ease-out 0.1s, background 0.3s;
-    background: rgba(255, 255, 255, 0.1);
-    border: 3px solid white;
+    // background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, .1);
+    border: 2.5px solid white;
     box-sizing: border-box;
     z-index: 1;
     &:hover {
