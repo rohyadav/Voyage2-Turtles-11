@@ -57,7 +57,7 @@ export class Notes extends Component {
     this.state = {
       searchTerm: '',
       note: '',
-      searchButton: '../assets/search_transparent.png',
+      searchButton: '../assets/search.png',
     }
   }
 
@@ -68,11 +68,13 @@ export class Notes extends Component {
   handleNoteSearch = () => {
     if (this.state.searchTerm === '') {
       return null;
+    } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
+      this.setState({ searchButton: "../assets/search.png" });
+      store.dispatch(searchNotes());
     } else {
       store.dispatch(searchNotes(this.state.searchTerm));
-      (this.state.searchButton === '../assets/search_transparent.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search_transparent.png'" });
+      (this.state.searchButton === '../assets/search.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search.png" });
     }
-
   }
   // HANDLES ADDING NEW NOTES
   setNote = (event) => {
@@ -95,12 +97,13 @@ export class Notes extends Component {
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <div>
-              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+            <div class="searchBackground">
               <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search" />
+              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <NotesVisibleSearch />
             </div>
             <br />
-            <NotesVisibleSearch />
+            
 
             {/* NEW NOTE */}
             <div>
@@ -111,9 +114,7 @@ export class Notes extends Component {
             {/* NOTES LISTED OUT*/}
             <span className="filterBox">
               <NotesFilterLink filter="SHOW_ACTIVE">Active</NotesFilterLink>
-              {'  |  '}
               <NotesFilterLink filter="SHOW_PINNED">Pinned</NotesFilterLink>
-              {'  |  '}
               <NotesFilterLink filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>

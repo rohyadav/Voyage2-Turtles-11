@@ -208,7 +208,7 @@ export class TodoList extends Component {
                             </div>
                             <div className="flex1 hover_img" onClick={this.doneElmDelete.bind(this, i)}>
                                 <span>
-                                    <img className="imgDelete" src={require('../assets/trash_full.png')} alt="delete one element" />
+                                    <img className="imgDelete" src={require('../assets/trash.png')} alt="delete one element" />
                                 </span>
                             </div>
                         </div>

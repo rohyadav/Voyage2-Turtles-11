@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5 {
 
 
 .exitButton {
-  @include tab-exit-button($todos-blue);
+  @include tab-exit-button(white);
 }
 
 
@@ -110,13 +110,13 @@ h1, h2, h3, h4, h5 {
     height: 100%;
     color: #959595;
     font-size: 12px;
+    @include tab-body(white);
 }
 
 
 /* input box where I write new Todos */
 .input-box {
   @include search-box;
-  
 }
 
 // text inside input box
