@@ -180,7 +180,6 @@ export class TodoList extends Component {
             displayArr = (
                 <div >
                     <br />
-                    <br />
                     {this.state.todoArr.map( (elm, i) => 
                         <div className="flex">
                             <div className="flex12" onClick={this.todoElmMoveDoneTab.bind(this, i)}>
@@ -198,9 +197,7 @@ export class TodoList extends Component {
         } else {
             displayArr = (
                 <div>
-                    {/* <a className="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
                     <br />
-                    <br /> */}
                     {this.state.doneArr.map( (elm, i) => 
                         <div className="flex">
                             <div className="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
@@ -214,8 +211,6 @@ export class TodoList extends Component {
                         </div>
                     )} 
                     <a className="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
-                    <br />
-                    <br />
                 </div>
             )
         }
