@@ -221,21 +221,21 @@ BUTTONS
 }
 
 .archiveNotesButton {
-  background-image: url('../assets/archive.png');
+  background-image: url('/assets/archive.png');
   right: 37px;
 
   &:focus {
-    background-image: url('../assets/archive – 1.png');
+    background-image: url('/assets/archive – 1.png');
   }
 
 }
 
 .pinNotesButton {
-  background-image: url('../assets/pin.png');
+  background-image: url('/assets/pin.png');
   right:62px;
 
   &:focus {
-    background-image: url('../assets/pin – 1.png');
+    background-image: url('/assets/pin – 1.png');
   }
 }
 

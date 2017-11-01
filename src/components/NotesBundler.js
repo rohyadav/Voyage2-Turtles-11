@@ -6,14 +6,14 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
     let pinStyle;
     let archiveStyle;
     if (pinned) {
-        pinStyle = { backgroundImage: "url('../assets/pin – 1.png')"}
+        pinStyle = { backgroundImage: "url('./assets/pin – 1.png')"}
     } else {
-        pinStyle = { backgroundImage: "url('../assets/pin.png')" }
+        pinStyle = { backgroundImage: "url('./assets/pin.png')" }
     }
     if (completed) {
-        archiveStyle = { backgroundImage: "url('../assets/archive – 1.png')"}
+        archiveStyle = { backgroundImage: "url('./assets/archive – 1.png')"}
     } else {
-        archiveStyle = { backgroundImage: "url('../assets/archive.png')" }
+        archiveStyle = { backgroundImage: "url('./assets/archive.png')" }
     }
     return (
         <div id={id} name={"note_" + id}>
@@ -37,7 +37,7 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
                 </button>}
             </div>
             {/* <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/> */}
-            <div contentEditable="true" className="existingNotes" onMouseLeave={onUpdateClick}>{text}</div>
+            <div contentEditable="true" className="existingNotes" onFocusOut={onUpdateClick}>{text}</div>
         </div>
     )
 }

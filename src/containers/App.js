@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
-import Bookmarks from '../components/Bookmarks';
+import { Bookmarks } from '../components/Bookmarks';
 import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
