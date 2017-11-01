@@ -6,7 +6,11 @@ IMPORT PARTIAL SASS FILES
 */
 @import "variables"; //standard variables throughout project
 
-
+/*
+==========================
+GENERAL
+==========================
+*/
 body {
     font-family: $tab-font;
 }
@@ -14,144 +18,122 @@ body {
 h1, h2, h3, h4, h5 {
   color: $default-grey;
 }
-
+/*
+==========================
+HEADER & BODY
+==========================
+*/
 /*  main blue header */ 
 .Todos-Header {
   @include tab-header($todos-blue);
 }
 
-
 .exitButton {
   @include tab-exit-button(white);
 }
-
 
 /* main title Todos in the header */
 .Todos-Title-Text {
   @include tab-title
 }
-
+/* whole body under the main heading */
+.Todos-Body {
+    color: $default-grey;
+    font-size: 12px;
+    @include tab-body($bkg-grey);
+}
+/*
+==========================
+NEW TODO COMPONENT
+==========================
+*/
+.Todos-Background {
+    @include searchBackground($todos-blue-bkg)
+}
+/* input box where I write new Todos */
+.input-box {
+    @include search-box;
+}
+  
+// text inside input box
+.inputBoxText {
+    @include tab-search-text;
+    padding-bottom: 12px;
+    text-align: center;
+}
+  
+/*
+==========================
+TODO FILTERS
+==========================
+*/
 // this is for the hover effect over Todo and Done links to change tab
 .TodoButtonHover:hover {
-    color: #4F7B9C;
+    color: $todos-blue;
 }
 
 .DoneButtonHover:hover {
-    color: #4F7B9C;
+    color: $todos-blue;
+}
+
+// properties here will appply to all listed classes
+.Done-heading, .Done-heading-selected, .Todo-heading, .Todo-heading-selected {
+    font-size: 14px;
+    letter-spacing: 2.7px;
+    text-align: center;
+    flex: 1;
+    padding-top: 8px;
 }
 
 .Done-heading {
-  font-family: $tab-font;
-  font-size: 16px;
-  letter-spacing: 2.7px;
-  text-align: center;
-  color: $todos-blue;
-  color: var(--azure);
-  flex: 1;
+    color: $default-grey;
 }
 
 .Done-heading-selected {
-  font-family: $tab-font;
-  font-size: 16px;
-  letter-spacing: 2.7px;
-  text-align: center;
-  color:$todos-blue;
-  flex: 1;
+    color:$todos-blue;
+    font-weight: 700;
 }
 
 /* Todo and Done heading under the input box */
 /* Will toggle color if selected or not */
 .Todo-heading {
-    font-family: $tab-font;
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
-    color: $todos-blue;
-    color: var(--azure);
-    flex: 1;
+    color: $default-grey;
 }
 
 .Todo-heading-selected {
-    font-family: $tab-font;
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
     color:$todos-blue;
-    flex: 1;
+    font-weight: 700;
 }
 
-.Done-heading {
-    font-family: $tab-font;
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
-    color: $todos-blue;
-    color: var(--azure);
-    flex: 1;
-}
-
-.Done-heading-selected {
-    font-family: $tab-font;
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
-    color:$todos-blue;
-    flex: 1;
-}
-
-
-/* whole body under the main heading */
-.Todos-Body {
-    background: white;
-    top: 140px;
-    right: 0px;
-    width: 300px;
-    position: fixed;
-    height: 100%;
-    color: #959595;
-    font-size: 12px;
-    @include tab-body(white);
-}
-
-
-/* input box where I write new Todos */
-.input-box {
-  @include search-box;
-}
-
-// text inside input box
-.inputBoxText {
-  @include tab-search-text;
-  padding-bottom: 12px;
-  text-align: center;
-}
-
-
-
-
-/* this is the link to clear to do list in Done tab */
-.aClearTodoList {
-    color: $todos-blue;
-    margin-left: 10px;
-}
-
-.aClearTodoList:hover {
-    color: #4F7B9C;
-    margin-left: 10px;
-}
-
-
+/*
+==========================
+TODO & DONE LIST
+==========================
+*/
 /* list with Todo/Done items */
 .Todo-list {
     text-align: left;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 8px;
+    margin-right: 8px;
+    background: white;
+}
+/* this is the link to clear to do list in Done tab */
+.aClearTodoList {
+    color: $default-grey;
+    margin-left: 10px;
+    margin-top: 40px;
+    float: right;
 }
 
+.aClearTodoList:hover {
+    color: $todos-blue;
+    margin-left: 10px;
+}
 
 /* flexboxes */
 .flex {
     display: flex;
+    padding-bottom: 10px;
 }
 
 .flex1 {
@@ -166,21 +148,22 @@ h1, h2, h3, h4, h5 {
     flex: 12;
 }
 
+/*
+==========================
+BUTTONS
+==========================
+*/
 /* set the size of the delete image */
 .imgDelete {
-    width: 25px;
-    height: 25px;
+    width: 17px;
+    height: 17px;
 }
 
 .imgMoveUp {
     width: 30px;
     height: 30px;
-}
-
-.test-trash {
-  margin-right: 20px;
-  background-color: red;
-  border: solid;
+    vertical-align: center;
+    padding-bottom: 10px;
 }
 
 
@@ -188,23 +171,22 @@ h1, h2, h3, h4, h5 {
 /* https://stackoverflow.com/questions/10769016/display-image-on-text-link-hover-css-only */
 .hover_img  { 
     position: relative; 
-    padding-right: 10px;
+    padding-right: 6px;
 }
 .hover_img  span { 
     position: absolute; 
     display: none; 
     z-index: 99; 
-    padding-right: 10px;
+    padding-right: 6px;
 }
 .hover_img:hover span { 
     display: block; 
-    padding-right: 10px;
+    padding-right: 6px;
 }
 
 .blue {
-    color: $todos-blue;
+    color: $default-grey;
 }
-
 
 /* 
                     *** checkbox styling Todo tab***
@@ -242,7 +224,8 @@ h1, h2, h3, h4, h5 {
 	width: 20px;
 	height: 20px;
 	opacity: 0.2;
-	background: $todos-blue;
+	background: white;
+    border: 1px solid $todos-blue;
 }
 
 
@@ -250,18 +233,21 @@ h1, h2, h3, h4, h5 {
 .todo-control:hover input ~ .todo-control__indicator,
 .todo-control input:focus ~ .todo-control__indicator {
 	background: $todos-blue;
+    border: 1px solid $todos-blue;
 	opacity: 1;
 }
 
 /* Checked state */
 .todo-control input:checked ~ .todo-control__indicator {
-	background: $todos-blue;
+    background: white;
+    border: 1px solid $todos-blue;
 }
 
 /* Hover state whilst checked */
 .todo-control:hover input:not([disabled]):checked ~ .todo-control__indicator,
 .todo-control input:checked:focus ~ .todo-control__indicator {
 	background: $todos-blue;
+    border: 1px solid $todos-blue;
 }
 
 

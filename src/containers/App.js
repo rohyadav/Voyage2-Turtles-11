@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
 import GoogleSearch from '../components/GoogleSearch';
-import { TodoList } from '../components/todoList.js';
+import { TodoList, TodoQty } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
 import rndomImgIcon from '../assets/turtle_green.png';
@@ -115,6 +115,7 @@ class TodosButton extends React.Component {
         <img src={this.state.iconLink} alt="Todos button" />
       </a>
       <p>Todos</p>
+      <button id="todoQty" className="countButton">0</button>
     </div>);
   }
 }

@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5 {
 }
 /*
 ==========================
-HEADER
+HEADER & BODY
 ==========================
 */
 .Notes-Header {
@@ -39,7 +39,7 @@ HEADER
 
 /*
 ==========================
-NOTES
+NEW NOTES
 ==========================
 */
 .Notes {
@@ -51,30 +51,29 @@ NOTES
   box-shadow: none;
   border: 1px solid #e9e9e9;
   color: $default-grey;
+  background: white;
   padding: 10px;
   padding-top: 24px;
   font-family: $tab-font;
   font-size: 12px;
   position: relative;
   z-index: 1;
+  white-space: pre-wrap;
 }
-
-.NoteTitleTextBox {
-  height: 60px;
-  border-radius: 10px;
-  margin-top: 25px;
-  resize: none;
-}
+/*
+==========================
+VISIBILITY FILTER
+==========================
+*/
 // filter text
 .Description {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   color: $notes-red;
   padding-top: 12px;
-  padding-left: 40px;  
-  text-decoration: underline;
+  padding-left: 25px;  
   font-weight: 700;
-  letter-spacing: 0.75px;
+  letter-spacing: 1px; 
 
   &:enabled {
     color:$default-grey;
@@ -85,16 +84,24 @@ NOTES
     color: $notes-red; 
   }
 }
-
-.searchNotes {
-  height: 60px;
-  padding: 20px;
+.filterBox {
+  align-content: center;
+  text-align: center;
+  margin: auto;
+  padding-left: 26px;
+  padding-top: 12px;
 }
 
-.existingNotes {
+/*
+==========================
+EXISTING NOTES
+==========================
+*/
+.existingNotes  {
   right: 0px;
   width: 284px;
-  height: 100px;
+  height: 100%;
+  min-height: 60px;
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 8px;
@@ -102,21 +109,17 @@ NOTES
   box-shadow: none;
   color: $default-grey;
   padding-left: 10px;
-  padding-top: 24px;
+  padding-top: 30px;
   font-family: $tab-font;
   font-size: 12px;
   background-color: white;
   z-index: 0;
   position: relative;
+  overflow: hidden;
+  white-space: pre-wrap;
 }
 
-.filterBox {
-  align-content: center;
-  text-align: center;
-  margin: auto;
-  padding-left: 6px;
-  padding-top: 12px;
-}
+
 /*
 ==========================
 SEARCH
@@ -131,7 +134,7 @@ SEARCH
 }
 
 .searchBackground {
-  background: $notes-red-bkg;
+  @include searchBackground($notes-red-bkg)
   // overflow: auto;
 }
 // search icon in search bar
@@ -151,6 +154,10 @@ SEARCH
     background-image: img("../assets/search – 1.png");
   }
 }
+.searchNotes {
+  height: 60px;
+  padding: 20px;
+}
 
 /*
 ==========================
@@ -165,8 +172,6 @@ BUTTONS
     box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
   }
 }
-
-
 
 .addNotesButton {
   width: 20px;
@@ -204,6 +209,7 @@ BUTTONS
   margin-bottom: -35px;
   margin-top: 14px;
   position: relative;
+  opacity: 0.8;
 }
 .deleteNotesButton {
   background-image: url('../assets/trash.png');
@@ -233,20 +239,7 @@ BUTTONS
   }
 }
 
-
+// notes quantity button
 .item .countButton {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  z-index: 1;
-  margin-left: 70%;
-  margin-top: -120%;
-  background-color: white;
-  border-radius: 50%;
-  color: $notes-red;
-  font-size: 15px;
-  font-weight: 700;
-  text-align: center;
-  border: none;
-  display: block; 
+  @include qtyForIcon;
 }
