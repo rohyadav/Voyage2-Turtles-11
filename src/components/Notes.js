@@ -128,6 +128,7 @@ export class Notes extends Component {
 }
 
 
+
 export class EmptyContainer extends React.Component {
   render() {
     console.log("render");
