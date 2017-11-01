@@ -84,6 +84,7 @@ export class Notes extends Component {
     store.dispatch(addNotes(this.state.note));
     // updates the notes qty button on main Notes icon
     document.getElementById("notesQty").innerText = store.getState().notes.length;
+    this.setState({note: ''});
   }
 
   render() {

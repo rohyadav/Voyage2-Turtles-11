@@ -142,3 +142,20 @@ ICONS
         // transform: scale(0.9);
     }
 }
+
+@mixin qtyForIcon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1;
+    margin-left: 70%;
+    margin-top: -120%;
+    background-color: white;
+    border-radius: 50%;
+    color: $default-grey;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    display: block; 
+}

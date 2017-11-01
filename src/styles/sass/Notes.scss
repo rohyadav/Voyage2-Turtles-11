@@ -101,7 +101,7 @@ EXISTING NOTES
   right: 0px;
   width: 284px;
   height: 100%;
-  min-height: 50px;
+  min-height: 60px;
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 8px;
@@ -241,18 +241,5 @@ BUTTONS
 
 // notes quantity button
 .item .countButton {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  z-index: 1;
-  margin-left: 70%;
-  margin-top: -120%;
-  background-color: white;
-  border-radius: 50%;
-  color: $notes-red;
-  font-size: 15px;
-  font-weight: 700;
-  text-align: center;
-  border: none;
-  display: block; 
+  @include qtyForIcon;
 }

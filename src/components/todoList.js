@@ -73,7 +73,6 @@ class DoneListElem extends Component {
     }
 }
 
-
 export class TodoList extends Component {
     constructor(props) {
         super(props);
@@ -96,8 +95,8 @@ export class TodoList extends Component {
     }
     addTodo = () => {
         var arr = this.state.todoArr.slice()
-        arr.unshift(this.state.inputText)
-        this.setState({ todoArr: arr })
+        arr.unshift(this.state.inputText);
+        this.setState({ todoArr: arr });
         localStorage.setItem("todoData-todoArr", JSON.stringify(arr));
         // focus Todo tab after write in input bar in Done tab
         if ( !this.state.isInTodoTab ) {
@@ -175,6 +174,7 @@ export class TodoList extends Component {
     }
     render() {
         // toogle between display Todo list or Done list
+        document.getElementById('todoQty').innerHTML = Number.parseInt(this.state.todoArr.length);
         var displayArr;
         if (this.state.isInTodoTab) {
             displayArr = (
@@ -198,9 +198,9 @@ export class TodoList extends Component {
         } else {
             displayArr = (
                 <div>
-                    <a className="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
+                    {/* <a className="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
                     <br />
-                    <br />
+                    <br /> */}
                     {this.state.doneArr.map( (elm, i) => 
                         <div className="flex">
                             <div className="flex12" onClick={this.doneElmMoveTodoTab.bind(this, i)}>
@@ -213,6 +213,9 @@ export class TodoList extends Component {
                             </div>
                         </div>
                     )} 
+                    <a className="aClearTodoList" onClick={this.clearDoneList}>Clear to do list</a> 
+                    <br />
+                    <br />
                 </div>
             )
         }

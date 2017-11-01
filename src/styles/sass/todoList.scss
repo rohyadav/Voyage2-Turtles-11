@@ -121,6 +121,8 @@ TODO & DONE LIST
 .aClearTodoList {
     color: $default-grey;
     margin-left: 10px;
+    margin-top: 40px;
+    float: right;
 }
 
 .aClearTodoList:hover {
@@ -131,6 +133,7 @@ TODO & DONE LIST
 /* flexboxes */
 .flex {
     display: flex;
+    padding-bottom: 10px;
 }
 
 .flex1 {
@@ -152,14 +155,15 @@ BUTTONS
 */
 /* set the size of the delete image */
 .imgDelete {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
 }
 
 .imgMoveUp {
     width: 30px;
     height: 30px;
     vertical-align: center;
+    padding-bottom: 10px;
 }
 
 
@@ -167,17 +171,17 @@ BUTTONS
 /* https://stackoverflow.com/questions/10769016/display-image-on-text-link-hover-css-only */
 .hover_img  { 
     position: relative; 
-    padding-right: 10px;
+    padding-right: 6px;
 }
 .hover_img  span { 
     position: absolute; 
     display: none; 
     z-index: 99; 
-    padding-right: 10px;
+    padding-right: 6px;
 }
 .hover_img:hover span { 
     display: block; 
-    padding-right: 10px;
+    padding-right: 6px;
 }
 
 .blue {
