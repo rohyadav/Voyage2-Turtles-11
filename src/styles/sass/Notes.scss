@@ -139,7 +139,7 @@ SEARCH
 }
 // search icon in search bar
 .searchButton {
-  background-image: img("../assets/search.png");
+  background-image: img("./assets/search.png");
   width: 25px;
   max-width: 25px;
   min-width: 25px;
@@ -151,7 +151,7 @@ SEARCH
   margin-top: -49px;
   z-index: 2;
   &:hover {
-    background-image: img("../assets/search – 1.png");
+    background-image: img("./assets/search – 1.png");
   }
 }
 .searchNotes {
