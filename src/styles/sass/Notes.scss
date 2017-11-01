@@ -65,13 +65,13 @@ VISIBILITY FILTER
 */
 // filter text
 .Description {
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   color: $notes-red;
   padding-top: 12px;
   padding-left: 25px;  
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 
   &:enabled {
     color:$default-grey;
@@ -86,7 +86,7 @@ VISIBILITY FILTER
   align-content: center;
   text-align: center;
   margin: auto;
-  padding-left: 20px;
+  padding-left: 26px;
   padding-top: 12px;
 }
 

@@ -76,38 +76,32 @@ TODO FILTERS
     color: $todos-blue;
 }
 
-.Done-heading {
-    font-size: 16px;
+.Done-heading, .Done-heading-selected, .Todo-heading, .Todo-heading-selected {
+    font-size: 14px;
     letter-spacing: 2.7px;
     text-align: center;
-    color: $default-grey;
     flex: 1;
+    padding-top: 8px;
+}
+
+.Done-heading {
+    color: $default-grey;
 }
 
 .Done-heading-selected {
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
     color:$todos-blue;
-    flex: 1;
+    font-weight: 700;
 }
 
 /* Todo and Done heading under the input box */
 /* Will toggle color if selected or not */
 .Todo-heading {
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
     color: $default-grey;
-    flex: 1;
 }
 
 .Todo-heading-selected {
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
     color:$todos-blue;
-    flex: 1;
+    font-weight: 700;
 }
 
 /*
