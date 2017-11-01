@@ -70,8 +70,6 @@ COMPONENTS
     width: 300px;
     position: fixed;
     height: 45px;
-    filter: blur(.6px);
-    opacity: .91;
 }
 
 @mixin tab-body($color) {

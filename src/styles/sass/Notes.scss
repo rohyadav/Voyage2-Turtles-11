@@ -69,10 +69,9 @@ VISIBILITY FILTER
   text-align: center;
   color: $notes-red;
   padding-top: 12px;
-  padding-left: 40px;  
-  text-decoration: underline;
+  padding-left: 25px;  
   font-weight: 700;
-  letter-spacing: 0.75px;
+  letter-spacing: 2px;
 
   &:enabled {
     color:$default-grey;
@@ -87,7 +86,7 @@ VISIBILITY FILTER
   align-content: center;
   text-align: center;
   margin: auto;
-  padding-left: 6px;
+  padding-left: 20px;
   padding-top: 12px;
 }
 

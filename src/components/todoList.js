@@ -188,7 +188,7 @@ export class TodoList extends Component {
                             </div>
                             <div className="flex1 hover_img" onClick={this.todoElmMoveTop.bind(this, i)}>
                                 <span>
-                                    <img className="imgMoveUp" src={require('../assets/move_waiting_up_grey.png')} alt="move elm up"/>
+                                    <img className="imgMoveUp" src={require('../assets/Up Button@2x.png')} alt="move elm up"/>
                                 </span>
                             </div>
                         </div>

@@ -69,25 +69,22 @@ TODO FILTERS
 */
 // this is for the hover effect over Todo and Done links to change tab
 .TodoButtonHover:hover {
-    color: $todos-blue-bkg;
+    color: $todos-blue;
 }
 
 .DoneButtonHover:hover {
-    color: $todos-blue-bkg;
+    color: $todos-blue;
 }
 
 .Done-heading {
-    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
-    color: $todos-blue;
-    color: var(--azure);
+    color: $default-grey;
     flex: 1;
 }
 
 .Done-heading-selected {
-    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
@@ -98,36 +95,14 @@ TODO FILTERS
 /* Todo and Done heading under the input box */
 /* Will toggle color if selected or not */
 .Todo-heading {
-    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
-    color: $todos-blue;
-    color: var(--azure);
+    color: $default-grey;
     flex: 1;
 }
 
 .Todo-heading-selected {
-    font-family: $tab-font;
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
-    color:$todos-blue;
-    flex: 1;
-}
-
-.Done-heading {
-    font-family: $tab-font;
-    font-size: 16px;
-    letter-spacing: 2.7px;
-    text-align: center;
-    color: $todos-blue;
-    color: var(--azure);
-    flex: 1;
-}
-
-.Done-heading-selected {
-    font-family: $tab-font;
     font-size: 16px;
     letter-spacing: 2.7px;
     text-align: center;
@@ -149,12 +124,12 @@ TODO & DONE LIST
 }
 /* this is the link to clear to do list in Done tab */
 .aClearTodoList {
-    color: $todos-blue;
+    color: $default-grey;
     margin-left: 10px;
 }
 
 .aClearTodoList:hover {
-    color: #4F7B9C;
+    color: $todos-blue;
     margin-left: 10px;
 }
 
@@ -182,20 +157,16 @@ BUTTONS
 */
 /* set the size of the delete image */
 .imgDelete {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .imgMoveUp {
     width: 30px;
     height: 30px;
+    vertical-align: center;
 }
 
-.test-trash {
-  margin-right: 20px;
-  background-color: red;
-  border: solid;
-}
 
 
 /* Make the img appear when mouse hover over */
