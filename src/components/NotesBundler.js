@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id, pinned, completed, newText }) => {
-    console.log("Note text is: " + text);
+    // console.log("Note text is: " + text);
     let pinStyle;
     let archiveStyle;
     if (pinned) {
@@ -49,7 +49,7 @@ Note.propTypes = {
 
 
 export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick , onUpdateClick }) => {
-    console.log("Rebuild notes list because state changed.");
+    // console.log("Rebuild notes list because state changed.");
     return (
         <div>
             {notes.map((singleNote, index) => (

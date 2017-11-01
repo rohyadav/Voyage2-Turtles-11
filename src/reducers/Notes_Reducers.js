@@ -28,7 +28,7 @@ if (!String.prototype.includes) {
 }
 
 function notes(state = [], action) {
-    console.log("Executing Notes Function")
+    // console.log("Executing Notes Function")
     switch (action.type) {
         case ADD_NOTES:
             return [
@@ -99,7 +99,7 @@ function notes(state = [], action) {
 }
 
 export function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
-    console.log("Executing notesVisibilityFilters Function")
+    // console.log("Executing notesVisibilityFilters Function")
     switch (action.type) {
         case SET_NOTES_VISIBILITY_FILTER:
             return action.filter
