@@ -168,7 +168,6 @@ BUTTONS
 }
 
 
-
 /* Make the img appear when mouse hover over */
 /* https://stackoverflow.com/questions/10769016/display-image-on-text-link-hover-css-only */
 .hover_img  { 
@@ -187,9 +186,8 @@ BUTTONS
 }
 
 .blue {
-    color: $todos-blue;
+    color: $default-grey;
 }
-
 
 /* 
                     *** checkbox styling Todo tab***
@@ -227,7 +225,8 @@ BUTTONS
 	width: 20px;
 	height: 20px;
 	opacity: 0.2;
-	background: $todos-blue;
+	background: white;
+    border: 1px solid $todos-blue;
 }
 
 
@@ -235,18 +234,21 @@ BUTTONS
 .todo-control:hover input ~ .todo-control__indicator,
 .todo-control input:focus ~ .todo-control__indicator {
 	background: $todos-blue;
+    border: 1px solid $todos-blue;
 	opacity: 1;
 }
 
 /* Checked state */
 .todo-control input:checked ~ .todo-control__indicator {
-	background: $todos-blue;
+    background: white;
+    border: 1px solid $todos-blue;
 }
 
 /* Hover state whilst checked */
 .todo-control:hover input:not([disabled]):checked ~ .todo-control__indicator,
 .todo-control input:checked:focus ~ .todo-control__indicator {
 	background: $todos-blue;
+    border: 1px solid $todos-blue;
 }
 
 
