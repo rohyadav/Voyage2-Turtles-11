@@ -406,16 +406,16 @@ class App extends Component {
         tab_close();
     }
   }
-  
+
   backgroundChange = () => {
     let bgImage = this.state.image;
-    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, 
+    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8,
     bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
     bgImage = bgArray[randomNumber];
     this.setState({image: bgImage});
   }
-    
+
   render() {
 
     let bgStyle = {
@@ -476,14 +476,13 @@ class App extends Component {
             </div> {/* #icons */}
           </div> {/* .main-content */}
           <footer>
-            <img 
-              className="footerIcon" 
-              src={rndomImgIcon} 
-              alt="Turtles Cohort" 
+            <img
+              className="footer-icon"
+              src={rndomImgIcon}
+              alt="Turtles Cohort"
               onClick={this.backgroundChange} />
-            <div className="footerText">
-              <p className="leftFooter">Photos by Natasha Sadikin</p>
-            </div>
+            <p className="leftFooter">Photos by Natasha Sadikin</p>
+            {/*<div className="footer-margin"></div>*/}
           </footer>
         </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
 
