@@ -417,7 +417,6 @@ class App extends Component {
   }
     
   render() {
-
     let bgStyle = {
       backgroundImage: `url(${this.state.image})`,
       backgroundPosition: 'center',
