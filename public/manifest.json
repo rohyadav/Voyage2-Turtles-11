@@ -5,28 +5,34 @@
   "name": "TurtleTab",
   "manifest_version": 2,
   "version": "0.0",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
-
-  "default_locale": "en",
+  // "start_url": "./index.html",
+  // "display": "standalone",
+  // "theme_color": "#000000",
+  // "background_color": "#ffffff",
+  
+  // "default_locale": "en",
   "description": "Chrome extension with built-in weather, todo, notes, and google search functions",
-  "icons": [
-      {
-        "src": "favicon.ico",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-  ],
-
+  // "icons": [
+  //     {
+  //       "src": "favicon.ico",
+  //       "sizes": "192x192",
+  //       "type": "image/png"
+  //     }
+  // ],
   "browser_action": {
-
+    "default_icon": "favicon.ico"
   },
   "author": "Chingu Voyage2-Turtles-11",
   "background": {
-    "page": "index.html",
+    "page": "index.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["/static/css/main.dce8580b.css"],
+      "js": ["/static/js/main.4b2fdf4e.js"]
+    }
+  ],
   // overrides newTabs in Chrome to the following link
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -39,7 +45,7 @@
     "history",
     "storage",
     "topSites",
-    "management", // list of extensions/apps that are installed and running
+    "management" // list of extensions/apps that are installed and running
   ],
   // externally_connectable allows extension and app IDS to connect with our app
   "externally_connectable": {
@@ -49,8 +55,9 @@
     // Match patterns for web pages. Does not affect content scripts.
     // If this field is not specified, no webpages can connect.
     "matches": [
-      "https://*.google.com/*"
+      "https://*.google.com/*", 
+      "https://*.fontawesome.com/*"
     ]
   },
-  "incognito": "not_allowed",
+  "incognito": "not_allowed"
 }
