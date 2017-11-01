@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5 {
 }
 /*
 ==========================
-HEADER
+HEADER & BODY
 ==========================
 */
 .Notes-Header {
@@ -39,7 +39,7 @@ HEADER
 
 /*
 ==========================
-NOTES
+NEW NOTES
 ==========================
 */
 .Notes {
@@ -58,13 +58,11 @@ NOTES
   position: relative;
   z-index: 1;
 }
-
-.NoteTitleTextBox {
-  height: 60px;
-  border-radius: 10px;
-  margin-top: 25px;
-  resize: none;
-}
+/*
+==========================
+VISIBILITY FILTER
+==========================
+*/
 // filter text
 .Description {
   font-size: 12px;
@@ -85,12 +83,19 @@ NOTES
     color: $notes-red; 
   }
 }
-
-.searchNotes {
-  height: 60px;
-  padding: 20px;
+.filterBox {
+  align-content: center;
+  text-align: center;
+  margin: auto;
+  padding-left: 6px;
+  padding-top: 12px;
 }
 
+/*
+==========================
+EXISTING NOTES
+==========================
+*/
 .existingNotes {
   right: 0px;
   width: 284px;
@@ -110,13 +115,6 @@ NOTES
   position: relative;
 }
 
-.filterBox {
-  align-content: center;
-  text-align: center;
-  margin: auto;
-  padding-left: 6px;
-  padding-top: 12px;
-}
 /*
 ==========================
 SEARCH
@@ -131,7 +129,7 @@ SEARCH
 }
 
 .searchBackground {
-  background: $notes-red-bkg;
+  @include searchBackground($notes-red-bkg)
   // overflow: auto;
 }
 // search icon in search bar
@@ -151,6 +149,10 @@ SEARCH
     background-image: img("../assets/search – 1.png");
   }
 }
+.searchNotes {
+  height: 60px;
+  padding: 20px;
+}
 
 /*
 ==========================
@@ -165,8 +167,6 @@ BUTTONS
     box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
   }
 }
-
-
 
 .addNotesButton {
   width: 20px;
@@ -233,7 +233,7 @@ BUTTONS
   }
 }
 
-
+// notes quantity button
 .item .countButton {
   width: 30px;
   height: 30px;
