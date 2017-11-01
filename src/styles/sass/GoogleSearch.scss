@@ -1,0 +1,58 @@
+@import 'variables';
+
+/* The rest of the Search Area CSS is in index.css */
+
+/* Selected search type */
+
+.is-active {
+    padding-bottom: .2rem;
+    border-bottom: 0.15rem solid $apps-green;
+}
+
+/* Search icon */
+
+.search-icon {
+    color: $light-grey;
+    position: relative;
+    z-index: 1;
+    font-size: 1.3vw;
+    margin-left: -6vw;
+    margin-top: 5px;
+}
+
+.search-form button {
+  border: 0;
+  outline: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* Autosuggestion Dropdown */
+
+.auto-container {
+    position: relative; /*relative parent and absolute child is needed to overlay*/
+}
+
+.auto-list {
+    /* display: block; */
+    width: 40vw;
+    border-radius: 1vw;
+    margin-top: -20px;
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    opacity: 0.8;
+}
+
+.auto-link {
+    color: $apps-green;
+    padding: 5px 5px;
+    font-size: 1vw;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    &:hover {
+      color: white;
+      background-color: $apps-green;
+    }
+}

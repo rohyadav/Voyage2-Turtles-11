@@ -16,16 +16,12 @@ IMPORT PARTIAL SASS FILES
 body {
 	font-size: 1.4rem;
 	font-family: "Varela Round", sans-serif;
-	color: #FFFFFF;
+	color: white;
   padding: 0;
   margin: 0;
-  background-color: &light-grey;
-  background-image: url("../assets/wallpapers/18.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  overflow: hidden;
+  background-color: $light-grey;
+  // min-height: 100vh;
+  // overflow: hidden;
 }
 
 
@@ -35,11 +31,13 @@ body {
 
 .main {
   text-align: center;
-	height: 85vh;
+	// height: 100vh;
+	// display: flex;
+  // flex-direction: column; (to apply flex grow to #icons)
 }
 
 .main-top {
-  margin-top: 10vh;
+	padding-top: 10vh;
 }
 
 #App {
@@ -48,6 +46,14 @@ body {
 /* controls pop-out tab */
 #main {
   margin-right: 0px;
+}
+
+.main-content {
+	height: 90vh;
+	display: flex;
+  flex-direction: column;
+	justify-content: center;
+	align-self: center;
 }
 
 /* =====================================
@@ -77,10 +83,11 @@ body {
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   width: 38vw;
   margin: 0 auto .6rem;
-  padding-left: 5%;
+  padding-left: 10%;
   padding-right: 15%;
 	display: flex;
-	justify-content: space-between;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .search-form {
@@ -88,24 +95,39 @@ body {
 }
 
 .search-input-box {
-  background: #FFFFFF;
+  background: white;
 	min-width: 300px;
   width: 40vw;
-  height: 4vh;
+  height: 4.5vh;
+	min-height: 20px;
   border-radius: 2vw;
   box-shadow: none;
   border: none;
+  margin: auto;
 	/* font properties */
-	color: #7E7E7E;
+	color: $light-grey;
 	line-height: 4vh;
-	font-size: .8rem;
+  font-size: 1rem;
+  letter-spacing: 2px;
 	text-align: center;
 	/* Google icon */
 	background-image: url("../assets/Icons_google logo-13.png");
 	background-size: 2vw;
 	background-position: 10px 50%; /* (img) (horizontal, vertical) */
 	background-repeat: no-repeat;
-	padding-left: 40px;
+  padding-left: 40px;
+    &::-webkit-search-cancel-button {
+      position: relative;
+      right: 2vw;
+    }
+    &::placeholder {
+      font-size: .8rem;
+      text-indent: .6vw;
+      text-align: left;
+    }
+    &:focus {
+      outline: none;
+    }
 }
 
 /* =====================================
@@ -113,17 +135,16 @@ body {
 ======================================== */
 
 #icons { /* Define parent container so you can use percentages in child (grid container) */
-  max-width: 60vw;
-  max-height: 66vh;
+  width: 43vw;
   margin: 20px auto 0;
-
+	// flex: 1;
 }
 
 .main-grid {
   display: grid;
   grid-column-gap: 10%;
   grid-row-gap: 20%;
-  grid-template-columns: repeat(5, minmax(50px, 1fr)); /* Set to 5 cols instead of auto wrapping */
+  grid-template-columns: repeat(4, minmax(25px, 1fr)); /* Set to 5 cols instead of auto wrapping */
   grid-template-rows: 1fr 1fr;
 	p {
 	  font-size: .8rem;
@@ -142,35 +163,22 @@ body {
 .item {
   text-align: center;
   margin: auto 0;
+  width: 100%;
+  margin-bottom: 25px;
 	img {
 	  border-radius: 50%;
 		display: block;
 	  width: 100%;
-		max-width: 110px;
-		min-width: 50px;
-	  // margin-left: auto;
-	  // margin-right: auto;
-		// height: auto;
-	}
+    max-width: 90px;
+    margin: auto;
+    @include gridIcons;
+  }
 }
 
+.blur {
+  filter: blur(5px);
+}
 
-
-/* .item {
-  color: #fff;
-  text-shadow: 0 2px 0 rgba(110,133,156,0.18);
-  padding: 0.85em;
-  background: #6e859c;
-  border: solid 1px rgba(110,133,156,0.15);
-  border-radius: 0.3em;
-} */
-
-/* img {
-  display: block;
-  width: 100%;
-  max-width: 110px;
-  min-width: 100px;
-} */
 
 /* =================================
   Media Queries
@@ -184,18 +192,29 @@ body {
 .leftFooter, .rightFooter {
   font-size: 0.75rem;
   display: inline-block;
-  bottom: 0.5%;
-  position: fixed;
   text-transform: lowercase;
   color: $light-grey;
 }
 
-.rightFooter {
-  float: right;
-  right: 20px;
-}
-
 .leftFooter {
   float: left;
-  left: 20px;
+  // left: 20px;
+	padding-left: 20px;
+}
+
+footer {
+	display: flex;
+  flex-direction: column;
+  height: 1vh;
+	p {
+		-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+	}
+}
+
+.footerIcon {
+	height: 40px;
+  align-self: flex-end;
+  cursor: pointer;
+	padding-right: 20px;
 }

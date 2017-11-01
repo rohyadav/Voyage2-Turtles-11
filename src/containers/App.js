@@ -2,31 +2,55 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
-import Bookmarks from '../components/Bookmarks';
-import Googlesearch from '../components/Googlesearch';
+import { Bookmarks } from '../components/Bookmarks';
+import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
-
+import rndomImgIcon from '../assets/turtle_green.png';
+/* =========================
+ WALLPAPER LINKS
+ =========================== */
+import bg1 from '../assets/wallpapers/01.jpg';
+import bg2 from '../assets/wallpapers/02.JPG';
+import bg3 from '../assets/wallpapers/03.JPG';
+import bg4 from '../assets/wallpapers/04.JPG';
+import bg5 from '../assets/wallpapers/05.JPG';
+import bg6 from '../assets/wallpapers/06.JPG';
+import bg7 from '../assets/wallpapers/07.JPG';
+import bg8 from '../assets/wallpapers/08.jpg';
+import bg9 from '../assets/wallpapers/09.JPG';
+import bg10 from '../assets/wallpapers/10.jpg';
+import bg11 from '../assets/wallpapers/11.JPG';
+import bg12 from '../assets/wallpapers/12.JPG';
+import bg13 from '../assets/wallpapers/13.JPG';
+import bg14 from '../assets/wallpapers/14.JPG';
+import bg15 from '../assets/wallpapers/15.jpg';
+import bg16 from '../assets/wallpapers/16.JPG';
+import bg17 from '../assets/wallpapers/17.jpg';
+// import bg18 from '../assets/wallpapers/18.jpg';
+/* =========================
+ BUTTONS
+ =========================== */
 class NotesButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // visibility: false,
-      iconLink: './assets/Icons_COLOR-04.png',
+      iconLink: './assets/Icons_white_white-04.png',
     };
 
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR_background-04.png' });
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-07.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR-04.png' });
+    this.setState({ iconLink: './assets/Icons_white_white-04.png' });
   }
 
   render() {
     return (<div className="item note-item">
-      <a href="#"
+      <a 
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
@@ -44,20 +68,20 @@ class BookmarksButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      iconLink: './assets/Icons_COLOR-05.png',
+      iconLink: './assets/Icons_white_white-05.png',
     };
 
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR_background-05.png' });
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-14.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR-05.png' });
+    this.setState({ iconLink: './assets/Icons_white_white-05.png' });
   }
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Bookmarks" />
@@ -71,26 +95,27 @@ class TodosButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      iconLink: './assets/Icons_COLOR-02.png',
+      iconLink: './assets/Icons_white_white-02.png',
     };
 
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR_background-02.png' });
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-12.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR-02.png' });
+    this.setState({ iconLink: './assets/Icons_white_white-02.png' });
   }
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Todos button" />
       </a>
       <p>Todos</p>
+      <button id="todoQty" className="countButton">0</button>
     </div>);
   }
 }
@@ -99,14 +124,14 @@ class GmailButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      iconLink: './assets/mail.png',
+      iconLink: './assets/Icons_white_white_gmail.png',
     };
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: './assets/mail_hover.png' });
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-17.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: './assets/mail.png' });
+    this.setState({ iconLink: './assets/Icons_white_white_gmail.png' });
   }
   render() {
     return (
@@ -126,14 +151,14 @@ class GithubButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      iconLink: './assets/Icons_COLOR_backgrounds_github.png',
+      iconLink: './assets/Icons_white_white_github.png',
     };
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR_backgrounds_github_hover.png' });
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-16.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: './assets/Icons_COLOR_backgrounds_github.png' });
+    this.setState({ iconLink: './assets/Icons_white_white_github.png' });
   }
   render() {
     return (
@@ -154,7 +179,7 @@ class WeatherButton extends React.Component {
     super(props);
     this.state = {
       visibility: true,
-      iconLink: 'assets/Icons_COLOR_background-01.png',
+      iconLink: './assets/Icons_white_white-01.png'
     };
 
   }
@@ -169,15 +194,15 @@ class WeatherButton extends React.Component {
     }
   }
   iconChangeOnHover = () => {
-    this.setState({ iconLink: 'assets/Icons_google logo-13.png' });
+    this.setState({ iconLink: 'assets/Icons_white_color_newicons-13.png' });
   }
   iconChangeOnOut = () => {
-    this.setState({ iconLink: 'assets/Icons_COLOR_background-01.png' });
+    this.setState({ iconLink: 'assets/Icons_white_white-01.png' });
   }
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onClick={this.toggleVisibility}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -188,6 +213,69 @@ class WeatherButton extends React.Component {
   }
 }
 
+class AppsButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // visibility: false,
+      iconLink: './assets/Icons_white_white-03.png',
+    };
+
+  }
+  iconChangeOnHover = () => {
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-11.png' });
+  }
+  iconChangeOnOut = () => {
+    this.setState({ iconLink: './assets/Icons_white_white-03.png' });
+  }
+
+  render() {
+    return (<div className="item">
+      <a
+        onMouseOver={this.iconChangeOnHover}
+        onMouseOut={this.iconChangeOnOut}>
+        <img src={this.state.iconLink} alt="Apps" />
+      </a>
+      <p>Apps</p>
+    </div>
+    );
+
+  }
+}
+
+class HistoryButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // visibility: false,
+      iconLink: './assets/Icons_white_white-06.png',
+    };
+
+  }
+  iconChangeOnHover = () => {
+    this.setState({ iconLink: './assets/Icons_white_color_newicons-15.png' });
+  }
+  iconChangeOnOut = () => {
+    this.setState({ iconLink: './assets/Icons_white_white-06.png' });
+  }
+
+  render() {
+    return (<div className="item">
+      <a
+        onMouseOver={this.iconChangeOnHover}
+        onMouseOut={this.iconChangeOnOut}>
+        <img src={this.state.iconLink} alt="History" />
+      </a>
+      <p>History</p>
+    </div>
+    );
+
+  }
+}
+
+/* =========================
+ CONTROLS TAB OPENING AND CLOSING
+ =========================== */
 function tab_open() {
   document.getElementById("main").style.marginRight = "300px";
 }
@@ -196,6 +284,9 @@ function tab_close() {
   document.getElementById("main").style.marginRight = "0%";
 }
 
+/* =========================
+ MAIN TIME FORMATTING
+ =========================== */
 const Time = () => {
   let currentDate = new Date();
   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
@@ -208,6 +299,9 @@ const Time = () => {
   )
 }
 
+/* =========================
+ MAIN APP COMPONENT - RENDERS ENTIRE PAGE
+ =========================== */
 class App extends Component {
   constructor(props) {
     super(props);
@@ -215,6 +309,7 @@ class App extends Component {
       todoTabOpen: "false",
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
+      image: bg1
     };
   }
 
@@ -311,63 +406,83 @@ class App extends Component {
         tab_close();
     }
   }
-
+  
+  backgroundChange = () => {
+    let bgImage = this.state.image;
+    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, 
+    bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
+    let randomNumber = Math.floor(Math.random() * (bgArray.length));
+    bgImage = bgArray[randomNumber];
+    this.setState({image: bgImage});
+  }
+    
   render() {
+    let bgStyle = {
+      backgroundImage: `url(${this.state.image})`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      minHeight: '100vh',
+    }
+
     return (
-      <div id="App" className="App">
+      <div className="App" style={bgStyle}>
         <div className="main" id="main">
-          <div className="main-top" >
-
-            <div className="time">
-              <Time />
+          <div className="main-content">
+            <div className="main-top" >
+              <div className="time">
+                <Time />
+              </div>
+              <div className="search-area">
+                <GoogleSearch
+                  types={
+                    [
+                      {
+                        'Web': 'https://www.google.com/search?q=',
+                        'Images': 'https://www.google.com/search?tbm=isch&q=',
+                        'News': 'https://www.google.com/search?tbm=nws&q=',
+                        'Videos': 'https://www.google.com/search?tbm=vid&q=',
+                        'Maps': 'https://www.google.com/maps/preview?q='
+                      }
+                    ]
+                  }
+              />
+              </div>
+            </div> {/* .main-top */}
+            <div id='icons'>
+              <div className="main-grid">
+                <div onClick={this.toogleVisibility.bind(this, "weather")}>
+                  <WeatherButton />
+                </div>
+                <div onClick={this.toogleVisibility.bind(this, "todo")}>
+                  <TodosButton />
+                </div>
+                <div >
+                  <AppsButton />
+                </div>
+                <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
+                  <BookmarksButton />
+                </div>
+                <div onClick={this.toogleVisibility.bind(this, "notes")}>
+                  <NotesButton />
+                </div>
+                <div >
+                  <HistoryButton />
+                </div>
+                <GmailButton />
+                <GithubButton />
+              </div> {/* .main-grid */}
+            </div> {/* #icons */}
+          </div> {/* .main-content */}
+          <footer>
+            <img 
+              className="footerIcon" 
+              src={rndomImgIcon} 
+              alt="Turtles Cohort" 
+              onClick={this.backgroundChange} />
+            <div className="footerText">
+              <p className="leftFooter">Photos by Natasha Sadikin</p>
             </div>
-            <div className="search-area">
-              <Googlesearch 
-                types={ 
-                  [ 
-                    {
-                      'Web': 'https://www.google.com/search?q=',
-                      'Images': 'https://www.google.com/search?tbm=isch&q=',
-                      'News': 'https://www.google.com/search?tbm=nws&q=',
-                      'Videos': 'https://www.google.com/search?tbm=vid&q=',
-                      'Maps': 'https://www.google.com/maps/preview?q='
-                    } 
-                  ]
-                }
-             />
-            </div>
-          </div> {/* .main-top */}
-          <div id='icons'>
-            <div className="main-grid">
-              <div onClick={this.toogleVisibility.bind(this, "weather")}>
-                <WeatherButton />
-              </div>
-              <div onClick={this.toogleVisibility.bind(this, "todo")}>
-                <TodosButton />
-              </div>
-              <div className="item">
-                <img src="assets/Icons_COLOR-03.png" alt="Apps" />
-                <p>Apps</p>
-              </div>
-              <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
-                <BookmarksButton />
-              </div>
-
-              <div onClick={this.toogleVisibility.bind(this, "notes")}>
-                <NotesButton />
-                
-              </div>
-              <div className="item">
-                <img src="assets/Icons_COLOR-06.png" alt="History" />
-                <p>History</p>
-              </div>
-              <GmailButton />
-              <GithubButton />
-            </div> {/* .main-grid */}
-          </div> {/* #icons */}
-          <footer className="footerText">
-            <p className="rightFooter">Project by Chingu Turtles Team 11</p>
-            <p className="leftFooter">Photos by Natasha Sadikin</p>
           </footer>
         </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
 
