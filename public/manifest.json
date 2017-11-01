@@ -25,8 +25,7 @@
   },
   "author": "Chingu Voyage2-Turtles-11",
   "background": {
-    "page": "index.html"
-    // "persistent": false,
+    "page": "index.html",
   },
   // overrides newTabs in Chrome to the following link
   "chrome_url_overrides": {
