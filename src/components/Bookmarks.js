@@ -7,21 +7,29 @@ export class Bookmarks extends Component {
     super(props);
     this.state = {
       visibility: true,
-      input: '',
-      arrayOfNotes: [],
+      searchTerm: '',
+      searchArray: [],
+      searchButton: '../assets/search.png',
     }
   }
-  handleInput = (event) => {
-    this.setState({ input: event.target.value });
+  setSearchQuery = (event) => {
+    this.setState({ searchTerm: event.target.value });
   }
-  handleSubmit = () => {
+  handleBookmarksSearch = () => {
     this.keepCount();
-    const value = this.state.input;
-    const newArray = [...this.state.arrayOfNotes];
+    const value = this.state.searchTerm;
+    const newArray = [...this.state.searchArray];
     newArray[newArray.length] = value;
     this.setState({
-      arrayOfNotes: newArray
+      searchArray: newArray
     })
+  }
+
+  bookmarksList = () => {
+    let array = [];
+    let bookmarkTreeNodes = chrome.bookmarks.getTree(function (child) {
+      array.append(child)
+    });
   }
 
   render() {
@@ -36,9 +44,16 @@ export class Bookmarks extends Component {
         <div className='Bookmarks-Body'>
           <div class="searchBookmarksBackground">
             <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
-            <a><img alt="search" className='searchButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+            <a><img className='searchButton' onChange={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
           </div>
         </div>
+        {/* BOOKMARKS LIST */}
+        <section id="bookmarksList">
+          <aside id="bookmarkFolders">
+          </aside>
+          <section id="individualBookmarks">
+          </section>
+        </section>
       </div>
     );
   }
