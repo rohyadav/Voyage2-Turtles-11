@@ -63,6 +63,11 @@ SEARCH
   @include tab-search-text;
 }
 
+.searchBookmarksBackground {
+  @include searchBackground($bookmarks-yellow-bkg)
+  // overflow: auto;
+}
+
 /*
 ==========================
 BUTTONS

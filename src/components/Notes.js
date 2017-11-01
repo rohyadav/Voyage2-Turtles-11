@@ -84,6 +84,7 @@ export class Notes extends Component {
     store.dispatch(addNotes(this.state.note));
     // updates the notes qty button on main Notes icon
     document.getElementById("notesQty").innerText = store.getState().notes.length;
+    this.setState({note: ''});
   }
 
   render() {
@@ -98,8 +99,8 @@ export class Notes extends Component {
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
-              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search" />
-              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
+              <a><img className='notesButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <NotesVisibleSearch />
             </div>
             <br />
@@ -126,6 +127,7 @@ export class Notes extends Component {
     )
   }
 }
+
 
 
 export class EmptyContainer extends React.Component {

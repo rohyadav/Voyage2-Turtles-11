@@ -3,15 +3,22 @@
 COLORS
 ==========================
 */
-$notes-red: #ea3939;
-$notes-red-bkg: #e76969;
-$history-orange:#f9a819;
 $default-grey: #959595;
 $light-grey: #cecece;
 $bkg-grey: #f1f1f1;
+
+$notes-red: #ea3939;
+$notes-red-bkg: #f17777;
+
+$history-orange:#f9a819;
+
 $apps-green: #39b54a;
+
 $weather-light-blue: #99dcff;
+
 $todos-blue: #00a7ff;
+$todos-blue-bkg: #3ac1ff;
+
 $bookmarks-yellow: #ffda24;
 $bookmarks-yellow-bkg: #ffed86;
 
@@ -63,8 +70,6 @@ COMPONENTS
     width: 300px;
     position: fixed;
     height: 45px;
-    filter: blur(.6px);
-    opacity: .91;
 }
 
 @mixin tab-body($color) {
@@ -74,6 +79,7 @@ COMPONENTS
     width: 300px;
     position: fixed;
     height: 100%;
+    max-height: 100%;
     overflow: auto;
 }
 
@@ -114,6 +120,10 @@ COMPONENTS
     background:rgba(255, 255, 255, 0);
 }
 
+@mixin searchBackground($color) {
+    background: $color;
+}
+
 /*
 ==========================
 ICONS
@@ -131,4 +141,21 @@ ICONS
         z-index: -1;
         // transform: scale(0.9);
     }
+}
+
+@mixin qtyForIcon {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1;
+    margin-left: 70%;
+    margin-top: -120%;
+    background-color: white;
+    border-radius: 50%;
+    color: $default-grey;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    display: block; 
 }
