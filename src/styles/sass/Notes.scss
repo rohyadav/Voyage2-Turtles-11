@@ -138,8 +138,8 @@ SEARCH
   // overflow: auto;
 }
 // search icon in search bar
-.notesButton {
-  background-image: img("../assets/search.png");
+.searchButton {
+  background-image: img("./assets/search.png");
   width: 25px;
   max-width: 25px;
   min-width: 25px;
@@ -151,7 +151,7 @@ SEARCH
   margin-top: -49px;
   z-index: 2;
   &:hover {
-    background-image: img("../assets/search – 1.png");
+    background-image: img("./assets/search – 1.png");
   }
 }
 .searchNotes {
@@ -221,21 +221,21 @@ BUTTONS
 }
 
 .archiveNotesButton {
-  background-image: url('../assets/archive.png');
+  background-image: url('/assets/archive.png');
   right: 37px;
 
   &:focus {
-    background-image: url('../assets/archive – 1.png');
+    background-image: url('/assets/archive – 1.png');
   }
 
 }
 
 .pinNotesButton {
-  background-image: url('../assets/pin.png');
+  background-image: url('/assets/pin.png');
   right:62px;
 
   &:focus {
-    background-image: url('../assets/pin – 1.png');
+    background-image: url('/assets/pin – 1.png');
   }
 }
 

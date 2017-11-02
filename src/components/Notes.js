@@ -100,7 +100,7 @@ export class Notes extends Component {
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
               <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
-              <a><img className='notesButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <a><img alt="searchIcon" className='searchButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <NotesVisibleSearch />
             </div>
             <br />
@@ -132,7 +132,6 @@ export class Notes extends Component {
 
 export class EmptyContainer extends React.Component {
   render() {
-    console.log("render");
     return (
       <div></div>
     )

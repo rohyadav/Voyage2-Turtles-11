@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
-import Bookmarks from '../components/Bookmarks';
+import { Bookmarks } from '../components/Bookmarks';
 import GoogleSearch from '../components/GoogleSearch';
-import { TodoList, TodoQty } from '../components/todoList.js';
+import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
 import rndomImgIcon from '../assets/turtle_green.png';
@@ -50,7 +50,7 @@ class NotesButton extends React.Component {
 
   render() {
     return (<div className="item note-item">
-      <a href="#"
+      <a 
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
@@ -81,7 +81,7 @@ class BookmarksButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Bookmarks" />
@@ -108,7 +108,7 @@ class TodosButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -202,7 +202,7 @@ class WeatherButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onClick={this.toggleVisibility}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -231,7 +231,7 @@ class AppsButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Apps" />
@@ -261,7 +261,7 @@ class HistoryButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="History" />
@@ -417,7 +417,6 @@ class App extends Component {
   }
     
   render() {
-
     let bgStyle = {
       backgroundImage: `url(${this.state.image})`,
       backgroundPosition: 'center',
