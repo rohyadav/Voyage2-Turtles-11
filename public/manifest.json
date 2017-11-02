@@ -1,11 +1,15 @@
 {
-  "name": "My Awesome Extension",
-  "description": "The coolest most awesomest extension there ever was. Created using create-react-app.",
+  "name": "Infinity New Tab clone",
+  "description": "chingu: turtle team 11 Infinity New Tab clone",
   "version": "0.0.1",
 
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "index.html"
+    "default_popup": "popoup.html"
+  },
+
+  "chrome_url_overrides": {
+    "newtab": "index.html"
   },
 
   "manifest_version": 2
