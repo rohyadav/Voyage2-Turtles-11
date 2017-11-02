@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
+/* eslint-disable */
+chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+  console.log(response.farewell);
+});
 
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello") {
+      sendResponse({farewell: "goodbye"});
+    }
+  });
+  /* eslint-enable */
 export class Bookmarks extends Component {
   constructor(props) {
     super(props);
@@ -24,13 +38,12 @@ export class Bookmarks extends Component {
       searchArray: newArray
     })
   }
-
-  bookmarksList = () => {
-    let array = [];
-    let bookmarkTreeNodes = chrome.bookmarks.getTree(function (child) {
-      array.append(child)
-    });
-  }
+  // bookmarksList = () => {
+  //   let array = [];
+  //   let bookmarkTreeNodes = chrome.bookmarks.getTree(function (child) { 
+  //     array.push(child)
+  //   });
+  // }
 
   render() {
     return (
@@ -48,11 +61,9 @@ export class Bookmarks extends Component {
           </div>
         </div>
         {/* BOOKMARKS LIST */}
-        <section id="bookmarksList">
-          <aside id="bookmarkFolders">
-          </aside>
-          <section id="individualBookmarks">
-          </section>
+        <section>
+          <aside id="bookmarkFolders"></aside>
+          <div id="bookmarksList"></div>
         </section>
       </div>
     );

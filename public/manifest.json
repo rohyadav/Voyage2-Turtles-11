@@ -18,14 +18,13 @@
 
   "manifest_version": 2,
   "author": "Chingu Voyage2-Turtles-11",
-  "content_security_policy": "script-src 'self' https://apis.google.com/ https://use.fontawesome.com/b106d0e252.js 'unsafe-eval' ; object-src 'self' "  ,
-  // "content_scripts": [
-  //   {
-  //     "matches": ["<all_urls>"],
-  //     "css": ["/static/css/main.dce8580b.css"],
-  //     "js": ["/static/js/main.4b2fdf4e.js"]
-  //   }
-  // ],
+  "content_security_policy": "script-src 'self' https://apis.google.com/ https://ajax.googleapis.com https://use.fontawesome.com/b106d0e252.js 'unsafe-eval' ; object-src 'self' "  ,
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
   "permissions": [
     "activeTab",
     "tabs",
@@ -49,4 +48,5 @@
     ]
   },
   "incognito": "not_allowed"
+  // "web_accessible_resources": ["/static/js/main.4b2fdf4e.js"]
 }

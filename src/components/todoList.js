@@ -257,7 +257,6 @@ export class TodoList extends Component {
                         { displayArr }
                     </div>
 
-                    
                 </div> 
 
             </div>
