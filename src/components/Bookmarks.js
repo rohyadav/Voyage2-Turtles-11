@@ -2,19 +2,23 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
 /* eslint-disable */
-chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-  console.log(response.farewell);
+let objectOfBookmarks = {};
+chrome.bookmarks.getTree(function(tree) {
+  console.log(tree[0]);
+  let arrayOfParentFolder = tree[0].children;
+  for (var i = 0; i < arrayOfParentFolder.length; i++) {
+    // iterate through parents, for each, 
+    // grab parentid and push into ObjectOfBookmarks with key of "parentId"
+    // grab title and push into ObjectOfBookmarks with key of "title"
+    // grab children and push the array as "children" in ObjectOfBookmarks
+  }
 });
 
-chrome.runtime.onMessage.addListener(
-  function (request, sender, sendResponse) {
-    console.log(sender.tab ?
-      "from a content script:" + sender.tab.url :
-      "from the extension");
-    if (request.greeting == "hello") {
-      return sendResponse({ farewell: "goodbye" });
-    }
-  });
+let formattedChildrenBookmarks = {};
+// for each ObjectOfBookmarks, map each parent so that children are turned into list elements
+// push new array of children into its one bundle to be called upon when this.state.bookmarks call upon them to be rendered
+
+
 /* eslint-enable */
 export class Bookmarks extends Component {
   constructor(props) {
@@ -24,6 +28,7 @@ export class Bookmarks extends Component {
       searchTerm: '',
       searchArray: [],
       searchButton: '../assets/search.png',
+      bookmarksArray: [];
     }
   }
   setSearchQuery = (event) => {
@@ -38,13 +43,6 @@ export class Bookmarks extends Component {
       searchArray: newArray
     })
   }
-  // bookmarksList = () => {
-  //   let array = [];
-  //   let bookmarkTreeNodes = chrome.bookmarks.getTree(function (child) { 
-  //     array.push(child)
-  //   });
-  // }
-
   render() {
     return (
       <div>
@@ -62,7 +60,7 @@ export class Bookmarks extends Component {
         </div>
         {/* BOOKMARKS LIST */}
         <section>
-          <aside id="bookmarkFolders"></aside>
+          <div id="bookmarkFolders"></div>
           <div id="bookmarksList"></div>
         </section>
       </div>
