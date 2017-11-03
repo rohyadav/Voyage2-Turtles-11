@@ -7,6 +7,7 @@ import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
+import History from '../components/History.js'
 import rndomImgIcon from '../assets/turtle_green.png';
 /* =========================
  WALLPAPER LINKS
@@ -247,7 +248,7 @@ class HistoryButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // visibility: false,
+      visibility: true,
       iconLink: './assets/Icons_white_white-06.png',
     };
 
@@ -257,6 +258,17 @@ class HistoryButton extends React.Component {
   }
   iconChangeOnOut = () => {
     this.setState({ iconLink: './assets/Icons_white_white-06.png' });
+  }
+
+  toggleVisibility = () => {
+    this.setState(prevState => ({ visibility: !prevState.visibility }));
+    if (this.state.visibility === true) {
+      ReactDOM.render(<History />, document.getElementById('history'));
+      tab_open();
+    } else {
+      ReactDOM.render(<Empty />, document.getElementById('history'));
+      tab_close();
+    }
   }
 
   render() {
@@ -395,6 +407,8 @@ class App extends Component {
             break;
         }
         break;
+      // history icon pressed
+
       // the exit button from one of the open tabs have been pressed
       default:
         this.setState({ todoTabOpen: "false" });
