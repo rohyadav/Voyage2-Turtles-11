@@ -49,11 +49,11 @@ const HistoryList = (props) => {
 
 }
 
-// This may be unnecessary
 const HistoryItem = (props) => {
     return (
         <div>
-            {props.element}
+            <img src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
+            <div>{props.element}</div>
         </div>
     );
 }

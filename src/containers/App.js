@@ -313,6 +313,7 @@ class App extends Component {
       bookmarksTabOpen: "false",
       appsTabOpen: "false",
       historyTabOpen: "false",
+      autoListOpen: "false",
       image: bg1
     };
   }
@@ -458,13 +459,35 @@ class App extends Component {
     }
   }
 
+  /* ---- Background Image ---- */
   backgroundChange = () => {
     let bgImage = this.state.image;
-    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8,
-    bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
+    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9,
+                    bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
     bgImage = bgArray[randomNumber];
     this.setState({image: bgImage});
+  }
+
+  /* ---- AutoSuggestion visibility ---- */
+  handleFocus = () => {
+    if (!this.state.autoListOpen) {
+      document.addEventListener('click', this.handleClickOutside);
+    } 
+    else {
+      document.removeEventListener('click', this.handleClickOutside);
+    }
+    this.setState( prevState => ({
+      autoListOpen: !prevState.autoListOpen,
+   }) );
+  }
+
+  handleClickOutside = event => {
+    // ignore clicks on search area
+    if (this.node.contains(event.target)) {
+      return;
+    }
+    this.handleFocus();
   }
 
   render() {
@@ -478,14 +501,14 @@ class App extends Component {
     }
 
     return (
-      <div className="App" style={bgStyle}>
+      <div className="App" style={bgStyle} >
         <div className="main" id="main">
           <div className="main-content">
             <div className="main-top" >
               <div className="time">
                 <Time />
               </div>
-              <div className="search-area">
+              <div className="search-area" ref={ node => { this.node = node; } }>
                 <GoogleSearch
                   types={
                     [
@@ -498,7 +521,8 @@ class App extends Component {
                       }
                     ]
                   }
-              />
+                  autoListOpen={this.state.autoListOpen}
+                  handleFocus={this.handleFocus}/>
               </div>
             </div> {/* .main-top */}
             <div id='icons'>
