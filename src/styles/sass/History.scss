@@ -1,0 +1,5 @@
+@import "variables";
+
+.history-header {
+    @include tab-header($history-orange);
+}
