@@ -3,6 +3,7 @@ import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
 import Bookmarks from '../components/Bookmarks';
+import AppsTab from '../components/AppsTab.js';
 import GoogleSearch from '../components/GoogleSearch';
 import { TodoList, TodoQty } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
@@ -21,9 +22,9 @@ import bg7 from '../assets/wallpapers/07.JPG';
 import bg8 from '../assets/wallpapers/08.jpg';
 import bg9 from '../assets/wallpapers/09.JPG';
 import bg10 from '../assets/wallpapers/10.jpg';
-import bg11 from '../assets/wallpapers/11.jpg';
+import bg11 from '../assets/wallpapers/11.JPG';
 import bg12 from '../assets/wallpapers/12.JPG';
-import bg13 from '../assets/wallpapers/13.jpg';
+import bg13 from '../assets/wallpapers/13.JPG';
 import bg14 from '../assets/wallpapers/14.JPG';
 import bg15 from '../assets/wallpapers/15.jpg';
 import bg16 from '../assets/wallpapers/16.JPG';
@@ -309,6 +310,7 @@ class App extends Component {
       todoTabOpen: "false",
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
+      appsTabOpen: "false",
       image: bg1
     };
   }
@@ -318,27 +320,34 @@ class App extends Component {
     this.setState({ time: d.toLocaleTimeString() });
     return this.state.time;
   }
+  allTabsClosed = () => {
+    this.setState({ todoTabOpen: "false" });
+    this.setState({ notesTabOpen: "false" });
+    this.setState({ bookmarksTabOpen: "false" });
+    this.setState({ appsTabOpen: "false" });
+    ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+    ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+    ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+    ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+    tab_close();
+  }
   toogleVisibility = (param, event) => {
     switch (param) {
       // todo icon pressed
       case "todo":
         switch (this.state.todoTabOpen) {
           case "true":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-            tab_close();
+            this.allTabsClosed();
             break;
           case "false":
             this.setState({ todoTabOpen: "true" });
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
+            this.setState({ appsTabOpen: "false" });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -349,21 +358,17 @@ class App extends Component {
       case "notes":
         switch (this.state.notesTabOpen) {
           case "true":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-            tab_close();
+            this.allTabsClosed();
             break;
           case "false":
             this.setState({ todoTabOpen: "false" });
             this.setState({ notesTabOpen: "true" });
             this.setState({ bookmarksTabOpen: "false" });
+            this.setState({ appsTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -374,21 +379,38 @@ class App extends Component {
       case "bookmarks":
         switch (this.state.bookmarksTabOpen) {
           case "true":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-            tab_close();
+            this.allTabsClosed();
             break;
           case "false":
             this.setState({ todoTabOpen: "false" });
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "true" });
+            this.setState({ appsTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;
+      // appsTab icon pressed
+      case "apps":
+        switch (this.state.appsTabOpen) {
+          case "true":
+            this.allTabsClosed();
+            break;
+          case "false":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            this.setState({ appsTabOpen: "true" });
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            ReactDOM.render(<AppsTab closeHandler={this.toogleVisibility} />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -397,13 +419,7 @@ class App extends Component {
         break;
       // the exit button from one of the open tabs have been pressed
       default:
-        this.setState({ todoTabOpen: "false" });
-        this.setState({ notesTabOpen: "false" });
-        this.setState({ bookmarksTabOpen: "false" });
-        ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
-        ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
-        ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
-        tab_close();
+        this.allTabsClosed();
     }
   }
   
@@ -458,7 +474,7 @@ class App extends Component {
                 <div onClick={this.toogleVisibility.bind(this, "todo")}>
                   <TodosButton />
                 </div>
-                <div >
+                <div onClick={this.toogleVisibility.bind(this, "apps")}>
                   <AppsButton />
                 </div>
                 <div onClick={this.toogleVisibility.bind(this, "bookmarks")}>
