@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
 /* eslint-disable */
-chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
   console.log(response.farewell);
 });
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
+  function (request, sender, sendResponse) {
     console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
+      "from a content script:" + sender.tab.url :
+      "from the extension");
     if (request.greeting == "hello") {
-      sendResponse({farewell: "goodbye"});
+      return sendResponse({ farewell: "goodbye" });
     }
   });
-  /* eslint-enable */
+/* eslint-enable */
 export class Bookmarks extends Component {
   constructor(props) {
     super(props);
