@@ -64,22 +64,19 @@ SEARCH
 }
 
 
-// NOTE changes here!!
-.add-to-body {
-  color: black;
-}
 
-// .searchBookmarksBackground {
-//   @include searchBackground($apps-green)
-//   // overflow: auto;
-// }
+
+/* .searchBookmarksBackground { */
+/*   @include searchBackground($apps-green) */
+/*   overflow: auto; */
+/*  } */
 
 /*
 ==========================
 BUTTONS
 ==========================
 */
-// NOTE this is kind of not optimal.  look at notes tab alter maybe
+/* NOTE this is kind of not optimal.  look at notes tab alter maybe */
 .AppsExitButton {
   @include tab-exit-button(white);
   
@@ -89,4 +86,31 @@ BUTTONS
   }
 }
 
+/* -------------------------------------------------------------------------- */
 
+/* NOTE changes here!! */
+.add-to-body {
+  font-size: 12px;
+  color: black;
+  margin-left: 20px;
+  margin-right: 20px; }
+
+/* flexboxes */
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px; }
+
+.flex1 {
+  flex: 1; }
+
+.AppsTabTrashIcon {
+  flex: 1; 
+  min-width: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex12 {
+  flex: 12; }
