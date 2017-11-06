@@ -37,7 +37,7 @@ HEADER
   @include tab-body($bkg-grey);
 }
 
-.Bookmarks-Title-Text {
+.AppsTab-Title-Text {
   @include tab-title
 }
 /*
@@ -89,21 +89,26 @@ BUTTONS
 /* -------------------------------------------------------------------------- */
 
 /* NOTE changes here!! */
-.add-to-body {
+.AppsTab-add-to-body {
   font-size: 12px;
   color: black;
   margin-left: 20px;
   margin-right: 20px; }
 
 /* flexboxes */
-.flex {
+.AppsTabflex {
   display: flex;
   align-items: center;
   justify-content: center;
   padding-bottom: 10px; }
 
-.flex1 {
-  flex: 1; }
+/* .AppsTabflex1 { */
+/*   flex: 1; } */
+.AppsTabflex2 {
+  flex: 1; 
+  align-items: center;
+  justify-content: center;
+}
 
 .AppsTabTrashIcon {
   flex: 1; 
@@ -112,5 +117,21 @@ BUTTONS
   justify-content: center;
 }
 
-.flex12 {
+.AppsTabflex12 {
   flex: 12; }
+
+
+.AppsTabButtonEnabled{
+  color: red;
+  &:hover {
+    color: green;
+  }
+}
+
+.AppsTabButtonDisabled{
+  color: blue;
+  &:hover {
+    color: orange;
+  }
+}
+
