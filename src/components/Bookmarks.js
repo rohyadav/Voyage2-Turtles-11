@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
 /* eslint-disable */
-chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-  console.log(response.farewell);
+let arrayOfBookmarks = [];
+chrome.bookmarks.getTree(function(tree) {
+  // console.log(tree[0]);
+  let arrayOfParentFolder = tree[0].children;
+  for (var i = 0; i < arrayOfParentFolder.length; i++) {
+    arrayOfBookmarks.push({
+      parentId: arrayOfParentFolder[i].i,
+      title: arrayOfParentFolder[i].title,
+      children: arrayOfParentFolder[i].children
+    })
+  }
 });
-
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-    if (request.greeting == "hello") {
-      sendResponse({farewell: "goodbye"});
-    }
-  });
-  /* eslint-enable */
+/* eslint-enable */
+console.log(arrayOfBookmarks);
+localStorage.setItem("arrayOfBookmarks", arrayOfBookmarks);
+console.log("local storage is" + localStorage.getItem("arrayOfBookmarks"));
 export class Bookmarks extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,7 @@ export class Bookmarks extends Component {
       searchTerm: '',
       searchArray: [],
       searchButton: '../assets/search.png',
+      bookmarksArray: []
     }
   }
   setSearchQuery = (event) => {
@@ -38,13 +41,25 @@ export class Bookmarks extends Component {
       searchArray: newArray
     })
   }
-  // bookmarksList = () => {
-  //   let array = [];
-  //   let bookmarkTreeNodes = chrome.bookmarks.getTree(function (child) { 
-  //     array.push(child)
-  //   });
+  formattedParentFolder = () => {
+    const folders = [];
+    for (var i = 0; i < localStorage.arrayOfBookmarks.length; i++) {
+      folders.push(<li key={localStorage.arrayOfBookmarks[i].index}>{localStorage.arrayOfBookmarks[i].title}</li>)
+    };
+    return (
+      <ul className="bookmarkParentFolders">{folders}</ul>
+    );
+  }
+  // formattedChildrenBookmarks = () => {
+  //   // for each ObjectOfBookmarks, map each parent so that children are turned into list elements
+  //   // push new array of children into its one bundle to be called upon when this.state.bookmarks call upon them to be rendered
+  //   for (var i = 0; i < localStorage.arrayOfBookmarks.length) {
+  //     localStorage.arrayOfBookmarks[i].children.map(function(bookmarks, index) {
+  //       <li key={bookmarks.index}><a href={bookmarks.url}>{bookmarks.title}</a></li>
+  //     })
+  //   }
   // }
-
+  
   render() {
     return (
       <div>
@@ -62,7 +77,7 @@ export class Bookmarks extends Component {
         </div>
         {/* BOOKMARKS LIST */}
         <section>
-          <aside id="bookmarkFolders"></aside>
+          <div id="bookmarkFolders">{this.formattedParentFolder}</div>
           <div id="bookmarksList"></div>
         </section>
       </div>

@@ -1,33 +1,52 @@
+// manifest how-to => https://developer.chrome.com/extensions/manifest
+// possibly how we should link stuff => chrome-extension://__MSG_@@extension_id__/index.html
+// js file => "/static/js/main.4b2fdf4e.js"
+// css file => "/static/css/main.dce8580b.css"
 {
-  "manifest_version": 2,
+  "name": "TurtleTab",
+  "description": "Chrome extension with built-in weather, todo, notes, and google search functions",
+  "version": "0.0.1",
 
-  "name": "infinity tab clone",
-  
-  "description": "this is just a test",
-  
-  "version": "0.0.0.1",
-  
-  "background": {
-    "scripts": [
-      "event.js"
-    ],
-    "persistent": true
-  },
-  
   "browser_action": {
-    "default_title": "infinity tab clone",
-    "default_popup": "popup.html"
+    "default_icon": "icon.png",
+    "default_popup": "popoup.html"
   },
-  
+
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+
+  "manifest_version": 2,
+  "author": "Chingu Voyage2-Turtles-11",
+  "content_security_policy": "script-src 'self' https://apis.google.com/ https://use.fontawesome.com/b106d0e252.js 'unsafe-eval' ; object-src 'self' "  ,
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
-      "css": [],
-      "js": ["content.js"]
+      "matches": ["http://*/*"],
+      "js": ["contentScript.js"]
     }
   ],
-
   "permissions": [
-    "history"
-  ]
+    "activeTab",
+    "tabs",
+    "bookmarks",
+    "geolocation",
+    "history",
+    "storage",
+    "topSites",
+    "management" // list of extensions/apps that are installed and running
+  ],
+  // externally_connectable allows extension and app IDS to connect with our app
+  "externally_connectable": {
+    "ids": [
+      "*" // this will match all extensions and apps
+    ],
+    // Match patterns for web pages. Does not affect content scripts.
+    // If this field is not specified, no webpages can connect.
+    "matches": [
+      "https://*.google.com/*", 
+      "https://*.fontawesome.com/*"
+    ]
+  },
+  "incognito": "not_allowed",
+  // "web_accessible_resources": ["/static/js/main.4b2fdf4e.js"]
 }
