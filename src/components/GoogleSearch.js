@@ -9,12 +9,22 @@ class GoogleSearch extends Component { // Parent component
         this.state = {
             selected: 'Web', // 'selected' property determines URL (Is there a concise way to target first key in object)
             suggestions: ['initialized state'], // API data
-            expanded: false
+            // expanded: false
         };
         this.handleClick = this.handleClick.bind(this); // binding is optional bc of arrow fxn's lexical scope
     }
 
-    handleClick = (type, event) => { // Click event in SearchType invokes this fxn. Fxn updates state with selected type
+    // toggleExpand = () => {
+    //     this.setState({expanded: true});
+    //     As of right now this is useless/redundant
+    //     TO DO: 
+    //     Set to false when input text value is empty. 
+    //     add a way to set to false when clicking outside of the autolist        
+    // }
+    
+    /* --------- Search Type Options --------- */
+
+    handleClick = (type, event) => { // Click event in SearchType invokes this fxn. Fxn updates GoogleSearch's state 
         event.preventDefault();
         this.setState({selected: type});
     }
@@ -27,11 +37,13 @@ class GoogleSearch extends Component { // Parent component
         window.open(url,'_self'); // alternative: _blank
     }
 
+    /* --------- Autosuggestions --------- */
+
     componentDidMount() { // Crucial, otherwise Wiki data isn't fetched immediately onload
         this.autoSuggest()
     }
 
-    autoSuggest = (autoQuery) => { // Change event in SearchBox invokes this fxn and passes text input value. Fxn updates state with API autosuggestions
+    autoSuggest = (autoQuery) => { // Change event in SearchBox invokes this fxn and passes text input value. Fxn updates GoogleSearch's state with API autosuggestions
         let apiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&redirects=return&search=${autoQuery}`; // Resolve No 'Access-Control-Allow-Origin' header error with '&origin=*'
         fetch(apiUrl)
             .then(response => response.json())
@@ -45,14 +57,6 @@ class GoogleSearch extends Component { // Parent component
             })
     }
 
-    toggleExpand = () => {
-        this.setState({expanded: true});
-        // As of right now this is useless/redundant
-        // TO DO: 
-        // Set to false when input text value is empty. 
-        // add a way to set to false when clicking outside of the autolist        
-    }
-
     handleClickAuto = (currentAuto) => {
         let selected = this.state.selected;
         let collection = this.props.types[0];
@@ -60,6 +64,8 @@ class GoogleSearch extends Component { // Parent component
         let url = urlType + currentAuto;
         window.open(url, '_self');
     }
+
+    /* --------- Render --------- */
 
     render() {
         return (
@@ -70,13 +76,15 @@ class GoogleSearch extends Component { // Parent component
                     handleClick={this.handleClick}/> {/* .bind(this) unnecessary since it's an arrow fxn */}
                 <SearchBox
                     onSearch={this.googleSearch}
-                    onAutoSuggest={this.autoSuggest}
-                    onToggleExpand={this.toggleExpand}/>
+                    onAutoSuggest={this.autoSuggest} 
+                    handleFocus={this.props.handleFocus} /> 
+                    {/* onToggleExpand={this.toggleExpand} */}
                 <GoogleAutosuggest
                     onAutoSearch={this.autoSearch}
-                    suggestions={this.state.suggestions}
-                    expanded={this.state.expanded}
-                    handleClickAuto={this.handleClickAuto} />
+                    suggestions={this.state.suggestions}                    
+                    handleClickAuto={this.handleClickAuto} 
+                    autoListOpen={this.props.autoListOpen}/>
+                    {/* expanded={this.state.expanded} */}
             </div>
         )
     }
@@ -93,7 +101,7 @@ class SearchType extends React.Component {
             <span
                 key={type}
                 className={this.props.selected === type ? 'is-active' : ''}
-                onClick={this.props.handleClick.bind(this, type)}>
+                onClick={this.props.handleClick.bind(this, type)}> {/* EVENT */}
                     {type}
             </span>
         );
@@ -119,7 +127,7 @@ class SearchBox extends React.Component {
     handleChange = event => { // Fxn updates state to input text value, and sends it to parent
         this.setState({ searchInput: event.target.value });
         this.props.onAutoSuggest(event.target.value); // Can't use this.state.searchInput, one step delay, state is async
-        this.props.onToggleExpand();
+        // this.props.onToggleExpand();
     }
 
     handleSubmit = event => { // Ditto: fxn sends data (input text value) to parent
@@ -133,15 +141,16 @@ class SearchBox extends React.Component {
             <div>
             <form
                 className='search-form'
-                onSubmit={this.handleSubmit}>
+                onSubmit={this.handleSubmit}> {/* EVENT */}
                     <input
                         className='search-input-box'
-                        type='search'
-                        onChange={this.handleChange}
-                        placeholder='Google' />
+                        type='search'                        
+                        placeholder='Google'
+                        onChange={this.handleChange} 
+                        onFocus={this.props.handleFocus} /> {/* EVENTS */}
                     <button type='submit'> {/* event handler unnecessary */}
-                        <i class="fa fa-search search-icon" aria-hidden="true"></i>
-                        <span class="sr-only">search icon</span>
+                        <i className="fa fa-search search-icon" aria-hidden="true"></i>
+                        <span className="sr-only">search icon</span>
                     </button>
 
             </form>
