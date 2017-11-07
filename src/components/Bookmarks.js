@@ -23,36 +23,33 @@ console.log(localStorageBookmarks);
 // grabs parentFolders and packages them as list elements
 const FormattedParentFolder = () => {
   let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
-    <li onClick={<FormattedChildrenBookmarks parentFolderIndex={index} />} key={index}>{parentFolder.title}</li>
+    <a key={index} onClick={() => FormattedChildrenBookmarks(index)}>
+        {parentFolder.title}
+    </a>  
   );
-  console.log("mappingParentFolders is " + listOfParentFolders);
-  return <aside className="bookmarkParentFolder"><ul>{listOfParentFolders}</ul></aside>;
+
+  return <aside className="bookmarkParentFolder">{listOfParentFolders}</aside>;
 }
-const FormattedChildrenBookmarks = (props) => {
+function FormattedChildrenBookmarks(index = 0) {
   // iterating through parent folders and looking at all the children inside each parentFolder
-  const parentFolderIndex = props.parentFolderIndex;
+  let parentFolderIndex = index;
+  if (localStorageBookmarks[parentFolderIndex] === undefined || localStorageBookmarks[parentFolderIndex] === null ) {
+    parentFolderIndex = 0;
+  }
+  console.log("parentFolderIndex is " + parentFolderIndex);
+  let maplistOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children
+  console.log("maplistOfChildrenBookmarks is " + maplistOfChildrenBookmarks);
   let listOfChildrenBookmarks;
-  let iconLink;
-  if (parentFolderIndex === null || parentFolderIndex === undefined || parentFolderIndex.length !== 1) {
-    listOfChildrenBookmarks = localStorageBookmarks[0].children.map((bookmarks, index) =>
-      <li key={ bookmarks.index } style={{listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")"}}>
+
+  listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
+    <li key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
       <a href={bookmarks.url}>
         {bookmarks.title}
       </a>
-      </li>
-    )
-  } else {
-  listOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children.map((bookmarks, index) =>
-    <li key={ bookmarks.index } style={{listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")"}}>
-    <a href={bookmarks.url}>
-      <img href={"chrome://favicon/" + bookmarks.url} alt="siteIcon" />
-      {bookmarks.title}
-    </a>
-      </li >
-    ) 
-}
-console.log("mappingBookmarks is " + listOfChildrenBookmarks);
-return <div className="bookmarkList"><ul>{listOfChildrenBookmarks}</ul></div>;
+    </li >
+  )
+  console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
+  return <div className="bookmarkList"><ul>{listOfChildrenBookmarks}</ul></div>;
 }
 export class Bookmarks extends Component {
   constructor(props) {

@@ -59,17 +59,20 @@ BOOKMARKS
   white-space: pre-line;
   text-decoration: none;
   list-style-type: none;
+  display: block;
+  position: relative;
   margin: 0;
   padding: 0;
 }
 .bookmarkParentFolder {
-  width: 70px;
+  width: 68px;
   z-index: 1;
 }
 .bookmarkList {
   width: 200px;
   z-index: 2;
   float: right;
+  top: 0px;
 }
 /*
 ==========================

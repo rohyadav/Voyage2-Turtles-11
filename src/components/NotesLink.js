@@ -6,7 +6,7 @@ export const Link = ({ active, children, onClick }) => {
     }
 
     return (
-        <a className="Description" href="#" onClick={e => {e.preventDefault(), onClick()}}>
+        <a className="Description" onClick={e => {e.preventDefault(), onClick()}}>
             {children}
         </a>
     )
