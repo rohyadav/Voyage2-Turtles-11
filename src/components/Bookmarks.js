@@ -26,33 +26,33 @@ const FormattedParentFolder = () => {
     <li onClick={<FormattedChildrenBookmarks parentFolderIndex={index} />} key={index}>{parentFolder.title}</li>
   );
   console.log("mappingParentFolders is " + listOfParentFolders);
-  return <ul className="bookmarkParentFolder">{listOfParentFolders}</ul>;
+  return <aside className="bookmarkParentFolder"><ul>{listOfParentFolders}</ul></aside>;
 }
 const FormattedChildrenBookmarks = (props) => {
   // iterating through parent folders and looking at all the children inside each parentFolder
   const parentFolderIndex = props.parentFolderIndex;
   let listOfChildrenBookmarks;
+  let iconLink;
   if (parentFolderIndex === null || parentFolderIndex === undefined || parentFolderIndex.length !== 1) {
     listOfChildrenBookmarks = localStorageBookmarks[0].children.map((bookmarks, index) =>
-      <li key={bookmarks.index}>
-        <a href={bookmarks.url}>
-          <img href={bookmarks.url + "/favicon.ico"} alt="siteIcon" />
-          {bookmarks.title}
-        </a>
+      <li key={ bookmarks.index } style={{listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")"}}>
+      <a href={bookmarks.url}>
+        {bookmarks.title}
+      </a>
       </li>
     )
   } else {
-    listOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children.map((bookmarks, index) =>
-      <li key={bookmarks.index}>
-        <a href={bookmarks.url}>
-          <img href={bookmarks.url + "/favicon.ico"} alt="siteIcon" />
-          {bookmarks.title}
-        </a>
-      </li>
+  listOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children.map((bookmarks, index) =>
+    <li key={ bookmarks.index } style={{listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")"}}>
+    <a href={bookmarks.url}>
+      <img href={"chrome://favicon/" + bookmarks.url} alt="siteIcon" />
+      {bookmarks.title}
+    </a>
+      </li >
     ) 
-  }
-  console.log("mappingBookmarks is " + listOfChildrenBookmarks);
-  return <ul className="bookmarkList">{listOfChildrenBookmarks}</ul>;
+}
+console.log("mappingBookmarks is " + listOfChildrenBookmarks);
+return <div className="bookmarkList"><ul>{listOfChildrenBookmarks}</ul></div>;
 }
 export class Bookmarks extends Component {
   constructor(props) {
@@ -90,7 +90,7 @@ export class Bookmarks extends Component {
             <a><img className='searchButton' onChange={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
           </div>
           {/* BOOKMARKS LIST */}
-          <section>
+          <section className="BookmarksListBody">
             <FormattedParentFolder />
             <FormattedChildrenBookmarks />
           </section>

@@ -45,11 +45,32 @@ HEADER
 BOOKMARKS
 ==========================
 */
-.Bookmarks {
-  border: solid 0.2px $default-grey;
-  color: $default-grey;
+.BookmarksListBody {
+  padding-left: 8px;
+  padding-right: 8px;
+  width: 284px;
 }
-
+.bookmarkParentFolder, .bookmarkList {
+  border: 1px solid #e9e9e9;
+  background-color: white;
+  color: $default-grey;
+  font-size: 12px;
+  text-align: left;
+  white-space: pre-line;
+  text-decoration: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.bookmarkParentFolder {
+  width: 70px;
+  z-index: 1;
+}
+.bookmarkList {
+  width: 200px;
+  z-index: 2;
+  float: right;
+}
 /*
 ==========================
 SEARCH
