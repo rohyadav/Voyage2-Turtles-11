@@ -105,7 +105,9 @@ const HistoryItem = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
+            <img className='url-icon'
+                src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'
+                alt='favicon' />
             <div className='url-url'>{props.element}</div>
         </div>
     );
@@ -129,7 +131,9 @@ const HistoryItemF = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
+            <img className='url-icon'
+                src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'
+                alt='favicon' />
             <div className='url-url'>{props.element}</div>
         </div>
     );

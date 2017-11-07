@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
-import Bookmarks from '../components/Bookmarks';
-import AppsTab from '../components/AppsTab.js';
+import { Bookmarks } from '../components/Bookmarks';
 import GoogleSearch from '../components/GoogleSearch';
-import { TodoList, TodoQty } from '../components/todoList.js';
+import { TodoList } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
-import History from '../components/History.js'
 import rndomImgIcon from '../assets/turtle_green.png';
+import AppsTab from '../components/AppsTab.js';
+import History from '../components/History.js';
 /* =========================
  WALLPAPER LINKS
  =========================== */
@@ -349,7 +349,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" })
+            this.setState({ historyTabOpen: "false" });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -372,7 +372,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "true" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" })
+            this.setState({ historyTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -395,7 +395,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "true" });
             this.setState({ appsTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" })
+            this.setState({ historyTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
@@ -418,7 +418,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "true" });
-            this.setState({ historyTabOpen: "false" })
+            this.setState({ historyTabOpen: "false" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -432,7 +432,7 @@ class App extends Component {
         break;
       // history icon pressed
       case "history":
-        switch (this.state.appsTabOpen) {
+        switch (this.state.historyTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
@@ -441,7 +441,7 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "false" });
-            this.setState({ historyTabOpen: "true" })
+            this.setState({ historyTabOpen: "true" });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
