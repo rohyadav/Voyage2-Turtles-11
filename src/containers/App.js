@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import ReactDOM from 'react-dom';
 import { Notes, EmptyContainer } from '../components/Notes';
-import { Bookmarks } from '../components/Bookmarks';
+import Bookmarks from '../components/Bookmarks';
+import AppsTab from '../components/AppsTab.js';
 import GoogleSearch from '../components/GoogleSearch';
-import { TodoList } from '../components/todoList.js';
+import { TodoList, TodoQty } from '../components/todoList.js';
 import { Weather, Empty } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
 import History from '../components/History.js'
 import rndomImgIcon from '../assets/turtle_green.png';
-import AppsTab from '../components/AppsTab.js';
-
 /* =========================
  WALLPAPER LINKS
  =========================== */
@@ -53,7 +52,7 @@ class NotesButton extends React.Component {
 
   render() {
     return (<div className="item note-item">
-      <a 
+      <a href="#"
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
@@ -84,7 +83,7 @@ class BookmarksButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a
+      <a href="#"
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Bookmarks" />
@@ -111,7 +110,7 @@ class TodosButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a
+      <a href="#"
         onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -205,7 +204,7 @@ class WeatherButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a
+      <a href="#"
         onClick={this.toggleVisibility}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -215,7 +214,6 @@ class WeatherButton extends React.Component {
     </div>);
   }
 }
-
 
 class AppsButton extends React.Component {
   constructor(props) {
@@ -251,7 +249,7 @@ class HistoryButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibility: true,
+      // visibility: false,
       iconLink: './assets/Icons_white_white-06.png',
     };
 
@@ -263,20 +261,9 @@ class HistoryButton extends React.Component {
     this.setState({ iconLink: './assets/Icons_white_white-06.png' });
   }
 
-  toggleVisibility = () => {
-    this.setState(prevState => ({ visibility: !prevState.visibility }));
-    if (this.state.visibility === true) {
-      ReactDOM.render(<History />, document.getElementById('history'));
-      tab_open();
-    } else {
-      ReactDOM.render(<Empty />, document.getElementById('history'));
-      tab_close();
-    }
-  }
-
   render() {
     return (<div className="item">
-      <a
+      <a href="#"
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="History" />
@@ -325,6 +312,8 @@ class App extends Component {
       notesTabOpen: "false",
       bookmarksTabOpen: "false",
       appsTabOpen: "false",
+      historyTabOpen: "false",
+      autoListOpen: "false",
       image: bg1
     };
   }
@@ -334,16 +323,17 @@ class App extends Component {
     this.setState({ time: d.toLocaleTimeString() });
     return this.state.time;
   }
-
   allTabsClosed = () => {
     this.setState({ todoTabOpen: "false" });
     this.setState({ notesTabOpen: "false" });
     this.setState({ bookmarksTabOpen: "false" });
     this.setState({ appsTabOpen: "false" });
+    this.setState({ historyTabOpen: "false"});
     ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+    ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
     tab_close();
   }
   toogleVisibility = (param, event) => {
@@ -359,10 +349,12 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "false" });
+            this.setState({ historyTabOpen: "false" })
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             tab_open();
             break;
           default:
@@ -380,10 +372,12 @@ class App extends Component {
             this.setState({ notesTabOpen: "true" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "false" });
+            this.setState({ historyTabOpen: "false" })
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             tab_open();
             break;
           default:
@@ -401,10 +395,12 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "true" });
             this.setState({ appsTabOpen: "false" });
+            this.setState({ historyTabOpen: "false" })
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             tab_open();
             break;
           default:
@@ -422,10 +418,12 @@ class App extends Component {
             this.setState({ notesTabOpen: "false" });
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ appsTabOpen: "true" });
+            this.setState({ historyTabOpen: "false" })
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<AppsTab closeHandler={this.toogleVisibility} />, document.getElementById('apps'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             tab_open();
             break;
           default:
@@ -433,23 +431,67 @@ class App extends Component {
         }
         break;
       // history icon pressed
-
+      case "history":
+        switch (this.state.appsTabOpen) {
+          case "true":
+            this.allTabsClosed();
+            break;
+          case "false":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            this.setState({ appsTabOpen: "false" });
+            this.setState({ historyTabOpen: "true" })
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+            ReactDOM.render(<History closeHandler={this.toogleVisibility} />, document.getElementById('history'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;  
       // the exit button from one of the open tabs have been pressed
       default:
         this.allTabsClosed();
     }
   }
-  
+
+  /* ---- Background Image ---- */
   backgroundChange = () => {
     let bgImage = this.state.image;
-    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, 
-    bg9, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
+    const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9,
+                    bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
     bgImage = bgArray[randomNumber];
     this.setState({image: bgImage});
   }
-    
+
+  /* ---- AutoSuggestion visibility ---- */
+  handleFocus = () => {
+    if (!this.state.autoListOpen) {
+      document.addEventListener('click', this.handleClickOutside);
+    } 
+    else {
+      document.removeEventListener('click', this.handleClickOutside);
+    }
+    this.setState( prevState => ({
+      autoListOpen: !prevState.autoListOpen,
+   }) );
+  }
+
+  handleClickOutside = event => {
+    // ignore clicks on search area
+    if (this.node.contains(event.target)) {
+      return;
+    }
+    this.handleFocus();
+  }
+
   render() {
+
     let bgStyle = {
       backgroundImage: `url(${this.state.image})`,
       backgroundPosition: 'center',
@@ -459,14 +501,14 @@ class App extends Component {
     }
 
     return (
-      <div className="App" style={bgStyle}>
+      <div className="App" style={bgStyle} >
         <div className="main" id="main">
           <div className="main-content">
             <div className="main-top" >
               <div className="time">
                 <Time />
               </div>
-              <div className="search-area">
+              <div className="search-area" ref={ node => { this.node = node; } }>
                 <GoogleSearch
                   types={
                     [
@@ -479,7 +521,8 @@ class App extends Component {
                       }
                     ]
                   }
-              />
+                  autoListOpen={this.state.autoListOpen}
+                  handleFocus={this.handleFocus}/>
               </div>
             </div> {/* .main-top */}
             <div id='icons'>
@@ -499,7 +542,7 @@ class App extends Component {
                 <div onClick={this.toogleVisibility.bind(this, "notes")}>
                   <NotesButton />
                 </div>
-                <div >
+                <div onClick={this.toogleVisibility.bind(this, "history")}>
                   <HistoryButton />
                 </div>
                 <GmailButton />
@@ -508,14 +551,13 @@ class App extends Component {
             </div> {/* #icons */}
           </div> {/* .main-content */}
           <footer>
-            <img 
-              className="footerIcon" 
-              src={rndomImgIcon} 
-              alt="Turtles Cohort" 
+            <img
+              className="footer-icon"
+              src={rndomImgIcon}
+              alt="Turtles Cohort"
               onClick={this.backgroundChange} />
-            <div className="footerText">
-              <p className="leftFooter">Photos by Natasha Sadikin</p>
-            </div>
+            <p className="leftFooter">Photos by Natasha Sadikin</p>
+            {/*<div className="footer-margin"></div>*/}
           </footer>
         </div> {/* .main */}{/* controls what part of main will shift when tab opens */}
 
