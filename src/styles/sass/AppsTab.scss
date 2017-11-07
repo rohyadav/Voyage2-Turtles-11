@@ -9,13 +9,6 @@ IMPORT PARTIAL SASS FILES
 GENERAL
 ==========================
 */
-.SearchBox{
-  resize: none;
-}
-textarea {
-  resize: vertical; max-height: 300px; min-height: 40px;
-  color: $default-grey;
-}
 
 body {
   font-family: $tab-font;
@@ -45,35 +38,17 @@ HEADER
 BOOKMARKS
 ==========================
 */
-.Bookmarks {
-  border: solid 0.2px $default-grey;
-  color: $default-grey;
-}
+/* /1* NOTE maybe use this one later so will not remove now *1/ */
+/* .Bookmarks { */
+/*   border: solid 0.2px $default-grey; */
+/*   color: $default-grey; */
+/* } */
+
+/*
 
 /*
 ==========================
-SEARCH
-==========================
-*/
-.SearchBox {
-  @include search-box;
-}
-
-.SearchBoxText {
-  @include tab-search-text;
-}
-
-
-
-
-/* .searchBookmarksBackground { */
-/*   @include searchBackground($apps-green) */
-/*   overflow: auto; */
-/*  } */
-
-/*
-==========================
-BUTTONS
+BUTTONS & ICONS
 ==========================
 */
 /* NOTE this is kind of not optimal.  look at notes tab alter maybe */
@@ -86,45 +61,12 @@ BUTTONS
   }
 }
 
-/* -------------------------------------------------------------------------- */
 
-/* NOTE changes here!! */
-.AppsTab-add-to-body {
-  font-size: 12px;
-  color: black;
-  margin-left: 20px;
-  margin-right: 20px; }
-
-/* flexboxes */
-.AppsTabflex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 10px; }
-
-/* .AppsTabflex1 { */
-/*   flex: 1; } */
-.AppsTabflex2 {
-  flex: 1; 
-  align-items: center;
-  justify-content: center;
-}
-
-.AppsTabTrashIcon {
-  flex: 1; 
-  min-width: 30px;
-  align-items: center;
-  justify-content: center;
-}
-
-.AppsTabflex12 {
-  flex: 12; }
-
-
+/* here are the enabled/disabled buttons (just before the trash icon) */
 .AppsTabButtonEnabled{
   color: red;
   &:hover {
-    color: green;
+    color: orange;
   }
 }
 
@@ -134,4 +76,60 @@ BUTTONS
     color: orange;
   }
 }
+
+
+
+/* -------------------------------------------------------------------------- */
+
+/* NOTE changes here!! */
+.AppsTab-add-to-body {
+  font-size: 12px;
+  color: black;
+  margin-left: 20px;
+  margin-right: 15px; }
+
+
+/*
+==============================
+flexboxes with apps-extensions
+==============================
+*/
+
+/* here are the main flexboxes containing apps/ext icon  & text & disable/enable & trash-icon */
+.AppsTabflex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px; }
+
+/* first flexbox containing apps/ext icon */
+.AppsTabAppsAndExtensionIcon {
+  padding-right: 10px;
+  flex: 1; 
+  align-items: center;
+  justify-content: center;
+}
+
+/* second flexbox containing apps/ext names */
+.AppsTabNames {
+  flex: 6; 
+}
+
+.AppsTabEnable {
+  flex: 3; 
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* last flexbox with trash icon */
+.AppsTabTrashIcon {
+  flex: 1; 
+  min-width: 26px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 

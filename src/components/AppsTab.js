@@ -4,24 +4,26 @@ import '../styles/AppsTab.css';
 
 
 // *** get the initial app/extension list ***
-const getAllList = [];
 const appList = [];
+const appListDisableEnable = [];
 const extensionList = [];
+const extensionListDisableEnable = [];
 
 /* eslint-disable */
 chrome.management.getAll(function(info) {
   for (var i = 0; i < info.length; i++) {
-    getAllList.push(info[i]);
     // TODO isApp is depreciated so maybe change to type
     if (info[i].isApp) {
       appList.push(info[i]);
+      appListDisableEnable.push(info[i].enabled);
     }
     // for now do not include our own extension cause can not access icon to display 
     else if (info[i].name == "TurtleTab") {
       continue;
     }
     else{
-     extensionList.push(info[i]);
+      extensionList.push(info[i]);
+      extensionListDisableEnable.push(info[i].enabled);
     }
   }
 });
@@ -53,12 +55,12 @@ class AppsTabEnableDisableButton extends React.Component {
         var text;
         var colorEnabled;
         if (this.props.enable) {
-          text = "enabled";
+          text = "Disable";
           colorEnabled = "AppsTabButtonEnabled";
 
         }
         else {
-          text = "disabled";
+          text = "Enable";
           colorEnabled = "AppsTabButtonDisabled";
         }
 
@@ -103,26 +105,48 @@ class AppsTabTrashImg extends React.Component {
 }
 
 
+
 class AppsTab extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          getAllList: getAllList,
           appList: appList,
-          extensionList: extensionList
+          appListDisableEnable: appListDisableEnable,
+          extensionList: extensionList,
+          extensionListDisableEnable: extensionListDisableEnable
         }
       }
       test = (event) => {
         alert("test here");
-        alert(this.state.appList[0].icons[0].url)
-        alert(this.state.extensionList[1].name)
+        event.preventDefault();
       }
-      clickDeleteIcon = () => {
+      clickDeleteIcon = (elm, i, event) => {
         alert("Clicked delete icon. Work in progress not finish");
+        alert(elm);
+        alert(elm.name);
+        alert(i);
+        event.preventDefault();
       }
-      clickEnableDisable = () => {
-        alert("Clicked button Enable/Disable. Work in progress not finish");
+      clickEnableDisableApp = (elm, i, event) => {
+        var arr = this.state.appListDisableEnable.slice();
+        arr[i] = !arr[i];
+        this.setState({appListDisableEnable: arr});
+        /* eslint-disable */
+        chrome.management.setEnabled(elm.id, arr[i]);
+        /* eslint-enable */
+        event.preventDefault();
+
       }
+      clickEnableDisableExt = (elm, i, event) => {
+        var arr = this.state.extensionListDisableEnable.slice();
+        arr[i] = !arr[i];
+        this.setState({extensionListDisableEnable: arr});
+        /* eslint-disable */
+        chrome.management.setEnabled(elm.id, arr[i]);
+        /* eslint-enable */
+        event.preventDefault();
+      }
+
 
 
       render() {
@@ -132,16 +156,16 @@ class AppsTab extends React.Component {
           <div>
             {this.state.appList.map( (elm, i) => 
               <div className="AppsTabflex" >
-                <div className="AppsTabflex2">
+                <div className="AppsTabAppsAndExtensionIcon">
                     <img src={elm.icons[0].url} alt="app icon" width="30" /> 
                 </div>
-                <div className="AppsTabflex12">
+                <div className="AppsTabNames">
                   <p>{elm.name}</p>
                 </div>
-                <div className="AppsTabflex2" onClick={this.clickEnableDisable}>
-                  <AppsTabEnableDisableButton enable={elm.enabled}/>
+                <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
+                  <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]}/>
                 </div>
-                <div onClick={this.clickDeleteIcon}className="AppsTabTrashIcon">
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
                   <AppsTabTrashImg />
                 </div>
               </div>
@@ -155,16 +179,16 @@ class AppsTab extends React.Component {
           <div>
             {this.state.extensionList.map( (elm, i) => 
               <div className="AppsTabflex" >
-                <div className="AppsTabflex2">
+                <div className="AppsTabAppsAndExtensionIcon">
                     <img src={elm.icons[0].url} alt="app icon" width="30" /> 
                 </div>
-                <div className="AppsTabflex12">
+                <div className="AppsTabNames">
                   <p>{elm.name}</p>
                 </div>
-                <div className="AppsTabflex2" onClick={this.clickEnableDisable}>
-                  <AppsTabEnableDisableButton enable={elm.enabled}/>
+                <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
+                  <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]}/>
                 </div>
-                <div onClick={this.clickDeleteIcon}className="AppsTabTrashIcon">
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
                   <AppsTabTrashImg />
                 </div>
               </div>
@@ -177,7 +201,7 @@ class AppsTab extends React.Component {
               {/* HEADER */}
               <div className='Apps-Header'>
                 <button className='AppsExitButton' onClick={this.props.closeHandler}>X</button>
-                <h2 className='Bookmarks-Title-Text'>Apps</h2>
+                <h2 className='AppsTab-Title-Text'>Apps</h2>
               </div>
               <div className='Apps-Body'>
               <div class="AppsTab-add-to-body">
