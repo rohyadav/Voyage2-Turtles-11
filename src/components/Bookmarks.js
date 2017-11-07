@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
 /* eslint-disable */
 let arrayOfBookmarks = [];
@@ -20,37 +21,6 @@ chrome.bookmarks.getTree(function (tree) {
 const localStorageBookmarks = JSON.parse(localStorage.getItem("arrayOfBookmarks"));
 console.log(localStorageBookmarks);
 
-// grabs parentFolders and packages them as list elements
-const FormattedParentFolder = () => {
-  let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
-    <a key={index} onClick={() => FormattedChildrenBookmarks(index)}>
-        {parentFolder.title}
-    </a>  
-  );
-
-  return <aside className="bookmarkParentFolder">{listOfParentFolders}</aside>;
-}
-function FormattedChildrenBookmarks(index = 0) {
-  // iterating through parent folders and looking at all the children inside each parentFolder
-  let parentFolderIndex = index;
-  if (localStorageBookmarks[parentFolderIndex] === undefined || localStorageBookmarks[parentFolderIndex] === null ) {
-    parentFolderIndex = 0;
-  }
-  console.log("parentFolderIndex is " + parentFolderIndex);
-  let maplistOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children
-  console.log("maplistOfChildrenBookmarks is " + maplistOfChildrenBookmarks);
-  let listOfChildrenBookmarks;
-
-  listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
-    <li key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
-      <a href={bookmarks.url}>
-        {bookmarks.title}
-      </a>
-    </li >
-  )
-  console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
-  return <div className="bookmarkList"><ul>{listOfChildrenBookmarks}</ul></div>;
-}
 export class Bookmarks extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +28,9 @@ export class Bookmarks extends Component {
       visibility: true,
       searchTerm: '',
       searchArray: [],
-      searchButton: '../assets/search.png'
+      searchButton: '../assets/search.png',
+      FormattedParentFolder: this.FormattedParentFolder(),
+      FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0)
     }
   }
   setSearchQuery = (event) => {
@@ -70,6 +42,36 @@ export class Bookmarks extends Component {
     const newArray = [...this.state.searchArray];
     newArray[newArray.length] = value;
     this.setState({ searchArray: newArray })
+  }
+  FormattedParentFolder = () => {
+    let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
+      <div>
+        <a key={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
+          {parentFolder.title}
+        </a>
+        <br />
+      </div>
+    );
+    return <aside className="bookmarkParentFolder">{listOfParentFolders}</aside>;
+  }
+  FormattedChildrenBookmarks = (index = 0) => {
+    // iterating through parent folders and looking at all the children inside each parentFolder
+    let parentFolderIndex = index;
+    if (localStorageBookmarks[parentFolderIndex] === undefined || localStorageBookmarks[parentFolderIndex] === null ) {
+      parentFolderIndex = 0;
+    }
+    console.log("parentFolderIndex is " + parentFolderIndex);
+    let maplistOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children
+    let listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
+      <li key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
+        <a href={bookmarks.url}>
+          {bookmarks.title}
+        </a>
+      </li >
+    )
+    console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
+    let result = (<div className="bookmarkList"><ul id="childrenBookmarks">{listOfChildrenBookmarks}</ul></div>)
+    this.setState({ FormattedChildrenBookmarks: result });
   }
   render() {
     return (
@@ -88,8 +90,8 @@ export class Bookmarks extends Component {
           </div>
           {/* BOOKMARKS LIST */}
           <section className="BookmarksListBody">
-            <FormattedParentFolder />
-            <FormattedChildrenBookmarks />
+            {this.state.FormattedParentFolder}
+            {this.state.FormattedChildrenBookmarks}
           </section>
         </div> {/* END OF BODY */}
       </div>

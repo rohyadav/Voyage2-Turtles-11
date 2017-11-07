@@ -101,8 +101,7 @@ BUTTONS
   @include tab-exit-button(white);
   
   &:hover {
-    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
-    background-color:#f6f6f6;
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
   }
 }
 
