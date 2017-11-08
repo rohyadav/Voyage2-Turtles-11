@@ -52,7 +52,7 @@ class NotesButton extends React.Component {
 
   render() {
     return (<div className="item note-item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Notes" />
@@ -83,7 +83,7 @@ class BookmarksButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Bookmarks" />
@@ -110,7 +110,7 @@ class TodosButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onClick={this.props.clickHandler}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -204,7 +204,7 @@ class WeatherButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onClick={this.toggleVisibility}
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
@@ -233,7 +233,7 @@ class AppsButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="Apps" />
@@ -263,7 +263,7 @@ class HistoryButton extends React.Component {
 
   render() {
     return (<div className="item">
-      <a href="#"
+      <a
         onMouseOver={this.iconChangeOnHover}
         onMouseOut={this.iconChangeOnOut}>
         <img src={this.state.iconLink} alt="History" />
