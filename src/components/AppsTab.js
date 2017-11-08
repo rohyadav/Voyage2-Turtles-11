@@ -116,10 +116,6 @@ class AppsTab extends React.Component {
           extensionListDisableEnable: extensionListDisableEnable
         }
       }
-      test = (event) => {
-        alert("test here");
-        event.preventDefault();
-      }
       clickDeleteIcon = (elm, i, event) => {
         alert("Clicked delete icon. Work in progress not finish");
         alert(elm);
@@ -147,10 +143,35 @@ class AppsTab extends React.Component {
         event.preventDefault();
       }
 
-
-
-
   render() {
+ 
+
+
+        // displays the apps
+        var displayApps;
+        displayApps = (
+          <div>
+            {this.state.appList.map( (elm, i) => 
+              <div className="AppsTabflex" >
+                <div className="AppsTabAppsAndExtensionIcon">
+                    <img src={elm.icons[0].url} alt="app icon" width="30" /> 
+                </div>
+                <div className="AppsTabNames">
+                  <p>{elm.name}</p>
+                </div>
+                <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
+                  <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]}/>
+                </div>
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
+                  <AppsTabTrashImg />
+                </div>
+              </div>
+            )} 
+          </div>
+        );
+
+
+
     return (
             <div>
               {/* HEADER */}
@@ -160,7 +181,8 @@ class AppsTab extends React.Component {
               </div>
               <div className='Apps-Body'>
               <div class="AppsTab-add-to-body">
-                <h2 onClick={this.test}>apps:</h2>
+                <h2>apps:</h2>
+                {displayApps}
 
 
                 <h2>extensions:</h2>
