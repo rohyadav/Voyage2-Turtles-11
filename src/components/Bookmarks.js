@@ -17,7 +17,7 @@ chrome.bookmarks.getTree(function (tree) {
   localStorage.setItem("arrayOfBookmarks", JSON.stringify(arrayOfBookmarks));
 });
 /* eslint-enable */
-// grabbing data from localStorage to use for everything else
+// grabbing data from localStorage to use for the rest of the Bookmarks component
 const localStorageBookmarks = JSON.parse(localStorage.getItem("arrayOfBookmarks"));
 console.log(localStorageBookmarks);
 
@@ -43,17 +43,25 @@ export class Bookmarks extends Component {
     newArray[newArray.length] = value;
     this.setState({ searchArray: newArray })
   }
+  shortenBookmarkTitles = (title, number) => {
+    let newTitle = title;
+    if (title.length >= number) {
+      newTitle = title.slice(0, number) + "...";
+    }
+    return newTitle
+  }
   FormattedParentFolder = () => {
     let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
       <div>
-        <a key={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
+        <a className="bookmarkParentFolder" key={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
           {parentFolder.title}
         </a>
         <br />
       </div>
     );
-    return <aside className="bookmarkParentFolder">{listOfParentFolders}</aside>;
+    return <aside className="listOfBookmarkFolders">{listOfParentFolders}</aside>;
   }
+
   FormattedChildrenBookmarks = (index = 0) => {
     // iterating through parent folders and looking at all the children inside each parentFolder
     let parentFolderIndex = index;
@@ -63,14 +71,14 @@ export class Bookmarks extends Component {
     console.log("parentFolderIndex is " + parentFolderIndex);
     let maplistOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children
     let listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
-      <li key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
+      <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
         <a href={bookmarks.url}>
-          {bookmarks.title}
+          {this.shortenBookmarkTitles(bookmarks.title, 22)}
         </a>
       </li >
     )
     console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
-    let result = (<div className="bookmarkList"><ul id="childrenBookmarks">{listOfChildrenBookmarks}</ul></div>)
+    let result = (<ul className="bookmarkList">{listOfChildrenBookmarks}</ul>)
     this.setState({ FormattedChildrenBookmarks: result });
   }
   render() {

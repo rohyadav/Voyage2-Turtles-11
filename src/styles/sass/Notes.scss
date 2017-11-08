@@ -69,16 +69,16 @@ VISIBILITY FILTER
 .Description {
   font-size: 14px;
   text-align: center;
-  color: $notes-red;
+  color: $default-grey;
   padding-top: 12px;
   padding-left: 25px;  
-  font-weight: 700;
+  font-weight: 300;
   letter-spacing: 1px; 
 
   &:enabled {
-    color:$default-grey;
+    color:$notes-red;
     text-decoration: none;
-    font-weight: 300;
+    font-weight: 700;
   }
   &:hover {
     color: $notes-red; 

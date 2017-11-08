@@ -48,9 +48,10 @@ BOOKMARKS
 .BookmarksListBody {
   padding-left: 8px;
   padding-right: 8px;
+  padding-top: 8px;
   width: 284px;
 }
-.bookmarkParentFolder, .bookmarkList {
+.listOfBookmarkFolders, .bookmarkList , .bookmarkParentFolder {
   border: 1px solid #e9e9e9;
   background-color: white;
   color: $default-grey;
@@ -59,20 +60,64 @@ BOOKMARKS
   white-space: pre-line;
   text-decoration: none;
   list-style-type: none;
-  display: block;
+  display: inline-block;
   position: relative;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 }
-.bookmarkParentFolder {
-  width: 68px;
-  z-index: 1;
+.listOfBookmarkFolders {
+  width: 88px;
+  z-index: 1; 
 }
 .bookmarkList {
-  width: 200px;
+  width: 196px;
   z-index: 2;
   float: right;
-  top: 0px;
+  margin-left: 106px;
+  padding-top: 8px;
+}
+.bookmarkParentFolder {
+  padding-bottom: 8px;
+  padding-top: 12px;
+  padding-left: 8px;
+  border: none;
+  &:hover {
+    background-color: $bookmarks-yellow;
+  }
+  &:active {
+    background-color: $bookmarks-yellow;
+  }
+}
+.bookmarks {
+  height: 25px;
+  align-items: center;
+  align-content: center;
+  line-height: 25px;
+  list-style-position: inside;
+  padding-left: -4px;
+  margin-left: 8px;
+}
+.bookmarks > a:-webkit-any-link {
+  color: $default-grey;
+  cursor: auto;
+  text-decoration: none;
+  &:hover {
+    background-color: $bookmarks-yellow;
+  }
+}
+/*
+==========================
+SCROLLBAR
+==========================
+*/
+.Bookmarks-Body::-webkit-scrollbar {
+  @include scrollbar;
+}
+.Bookmarks-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Bookmarks-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
 }
 /*
 ==========================
