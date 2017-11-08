@@ -171,6 +171,31 @@ class AppsTab extends React.Component {
         );
 
 
+        // displays the apps
+        var displayExtensions;
+        displayExtensions = (
+          <div>
+            {this.state.appList.map( (elm, i) => 
+              <div className="AppsTabflex" >
+                <div className="AppsTabAppsAndExtensionIcon">
+                    <img src={elm.icons[0].url} alt="app icon" width="30" /> 
+                </div>
+                <div className="AppsTabNames">
+                  <p>{elm.name}</p>
+                </div>
+                <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
+                  <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]}/>
+                </div>
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
+                  <AppsTabTrashImg />
+                </div>
+              </div>
+            )} 
+          </div>
+        );
+
+
+
 
     return (
             <div>
@@ -186,6 +211,8 @@ class AppsTab extends React.Component {
 
 
                 <h2>extensions:</h2>
+
+                {displayExtensions}
 
               </div>
 
