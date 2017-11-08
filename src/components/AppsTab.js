@@ -17,10 +17,10 @@ chrome.management.getAll(function(info) {
       appList.push(info[i]);
       appListDisableEnable.push(info[i].enabled);
     }
-    // for now do not include our own extension cause can not access icon to display 
-    else if (info[i].name == "TurtleTab") {
-      continue;
-    }
+    // // for now do not include our own extension cause can not access icon to display 
+    // else if (info[i].name == "TurtleTab") {
+    //   continue;
+    // }
     else{
       extensionList.push(info[i]);
       extensionListDisableEnable.push(info[i].enabled);
@@ -177,7 +177,7 @@ class AppsTab extends React.Component {
             {this.state.extensionList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
-                    <img src={elm.icons[0].url} alt="app icon" width="30" /> 
+                { /* <img src={elm.icons[0].url} alt="app icon" width="30" />  */ }
                 </div>
                 <div className="AppsTabNames">
                   <p>{elm.name}</p>
