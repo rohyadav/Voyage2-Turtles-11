@@ -14,9 +14,9 @@ import History from '../components/History.js';
  WALLPAPER LINKS
  =========================== */
 import bg1 from '../assets/wallpapers/01.jpg';
-import bg2 from '../assets/wallpapers/02.JPG';
+import bg2 from '../assets/wallpapers/02.jpg';
 import bg3 from '../assets/wallpapers/03.JPG';
-import bg4 from '../assets/wallpapers/04.JPG';
+import bg4 from '../assets/wallpapers/04.jpg';
 import bg5 from '../assets/wallpapers/05.JPG';
 import bg6 from '../assets/wallpapers/06.JPG';
 import bg7 from '../assets/wallpapers/07.JPG';
@@ -30,7 +30,7 @@ import bg14 from '../assets/wallpapers/14.JPG';
 import bg15 from '../assets/wallpapers/15.jpg';
 import bg16 from '../assets/wallpapers/16.JPG';
 import bg17 from '../assets/wallpapers/17.jpg';
-// import bg18 from '../assets/wallpapers/18.jpg';
+
 /* =========================
  BUTTONS
  =========================== */

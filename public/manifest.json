@@ -33,7 +33,8 @@
     "history",
     "storage",
     "topSites",
-    "management" // list of extensions/apps that are installed and running
+    "management", // list of extensions/apps that are installed and running
+    "chrome://favicon/"
   ],
   // externally_connectable allows extension and app IDS to connect with our app
   "externally_connectable": {

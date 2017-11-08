@@ -19,7 +19,7 @@ export const loadState = () => {
     const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
       return undefined;
-    } 
+    }
     return JSON.parse(serializedState);
   } catch (err) {
     return undefined;
@@ -84,7 +84,7 @@ export class Notes extends Component {
     store.dispatch(addNotes(this.state.note));
     // updates the notes qty button on main Notes icon
     document.getElementById("notesQty").innerText = store.getState().notes.length;
-    this.setState({note: ''});
+    this.setState({ note: '' });
   }
 
   render() {
@@ -96,6 +96,8 @@ export class Notes extends Component {
             <button className='notesExitButton' onClick={this.props.closeHandler}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </header>
+          <br />
+          {/* BODY */}
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
@@ -103,9 +105,6 @@ export class Notes extends Component {
               <a><img alt="searchIcon" className='searchButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <NotesVisibleSearch />
             </div>
-            <br />
-            
-
             {/* NEW NOTE */}
             <div>
               <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>
