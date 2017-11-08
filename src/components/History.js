@@ -59,6 +59,18 @@ class History extends Component { // Parent component
                     <h1 className='Notes-Title-Text'>History</h1>
                 </header>
                 <div className='Notes-Body'>
+                    <form className="h-form" 
+                        onSubmit={this.handleSubmit}>
+                            <input className="SearchBox h-searchbox" 
+                                type="text"
+                                placeholder='Search History'  
+                                onChange={this.handleChange} />
+                            <button className='h-button-s' type='submit'>
+                                <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
+                                <span className="sr-only">search icon</span>
+                            </button>
+                    </form>
+                    {/* <div className='url-container'> */}
                     <div className='h-options'>
                         <span
                             className='descrip-active'
@@ -79,8 +91,9 @@ class History extends Component { // Parent component
                         : <HistoryListF
                             historyF={HISTORY_F} />
                     }
-                </div>
-            </div>
+                    {/* </div> */} {/* .url-container */}
+                </div> {/* .Notes-Body */}
+            </div> 
         )
     }
 
@@ -91,6 +104,7 @@ const HistoryList = (props) => {
     // const history = props.history;
     return (
         <div className='url-container'>
+        {/* <div> */}
             { props.history.map( (element, index) =>
                 <HistoryItem
                     element={element}
@@ -105,9 +119,7 @@ const HistoryItem = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon'
-                src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'
-                alt='favicon' />
+            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
             <div className='url-url'>{props.element}</div>
         </div>
     );
@@ -116,7 +128,9 @@ const HistoryItem = (props) => {
 const HistoryListF = (props) => {
     
         return (
+           
             <div className='url-container'>
+            {/* <div> */}
                 { props.historyF.map( (element, index) =>
                     <HistoryItemF
                         element={element}
@@ -131,9 +145,7 @@ const HistoryItemF = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon'
-                src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'
-                alt='favicon' />
+            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
             <div className='url-url'>{props.element}</div>
         </div>
     );

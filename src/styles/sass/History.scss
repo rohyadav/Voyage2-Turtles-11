@@ -10,9 +10,42 @@
     @include tab-header($history-orange);
 }
 
-// .history-body {
-//   @include tab-body(white);
-// }
+/* Search Form */
+
+.h-form {
+   @include searchBackground($history-orange-bkg);
+}
+
+.h-searchbox {
+  &::placeholder {
+    line-height: 38px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.h-button-s {
+  border: 0;
+  outline: 0;
+  background: none;
+  cursor: pointer;
+  display: block;
+  float: right;
+  margin-right: 16px;
+  margin-top: -42px;
+}
+
+.h-search-icon {
+  color: $default-grey;
+  position: relative;
+  z-index: 1;
+  font-size: 18px;
+}
+
+/* History Options */
 
 .h-options {
   display: flex;
@@ -41,6 +74,8 @@
 .descrip-active {
   @include descrip-base($history-orange, 700)
 }
+
+/* URL List */
 
 .url-container {
   display: flex;
