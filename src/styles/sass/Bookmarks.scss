@@ -85,9 +85,10 @@ BOOKMARKS
   border: none;
   cursor: pointer;
   &:hover {
-    background-color: $bookmarks-yellow;
+    background-color: rgba(255, 238, 0, 0.514);
+    border: 1px solid $bookmarks-yellow;
   }
-  &:active {
+  &:enabled {
     background-color: $bookmarks-yellow;
   }
 }

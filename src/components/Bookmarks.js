@@ -59,7 +59,7 @@ export class Bookmarks extends Component {
         <br />
       </div>
     );
-    return <aside className="listOfBookmarkFolders">{listOfParentFolders}</aside>;
+    return <div className="listOfBookmarkFolders">{listOfParentFolders}</div>;
   }
 
   FormattedChildrenBookmarks = (index = 0) => {
@@ -73,7 +73,7 @@ export class Bookmarks extends Component {
     let listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
       <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
         <a href={bookmarks.url}>
-          {this.shortenBookmarkTitles(bookmarks.title, 24)}
+          {this.shortenBookmarkTitles(bookmarks.title, 23)}
         </a>
       </li >
     )
