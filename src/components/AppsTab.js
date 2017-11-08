@@ -175,7 +175,7 @@ class AppsTab extends React.Component {
         var displayExtensions;
         displayExtensions = (
           <div>
-            {this.state.appList.map( (elm, i) => 
+            {this.state.extensionList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
                     <img src={elm.icons[0].url} alt="app icon" width="30" /> 
