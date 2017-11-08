@@ -65,7 +65,7 @@ export class Bookmarks extends Component {
   FormattedChildrenBookmarks = (index = 0) => {
     // iterating through parent folders and looking at all the children inside each parentFolder
     let parentFolderIndex = index;
-    if (localStorageBookmarks[parentFolderIndex] === undefined || localStorageBookmarks[parentFolderIndex] === null ) {
+    if (localStorageBookmarks[parentFolderIndex] === undefined || localStorageBookmarks[parentFolderIndex] === null) {
       parentFolderIndex = 0;
     }
     console.log("parentFolderIndex is " + parentFolderIndex);
@@ -73,7 +73,7 @@ export class Bookmarks extends Component {
     let listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
       <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
         <a href={bookmarks.url}>
-          {this.shortenBookmarkTitles(bookmarks.title, 22)}
+          {this.shortenBookmarkTitles(bookmarks.title, 24)}
         </a>
       </li >
     )

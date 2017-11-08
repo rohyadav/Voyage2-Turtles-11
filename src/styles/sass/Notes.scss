@@ -36,7 +36,20 @@ HEADER & BODY
 .Notes-Title-Text {
   @include tab-title
 }
-
+/*
+==========================
+SCROLLBAR
+==========================
+*/
+.Notes-Body::-webkit-scrollbar {
+  @include scrollbar;
+}
+.Notes-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Notes-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
+}
 /*
 ==========================
 NEW NOTES
@@ -48,6 +61,7 @@ NEW NOTES
   margin-left: 8px;
   margin-right: 8px;
   margin-bottom: 8px;
+  margin-top: 8px;
   box-shadow: none;
   border: 1px solid #e9e9e9;
   color: $default-grey;
@@ -119,7 +133,6 @@ EXISTING NOTES
   white-space: pre-wrap;
 }
 
-
 /*
 ==========================
 SEARCH
@@ -179,8 +192,8 @@ BUTTONS
   z-index: 2;
   float: right;
   margin-right: 16px;
-  margin-top: 8px;
-  margin-bottom: -30px;
+  margin-top: 16px;
+  margin-bottom: -38px;
   position: relative;
 	background-color:$notes-red;
 	border-radius:50%;
