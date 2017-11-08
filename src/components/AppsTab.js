@@ -183,7 +183,7 @@ class AppsTab extends React.Component {
                 <div className="AppsTabNames">
                   <p>{elm.name}</p>
                 </div>
-                <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
+                <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
                   <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]}/>
                 </div>
                 <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
