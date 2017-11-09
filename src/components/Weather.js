@@ -102,9 +102,9 @@ export class Weather extends React.Component {
 	}
 
 	dateGrabber(dt) {
-		let d = new Date(dt);
-		let splitD = d.getDay();
-		let Day = d.getDay();
+		let d = new Date(dt * 1000);
+		let splitD = d.toDateString().split(" ");
+		let Day = splitD[0];
 		return Day;
 	}
 

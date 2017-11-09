@@ -43,3 +43,5 @@ export function WeatherIcon(name) {
 	}
 	return iconLink;
 };
+
+// clear night
