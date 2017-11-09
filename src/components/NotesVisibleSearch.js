@@ -1,28 +1,48 @@
 import { connect } from 'react-redux';
-import { searchNotes } from '../actions/Notes_Actions';
-import { NotesList } from './NotesBundlerSearch';
+import { toggleNotes } from '../actions/Notes_Actions';
+import { pinNotes } from '../actions/Notes_Actions';
+import { deleteNotes } from '../actions/Notes_Actions';
+import { updateNotes } from '../actions/Notes_Actions';
+import { NotesSearchList } from './NotesBundlerSearch';
 
-const getVisibleNotes = (notes, filter) => {
-    switch (filter) {
-        case "SEARCH_NOTES":
-            return notes.filter(n => n.search)
-        default:
-            return notes;
+const getVisibleSearchResults = (notes, filter) => {
+    let results = notes.filter(n => n.search);
+    if (results.length === 0) {
+        return null;
+    } else {
+        return results;
     }
 }
 
 const mapStateToProps = state => {
+    console.log("Mapping state to props because state changed.");
     return {
-        notes: getVisibleNotes(state.notes, state.NotesVisibilityFilters)
+        notes: getVisibleSearchResults(state.notes, state.notesVisibilityFilters)
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return dispatch();
-// }
+const mapDispatchToProps = dispatch => {
+    return {
+        onPinClick: id => {
+            dispatch(pinNotes(id))
+            console.log("pinNotes id is : " + id )
+        },
+        onArchiveClick: id => {
+            dispatch(toggleNotes(id))
+            console.log("toggleNotes id is : " + id )
+        },
+        onDeleteNoteClick: id => {
+            dispatch(deleteNotes(id))
+            console.log("deleteNotes id is : " + id )
+        },
+        onUpdateClick: (id, text) => {
+            dispatch(updateNotes(text, id))
+        }
+    }
+}
 
 export const NotesVisibleSearch = connect(
     mapStateToProps,
-    null
-)(NotesList)
+    mapDispatchToProps
+)(NotesSearchList)
 

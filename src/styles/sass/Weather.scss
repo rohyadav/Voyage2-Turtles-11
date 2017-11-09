@@ -1,0 +1,103 @@
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+
+@import "variables"; //standard variables throughout project
+
+/*
+==========================
+GENERAL
+==========================
+*/
+
+textarea {
+  resize: vertical; max-height: 300px; min-height: 40px;
+  color: #959595;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+  color: #ffffff;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.3em;
+}
+
+h2 {
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+/*
+==========================
+CURRENT WEATHER
+==========================
+*/
+
+.currentWeather {
+  background-color: $weather-light-blue;
+  top: 0px;
+  right: 0px;
+  width: 19rem;
+  position: fixed;
+  height: 50vh;
+  padding: 0.3rem;
+}
+
+.currentTempMinMax {
+  border: solid 0.1em #ffffff;
+  border-left: hidden;
+  border-right: hidden;
+  display: flex;
+}
+
+.currentMin {
+  // position: flex;
+  border: hidden 0.1em #ffffff;
+  border-right: solid;
+}
+
+.currentMin, .currentMax {
+  width: 50%;
+}
+
+.left {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.small {
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+/*
+==========================
+FORECAST
+==========================
+*/
+
+.forecast {
+    position: fixed;
+    background-color: $weather-light-blue;
+    top: 50vh;
+    right: 0;
+    height: 60vh;
+    width: 19rem;
+}

@@ -1,0 +1,80 @@
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+@import "variables"; //standard variables throughout project
+/*
+==========================
+GENERAL
+==========================
+*/
+.SearchBox{
+  resize: none;
+}
+textarea {
+  resize: vertical; max-height: 300px; min-height: 40px;
+  color: $default-grey;
+}
+
+body {
+  font-family: $tab-font;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $default-grey;
+}
+/*
+==========================
+HEADER
+==========================
+*/
+.Bookmarks-Header {
+  @include tab-header($bookmarks-yellow);
+}
+
+.Bookmarks-Body {
+  @include tab-body;
+}
+
+.Bookmarks-Title-Text {
+  @include tab-title
+}
+/*
+==========================
+NOTES
+==========================
+*/
+.Bookmarks {
+  border: solid 0.2px $default-grey;
+  color: $default-grey;
+}
+
+/*
+==========================
+SEARCH
+==========================
+*/
+.SearchBox {
+  @include search-box;
+}
+
+.SearchBoxText {
+  @include tab-search-text;
+}
+
+/*
+==========================
+BUTTONS
+==========================
+*/
+.bookmarksExitButton {
+  @include tab-exit-button($bookmarks-yellow);
+  
+  &:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color:#f6f6f6;
+  }
+}
+
+
