@@ -30,6 +30,20 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 
+h1 {
+  font-size: 1.3em;
+}
+
+h2 {
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
 /*
 ==========================
 CURRENT WEATHER
@@ -43,12 +57,34 @@ CURRENT WEATHER
   width: 19rem;
   position: fixed;
   height: 50vh;
+  padding: 0.3rem;
 }
 
 .currentTempMinMax {
-    border: solid 0.1em #ffffff;
-    border-left: hidden;
-    border-right: hidden;
+  border: solid 0.1em #ffffff;
+  border-left: hidden;
+  border-right: hidden;
+  display: flex;
+}
+
+.currentMin {
+  // position: flex;
+  border: hidden 0.1em #ffffff;
+  border-right: solid;
+}
+
+.currentMin, .currentMax {
+  width: 50%;
+}
+
+.left {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.small {
+  font-size: 0.8em;
+  font-weight: 500;
 }
 
 /*
