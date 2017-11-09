@@ -27,8 +27,21 @@ export class Weather extends React.Component {
 			requestURL = endpoint;
 			console.log(requestURL);
 
-			sendRequest(requestURL);
+			function sendRequest(url) {
+				console.log('sending weather request');
+				console.log(url);
+				const request = new XMLHttpRequest();
+				request.open('GET', url);
+				request.responseType = 'json';
+				request.send();
+		
+				request.onload = () => {
+					console.log('running request.onload');
+					currentWeather = request.response;
+				}
+			};
 
+			sendRequest(requestURL);
 		}
 
 		function error() {
@@ -36,20 +49,6 @@ export class Weather extends React.Component {
 		}
 
 		navigator.geolocation.getCurrentPosition(success, error);
-	}
-
-	sendRequest(url) {
-		console.log('sending weather request');
-		console.log(url);
-		const request = new XMLHttpRequest();
-		request.open('GET', url);
-		request.responseType = 'json';
-		request.send();
-
-		request.onload = () => {
-			console.log('running request.onload');
-			currentWeather = request.response;
-		}
 	}
 
 	requestGeolocation() {

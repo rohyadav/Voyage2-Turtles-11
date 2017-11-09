@@ -1,0 +1,166 @@
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+/*
+==========================
+COLORS
+==========================
+*/
+/*
+==========================
+FONTS
+==========================
+*/
+/*
+==========================
+COMPONENTS
+==========================
+*/
+/*
+==========================
+SCROLL
+==========================
+*/
+/*
+==========================
+ICONS
+==========================
+*/
+/*
+==========================
+GENERAL
+==========================
+*/
+body {
+  font-family: "Helvetica Neue", Helvetica, "Varela Round", sans-serif; }
+
+h1, h2, h3, h4, h5 {
+  color: #959595; }
+
+/*
+==========================
+HEADER
+==========================
+*/
+.Apps-Header {
+  background-color: #39b54a;
+  top: 0px;
+  right: 0px;
+  width: 300px;
+  position: fixed;
+  height: 45px; }
+
+.Apps-Body {
+  background-color: #f1f1f1;
+  top: 45px;
+  right: 0px;
+  width: 300px;
+  position: fixed;
+  height: 100%;
+  max-height: 100%;
+  overflow: auto; }
+
+.AppsTab-Title-Text {
+  width: 260px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  text-align: left;
+  color: #ffffff;
+  padding-left: 10px;
+  padding-top: 5px; }
+
+/*
+==========================
+BOOKMARKS
+==========================
+*/
+/* /1* NOTE maybe use this one later so will not remove now *1/ */
+/* .Bookmarks { */
+/*   border: solid 0.2px $default-grey; */
+/*   color: $default-grey; */
+/* } */
+/*
+
+/*
+==========================
+BUTTONS & ICONS
+==========================
+*/
+/* NOTE this is kind of not optimal.  look at notes tab alter maybe */
+.AppsExitButton {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  top: 10px;
+  right: 10px;
+  color: white;
+  position: fixed;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: bold;
+  text-align: center;
+  border: none;
+  background-color: none;
+  background: rgba(255, 255, 255, 0); }
+  .AppsExitButton:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color: #f6f6f6; }
+
+/* here are the enabled/disabled buttons (just before the trash icon) */
+.AppsTabButtonEnabled {
+  color: red; }
+  .AppsTabButtonEnabled:hover {
+    color: orange; }
+
+.AppsTabButtonDisabled {
+  color: blue; }
+  .AppsTabButtonDisabled:hover {
+    color: orange; }
+
+/* -------------------------------------------------------------------------- */
+/* NOTE changes here!! */
+.AppsTab-add-to-body {
+  font-size: 12px;
+  color: black;
+  margin-left: 20px;
+  margin-right: 15px; }
+
+/*
+==============================
+flexboxes with apps-extensions
+==============================
+*/
+/* here are the main flexboxes containing apps/ext icon  & text & disable/enable & trash-icon */
+.AppsTabflex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px; }
+
+/* first flexbox containing apps/ext icon */
+.AppsTabAppsAndExtensionIcon {
+  padding-right: 10px;
+  flex: 1;
+  align-items: center;
+  justify-content: center; }
+
+/* second flexbox containing apps/ext names */
+.AppsTabNames {
+  flex: 6; }
+
+.AppsTabEnable {
+  flex: 3;
+  align-items: center;
+  justify-content: center; }
+
+/* last flexbox with trash icon */
+.AppsTabTrashIcon {
+  flex: 1;
+  min-width: 26px;
+  align-items: center;
+  justify-content: center; }
