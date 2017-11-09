@@ -87,7 +87,7 @@ CURRENT WEATHER
 .currentMin {
   // position: flex;
   border: hidden 0.1em #ffffff;
-  border-right: solid;
+  border-left: solid 0.1em #ffffff;
 }
 
 .currentMin, .currentMax {

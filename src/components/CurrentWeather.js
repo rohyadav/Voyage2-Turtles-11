@@ -23,13 +23,13 @@ export class CurrentWeather extends React.Component {
 				<h1>{this.props.temp + "°"}</h1>
 				<p>Current Temp.</p>
 				<div className="currentTempMinMax">
-					<div className="currentMin">
-						<h1>{this.props.tempMin}°F</h1>
-						<p className="small">Min</p>
-					</div>
 					<div className="currentMax">
 						<h1>{this.props.tempMax}°F</h1>
 						<p className="small">Max</p>
+					</div>
+					<div className="currentMin">
+						<h1>{this.props.tempMin}°F</h1>
+						<p className="small">Min</p>
 					</div>
 				</div>
 			</div>
