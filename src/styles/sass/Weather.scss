@@ -17,19 +17,49 @@ textarea {
   color: #959595;
 }
 
-body {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
-  color: #ffffff;
-}
-
 .container {
   text-align: center;
 }
 
+h1 {
+  font-size: 1.3em;
+}
+
+h2 {
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+/*
+==========================
+HEADER
+==========================
+*/
+.Weather-Header {
+  @include tab-header($weather-light-blue);
+}
+.WeatherExitButton {
+  @include tab-exit-button(white);
+  
+    &:hover {
+      // background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
+    }
+}
+.Weather-Title-Text {
+  @include tab-title
+}
+
+.Weather-Body {
+  @include tab-body($weather-light-blue);
+  font-family: $tab-font;
+  color: white;
+}
 /*
 ==========================
 CURRENT WEATHER
@@ -37,18 +67,54 @@ CURRENT WEATHER
 */
 
 .currentWeather {
-  background-color: $weather-light-blue;
-  top: 0px;
-  right: 0px;
-  width: 19rem;
-  position: fixed;
-  height: 50vh;
+  display: block;
+  margin: auto;
+  float: right;
+  width: 300px;
 }
 
 .currentTempMinMax {
-    border: solid 0.1em #ffffff;
-    border-left: hidden;
-    border-right: hidden;
+  border: solid 0.1em #ffffff;
+  border-left: hidden;
+  border-right: hidden;
+  display: flex;
+}
+
+
+.currentMin, .currentMax {
+  font-size: 24px;
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+.currentTemp {
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+  font-size: 60px;
+}
+
+.center {
+  text-align: center;
+  padding-left: 1rem;
+}
+
+.small {
+  font-size: 0.8em;
+  font-weight: 500;
+  margin-top: -10px;
+}
+
+.mainWeatherImage {
+  border: none;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  display: block;
+  z-index: 3;
 }
 
 /*
@@ -58,10 +124,45 @@ FORECAST
 */
 
 .forecast {
-    position: fixed;
-    background-color: $weather-light-blue;
-    top: 50vh;
-    right: 0;
-    height: 60vh;
-    width: 19rem;
+    // position: fixed;
+    // top: 45vh;
+    // right: 0;
+    // height: 60vh;
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 300px;
+    float: right;
+}
+
+.forecastInfo {
+  display: block;
+  margin: auto;
+  width: 300px;
+  float: right;
+}
+
+.forecastWeatherImage {
+  border: none;
+  width: 75px;
+  height: 75px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
+  margin-top: 10px;
+  line-height: 300px;
+}
+/*
+==========================
+GRID
+==========================
+*/
+.row {
+  width: 300px;
+  right: 0px;
+  position: relative;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-top: 10px;
 }
