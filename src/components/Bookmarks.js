@@ -30,7 +30,10 @@ export class Bookmarks extends Component {
       searchArray: [],
       searchButton: '../assets/search.png',
       FormattedParentFolder: this.FormattedParentFolder(),
-      FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0)
+      FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0),
+      searchFolderDisplay: {
+        display: "none"
+      }
     }
   }
   setSearchQuery = (event) => {
@@ -60,21 +63,27 @@ export class Bookmarks extends Component {
     let value = this.state.searchTerm;
     let newSearchArray = [];
     let thisOfSearchArray = this;
-    /* eslint-disable */
-    chrome.bookmarks.search(value, function (tree) {
-      let arrayOfSearchResults = tree;
-      console.log("arrayOfSearchResults are " + arrayOfSearchResults)
-      for (var i = 0; i < arrayOfSearchResults.length; i++) {
-        newSearchArray.push({
-          title: arrayOfSearchResults[i].title,
-          url: arrayOfSearchResults[i].url,
-          iconurl: "chrome://favicon/" + arrayOfSearchResults[i].url
-        });
-      }
-      console.log("state searchArray is " + newSearchArray);
-      thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
-    });  
-    /* eslint-enable */
+    // /* eslint-disable */
+    // chrome.bookmarks.search(value, function (tree) {
+    //   let arrayOfSearchResults = tree;
+    //   console.log("arrayOfSearchResults are " + arrayOfSearchResults)
+    //   for (var i = 0; i < arrayOfSearchResults.length; i++) {
+    //     newSearchArray.push({
+    //       title: arrayOfSearchResults[i].title,
+    //       url: arrayOfSearchResults[i].url,
+    //       iconurl: "chrome://favicon/" + arrayOfSearchResults[i].url
+    //     });
+    //   }
+    //   console.log("state searchArray is " + newSearchArray);
+    //   thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
+    //   thisOfSearchArray.setState({
+    //     searchFolderDisplay: {
+    //       display: "inline-block"
+    //     }
+    //   });
+    //   thisOfSearchArray.setState({ FormattedChildrenBookmarks: thisOfSearchArray.state.searchArray });
+    // });
+    // /* eslint-enable */
 
     if (this.state.searchTerm === '') {
       return null;
@@ -82,10 +91,35 @@ export class Bookmarks extends Component {
       this.setState({ searchButton: "../assets/search.png" });
       this.setState({ searchTerm: "" });
       this.setState({ searchArray: [] });
+      this.setState({ searchFolderDisplay: {
+        display: "none"
+      } });
+      this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
     } else {
       (this.state.searchButton === '../assets/search.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search.png" });
+      /* eslint-disable */
+      chrome.bookmarks.search(value, function (tree) {
+        let arrayOfSearchResults = tree;
+        console.log("arrayOfSearchResults are " + arrayOfSearchResults)
+        for (var i = 0; i < arrayOfSearchResults.length; i++) {
+          newSearchArray.push({
+            title: arrayOfSearchResults[i].title,
+            url: arrayOfSearchResults[i].url,
+            iconurl: "chrome://favicon/" + arrayOfSearchResults[i].url
+          });
+        }
+        console.log("state searchArray is " + newSearchArray);
+        thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
+        thisOfSearchArray.setState({
+          searchFolderDisplay: {
+            display: "list-item"
+          }
+        });
+        thisOfSearchArray.setState({ FormattedChildrenBookmarks: thisOfSearchArray.state.searchArray });
+      });
+      /* eslint-enable */
+      return <div className="bookmarkList">{this.bookmarksFormatter(this.state.searchArray)}</div>;
     }
-    return <div className="bookmarkList">{this.bookmarksFormatter(this.state.searchArray)}</div>;
   }
 
   FormattedChildrenBookmarks = (index = 0) => {
@@ -120,7 +154,7 @@ export class Bookmarks extends Component {
       <div>
         {/* HEADER */}
         <div className='Bookmarks-Header'>
-          <button className='bookmarksExitButton' onClick={this.props.closeHandler}>X</button>
+          <button className='bookmarksExitButton' onChange={this.props.closeHandler}>X</button>
           <h1 className='Bookmarks-Title-Text'>Bookmarks</h1>
         </div>
         {/* BODY */}
@@ -129,12 +163,16 @@ export class Bookmarks extends Component {
           <div class="searchBookmarksBackground">
             <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
             <a><img className='searchButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
-            {this.state.searchArray}
+            <div id="searchFolder" style={this.state.searchFolderDisplay}>
+              <a className="bookmarkParentFolder">Search Results</a>
+              <br />
+            </div>
           </div>
           {/* BOOKMARKS LIST */}
           <section className="BookmarksListBody">
             {this.state.FormattedParentFolder}
             {this.state.FormattedChildrenBookmarks}
+            {this.state.searchArray}
           </section>
         </div> {/* END OF BODY */}
       </div>
