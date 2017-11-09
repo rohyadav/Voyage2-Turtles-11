@@ -41,7 +41,7 @@ export function pinNotes(index) {
 }
 
 export function updateNotes(text, index) {
-    return { type: UPDATE_NOTES, index }
+    return { type: UPDATE_NOTES, text, index }
 }
 
 export function setNotesVisibilityFilter(filter) {

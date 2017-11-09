@@ -34,7 +34,7 @@ HEADER
 }
 
 .Bookmarks-Body {
-  @include tab-body;
+  @include tab-body($bkg-grey);
 }
 
 .Bookmarks-Title-Text {
@@ -42,7 +42,7 @@ HEADER
 }
 /*
 ==========================
-NOTES
+BOOKMARKS
 ==========================
 */
 .Bookmarks {
@@ -63,13 +63,18 @@ SEARCH
   @include tab-search-text;
 }
 
+.searchBookmarksBackground {
+  @include searchBackground($bookmarks-yellow-bkg)
+  // overflow: auto;
+}
+
 /*
 ==========================
 BUTTONS
 ==========================
 */
 .bookmarksExitButton {
-  @include tab-exit-button($bookmarks-yellow);
+  @include tab-exit-button(white);
   
   &:hover {
     background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
