@@ -1,38 +1,51 @@
 import React, { Component } from 'react';
 import '../styles/History.css';
 
-// Get URLs through Chrome API
-// Pass URLs down as a prop
-
-const HISTORY = [
-    'https://www.youtube.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11',
-    'https://chingu-voyage-2.slack.com/messages',
-    'http://localhost:3000/',
-    'https://mail.google.com/mail/u/0/',
-    'https://github.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11/commits/DevelopmentBranch',
-    'https://www.nytimes.com/',
-    'about:srcdoc',
-    'about:blank',
-]
+// Phrase Brainstorm
+// Recent | Most | Clear
+// Recent History | Frequent History | Clear History
+// Recently Visted | Most Visited | Clear History
 
 const HISTORY_F = [
-    'about:blank',
-    'about:srcdoc',
-    'http://localhost:3000/',
     'https://www.youtube.com/',
-    'https://github.com/',
     'https://github.com/chingu-coders/Voyage2-Turtles-11',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11/commits/DevelopmentBranch',
     'https://chingu-voyage-2.slack.com/messages',
+    'http://localhost:3000/',
     'https://mail.google.com/mail/u/0/',
+    'https://github.com/',
+    'https://github.com/chingu-coders/Voyage2-Turtles-11/commits/DevelopmentBranch',
     'https://www.nytimes.com/',
+    'about:srcdoc',
+    'about:blank',
 ]
 
-// Recent | Most/Frequent | Clear
-// Recent History | Frequent History | Clear History
+/* eslint-disable */
 
+let historyArr = [];
+let historyArrF = []; // need array to use .push
+
+const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+// Track the number of callbacks from chrome.history.getVisits() that we expect to get. When it reaches zero, we have all results.
+// var numRequestsOutstanding = 0;
+
+chrome.history.search({
+        text: '',              // Return every history item....
+        startTime: oneWeekAgo, // that was accessed less than one week ago.
+        maxResults: 40
+    },
+    function(historyItems) {
+        console.log('historyItems', historyItems);
+
+        // Extract historyItems object
+        for (var i = 0; i < historyItems.length; ++i) {
+            historyArr.push(historyItems[i]);
+        }
+
+    });
+    console.log('updated historyArr', historyArr);
+
+/* eslint-enable */
 class History extends Component { // Parent component
 
     constructor(props) {
@@ -59,6 +72,18 @@ class History extends Component { // Parent component
                     <h1 className='Notes-Title-Text'>History</h1>
                 </header>
                 <div className='Notes-Body'>
+                    <form className="h-form"
+                        onSubmit={this.handleSubmit}>
+                            <input className="SearchBox h-searchbox"
+                                type="text"
+                                placeholder='Search History'
+                                onChange={this.handleChange} />
+                            <button className='h-button-s' type='submit'>
+                                <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
+                                <span className="sr-only">search icon</span>
+                            </button>
+                    </form>
+                    {/* <div className='url-container'> */}
                     <div className='h-options'>
                         <span
                             className='descrip-active'
@@ -74,25 +99,29 @@ class History extends Component { // Parent component
                     </div>
                     {
                         (this.state.selected === 'Frequent History')
-                        ? <HistoryList
-                            history={HISTORY} />
-                        : <HistoryListF
-                            historyF={HISTORY_F} />
+                        ? <HistoryListF
+                            historyArrF={HISTORY_F} />
+                        : <HistoryList
+                            historyArr={historyArr} />
                     }
-                </div>
+                    {/* </div> */} {/* .url-container */}
+                </div> {/* .Notes-Body */}
             </div>
         )
     }
 
 } //  History component
 
-const HistoryList = (props) => {
-    
+/* ----- FREQUENT HISTORY ----- */
+
+const HistoryListF = (props) => {
+
     // const history = props.history;
     return (
         <div className='url-container'>
-            { props.history.map( (element, index) =>
-                <HistoryItem
+        {/* <div> */}
+            { props.historyArrF.map( (element, index) =>
+                <HistoryItemF
                     element={element}
                     key={index}/>
             ) }
@@ -101,24 +130,33 @@ const HistoryList = (props) => {
 
 }
 
-const HistoryItem = (props) => {
+const HistoryItemF = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon'
-                src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'
-                alt='favicon' />
+            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
             <div className='url-url'>{props.element}</div>
         </div>
     );
 }
 
-const HistoryListF = (props) => {
-    
+/* ----- RECENT HISTORY ----- */
+
+const HistoryList = (props) => {
+
+    const histArr = props.historyArr;
+    let histArrUrl = [];
+
+    for (let i = 0; i < historyArr.length; ++i) {
+        histArrUrl.push(histArr[i].url);
+    }
+
         return (
+
             <div className='url-container'>
-                { props.historyF.map( (element, index) =>
-                    <HistoryItemF
+            {/* <div> */}
+                { histArrUrl.map( (element, index) =>
+                    <HistoryItem
                         element={element}
                         key={index}/>
                 ) }
@@ -127,16 +165,19 @@ const HistoryListF = (props) => {
 
     }
 
-const HistoryItemF = (props) => {
+const HistoryItem = (props) => {
 
     return (
         <div className='url-item'>
             <img className='url-icon'
-                src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'
-                alt='favicon' />
-            <div className='url-url'>{props.element}</div>
+            src={`chrome://favicon/${props.element}`} />
+            <a href={props.element} className='url-url'>{props.element}</a>
         </div>
     );
 }
 
 export default History
+
+{/* <li className="bookmarks"
+    key={bookmarks.index}
+    style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}> */}
