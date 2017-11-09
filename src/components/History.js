@@ -22,7 +22,7 @@ const HISTORY_F = [
 /* eslint-disable */
 
 let historyArr = [];
-let historyArrF = []; // need array to use .push 
+let historyArrF = []; // need array to use .push
 
 const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
@@ -32,11 +32,11 @@ const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
 chrome.history.search({
         text: '',              // Return every history item....
         startTime: oneWeekAgo, // that was accessed less than one week ago.
-        maxResults: 16
-    }, 
+        maxResults: 40
+    },
     function(historyItems) {
         console.log('historyItems', historyItems);
-     
+
         // Extract historyItems object
         for (var i = 0; i < historyItems.length; ++i) {
             historyArr.push(historyItems[i]);
@@ -72,11 +72,11 @@ class History extends Component { // Parent component
                     <h1 className='Notes-Title-Text'>History</h1>
                 </header>
                 <div className='Notes-Body'>
-                    <form className="h-form" 
+                    <form className="h-form"
                         onSubmit={this.handleSubmit}>
-                            <input className="SearchBox h-searchbox" 
+                            <input className="SearchBox h-searchbox"
                                 type="text"
-                                placeholder='Search History'  
+                                placeholder='Search History'
                                 onChange={this.handleChange} />
                             <button className='h-button-s' type='submit'>
                                 <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
@@ -106,16 +106,16 @@ class History extends Component { // Parent component
                     }
                     {/* </div> */} {/* .url-container */}
                 </div> {/* .Notes-Body */}
-            </div> 
+            </div>
         )
     }
 
 } //  History component
 
-/* ----- FREQUENT HISTORY ----- */ 
+/* ----- FREQUENT HISTORY ----- */
 
 const HistoryListF = (props) => {
-    
+
     // const history = props.history;
     return (
         <div className='url-container'>
@@ -143,16 +143,16 @@ const HistoryItemF = (props) => {
 /* ----- RECENT HISTORY ----- */
 
 const HistoryList = (props) => {
-    
+
     const histArr = props.historyArr;
     let histArrUrl = [];
-    
+
     for (let i = 0; i < historyArr.length; ++i) {
         histArrUrl.push(histArr[i].url);
     }
-    
+
         return (
-           
+
             <div className='url-container'>
             {/* <div> */}
                 { histArrUrl.map( (element, index) =>
@@ -178,6 +178,6 @@ const HistoryItem = (props) => {
 
 export default History
 
-{/* <li className="bookmarks" 
-    key={bookmarks.index} 
+{/* <li className="bookmarks"
+    key={bookmarks.index}
     style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}> */}
