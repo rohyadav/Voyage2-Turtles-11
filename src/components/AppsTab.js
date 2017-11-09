@@ -17,10 +17,10 @@ chrome.management.getAll(function(info) {
       appList.push(info[i]);
       appListDisableEnable.push(info[i].enabled);
     }
-    // for now do not include our own extension cause can not access icon to display 
-    else if (info[i].name == "TurtleTab") {
-      continue;
-    }
+    // // for now do not include our own extension cause can not access icon to display 
+    // else if (info[i].name == "TurtleTab") {
+    //   continue;
+    // }
     else{
       extensionList.push(info[i]);
       extensionListDisableEnable.push(info[i].enabled);
@@ -28,6 +28,39 @@ chrome.management.getAll(function(info) {
   }
 });
 /* eslint-enable */
+
+
+class Icons extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+
+        };
+    }	
+    render() {
+    var icon;
+    if (typeof this.props.linkIcon == "undefined")  {
+        icon = (
+            <div>
+                <img src={require('../assets/appstab-broken-icon.svg')} alt="app icon" width="30" /> 
+            </div>
+        )
+    }
+    else {
+        icon = (
+            <div>
+                <img src={this.props.linkIcon[0].url} alt="app icon" width="30" /> 
+            </div>
+        )
+    }
+
+        return (
+          <div >
+            {icon}
+          </div>
+        );
+    }
+}
 
 class AppsTabEnableDisableButton extends React.Component {
     constructor(props) {
@@ -154,10 +187,10 @@ class AppsTab extends React.Component {
             {this.state.appList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
-                    <img src={elm.icons[0].url} alt="app icon" width="30" /> 
+                  <Icons linkIcon={elm.icons} />
                 </div>
                 <div className="AppsTabNames">
-                  <p>{elm.name}</p>
+                <p>{elm.name}</p>
                 </div>
                 <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
                   <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]}/>
@@ -179,7 +212,8 @@ class AppsTab extends React.Component {
             {this.state.extensionList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
-                    {/* <img src={elm.icons[0].url} alt="app icon" width="30" />  */}
+                { /* <img src={elm.icons[0].url} alt="app icon" width="30" />  */ }
+                  <Icons linkIcon={elm.icons} />
                 </div>
                 <div className="AppsTabNames">
                   <p>{elm.name}</p>
