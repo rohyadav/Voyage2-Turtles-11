@@ -106,7 +106,23 @@ export class Weather extends React.Component {
 					desc={this.state.day0Weather.weather[0].description}
 					tempMin={Math.floor(this.state.day0Weather.main.temp_min)}
 					tempMax={Math.floor(this.state.day0Weather.main.temp_max)} />
-				<Forecast />
+				<Forecast 
+					day1Min={Math.floor(this.state.day1Weather.main.temp_min)}
+					day1Max={Math.floor(this.state.day1Weather.main.temp_max)}
+					day1icon={this.state.day1Weather.weather[0].icon}
+
+					day2Min={Math.floor(this.state.day2Weather.main.temp_min)}
+					day2Max={Math.floor(this.state.day2Weather.main.temp_max)}
+					day2icon={this.state.day2Weather.weather[0].icon}
+
+					day3Min={Math.floor(this.state.day3Weather.main.temp_min)}
+					day3Max={Math.floor(this.state.day3Weather.main.temp_max)}
+					day3icon={this.state.day3Weather.weather[0].icon}
+
+					day4Min={Math.floor(this.state.day4Weather.main.temp_min)}
+					day4Max={Math.floor(this.state.day4Weather.main.temp_max)}
+					day4icon={this.state.day4Weather.weather[0].icon}
+				/>
 				</div>
 			</div>
 		);
