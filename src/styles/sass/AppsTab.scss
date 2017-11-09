@@ -10,13 +10,6 @@ GENERAL
 ==========================
 */
 
-body {
-  font-family: $tab-font;
-}
-
-h1, h2, h3, h4, h5 {
-  color: $default-grey;
-}
 /*
 ==========================
 HEADER
@@ -32,6 +25,10 @@ HEADER
 
 .AppsTab-Title-Text {
   @include tab-title
+}
+
+.AppsTab-Text {
+  color: $default-grey;
 }
 /*
 ==========================

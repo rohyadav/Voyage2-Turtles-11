@@ -11,13 +11,10 @@ IMPORT PARTIAL SASS FILES
 GENERAL
 ==========================
 */
-.container {
-  text-align: center;
-}
 
 /*
 ==========================
-HEADER
+HEADER & BODY
 ==========================
 */
 .Weather-Header {
@@ -42,14 +39,40 @@ HEADER
 }
 /*
 ==========================
+GRID
+==========================
+*/
+.container {
+  width: 300px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.container-fluid {
+  width: 300px !important;
+  margin: 0px !important;
+}
+.row {
+  width: 300px !important;
+  margin: 0px !important;
+  text-align: center;
+}
+/*
+==========================
 CURRENT WEATHER
 ==========================
 */
-
+.weatherCityName {
+  font-size: 20px;
+  text-align: center;
+}
+.weatherDescription {
+  font-size: 14px;
+  text-align: center;
+}
 .currentWeather {
   display: block;
   margin: auto;
-  float: right;
+  float: left;
   width: 300px;
 }
 
@@ -95,6 +118,7 @@ CURRENT WEATHER
   position: relative;
   display: block;
   z-index: 3;
+  margin: auto;
 }
 
 /*
@@ -102,7 +126,14 @@ CURRENT WEATHER
 FORECAST
 ==========================
 */
-
+.day {
+  text-align: center;
+  font-size: 16px;
+}
+.minMaxTemp {
+  text-align: center;
+  font-size: 16px;
+}
 .forecast {
     // position: fixed;
     // top: 45vh;
@@ -132,15 +163,4 @@ FORECAST
   margin: auto;
   margin-top: 10px;
   line-height: 300px;
-}
-/*
-==========================
-GRID
-==========================
-*/
-.row {
-  width: 300px;
-  right: 0px;
-  position: relative;
-  margin: 0px !important;
 }
