@@ -177,7 +177,7 @@ class AppsTab extends React.Component {
       }
 
   render() {
- 
+        console.log("extensionList is " + JSON.stringify(extensionList))
 
 
         // displays the apps
@@ -203,7 +203,9 @@ class AppsTab extends React.Component {
           </div>
         );
 
-        // displays the extensions
+
+        // displays the apps
+
         var displayExtensions;
         displayExtensions = (
           <div>
@@ -228,8 +230,11 @@ class AppsTab extends React.Component {
         );
 
 
+
+
     return (
             <div>
+              {/* HEADER */}
               <div className='Apps-Header'>
                 <button className='AppsExitButton' onClick={this.props.closeHandler}>X</button>
                 <h2 className='AppsTab-Title-Text'>Apps</h2>
@@ -241,6 +246,7 @@ class AppsTab extends React.Component {
 
 
                 <h2>extensions:</h2>
+
                 {displayExtensions}
 
               </div>
