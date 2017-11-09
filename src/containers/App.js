@@ -304,6 +304,7 @@ const Time = () => {
       historyTabOpen: "false",
       weatherTabOpen: "false",
       autoListOpen: "false",
+      appsTabOpen: "false",
       image: bg1
     };
   }
@@ -319,11 +320,13 @@ const Time = () => {
     this.setState({ bookmarksTabOpen: "false" });
     this.setState({ historyTabOpen: "false"});
     this.setState({ weatherTabOpen: "false"});
+    this.setState({ appsTabOpen: "false"});
     ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('weather'));
+    ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
     tab_close();
   }
   toogleVisibility = (param, event) => {
@@ -340,11 +343,13 @@ const Time = () => {
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ historyTabOpen: "false" });
             this.setState({ weatherTabOpen: "false"});
+            this.setState({ appsTabOpen: "false"});
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('weather'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -363,11 +368,13 @@ const Time = () => {
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ historyTabOpen: "false" });
             this.setState({ weatherTabOpen: "false"});
+            this.setState({ appsTabOpen: "false"});
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('weather'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -386,11 +393,13 @@ const Time = () => {
             this.setState({ bookmarksTabOpen: "true" });
             this.setState({ historyTabOpen: "false" });
             this.setState({ weatherTabOpen: "false"});
+            this.setState({ appsTabOpen: "false"});
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('weather'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -409,11 +418,13 @@ const Time = () => {
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ historyTabOpen: "true" });
             this.setState({ weatherTabOpen: "false"});
+            this.setState({ appsTabOpen: "false"});
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<History closeHandler={this.toogleVisibility} />, document.getElementById('history'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('weather'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
             tab_open();
             break;
           default:
@@ -431,11 +442,37 @@ const Time = () => {
             this.setState({ bookmarksTabOpen: "false" });
             this.setState({ historyTabOpen: "false" });
             this.setState({ weatherTabOpen: "true"});
+            this.setState({ appsTabOpen: "false"});
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
             ReactDOM.render(<Weather closeHandler={this.toogleVisibility} />, document.getElementById('weather'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
+            tab_open();
+            break;
+          default:
+            break;
+        }
+        break;  
+        case "apps":
+        switch (this.state.appsTabOpen) {
+          case "true":
+            this.allTabsClosed();
+            break;
+          case "false":
+            this.setState({ todoTabOpen: "false" });
+            this.setState({ notesTabOpen: "false" });
+            this.setState({ bookmarksTabOpen: "false" });
+            this.setState({ historyTabOpen: "false" });
+            this.setState({ weatherTabOpen: "true"});
+            this.setState({ appsTabOpen: "true"});
+            ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('history'));
+            ReactDOM.render(<EmptyContainer />, document.getElementById('weather'));
+            ReactDOM.render(<AppsTab closeHandler={this.toogleVisibility} />, document.getElementById('apps'));
             tab_open();
             break;
           default:
