@@ -74,7 +74,10 @@ CURRENT WEATHER
 */
 
 .currentWeather {
-  color: white;
+  display: block;
+  margin: auto;
+  float: right;
+  width: 300px;
 }
 
 .currentTempMinMax {
@@ -84,14 +87,21 @@ CURRENT WEATHER
   display: flex;
 }
 
-.currentMin {
-  // position: flex;
-  border: hidden 0.1em #ffffff;
-  border-left: solid 0.1em #ffffff;
-}
 
 .currentMin, .currentMax {
-  width: 50%;
+  font-size: 24px;
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+.currentTemp {
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+  font-size: 60px;
 }
 
 .center {
@@ -102,12 +112,13 @@ CURRENT WEATHER
 .small {
   font-size: 0.8em;
   font-weight: 500;
+  margin-top: -10px;
 }
 
 .mainWeatherImage {
   border: none;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   position: relative;
   display: block;
   z-index: 3;
@@ -120,10 +131,15 @@ FORECAST
 */
 
 .forecast {
-    position: fixed;
-    top: 50vh;
-    right: 0;
-    height: 60vh;
+    // position: fixed;
+    // top: 45vh;
+    // right: 0;
+    // height: 60vh;
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 300px;
+    float: right;
 }
 
 .forecastInfo {
@@ -150,9 +166,10 @@ GRID
 ==========================
 */
 .row {
-  max-width: 300px;
-  padding-left: 8px;
-  padding-right: 8px;
+  width: 300px;
   right: 0px;
   position: relative;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-top: 10px;
 }

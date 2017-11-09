@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Weather.css';
-import {WeatherIcon} from './WeatherIcon.js'
+import { WeatherIcon } from './WeatherIcon.js';
+import { Col, Row, Grid } from 'react-bootstrap';
 export class CurrentWeather extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,10 +18,12 @@ export class CurrentWeather extends React.Component {
 		return (
 			<div className="currentWeather">
 				{/* Current Weather */}
-				<center><h4>{this.props.cityName}</h4></center>
+				<br />
 				<center><img className="mainWeatherImage" src={iconID} alt="" /></center>
-				<h4>{this.props.desc}</h4>
-				<h1>{this.props.temp + "°"}</h1>
+				<center><h4>{this.props.cityName}</h4></center>
+				<h5>{this.props.desc}</h5>
+
+				{/* <h1>{this.props.temp + "°"}</h1>
 				<p>Current Temp.</p>
 				<div className="currentTempMinMax">
 					<div className="currentMax">
@@ -31,6 +34,23 @@ export class CurrentWeather extends React.Component {
 						<h1>{this.props.tempMin}°F</h1>
 						<p className="small">Min</p>
 					</div>
+				</div> */}
+				<div className="currentWeather container">
+					<Grid>
+						<Row className="forecastInfo">
+							<Col xs={4}>
+								<h1 className="currentMin">{this.props.tempMin}°F</h1>
+								<p className="small">Min</p>
+							</Col>
+							<Col xs={4}>
+								<h1 className="currentTemp">{this.props.temp + "°"}</h1>
+							</Col>
+							<Col xs={4}>
+								<h1 className="currentMax">{this.props.tempMax}°F</h1>
+								<p className="small">Max</p>
+							</Col>
+						</Row>
+					</Grid>
 				</div>
 			</div>
 		);
