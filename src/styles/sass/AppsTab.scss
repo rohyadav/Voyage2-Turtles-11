@@ -42,7 +42,20 @@ BOOKMARKS
 /* } */
 
 /*
-
+/*
+==========================
+SCROLLBAR
+==========================
+*/
+.Apps-Body::-webkit-scrollbar {
+  @include scrollbar;
+}
+.Apps-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Apps-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
+}
 /*
 ==========================
 BUTTONS & ICONS
@@ -74,7 +87,23 @@ BUTTONS & ICONS
   }
 }
 
+.AppsTabBackground {
+  background-color: white;
+  width: 284;
+  padding: 8px;
 
+}
+.AppsTabSubText {
+  font-size: 14px;
+  letter-spacing: 2.7px;
+  font-weight: 700;
+  color: $apps-green;
+}
+
+.AppsTabDescription {
+  font-size: 12px;
+  color: $default-grey;
+}
 
 /* -------------------------------------------------------------------------- */
 
