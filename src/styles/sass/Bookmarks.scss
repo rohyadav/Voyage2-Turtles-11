@@ -65,18 +65,11 @@ BOOKMARKS
   position: relative;
   margin: 0px;
   padding: 0px;
+  z-index: 2; 
 }
+// left-pane => folders
 .listOfBookmarkFolders {
   width: 88px;
-  z-index: 1; 
-}
-.bookmarkList {
-  width: 196px;
-  z-index: 2;
-  float: right;
-  left: 16px;
-  top: 0px;
-  padding-top: 8px;
 }
 .bookmarkParentFolder {
   padding-bottom: 8px;
@@ -91,6 +84,14 @@ BOOKMARKS
   &:enabled {
     background-color: $bookmarks-yellow;
   }
+}
+// right-pane => individual bookmarks
+.bookmarkList {
+  width: 196px;
+  float: right;
+  left: 16px;
+  top: 0px;
+  padding-top: 8px;
 }
 .bookmarks {
   height: 25px;

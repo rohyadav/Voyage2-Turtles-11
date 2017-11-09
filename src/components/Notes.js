@@ -102,7 +102,7 @@ export class Notes extends Component {
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
               <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
-              <a><img alt="searchIcon" className='searchButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <a><img alt="searchIcon" className='searchButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <NotesVisibleSearch />
             </div>
             {/* NEW NOTE */}

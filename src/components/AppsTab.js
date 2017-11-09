@@ -17,17 +17,46 @@ chrome.management.getAll(function(info) {
       appList.push(info[i]);
       appListDisableEnable.push(info[i].enabled);
     }
-    // for now do not include our own extension cause can not access icon to display 
-    else if (info[i].name == "TurtleTab") {
-      continue;
-    }
-    else{
+   else{
       extensionList.push(info[i]);
       extensionListDisableEnable.push(info[i].enabled);
     }
   }
 });
 /* eslint-enable */
+
+
+class Icons extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+
+        };
+    }	
+    render() {
+    var icon;
+    if (typeof this.props.linkIcon == "undefined")  {
+        icon = (
+            <div>
+                <img src={require('../assets/appstab-broken-icon.svg')} alt="app icon" width="30" /> 
+            </div>
+        )
+    }
+    else {
+        icon = (
+            <div>
+                <img src={this.props.linkIcon[0].url} alt="app icon" width="30" /> 
+            </div>
+        )
+    }
+
+        return (
+          <div >
+            {icon}
+          </div>
+        );
+    }
+}
 
 class AppsTabEnableDisableButton extends React.Component {
     constructor(props) {
@@ -116,11 +145,45 @@ class AppsTab extends React.Component {
           extensionListDisableEnable: extensionListDisableEnable
         }
       }
+
+      update = () => {
+          let callme = this;
+          /* eslint-disable */
+          chrome.management.getAll(function(info) {
+          let appListUpdate = [];
+          let appListDisableEnableUpdate = [];
+          let extensionListUpdate = [];
+          let extensionListDisableEnableUpdate = [];
+            for (var i = 0; i < info.length; i++) {
+              // TODO isApp is depreciated so maybe change to type
+              if (info[i].isApp) {
+                appListUpdate.push(info[i]);
+                appListDisableEnableUpdate.push(info[i].enabled);
+              }
+             else{
+                extensionListUpdate.push(info[i]);
+                extensionListDisableEnableUpdate.push(info[i].enabled);
+              }
+            }
+        callme.setState({appList: appListUpdate });
+        callme.setState({appListDisableEnable: appListDisableEnableUpdate });
+        callme.setState({extensionList: extensionListUpdate });
+        callme.setState({extensionListDisableEnable: extensionListDisableEnableUpdate });
+
+
+
+
+          });
+            /* eslint-enable */
+      }
+      
       clickDeleteIcon = (elm, i, event) => {
-        alert("Clicked delete icon. Work in progress not finish");
-        alert(elm);
-        alert(elm.name);
-        alert(i);
+        /* eslint-disable */
+        let callme = this;
+        chrome.management.uninstall(elm.id, function(){
+          callme.update();
+        });
+        /* eslint-enable */
         event.preventDefault();
       }
       clickEnableDisableApp = (elm, i, event) => {
@@ -144,7 +207,7 @@ class AppsTab extends React.Component {
       }
 
   render() {
- 
+        console.log("extensionList is " + JSON.stringify(extensionList))
 
 
         // displays the apps
@@ -154,10 +217,10 @@ class AppsTab extends React.Component {
             {this.state.appList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
-                    <img src={elm.icons[0].url} alt="app icon" width="30" /> 
+                  <Icons linkIcon={elm.icons} />
                 </div>
                 <div className="AppsTabNames">
-                  <p>{elm.name}</p>
+                <p>{elm.name}</p>
                 </div>
                 <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
                   <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]}/>
@@ -170,14 +233,16 @@ class AppsTab extends React.Component {
           </div>
         );
 
-        // displays the extensions
+
+        // displays the apps
+
         var displayExtensions;
         displayExtensions = (
           <div>
             {this.state.extensionList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
-                    <img src={elm.icons[0].url} alt="app icon" width="30" /> 
+                  <Icons linkIcon={elm.icons} />
                 </div>
                 <div className="AppsTabNames">
                   <p>{elm.name}</p>
@@ -194,8 +259,11 @@ class AppsTab extends React.Component {
         );
 
 
+
+
     return (
             <div>
+              {/* HEADER */}
               <div className='Apps-Header'>
                 <button className='AppsExitButton' onClick={this.props.closeHandler}>X</button>
                 <h2 className='AppsTab-Title-Text'>Apps</h2>
@@ -207,6 +275,7 @@ class AppsTab extends React.Component {
 
 
                 <h2>extensions:</h2>
+
                 {displayExtensions}
 
               </div>

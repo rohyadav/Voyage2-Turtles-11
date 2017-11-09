@@ -36,13 +36,7 @@ export class Bookmarks extends Component {
   setSearchQuery = (event) => {
     this.setState({ searchTerm: event.target.value });
   }
-  handleBookmarksSearch = () => {
-    this.keepCount();
-    const value = this.state.searchTerm;
-    const newArray = [...this.state.searchArray];
-    newArray[newArray.length] = value;
-    this.setState({ searchArray: newArray })
-  }
+
   shortenBookmarkTitles = (title, number) => {
     let newTitle = title;
     if (title.length >= number) {
@@ -50,16 +44,48 @@ export class Bookmarks extends Component {
     }
     return newTitle
   }
-  FormattedParentFolder = () => {
-    let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
-      <div>
-        <a className="bookmarkParentFolder" key={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
-          {parentFolder.title}
+
+  bookmarksFormatter = (bookmarks) => {
+    let newFormattedBookmarks = bookmarks.map((bookmarks, index) =>
+      <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
+        <a href={bookmarks.url}>
+          {this.shortenBookmarkTitles(bookmarks.title, 23)}
         </a>
-        <br />
-      </div>
-    );
-    return <div className="listOfBookmarkFolders">{listOfParentFolders}</div>;
+      </li >
+    )
+    return newFormattedBookmarks;
+  }
+
+  handleBookmarksSearch = () => {
+    let value = this.state.searchTerm;
+    let newSearchArray = [];
+    let thisOfSearchArray = this;
+    /* eslint-disable */
+    chrome.bookmarks.search(value, function (tree) {
+      let arrayOfSearchResults = tree;
+      console.log("arrayOfSearchResults are " + arrayOfSearchResults)
+      for (var i = 0; i < arrayOfSearchResults.length; i++) {
+        newSearchArray.push({
+          title: arrayOfSearchResults[i].title,
+          url: arrayOfSearchResults[i].url,
+          iconurl: "chrome://favicon/" + arrayOfSearchResults[i].url
+        });
+      }
+      console.log("state searchArray is " + newSearchArray);
+      thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
+    });  
+    /* eslint-enable */
+
+    if (this.state.searchTerm === '') {
+      return null;
+    } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
+      this.setState({ searchButton: "../assets/search.png" });
+      this.setState({ searchTerm: "" });
+      this.setState({ searchArray: [] });
+    } else {
+      (this.state.searchButton === '../assets/search.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search.png" });
+    }
+    return <div className="bookmarkList">{this.bookmarksFormatter(this.state.searchArray)}</div>;
   }
 
   FormattedChildrenBookmarks = (index = 0) => {
@@ -70,17 +96,25 @@ export class Bookmarks extends Component {
     }
     console.log("parentFolderIndex is " + parentFolderIndex);
     let maplistOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children
-    let listOfChildrenBookmarks = maplistOfChildrenBookmarks.map((bookmarks, index) =>
-      <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
-        <a href={bookmarks.url}>
-          {this.shortenBookmarkTitles(bookmarks.title, 23)}
-        </a>
-      </li >
-    )
-    console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
+    let listOfChildrenBookmarks = this.bookmarksFormatter(maplistOfChildrenBookmarks);
+    // console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
     let result = (<ul className="bookmarkList">{listOfChildrenBookmarks}</ul>)
     this.setState({ FormattedChildrenBookmarks: result });
   }
+
+  FormattedParentFolder = () => {
+    let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
+      <div>
+        <a className="bookmarkParentFolder" key={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
+          {parentFolder.title}
+        </a>
+        <br />
+      </div>
+    );
+    this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
+    return <div className="listOfBookmarkFolders">{listOfParentFolders}</div>;
+  }
+
   render() {
     return (
       <div>
@@ -94,7 +128,8 @@ export class Bookmarks extends Component {
           {/* SEARCH FEATURE */}
           <div class="searchBookmarksBackground">
             <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
-            <a><img className='searchButton' onChange={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
+            <a><img className='searchButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
+            {this.state.searchArray}
           </div>
           {/* BOOKMARKS LIST */}
           <section className="BookmarksListBody">
