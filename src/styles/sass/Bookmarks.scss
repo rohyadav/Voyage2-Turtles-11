@@ -16,14 +16,6 @@ textarea {
   resize: vertical; max-height: 300px; min-height: 40px;
   color: $default-grey;
 }
-
-body {
-  font-family: $tab-font;
-}
-
-h1, h2, h3, h4, h5 {
-  color: $default-grey;
-}
 /*
 ==========================
 HEADER
@@ -94,6 +86,10 @@ BOOKMARKS
   padding-top: 8px;
 }
 .bookmarks {
+  background-color: white;
+  color: $default-grey;
+  font-size: 12px;
+  text-align: left;
   height: 25px;
   align-items: center;
   align-content: center;

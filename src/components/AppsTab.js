@@ -270,11 +270,11 @@ class AppsTab extends React.Component {
               </div>
               <div className='Apps-Body'>
               <div class="AppsTab-add-to-body">
-                <h2>apps:</h2>
+                <h2 className="AppsTab-Text">apps:</h2>
                 {displayApps}
 
 
-                <h2>extensions:</h2>
+                <h2 className="AppsTab-Text">extensions:</h2>
 
                 {displayExtensions}
 
