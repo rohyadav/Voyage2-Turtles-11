@@ -75,6 +75,7 @@ COMPONENTS
 
 @mixin tab-body($color) {
     background-color: $color;
+    color: white;
     top: 45px;
     right: 0px;
     width: 300px;
