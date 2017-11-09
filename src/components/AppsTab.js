@@ -17,11 +17,7 @@ chrome.management.getAll(function(info) {
       appList.push(info[i]);
       appListDisableEnable.push(info[i].enabled);
     }
-    // // for now do not include our own extension cause can not access icon to display 
-    // else if (info[i].name == "TurtleTab") {
-    //   continue;
-    // }
-    else{
+   else{
       extensionList.push(info[i]);
       extensionListDisableEnable.push(info[i].enabled);
     }
@@ -149,11 +145,45 @@ class AppsTab extends React.Component {
           extensionListDisableEnable: extensionListDisableEnable
         }
       }
+
+      update = () => {
+          let callme = this;
+          /* eslint-disable */
+          chrome.management.getAll(function(info) {
+          let appListUpdate = [];
+          let appListDisableEnableUpdate = [];
+          let extensionListUpdate = [];
+          let extensionListDisableEnableUpdate = [];
+            for (var i = 0; i < info.length; i++) {
+              // TODO isApp is depreciated so maybe change to type
+              if (info[i].isApp) {
+                appListUpdate.push(info[i]);
+                appListDisableEnableUpdate.push(info[i].enabled);
+              }
+             else{
+                extensionListUpdate.push(info[i]);
+                extensionListDisableEnableUpdate.push(info[i].enabled);
+              }
+            }
+        callme.setState({appList: appListUpdate });
+        callme.setState({appListDisableEnable: appListDisableEnableUpdate });
+        callme.setState({extensionList: extensionListUpdate });
+        callme.setState({extensionListDisableEnable: extensionListDisableEnableUpdate });
+
+
+
+
+          });
+            /* eslint-enable */
+      }
+      
       clickDeleteIcon = (elm, i, event) => {
-        alert("Clicked delete icon. Work in progress not finish");
-        alert(elm);
-        alert(elm.name);
-        alert(i);
+        /* eslint-disable */
+        let callme = this;
+        chrome.management.uninstall(elm.id, function(){
+          callme.update();
+        });
+        /* eslint-enable */
         event.preventDefault();
       }
       clickEnableDisableApp = (elm, i, event) => {
@@ -212,7 +242,6 @@ class AppsTab extends React.Component {
             {this.state.extensionList.map( (elm, i) => 
               <div className="AppsTabflex" >
                 <div className="AppsTabAppsAndExtensionIcon">
-                { /* <img src={elm.icons[0].url} alt="app icon" width="30" />  */ }
                   <Icons linkIcon={elm.icons} />
                 </div>
                 <div className="AppsTabNames">
