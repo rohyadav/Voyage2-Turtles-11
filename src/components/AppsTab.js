@@ -146,39 +146,44 @@ class AppsTab extends React.Component {
         }
       }
 
-      // TODO there is a bug here cause if I choose not to remove the extension well then the 
-      // app/ext will be removed from the list anyway.
-      // I am not sure how to solve this now cause I do not get any information from the chrome API.
-      // well it should be possible using a promise but it just does not work inside react componenent.
-      
-      clickDeleteIconApps = (elm, i, event) => {
-        /* eslint-disable */
-        chrome.management.uninstall(elm.id);
-        /* eslint-enable */
+      update = () => {
+          let callme = this;
+          /* eslint-disable */
+          chrome.management.getAll(function(info) {
+          let appListUpdate = [];
+          let appListDisableEnableUpdate = [];
+          let extensionListUpdate = [];
+          let extensionListDisableEnableUpdate = [];
+            for (var i = 0; i < info.length; i++) {
+              // TODO isApp is depreciated so maybe change to type
+              if (info[i].isApp) {
+                appListUpdate.push(info[i]);
+                appListDisableEnableUpdate.push(info[i].enabled);
+              }
+             else{
+                extensionListUpdate.push(info[i]);
+                extensionListDisableEnableUpdate.push(info[i].enabled);
+              }
+            }
+        callme.setState({appList: appListUpdate });
+        callme.setState({appListDisableEnable: appListDisableEnableUpdate });
+        callme.setState({extensionList: extensionListUpdate });
+        callme.setState({extensionListDisableEnable: extensionListDisableEnableUpdate });
 
-        // remove the Apps element at index i
-        var arr = this.state.appList.slice();
-        arr.splice(i, 1);
-        this.setState({appList: arr });
-        // have to do the same for the disable list
-        arr = this.state.appListDisableEnable.slice();
-        arr.splice(i, 1);
-        this.setState({appListDisableEnable: arr });
-        event.preventDefault();
+
+
+
+          });
+            /* eslint-enable */
       }
-      clickDeleteIconExt = (elm, i, event) => {
+      
+      clickDeleteIcon = (elm, i, event) => {
         /* eslint-disable */
-        chrome.management.uninstall(elm.id);
+        let callme = this;
+        chrome.management.uninstall(elm.id, function(){
+          callme.update();
+        });
         /* eslint-enable */
-
-        // remove the Ext element at index i
-        var arr = this.state.extensionList.slice();
-        arr.splice(i, 1);
-        this.setState({extensionList: arr });
-        // have to do the same for the disable list
-        arr = this.state.extensionListDisableEnable.slice();
-        arr.splice(i, 1);
-        this.setState({extensionListDisableEnable: arr });
         event.preventDefault();
       }
       clickEnableDisableApp = (elm, i, event) => {
@@ -220,7 +225,7 @@ class AppsTab extends React.Component {
                 <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
                   <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]}/>
                 </div>
-                <div onClick={this.clickDeleteIconApps.bind(this, elm, i)}className="AppsTabTrashIcon">
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
                   <AppsTabTrashImg />
                 </div>
               </div>
@@ -243,7 +248,7 @@ class AppsTab extends React.Component {
                 <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
                   <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]}/>
                 </div>
-                <div onClick={this.clickDeleteIconExt.bind(this, elm, i)}className="AppsTabTrashIcon">
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)}className="AppsTabTrashIcon">
                   <AppsTabTrashImg />
                 </div>
               </div>
