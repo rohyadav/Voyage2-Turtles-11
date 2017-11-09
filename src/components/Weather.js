@@ -22,6 +22,30 @@ let currentWeather = {
 		"name": "Sherman Oaks"
 	}
 };
+let forecastWeather = {  
+	"dt":1510340400,
+	"temp":{  
+	   "day":60.85,
+	   "min":40.6,
+	   "max":67.84,
+	   "night":45.45,
+	   "eve":65.53,
+	   "morn":40.6
+	},
+	"pressure":962.64,
+	"humidity":69,
+	"weather":[  
+	   {  
+		  "id":500,
+		  "main":"Rain",
+		  "description":"light rain",
+		  "icon":"10d"
+	   }
+	],
+	"speed":1.99,
+	"deg":158,
+	"clouds":20
+ }
 
 let weatherIndex = currentWeather.weather[0];
 
@@ -32,10 +56,10 @@ export class Weather extends React.Component {
 		this.state = {
 			weather: currentWeather,
 			day0Weather: currentWeather,
-			day1Weather: currentWeather,
-			day2Weather: currentWeather,
-			day3Weather: currentWeather,
-			day4Weather: currentWeather
+			day1Weather: forecastWeather,
+			day2Weather: forecastWeather,
+			day3Weather: forecastWeather,
+			day4Weather: forecastWeather
 		};
 	};
 
@@ -50,7 +74,7 @@ export class Weather extends React.Component {
 			let fahrenheit = '&units=imperial';
 
 			const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
-			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast' + currentLocation + "&cnt=5" + fahrenheit + apiKey;
+			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast/daily' + currentLocation + "&cnt=5" + fahrenheit + "&APPID=55a55f3a05bdb182e76908ff3b938523";
 			console.log(endpoint);
 			request.open('GET', endpoint);
 			request.responseType = 'json';
@@ -62,12 +86,13 @@ export class Weather extends React.Component {
 				referenceToThis.setState({ weather: response });
 				console.log("this state weather is " + JSON.stringify(referenceToThis.state.weather));
 				let arrayLink = referenceToThis.state.weather.list;
-				referenceToThis.setState({ day1Weather: arrayLink[1]  });
-				referenceToThis.setState({ day2Weather: arrayLink[2]  });
-				referenceToThis.setState({ day3Weather: arrayLink[3]  });
-				referenceToThis.setState({ day4Weather: arrayLink[4]  });
+				referenceToThis.setState({ day1Weather: arrayLink[1] });
+				console.log("day1Weather is " + JSON.stringify(referenceToThis.state.day1Weather));
+				referenceToThis.setState({ day2Weather: arrayLink[2] });
+				referenceToThis.setState({ day3Weather: arrayLink[3] });
+				referenceToThis.setState({ day4Weather: arrayLink[4] });
 			}
-			
+
 			const request2 = new XMLHttpRequest();
 			const currentWeatherEndpoint = 'https://api.openweathermap.org/data/2.5/weather' + currentLocation + fahrenheit + apiKey;
 			console.log("currentWeatherEndpoint is " + request2);
@@ -87,7 +112,7 @@ export class Weather extends React.Component {
 
 		navigator.geolocation.getCurrentPosition(success, error);
 	}
-	
+
 	requestGeolocation() {
 		if ('geolocation' in navigator) {
 			console.log('geolocation present');
@@ -113,38 +138,38 @@ export class Weather extends React.Component {
 		console.log(this.state.day0Weather)
 		return (
 			<div className="container">
-			<header className='Weather-Header'>
+				<header className='Weather-Header'>
 					<button className='WeatherExitButton' onClick={this.props.closeHandler}>X</button>
 					<h1 className='Weather-Title-Text'>Weather</h1>
 				</header>
 				<div className="Weather-Body">
-				<CurrentWeather cityName={this.state.weather.city.name}
-					icon={this.state.day0Weather.weather[0].icon}
-					temp={Math.floor(this.state.day0Weather.main.temp)}
-					desc={this.state.day0Weather.weather[0].description}
-					tempMin={Math.floor(this.state.day0Weather.main.temp_min)}
-					tempMax={Math.floor(this.state.day0Weather.main.temp_max)} />
-				<Forecast 
-					day1Min={Math.floor(this.state.day1Weather.main.temp_min)}
-					day1Max={Math.floor(this.state.day1Weather.main.temp_max)}
-					day1icon={this.state.day1Weather.weather[0].icon}
-					day1Day={this.dateGrabber(this.state.day1Weather.dt)}
+					<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
+						icon={this.state.day0Weather.weather[0].icon}
+						temp={Math.floor(this.state.day0Weather.main.temp)}
+						desc={this.state.day0Weather.weather[0].description}
+						tempMin={Math.floor(this.state.day0Weather.main.temp_min)}
+						tempMax={Math.floor(this.state.day0Weather.main.temp_max)} />
+					<Forecast
+						day1Min={Math.floor(this.state.day1Weather.temp.min)}
+						day1Max={Math.floor(this.state.day1Weather.temp.max)}
+						day1icon={this.state.day1Weather.weather[0].icon}
+						day1Day={this.dateGrabber(this.state.day1Weather.dt)}
 
-					day2Min={Math.floor(this.state.day2Weather.main.temp_min)}
-					day2Max={Math.floor(this.state.day2Weather.main.temp_max)}
-					day2icon={this.state.day2Weather.weather[0].icon}
-					day2Day={this.dateGrabber(this.state.day2Weather.dt)}
+						day2Min={Math.floor(this.state.day2Weather.temp.min)}
+						day2Max={Math.floor(this.state.day2Weather.temp.max)}
+						day2icon={this.state.day2Weather.weather[0].icon}
+						day2Day={this.dateGrabber(this.state.day2Weather.dt)}
 
-					day3Min={Math.floor(this.state.day3Weather.main.temp_min)}
-					day3Max={Math.floor(this.state.day3Weather.main.temp_max)}
-					day3icon={this.state.day3Weather.weather[0].icon}
-					day3Day={this.dateGrabber(this.state.day3Weather.dt)}
+						day3Min={Math.floor(this.state.day3Weather.temp.min)}
+						day3Max={Math.floor(this.state.day3Weather.temp.max)}
+						day3icon={this.state.day3Weather.weather[0].icon}
+						day3Day={this.dateGrabber(this.state.day3Weather.dt)}
 
-					day4Min={Math.floor(this.state.day4Weather.main.temp_min)}
-					day4Max={Math.floor(this.state.day4Weather.main.temp_max)}
-					day4icon={this.state.day4Weather.weather[0].icon}
-					day4Day={this.dateGrabber(this.state.day4Weather.dt)}
-				/>
+						day4Min={Math.floor(this.state.day4Weather.temp.min)}
+						day4Max={Math.floor(this.state.day4Weather.temp.max)}
+						day4icon={this.state.day4Weather.weather[0].icon}
+						day4Day={this.dateGrabber(this.state.day4Weather.dt)}
+					/>
 				</div>
 			</div>
 		);
