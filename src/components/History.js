@@ -66,6 +66,16 @@ class History extends Component { // Parent component
 
     }
 
+    // clickDeleteIcon = (elm, i, event) => {
+    //     /* eslint-disable */
+    //     let callme = this;
+    //     chrome.management.uninstall(elm.id, function(){
+    //       callme.update();
+    //     });
+    //     /* eslint-enable */
+    //     event.preventDefault();
+    //   }
+
     render() {
 
         return (
@@ -165,6 +175,16 @@ const HistoryList = (props) => {
 
 const HistoryItem = (props) => {
 
+    const clickDeleteIcon = (elm, i, event) => {
+        /* eslint-disable */
+        let callme = this;
+        chrome.management.uninstall(elm.id, function(){
+          callme.update();
+        });
+        /* eslint-enable */
+        event.preventDefault();
+      }
+
     return (
         <div className='url-item'>
             <img className='url-icon'
@@ -173,6 +193,10 @@ const HistoryItem = (props) => {
                 className='url-url'>
                     {props.element.title}
             </a>
+            <div className='h-del-icon'
+                onclick={clickDeleteIcon}> 
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+            </div>
         </div>
     );
 }

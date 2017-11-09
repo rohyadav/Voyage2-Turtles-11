@@ -123,3 +123,11 @@
     transition:.2s;
   }
 }
+
+.h-del-icon {
+  &:hover {
+    color: $history-orange;
+    transition:.2s;
+    cursor: pointer;
+  }
+}
