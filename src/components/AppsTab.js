@@ -17,11 +17,7 @@ chrome.management.getAll(function(info) {
       appList.push(info[i]);
       appListDisableEnable.push(info[i].enabled);
     }
-    // // for now do not include our own extension cause can not access icon to display 
-    // else if (info[i].name == "TurtleTab") {
-    //   continue;
-    // }
-    else{
+   else{
       extensionList.push(info[i]);
       extensionListDisableEnable.push(info[i].enabled);
     }
@@ -150,10 +146,11 @@ class AppsTab extends React.Component {
         }
       }
       clickDeleteIcon = (elm, i, event) => {
-        alert("Clicked delete icon. Work in progress not finish");
-        alert(elm);
-        alert(elm.name);
-        alert(i);
+        /* eslint-disable */
+        chrome.management.uninstall(elm.id,  {
+          showConfirmDialog: true
+        });
+        /* eslint-enable */
         event.preventDefault();
       }
       clickEnableDisableApp = (elm, i, event) => {
