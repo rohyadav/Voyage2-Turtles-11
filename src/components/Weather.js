@@ -17,7 +17,10 @@ let currentWeather = {
 	"sys": { "type": 0, "id": 0, "message": 0, "country": "-", "sunrise": 0, "sunset": 0 },
 	"id": 0,
 	"name": "-",
-	"cod": 200
+	"cod": 200,
+	"city": {
+		"name": "Sherman Oaks"
+	}
 };
 
 let weatherIndex = currentWeather.weather[0];
@@ -48,7 +51,6 @@ export class Weather extends React.Component {
 
 			const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
 			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast' + currentLocation + "&cnt=5" + fahrenheit + apiKey;
-			requestURL = endpoint;
 			console.log(endpoint);
 			request.open('GET', endpoint);
 			request.responseType = 'json';
@@ -60,13 +62,22 @@ export class Weather extends React.Component {
 				referenceToThis.setState({ weather: response });
 				console.log("this state weather is " + JSON.stringify(referenceToThis.state.weather));
 				let arrayLink = referenceToThis.state.weather.list;
-				referenceToThis.setState({ day0Weather: arrayLink[0] });
-				console.log("day0Weather is " + referenceToThis.state.day0Weather)
-				console.log("day0Weather icon is " + referenceToThis.state.day0Weather.weather[0].icon)
 				referenceToThis.setState({ day1Weather: arrayLink[1]  });
 				referenceToThis.setState({ day2Weather: arrayLink[2]  });
 				referenceToThis.setState({ day3Weather: arrayLink[3]  });
 				referenceToThis.setState({ day4Weather: arrayLink[4]  });
+			}
+			
+			const request2 = new XMLHttpRequest();
+			const currentWeatherEndpoint = 'https://api.openweathermap.org/data/2.5/weather' + currentLocation + fahrenheit + apiKey;
+			console.log("currentWeatherEndpoint is " + request2);
+			request2.open('GET', currentWeatherEndpoint);
+			request2.responseType = 'json';
+			request2.send();
+			request2.onload = function (event) {
+				var currentWeatherResponse = request2.response;
+				referenceToThis.setState({ day0Weather: currentWeatherResponse });
+				console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
 			}
 		}
 
@@ -76,7 +87,7 @@ export class Weather extends React.Component {
 
 		navigator.geolocation.getCurrentPosition(success, error);
 	}
-
+	
 	requestGeolocation() {
 		if ('geolocation' in navigator) {
 			console.log('geolocation present');
@@ -90,6 +101,13 @@ export class Weather extends React.Component {
 		this.requestGeolocation();
 	}
 
+	dateGrabber(dt) {
+		let d = new Date(dt);
+		let splitD = d.getDay();
+		let Day = d.getDay();
+		return Day;
+	}
+
 	render() {
 		console.log('Weather tab opened');
 		console.log(this.state.day0Weather)
@@ -100,7 +118,7 @@ export class Weather extends React.Component {
 					<h1 className='Weather-Title-Text'>Weather</h1>
 				</header>
 				<div className="Weather-Body">
-				<CurrentWeather cityName={this.state.weather.name}
+				<CurrentWeather cityName={this.state.weather.city.name}
 					icon={this.state.day0Weather.weather[0].icon}
 					temp={Math.floor(this.state.day0Weather.main.temp)}
 					desc={this.state.day0Weather.weather[0].description}
@@ -110,18 +128,22 @@ export class Weather extends React.Component {
 					day1Min={Math.floor(this.state.day1Weather.main.temp_min)}
 					day1Max={Math.floor(this.state.day1Weather.main.temp_max)}
 					day1icon={this.state.day1Weather.weather[0].icon}
+					day1Day={this.dateGrabber(this.state.day1Weather.dt)}
 
 					day2Min={Math.floor(this.state.day2Weather.main.temp_min)}
 					day2Max={Math.floor(this.state.day2Weather.main.temp_max)}
 					day2icon={this.state.day2Weather.weather[0].icon}
+					day2Day={this.dateGrabber(this.state.day2Weather.dt)}
 
 					day3Min={Math.floor(this.state.day3Weather.main.temp_min)}
 					day3Max={Math.floor(this.state.day3Weather.main.temp_max)}
 					day3icon={this.state.day3Weather.weather[0].icon}
+					day3Day={this.dateGrabber(this.state.day3Weather.dt)}
 
 					day4Min={Math.floor(this.state.day4Weather.main.temp_min)}
 					day4Max={Math.floor(this.state.day4Weather.main.temp_max)}
 					day4icon={this.state.day4Weather.weather[0].icon}
+					day4Day={this.dateGrabber(this.state.day4Weather.dt)}
 				/>
 				</div>
 			</div>

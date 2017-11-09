@@ -16,35 +16,14 @@ export class Forecast extends React.Component {
 					<Grid>
 						<Row className="show-grid">
 							<Col xs={3}>
+								<h3>{this.props.day1Day}</h3>
 							</Col>
 
-							<Col xs={3}>
-								<p>Min</p>
-							</Col>
-
-							<Col xs={3}>
-								<p>Max</p>
-							</Col>
-
-							<Col xs={3}>
-								<p>Humidity</p>
+							<Col xs={9}>
 							</Col>
 						</Row>
 						<Row className="show-grid">
-							<Col xs={3}>
-							</Col>
 
-							<Col xs={3}>
-								<p>Min</p>
-							</Col>
-
-							<Col xs={3}>
-								<p>Max</p>
-							</Col>
-
-							<Col xs={3}>
-								<p>Humidity</p>
-							</Col>
 						</Row>
 					</Grid>
 				</div>

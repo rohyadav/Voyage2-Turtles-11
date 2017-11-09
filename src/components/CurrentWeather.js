@@ -17,7 +17,7 @@ export class CurrentWeather extends React.Component {
 		return (
 			<div className="currentWeather">
 				{/* Current Weather */}
-				<h4 className="center">{this.props.cityName}</h4>
+				<center><h4>{this.props.cityName}</h4></center>
 				<center><img className="mainWeatherImage" src={iconID} alt="" /></center>
 				<h4>{this.props.desc}</h4>
 				<h1>{this.props.temp + "°"}</h1>
