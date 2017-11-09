@@ -154,18 +154,18 @@ const HistoryItemF = (props) => {
 
 const HistoryList = (props) => {
 
-    const histArr = props.historyArr;
-    let histArrUrl = [];
+    // const histArr = props.historyArr;
+    // let histArrUrl = [];
 
-    for (let i = 0; i < historyArr.length; ++i) {
-        histArrUrl.push(histArr[i].url);
-    }
+    // for (let i = 0; i < historyArr.length; ++i) {
+    //     histArrUrl.push(histArr[i].url);
+    // }
 
         return (
 
             <div className='url-container'>
             {/* <div> */}
-                { histArrUrl.map( (element, index) =>
+                { props.historyArr.map( (element, index) =>
                     <HistoryItem
                         element={element}
                         key={index}/>
@@ -180,8 +180,11 @@ const HistoryItem = (props) => {
     return (
         <div className='url-item'>
             <img className='url-icon'
-            src={`chrome://favicon/${props.element}`} />
-            <a href={props.element} className='url-url'>{props.element}</a>
+            src={`chrome://favicon/${props.element.url}`} />
+            <a href={props.element.url} 
+                className='url-url'>
+                    {props.element.title}
+            </a>
         </div>
     );
 }
