@@ -45,6 +45,7 @@ export let subscribe = store.subscribe(throttle(() => {
   });
 }, 1000));
 
+
 export const NotesQty = () => {
   return (
     store.getState().notes.length
@@ -56,7 +57,7 @@ export class Notes extends Component {
     this.state = {
       searchTerm: '',
       note: '',
-      searchButton: '../assets/search_transparent.png',
+      searchButton: '../assets/search.png',
     }
   }
 
@@ -67,11 +68,13 @@ export class Notes extends Component {
   handleNoteSearch = () => {
     if (this.state.searchTerm === '') {
       return null;
+    } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
+      this.setState({ searchButton: "../assets/search.png" });
+      store.dispatch(searchNotes());
     } else {
       store.dispatch(searchNotes(this.state.searchTerm));
-      (this.state.searchButton === '../assets/search_transparent.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search_transparent.png'" });
+      (this.state.searchButton === '../assets/search.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search.png" });
     }
-
   }
   // HANDLES ADDING NEW NOTES
   setNote = (event) => {
@@ -79,8 +82,9 @@ export class Notes extends Component {
   }
   handleNoteSubmit = () => {
     store.dispatch(addNotes(this.state.note));
-    // document.getElementById("notesQty").innerText = Number.parseInt(document.getElementById("notesQty").innerText) + 1;
+    // updates the notes qty button on main Notes icon
     document.getElementById("notesQty").innerText = store.getState().notes.length;
+    this.setState({note: ''});
   }
 
   render() {
@@ -94,12 +98,13 @@ export class Notes extends Component {
           </header>
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
-            <div>
-              <a><img className='notesButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
-              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search" />
+            <div class="searchBackground">
+              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
+              <a><img className='notesButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <NotesVisibleSearch />
             </div>
             <br />
-            <NotesVisibleSearch />
+            
 
             {/* NEW NOTE */}
             <div>
@@ -110,9 +115,7 @@ export class Notes extends Component {
             {/* NOTES LISTED OUT*/}
             <span className="filterBox">
               <NotesFilterLink filter="SHOW_ACTIVE">Active</NotesFilterLink>
-              {'  |  '}
               <NotesFilterLink filter="SHOW_PINNED">Pinned</NotesFilterLink>
-              {'  |  '}
               <NotesFilterLink filter="SHOW_ARCHIVED">Archived</NotesFilterLink>
             </span>
             <section>
@@ -124,6 +127,7 @@ export class Notes extends Component {
     )
   }
 }
+
 
 
 export class EmptyContainer extends React.Component {
