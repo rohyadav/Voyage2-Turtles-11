@@ -38,6 +38,8 @@ chrome.topSites.get(
         }
     });
 
+
+
 /* eslint-enable */
 class History extends Component { // Parent component
 
@@ -117,22 +119,13 @@ class History extends Component { // Parent component
 
 const HistoryListF = (props) => {
 
-    // const histArrF = props.historyArrF;
-    // let histArrFUrl = [];
-    // let histArrFTitle = [];
-
-    // for (let i = 0; i < historyArr.length; ++i) {
-    //     histArrFUrl.push(histArrF[i].url);
-    //     histArrFTitle.push(histArrF[i].title);
-    // }
-
     return (
         <div className='url-container'>
         {/* <div> */}
             { props.historyArrF.map( (element, index) =>
                 <HistoryItemF
                     element={element}
-                    key={index}/>
+                    key={element.url}/>
             ) }
         </div>
     );
@@ -145,7 +138,9 @@ const HistoryItemF = (props) => {
         <div className='url-item'>
             <img className='url-icon'
             src={`chrome://favicon/${props.element.url}`} />
-            <a href={props.element.url} className='url-url'>{props.element.title}</a>
+            <a href={props.element.url} className='url-url'>
+                {props.element.title}
+            </a>
         </div>
     );
 }
@@ -154,13 +149,6 @@ const HistoryItemF = (props) => {
 
 const HistoryList = (props) => {
 
-    // const histArr = props.historyArr;
-    // let histArrUrl = [];
-
-    // for (let i = 0; i < historyArr.length; ++i) {
-    //     histArrUrl.push(histArr[i].url);
-    // }
-
         return (
 
             <div className='url-container'>
@@ -168,7 +156,7 @@ const HistoryList = (props) => {
                 { props.historyArr.map( (element, index) =>
                     <HistoryItem
                         element={element}
-                        key={index}/>
+                        key={element.id}/>
                 ) }
             </div>
         );
