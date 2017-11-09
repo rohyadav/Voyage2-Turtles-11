@@ -27,7 +27,12 @@ export class Weather extends React.Component {
 		super(props);
 
 		this.state = {
-			weather: currentWeather
+			weather: currentWeather,
+			day0Weather: currentWeather,
+			day1Weather: currentWeather,
+			day2Weather: currentWeather,
+			day3Weather: currentWeather,
+			day4Weather: currentWeather
 		};
 	};
 
@@ -42,21 +47,27 @@ export class Weather extends React.Component {
 			let fahrenheit = '&units=imperial';
 
 			const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
-			const endpoint = 'https://api.openweathermap.org/data/2.5/weather' + currentLocation + fahrenheit + apiKey;
+			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast' + currentLocation + "&cnt=5" + fahrenheit + apiKey;
 			requestURL = endpoint;
-
+			console.log(endpoint);
 			request.open('GET', endpoint);
 			request.responseType = 'json';
 			request.send();
 
 			console.log("this state weather is " + referenceToThis.state.weather);
-
 			request.onload = function (event) {
 				var response = request.response;
 				referenceToThis.setState({ weather: response });
 				console.log("this state weather is " + JSON.stringify(referenceToThis.state.weather));
+				let arrayLink = referenceToThis.state.weather.list;
+				referenceToThis.setState({ day0Weather: arrayLink[0] });
+				console.log("day0Weather is " + referenceToThis.state.day0Weather)
+				console.log("day0Weather icon is " + referenceToThis.state.day0Weather.weather[0].icon)
+				referenceToThis.setState({ day1Weather: arrayLink[1]  });
+				referenceToThis.setState({ day2Weather: arrayLink[2]  });
+				referenceToThis.setState({ day3Weather: arrayLink[3]  });
+				referenceToThis.setState({ day4Weather: arrayLink[4]  });
 			}
-
 		}
 
 		function error() {
@@ -81,15 +92,22 @@ export class Weather extends React.Component {
 
 	render() {
 		console.log('Weather tab opened');
+		console.log(this.state.day0Weather)
 		return (
-			<div class="container">
+			<div className="container">
+			<header className='Weather-Header'>
+					<button className='WeatherExitButton' onClick={this.props.closeHandler}>X</button>
+					<h1 className='Weather-Title-Text'>Weather</h1>
+				</header>
+				<div className="Weather-Body">
 				<CurrentWeather cityName={this.state.weather.name}
-					icon={this.state.weather.icon}
-					temp={this.state.weather.main.temp}
-					desc={this.state.weather.weather[0].description}
-					tempMin={this.state.weather.main.temp_min}
-					tempMax={this.state.weather.main.temp_max} />
+					icon={this.state.day0Weather.weather[0].icon}
+					temp={Math.floor(this.state.day0Weather.main.temp)}
+					desc={this.state.day0Weather.weather[0].description}
+					tempMin={Math.floor(this.state.day0Weather.main.temp_min)}
+					tempMax={Math.floor(this.state.day0Weather.main.temp_max)} />
 				<Forecast />
+				</div>
 			</div>
 		);
 	};

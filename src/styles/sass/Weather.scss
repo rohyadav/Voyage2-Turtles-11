@@ -74,13 +74,7 @@ CURRENT WEATHER
 */
 
 .currentWeather {
-  // background-color: $weather-light-blue;
-  // top: 0px;
-  // right: 0px;
-  // width: 19rem;
-  // position: fixed;
-  // height: 50vh;
-  // padding: 0.3rem;
+  color: white;
 }
 
 .currentTempMinMax {
@@ -100,14 +94,23 @@ CURRENT WEATHER
   width: 50%;
 }
 
-.left {
-  text-align: left;
+.center {
+  text-align: center;
   padding-left: 1rem;
 }
 
 .small {
   font-size: 0.8em;
   font-weight: 500;
+}
+
+.mainWeatherImage {
+  border: none;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  display: block;
+  z-index: 3;
 }
 
 /*
@@ -121,4 +124,17 @@ FORECAST
     top: 50vh;
     right: 0;
     height: 60vh;
+}
+
+/*
+==========================
+GRID
+==========================
+*/
+.row {
+  width: 300px;
+  position: fixed;
+  padding-left: 8px;
+  padding-right: 8px;
+  right: 10px;
 }
