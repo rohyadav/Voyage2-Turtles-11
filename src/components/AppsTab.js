@@ -207,7 +207,7 @@ class AppsTab extends React.Component {
   }
 
   render() {
-    console.log("extensionList is " + JSON.stringify(extensionList))
+    // console.log("extensionList is " + JSON.stringify(extensionList))
 
 
     // displays the apps
