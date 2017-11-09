@@ -80,14 +80,14 @@ export class Weather extends React.Component {
 			request.responseType = 'json';
 			request.send();
 
-			console.log("this state weather is " + referenceToThis.state.weather);
+			// console.log("this state weather is " + referenceToThis.state.weather);
 			request.onload = function (event) {
 				var response = request.response;
 				referenceToThis.setState({ weather: response });
-				console.log("this state weather is " + JSON.stringify(referenceToThis.state.weather));
+				// console.log("this state weather is " + JSON.stringify(referenceToThis.state.weather));
 				let arrayLink = referenceToThis.state.weather.list;
 				referenceToThis.setState({ day1Weather: arrayLink[1] });
-				console.log("day1Weather is " + JSON.stringify(referenceToThis.state.day1Weather));
+				// console.log("day1Weather is " + JSON.stringify(referenceToThis.state.day1Weather));
 				referenceToThis.setState({ day2Weather: arrayLink[2] });
 				referenceToThis.setState({ day3Weather: arrayLink[3] });
 				referenceToThis.setState({ day4Weather: arrayLink[4] });
@@ -102,7 +102,7 @@ export class Weather extends React.Component {
 			request2.onload = function (event) {
 				var currentWeatherResponse = request2.response;
 				referenceToThis.setState({ day0Weather: currentWeatherResponse });
-				console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
+				// console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
 			}
 		}
 
@@ -134,8 +134,8 @@ export class Weather extends React.Component {
 	}
 
 	render() {
-		console.log('Weather tab opened');
-		console.log(this.state.day0Weather)
+		// console.log('Weather tab opened');
+		// console.log(this.state.day0Weather)
 		return (
 			<div className="container">
 				<header className='Weather-Header'>

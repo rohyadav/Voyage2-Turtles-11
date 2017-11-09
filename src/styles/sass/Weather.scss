@@ -90,7 +90,7 @@ CURRENT WEATHER
   text-justify: center;
   display: inline-block;
   vertical-align: middle;
-  line-height: 40px;
+  line-height: 100px;
 }
 
 .currentTemp {
@@ -105,10 +105,9 @@ CURRENT WEATHER
   padding-left: 1rem;
 }
 
-.small {
-  font-size: 0.8em;
-  font-weight: 500;
-  margin-top: -10px;
+.smallMinMax {
+  font-size: 12px;
+  margin-top: -40px;
 }
 
 .mainWeatherImage {
@@ -151,6 +150,7 @@ FORECAST
   margin: auto;
   width: 300px;
   float: right;
+  margin-top: 10px;
 }
 
 .forecastWeatherImage {

@@ -5,15 +5,15 @@ import { Col, Row, Grid } from 'react-bootstrap';
 export class CurrentWeather extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(props.desc)
+		// console.log(props.desc)
 	};
 
 	render() {
-		console.log('CurrentWeather loaded');
+		// console.log('CurrentWeather loaded');
 		let iconID = WeatherIcon(this.props.icon);
 		// let currentDescription = {this.props.desc};
-		console.log(iconID)
-		console.log(this.props.tempMin)
+		// console.log(iconID)
+		// console.log(this.props.tempMin)
 
 		return (
 			<div className="currentWeather">
@@ -28,14 +28,14 @@ export class CurrentWeather extends React.Component {
 						<Row className="forecastInfo">
 							<Col xs={4}>
 								<h1 className="currentMin">{this.props.tempMin}°F</h1>
-								<p className="weatherDescription">Min</p>
+								<p className="smallMinMax">Min</p>
 							</Col>
 							<Col xs={4}>
 								<h1 className="currentTemp">{this.props.temp + "°"}</h1>
 							</Col>
 							<Col xs={4}>
 								<h1 className="currentMax">{this.props.tempMax}°F</h1>
-								<p className="weatherDescription">Max</p>
+								<p className="smallMinMax">Max</p>
 							</Col>
 						</Row>
 					</Grid>
