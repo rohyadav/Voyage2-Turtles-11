@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
+
 /* eslint-disable */
 let arrayOfBookmarks = [];
+
 // calling google chrome API , pushing data to arrayOfBookmarks variable
 chrome.bookmarks.getTree(function (tree) {
   let arrayOfParentFolder = tree[0].children;
@@ -17,6 +19,7 @@ chrome.bookmarks.getTree(function (tree) {
   localStorage.setItem("arrayOfBookmarks", JSON.stringify(arrayOfBookmarks));
 });
 /* eslint-enable */
+
 // grabbing data from localStorage to use for the rest of the Bookmarks component
 const localStorageBookmarks = JSON.parse(localStorage.getItem("arrayOfBookmarks"));
 console.log(localStorageBookmarks);
@@ -64,26 +67,6 @@ export class Bookmarks extends Component {
     let newSearchArray = [];
     let thisOfSearchArray = this;
     // /* eslint-disable */
-    // chrome.bookmarks.search(value, function (tree) {
-    //   let arrayOfSearchResults = tree;
-    //   console.log("arrayOfSearchResults are " + arrayOfSearchResults)
-    //   for (var i = 0; i < arrayOfSearchResults.length; i++) {
-    //     newSearchArray.push({
-    //       title: arrayOfSearchResults[i].title,
-    //       url: arrayOfSearchResults[i].url,
-    //       iconurl: "chrome://favicon/" + arrayOfSearchResults[i].url
-    //     });
-    //   }
-    //   console.log("state searchArray is " + newSearchArray);
-    //   thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
-    //   thisOfSearchArray.setState({
-    //     searchFolderDisplay: {
-    //       display: "inline-block"
-    //     }
-    //   });
-    //   thisOfSearchArray.setState({ FormattedChildrenBookmarks: thisOfSearchArray.state.searchArray });
-    // });
-    // /* eslint-enable */
 
     if (this.state.searchTerm === '') {
       return null;

@@ -213,24 +213,26 @@ class AppsTab extends React.Component {
     // displays the apps
     var displayApps;
     displayApps = (
-      <div className="AppsTabBackground">
-        {this.state.appList.map((elm, i) =>
-          <div className="AppsTabflex" >
-            <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} />
+      <center>
+        <div className="AppsTabBackground">
+          {this.state.appList.map((elm, i) =>
+            <div className="AppsTabflex" >
+              <div className="AppsTabAppsAndExtensionIcon">
+                <Icons linkIcon={elm.icons} />
+              </div>
+              <div className="AppsTabNames">
+                <p className="AppsTabDescription" >{elm.name}</p>
+              </div>
+              <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
+                <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
+              </div>
+              <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
+                <AppsTabTrashImg />
+              </div>
             </div>
-            <div className="AppsTabNames">
-              <p className="AppsTabDescription" >{elm.name}</p>
-            </div>
-            <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
-              <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
-            </div>
-            <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
-              <AppsTabTrashImg />
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </center>
     );
 
 
@@ -238,24 +240,26 @@ class AppsTab extends React.Component {
 
     var displayExtensions;
     displayExtensions = (
-      <div className="AppsTabBackground">
-        {this.state.extensionList.map((elm, i) =>
-          <div className="AppsTabflex" >
-            <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} />
+      <center>
+        <div className="AppsTabBackground">
+          {this.state.extensionList.map((elm, i) =>
+            <div className="AppsTabflex" >
+              <div className="AppsTabAppsAndExtensionIcon">
+                <Icons linkIcon={elm.icons} />
+              </div>
+              <div className="AppsTabNames">
+                <p className="AppsTabDescription">{elm.name}</p>
+              </div>
+              <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
+                <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]} />
+              </div>
+              <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
+                <AppsTabTrashImg />
+              </div>
             </div>
-            <div className="AppsTabNames">
-              <p className="AppsTabDescription">{elm.name}</p>
-            </div>
-            <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
-              <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]} />
-            </div>
-            <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
-              <AppsTabTrashImg />
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </center>
     );
 
 
@@ -272,13 +276,9 @@ class AppsTab extends React.Component {
           <div class="AppsTab-add-to-body">
             <h2 className="AppsTabSubText">apps:</h2>
               {displayApps}
-
             <h2 className="AppsTabSubText ">extensions:</h2>
               {displayExtensions}
           </div>
-
-
-
         </div>
       </div>
     );
