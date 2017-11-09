@@ -15,9 +15,14 @@ export class CurrentWeather extends React.Component {
 		console.log(this.props.tempMin)
 
 		return (
-			<div className="container">
+			<div>
 				{/* Current Weather */}
-				<div className="currentWeather">
+
+				<header className='Weather-Header'>
+					<button className='WeatherExitButton' onClick={this.props.closeHandler}>X</button>
+					<h1 className='Weather-Title-Text'>Weather</h1>
+				</header>
+				<div className="Weather-Body">
 					<h3 className="left">{this.props.cityName}</h3>
 					<img src={iconID} alt="" />
 					<h3>{this.props.temp} | {this.props.desc}</h3>
@@ -32,7 +37,7 @@ export class CurrentWeather extends React.Component {
 							<p className="small">Max</p>
 						</div>
 					</div>
-				</div>
+				</div> {/* end of weather body */}
 			</div>
 		);
 	};

@@ -46,18 +46,41 @@ h3 {
 
 /*
 ==========================
+HEADER
+==========================
+*/
+.Weather-Header {
+  @include tab-header($weather-light-blue);
+}
+.WeatherExitButton {
+  @include tab-exit-button(white);
+  
+    &:hover {
+      // background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
+    }
+}
+.Weather-Title-Text {
+  @include tab-title
+}
+
+.Weather-Body {
+  @include tab-body($weather-light-blue);
+}
+/*
+==========================
 CURRENT WEATHER
 ==========================
 */
 
 .currentWeather {
-  background-color: $weather-light-blue;
-  top: 0px;
-  right: 0px;
-  width: 19rem;
-  position: fixed;
-  height: 50vh;
-  padding: 0.3rem;
+  // background-color: $weather-light-blue;
+  // top: 0px;
+  // right: 0px;
+  // width: 19rem;
+  // position: fixed;
+  // height: 50vh;
+  // padding: 0.3rem;
 }
 
 .currentTempMinMax {
@@ -95,9 +118,7 @@ FORECAST
 
 .forecast {
     position: fixed;
-    background-color: $weather-light-blue;
     top: 50vh;
     right: 0;
     height: 60vh;
-    width: 19rem;
 }
