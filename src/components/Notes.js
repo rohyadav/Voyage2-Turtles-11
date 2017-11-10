@@ -62,11 +62,10 @@ export class Notes extends Component {
   }
 
   // HANDLES SEARCH
-  setSearchQuery = (event) => {
-    this.setState({ searchTerm: event.target.value });
-  }
   handleNoteSearch = () => {
-    if (this.state.searchTerm === '') {
+    let notesSearchTerm = document.getElementById("NotesSearchTerm").value
+    if (notesSearchTerm === '') {
+      store.dispatch(searchNotes());
       return null;
     } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
       this.setState({ searchButton: "../assets/search.png" });
@@ -101,7 +100,7 @@ export class Notes extends Component {
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
-              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
+              <input type="text" id="NotesSearchTerm" placeholder="Search" className='SearchBox SearchBoxText' required placeholder="Search" />
               <a><img alt="searchIcon" className='searchButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <NotesVisibleSearch />
             </div>
