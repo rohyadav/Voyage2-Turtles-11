@@ -196,9 +196,8 @@ const HistoryItem = (props) => {
                     {props.element.title}
             </a>
             <div className='h-del-icon'
-                
-                onClick={props.handleClickDelete(props.element.url} > 
-                    <i class="fa fa-minus" aria-hidden="true"></i>
+                onClick={props.handleClickDelete(props.element.url)}> 
+                <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
             {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
             {/* onClick={this.parentNode.parentNode.removeChild(this.parentNode)} */}
