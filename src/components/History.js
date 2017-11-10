@@ -6,44 +6,39 @@ import '../styles/History.css';
 // Recent History | Frequent History | Clear History
 // Recently Visted | Most Visited | Clear History
 
-const HISTORY_F = [
-    'https://www.youtube.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11',
-    'https://chingu-voyage-2.slack.com/messages',
-    'http://localhost:3000/',
-    'https://mail.google.com/mail/u/0/',
-    'https://github.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11/commits/DevelopmentBranch',
-    'https://www.nytimes.com/',
-    'about:srcdoc',
-    'about:blank',
-]
-
 /* eslint-disable */
 
-let historyArr = [];
-let historyArrF = []; // need array to use .push
+let historyArr = []; // need array to use .push
+let historyArrF = []; 
 
-const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
-// Track the number of callbacks from chrome.history.getVisits() that we expect to get. When it reaches zero, we have all results.
-// var numRequestsOutstanding = 0;
+// const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+// const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
 
 chrome.history.search({
-        text: '',              // Return every history item....
-        startTime: oneWeekAgo, // that was accessed less than one week ago.
+        text: '',              // Return every history item
+        // startTime: oneWeekAgo, // that was accessed less than one week ago.
         maxResults: 40
     },
     function(historyItems) {
         console.log('historyItems', historyItems);
 
         // Extract historyItems object
-        for (var i = 0; i < historyItems.length; ++i) {
+        for (let i = 0; i < historyItems.length; i++) {
             historyArr.push(historyItems[i]);
         }
 
     });
-    console.log('updated historyArr', historyArr);
+    console.log('updated historyArray', historyArr);
+
+chrome.topSites.get(
+    function(mostVisitedItems) {
+        console.log('mostVisitedItems', mostVisitedItems);
+        for (let i = 0; i < mostVisitedItems.length; i++) {
+            historyArrF.push(mostVisitedItems[i]);
+        }
+    });
+
+
 
 /* eslint-enable */
 class History extends Component { // Parent component
@@ -62,6 +57,27 @@ class History extends Component { // Parent component
     handleFrequentClick = () => {
         this.setState({selected: 'Frequent History'})
     }
+
+    handleChange = () => {
+
+    }
+
+    handleSubmit = () => {
+
+    }
+
+    handleClickDelete = (elementUrl, deleteNode) => {
+        /* eslint-disable */
+        // let callme = deleteNode / this;
+        // let callme = this.deleteNode;
+        chrome.history.deleteUrl({url: elementUrl});
+        /* eslint-enable */
+        deleteNode.parentNode.removeChild(deleteNode);
+        // elementUrl.parentNode.parentNode.removeChild(elementUrl.parentNode.parentNode);
+        // callme.parentNode.removeChild(callme);
+        // console.log('handleClickDelete was run');
+        
+      }
 
     render() {
 
@@ -100,9 +116,10 @@ class History extends Component { // Parent component
                     {
                         (this.state.selected === 'Frequent History')
                         ? <HistoryListF
-                            historyArrF={HISTORY_F} />
+                            historyArrF={historyArrF} />
                         : <HistoryList
-                            historyArr={historyArr} />
+                            historyArr={historyArr} 
+                            handleClickDelete={this.handleClickDelete}/>
                     }
                     {/* </div> */} {/* .url-container */}
                 </div> {/* .Notes-Body */}
@@ -116,14 +133,13 @@ class History extends Component { // Parent component
 
 const HistoryListF = (props) => {
 
-    // const history = props.history;
     return (
         <div className='url-container'>
         {/* <div> */}
             { props.historyArrF.map( (element, index) =>
                 <HistoryItemF
                     element={element}
-                    key={index}/>
+                    key={element.url}/>
             ) }
         </div>
     );
@@ -134,8 +150,11 @@ const HistoryItemF = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon' alt="url-icon" src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
-            <div className='url-url'>{props.element}</div>
+            <img className='url-icon'
+            src={`chrome://favicon/${props.element.url}`} />
+            <a href={props.element.url} className='url-url'>
+                {props.element.title}
+            </a>
         </div>
     );
 }
@@ -144,41 +163,47 @@ const HistoryItemF = (props) => {
 
 const HistoryList = (props) => {
 
-    const histArr = props.historyArr;
-    let histArrUrl = [];
+    return (
+        <div className='url-container'>
+        {/* <div> */}
+            { props.historyArr.map( (element, index) =>
+                <HistoryItem
+                    element={element}
+                    key={element.id}
+                    handleClickDelete={props.handleClickDelete}/>
+            ) }
+        </div>
+    );
 
-    for (let i = 0; i < historyArr.length; ++i) {
-        histArrUrl.push(histArr[i].url);
-    }
+}
 
-        return (
-
-            <div className='url-container'>
-            {/* <div> */}
-                { histArrUrl.map( (element, index) =>
-                    <HistoryItem
-                        element={element}
-                        key={index}/>
-                ) }
-            </div>
-        );
-
-    }
+    
 
 const HistoryItem = (props) => {
 
+    // clickDeleteIcon = (event) => {
+
+    //   }
+
     return (
         <div className='url-item'>
+            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
             <img className='url-icon'
-            src={`chrome://favicon/${props.element}`}  alt="url-icon" />
-            <a href={props.element} className='url-url'>{props.element}</a>
+                src={`chrome://favicon/${props.element.url}`} />
+            <a href={props.element.url} 
+                className='url-url'>
+                    {props.element.title}
+            </a>
+            <div className='h-del-icon'
+                
+                onClick={props.handleClickDelete(props.element.url} > 
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+            </div>
+            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
+            {/* onClick={this.parentNode.parentNode.removeChild(this.parentNode)} */}
+            {/* onClick={props.handleClickDelete.bind(this, props.element.url, this.deleteNode)} */}
         </div>
     );
 }
 
 export default History
-/* eslint-disable */
-{/* <li className="bookmarks"
-    key={bookmarks.index}
-    style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}> */}
-/* eslint-enable */
