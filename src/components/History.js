@@ -66,12 +66,16 @@ class History extends Component { // Parent component
 
     }
 
-    handleClickDelete = (elementUrl, event) => {
+    handleClickDelete = (elementUrl, deleteNode) => {
         /* eslint-disable */
-        let callme = this;
+        // let callme = this;
+        // let callme = this.deleteNode;
         chrome.history.deleteUrl({url: elementUrl});
         /* eslint-enable */
-        event.parentNode.removeChild(event);
+        deleteNode.parentNode.removeChild(deleteNode);
+        // callme.parentNode.removeChild(callme);
+        // elementUrl.parentNode.parentNode.removeChild(elementUrl.parentNode.parentNode);
+        // callme.parentNode.removeChild(callme);
         // console.log('handleClickDelete was run');
         
       }
@@ -184,16 +188,21 @@ const HistoryItem = (props) => {
 
     return (
         <div className='url-item'>
+            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
             <img className='url-icon'
-            src={`chrome://favicon/${props.element.url}`} />
+                src={`chrome://favicon/${props.element.url}`} />
             <a href={props.element.url} 
                 className='url-url'>
                     {props.element.title}
             </a>
             <div className='h-del-icon'
-                onClick={props.handleClickDelete.bind(this, props.element.url)}> 
+                
+                onClick={props.handleClickDelete(props.element.url} > 
                     <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
+            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
+            {/* onClick={this.parentNode.parentNode.removeChild(this.parentNode)} */}
+            {/* onClick={props.handleClickDelete.bind(this, props.element.url, this.deleteNode)} */}
         </div>
     );
 }
