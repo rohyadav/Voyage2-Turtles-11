@@ -120,7 +120,6 @@ export class Weather extends React.Component {
 	handleWeatherSearch = () => {
 		let input = document.getElementById("searchTextInput").value;
 		let newLocation = "";
-		let searchButton = "";
 		let inputIsANumber = Number.isInteger(Number.parseInt(input, 10));
 		if (input.length !== 0 && this.state.searchButton === '../assets/search.png') {
 			if (inputIsANumber) {
