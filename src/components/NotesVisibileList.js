@@ -8,10 +8,13 @@ import { NotesList } from './NotesBundler';
 const getVisibleNotes = (notes, filter) => {
     switch (filter) {
         case "SHOW_PINNED":
+            // document.getElementById("Pinned").style = "color: $notes-red; font-weight: 700;";
             return notes.filter(n => n.pinned);
         case "SHOW_ACTIVE":
+            // document.getElementById("Active").style = "color: $notes-red; font-weight: 700;";
             return notes.filter(n => !n.completed);
         case "SHOW_ARCHIVED":
+            // document.getElementById("Archived").style = "color: $notes-red; font-weight: 700;";  
             return notes.filter(n => n.completed);
         default:
             return notes;

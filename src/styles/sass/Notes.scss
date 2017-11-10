@@ -83,7 +83,7 @@ VISIBILITY FILTER
   font-weight: 300;
   letter-spacing: 1px; 
 
-  &:enabled {
+  &:target {
     color:$notes-red;
     text-decoration: none;
     font-weight: 700;
