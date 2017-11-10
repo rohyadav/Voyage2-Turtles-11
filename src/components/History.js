@@ -20,7 +20,7 @@ chrome.history.search({
         maxResults: 40
     },
     function(historyItems) {
-        console.log('historyItems', historyItems);
+        // console.log('historyItems', historyItems);
 
         // Extract historyItems object
         for (let i = 0; i < historyItems.length; i++) {
@@ -28,11 +28,11 @@ chrome.history.search({
         }
 
     });
-    console.log('updated historyArray', historyArr);
+    // console.log('updated historyArray', historyArr);
 
 chrome.topSites.get(
     function(mostVisitedItems) {
-        console.log('mostVisitedItems', mostVisitedItems);
+        // console.log('mostVisitedItems', mostVisitedItems);
         for (let i = 0; i < mostVisitedItems.length; i++) {
             historyArrF.push(mostVisitedItems[i]);
         }
@@ -67,13 +67,13 @@ class History extends Component { // Parent component
 
     }
 
-    handleClickDelete = (elementUrl, deleteNode) => {
+    handleClickDelete = (elementUrl) => {
         /* eslint-disable */
         // let callme = deleteNode / this;
         // let callme = this.deleteNode;
         chrome.history.deleteUrl({url: elementUrl});
         /* eslint-enable */
-        deleteNode.parentNode.removeChild(deleteNode);
+        // deleteNode.parentNode.removeChild(deleteNode);
         // elementUrl.parentNode.parentNode.removeChild(elementUrl.parentNode.parentNode);
         // callme.parentNode.removeChild(callme);
         // console.log('handleClickDelete was run');
