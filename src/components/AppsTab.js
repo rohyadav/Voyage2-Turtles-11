@@ -45,6 +45,11 @@ class NameAppsExt extends React.Component {
 
 class Icons extends React.Component {
   render() {
+    var isEnabled = "AppsTabOpacity";
+    if (this.props.isEnabled) {
+      isEnabled = "";
+    }
+
     var icon;
     if (typeof this.props.linkIcon === "undefined") {
       icon = (
@@ -55,7 +60,7 @@ class Icons extends React.Component {
     }
     else {
       icon = (
-        <div>
+        <div className={isEnabled}>
           <img src={this.props.linkIcon[0].url} alt="app icon" width="30" />
         </div>
       )
@@ -224,21 +229,18 @@ class AppsTab extends React.Component {
     var displayApps;
     displayApps = (
       <center>
-        <div className="AppsTabBackground">
-          {this.state.appList.map((elm, i) =>
-            <div className="AppsTabflex" >
-              <div className="AppsTabAppsAndExtensionIcon">
-                <Icons linkIcon={elm.icons} />
-              </div>
-              <div className="AppsTabNames">
-                <div className="AppsTabDescription">
-                  <NameAppsExt textAppsExt={elm.name} enable={this.state.appListDisableEnable[i]} />
-                </div>
-              </div>
-              <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
-                <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
+      <div className="AppsTabBackground">
+        {this.state.appList.map((elm, i) =>
+          <div className="AppsTabflex" >
+            <div className="AppsTabAppsAndExtensionIcon">
+              <Icons linkIcon={elm.icons} isEnabled={this.state.appListDisableEnable[i]} />
+            </div>
+            <div className="AppsTabNames">
+              <div className="AppsTabDescription">
+                <NameAppsExt textAppsExt={elm.name} enable={this.state.appListDisableEnable[i]} />
               </div>
             </div>
+           </div>
           )}
         </div>
       </center>
@@ -250,18 +252,18 @@ class AppsTab extends React.Component {
     var displayExtensions;
     displayExtensions = (
       <center>
-        <div className="AppsTabBackground">
-          {this.state.extensionList.map((elm, i) =>
-            <div className="AppsTabflex" >
-              <div className="AppsTabAppsAndExtensionIcon">
-                <Icons linkIcon={elm.icons} />
-              </div>
-              <div className="AppsTabNames">
-                <div className="AppsTabDescription">
-                  <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
-                </div>
+      <div className="AppsTabBackground">
+        {this.state.extensionList.map((elm, i) =>
+          <div className="AppsTabflex" >
+            <div className="AppsTabAppsAndExtensionIcon">
+              <Icons linkIcon={elm.icons} isEnabled={this.state.extensionListDisableEnable[i]} />
+            </div>
+            <div className="AppsTabNames">
+              <div className="AppsTabDescription">
+                <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
               </div>
             </div>
+           </div>
           )}
         </div>
       </center>
