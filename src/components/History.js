@@ -66,13 +66,14 @@ class History extends Component { // Parent component
 
     }
 
-    // clickDeleteIcon = () => {
-    //   }
-    handleClickDelete = (elementUrl) => {
+    handleClickDelete = (elementUrl, event) => {
         /* eslint-disable */
-        chrome.history.deleteUrl({url: elementUrl})
+        let callme = this;
+        chrome.history.deleteUrl({url: elementUrl});
         /* eslint-enable */
-        // event.preventDefault();
+        event.parentNode.removeChild(event);
+        // console.log('handleClickDelete was run');
+        
       }
 
     render() {
