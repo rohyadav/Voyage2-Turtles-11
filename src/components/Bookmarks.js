@@ -186,7 +186,7 @@ export class Bookmarks extends Component {
           {/* SEARCH FEATURE */}
           <div class="searchBookmarksBackground">
             {/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-            <input id="searchTextInput" type="text" placeholder="Search" className='SearchBox SearchBoxText' />
+            <input id="searchTextInput" type="text" placeholder="Search Bookmarks" className='SearchBox SearchBoxText' />
             <a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
           </div>
           {/* BOOKMARKS LIST */}

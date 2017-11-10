@@ -79,7 +79,7 @@ function notes(state = [], action) {
             return state.map((notes) => {
                 var lowerCaseSearch = (action.text).toLowerCase();
                 var lowerCaseNotes = (notes.text).toLowerCase();
-                if (lowerCaseNotes.includes(lowerCaseSearch) === true) {
+                 if (lowerCaseNotes.includes(lowerCaseSearch) === true) {
                     return Object.assign({}, notes, {
                         search: !notes.search
                     });
@@ -96,7 +96,7 @@ function notes(state = [], action) {
                 });
             })
         default:
-            return state;
+            return state.filter(note => note !== null);
     }
 }
 

@@ -9,9 +9,8 @@ const getVisibleSearchResults = (notes, filter) => {
     let results = notes.filter(n => n.search);
     if (results.length === 0) {
         return null;
-    } else {
-        return results;
     }
+    return notes.filter((n) => n.search);
 }
 
 const mapStateToProps = state => {
