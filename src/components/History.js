@@ -30,11 +30,11 @@ const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
 // var numRequestsOutstanding = 0;
 
 chrome.history.search({
-        text: '',              // Return every history item....
-        startTime: oneWeekAgo, // that was accessed less than one week ago.
-        maxResults: 40
-    },
-    function(historyItems) {
+    text: '',              // Return every history item....
+    startTime: oneWeekAgo, // that was accessed less than one week ago.
+    maxResults: 40
+},
+    function (historyItems) {
         console.log('historyItems', historyItems);
 
         // Extract historyItems object
@@ -43,7 +43,7 @@ chrome.history.search({
         }
 
     });
-    console.log('updated historyArr', historyArr);
+console.log('updated historyArr', historyArr);
 
 /* eslint-enable */
 class History extends Component { // Parent component
@@ -56,11 +56,11 @@ class History extends Component { // Parent component
     }
 
     handleRecentClick = () => {
-        this.setState({selected: 'Recent History'})
+        this.setState({ selected: 'Recent History' })
     }
 
     handleFrequentClick = () => {
-        this.setState({selected: 'Frequent History'})
+        this.setState({ selected: 'Frequent History' })
     }
 
     render() {
@@ -74,35 +74,37 @@ class History extends Component { // Parent component
                 <div className='Notes-Body'>
                     <form className="h-form"
                         onSubmit={this.handleSubmit}>
-                            <input className="SearchBox h-searchbox"
-                                type="text"
-                                placeholder='Search History'
-                                onChange={this.handleChange} />
-                            <button className='h-button-s' type='submit'>
-                                <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
-                                <span className="sr-only">search icon</span>
-                            </button>
+                        <input className="SearchBox h-searchbox"
+                            type="text"
+                            placeholder='Search History'
+                            onChange={this.handleChange} />
+                        <button className='h-button-s' type='submit'>
+                            <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
+                            <span className="sr-only">search icon</span>
+                        </button>
                     </form>
                     {/* <div className='url-container'> */}
                     <div className='h-options'>
-                        <span
-                            className='descrip-active'
-                            onClick={this.handleRecentClick}>
+                        <center >
+                            <span
+                                className='historyFilter descrip-active'
+                                onClick={this.handleRecentClick}>
                                 Recently Visited
-                        </span>
-                        <span
-                            className='descrip-inactive'
-                            onClick={this.handleFrequentClick}>
+                            </span>
+                            <span
+                                className='historyFilter descrip-inactive'
+                                onClick={this.handleFrequentClick}>
                                 Most Visited
-                        </span>
-                        <span className='descrip-inactive'>Clear History</span>
+                            </span>
+                        </center>
                     </div>
+                    <div className='historyClearHistory descrip-inactive'>Clear History</div>
                     {
                         (this.state.selected === 'Frequent History')
-                        ? <HistoryListF
-                            historyArrF={HISTORY_F} />
-                        : <HistoryList
-                            historyArr={historyArr} />
+                            ? <HistoryListF
+                                historyArrF={HISTORY_F} />
+                            : <HistoryList
+                                historyArr={historyArr} />
                     }
                     {/* </div> */} {/* .url-container */}
                 </div> {/* .Notes-Body */}
@@ -119,12 +121,12 @@ const HistoryListF = (props) => {
     // const history = props.history;
     return (
         <div className='url-container'>
-        {/* <div> */}
-            { props.historyArrF.map( (element, index) =>
+            {/* <div> */}
+            {props.historyArrF.map((element, index) =>
                 <HistoryItemF
                     element={element}
-                    key={index}/>
-            ) }
+                    key={index} />
+            )}
         </div>
     );
 
@@ -134,7 +136,7 @@ const HistoryItemF = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon' alt="url-icon" src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
+            <img className='url-icon' alt="url-icon" src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png' />
             <div className='url-url'>{props.element}</div>
         </div>
     );
@@ -151,26 +153,26 @@ const HistoryList = (props) => {
         histArrUrl.push(histArr[i].url);
     }
 
-        return (
+    return (
 
-            <div className='url-container'>
+        <div className='url-container'>
             {/* <div> */}
-                { histArrUrl.map( (element, index) =>
-                    <HistoryItem
-                        element={element}
-                        key={index}/>
-                ) }
-            </div>
-        );
+            {histArrUrl.map((element, index) =>
+                <HistoryItem
+                    element={element}
+                    key={index} />
+            )}
+        </div>
+    );
 
-    }
+}
 
 const HistoryItem = (props) => {
 
     return (
         <div className='url-item'>
             <img className='url-icon'
-            src={`chrome://favicon/${props.element}`}  alt="url-icon" />
+                src={`chrome://favicon/${props.element}`} alt="url-icon" />
             <a href={props.element} className='url-url'>{props.element}</a>
         </div>
     );

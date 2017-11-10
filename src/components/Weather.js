@@ -71,7 +71,7 @@ export class Weather extends React.Component {
 
 			const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
 			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast/daily' + currentLocation + "&cnt=5" + fahrenheit + "&APPID=55a55f3a05bdb182e76908ff3b938523";
-			console.log(endpoint);
+			console.log("endpoint is " + endpoint);
 			request.open('GET', endpoint);
 			request.responseType = 'json';
 			request.send();
