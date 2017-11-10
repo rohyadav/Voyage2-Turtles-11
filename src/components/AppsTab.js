@@ -35,7 +35,7 @@ class Icons extends React.Component {
   }
   render() {
     var icon;
-    if (typeof this.props.linkIcon == "undefined") {
+    if (typeof this.props.linkIcon === "undefined") {
       icon = (
         <div>
           <img src={require('../assets/appstab-broken-icon.svg')} alt="app icon" width="30" />
@@ -73,7 +73,6 @@ class AppsTabEnableDisableButton extends React.Component {
   }
   render() {
     // check the checkbox when mouse hover over
-    var trashIconSize;
     if (this.state.mouseHover) {
       trashIconSize = "26"
     }

@@ -6,8 +6,10 @@ export const Link = ({ active, children, onClick }) => {
     }
 
     return (
+        /* eslint-disable */
         <a className="Description" onClick={e => {e.preventDefault(), onClick()}}>
             {children}
         </a>
+        /* eslint-enable */
     )
 }

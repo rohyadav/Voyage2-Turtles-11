@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
-import { Col, Row, Grid } from 'react-bootstrap';
+import { Col, Grid } from 'react-bootstrap';
 
 /* eslint-disable */
 let arrayOfBookmarks = [];
@@ -34,6 +34,10 @@ export class Bookmarks extends Component {
       searchArray: [],
       searchButton: '../assets/search.png',
       searchFolderDisplay: {display: "none"},
+      highlighted: {
+        backgroundColor: "rgba(255, 238, 0, 0.514)",
+        border: "1px solid $bookmarks-yellow"
+      },
       FormattedParentFolder: this.FormattedParentFolder(),
       FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0),
     }
@@ -66,16 +70,14 @@ export class Bookmarks extends Component {
     let thisOfSearchArray = this;
 
     if (this.state.searchTerm === '') {
-      return null;
-      this.setState({
-        searchFolderDisplay: {display: "none"}
-      });
+      this.setState({ searchFolderDisplay: {display: "none"}  });
       this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
     } else if (this.state.searchButton === '../assets/search – 2.png') {
       this.setState({ searchButton: "../assets/search.png" });
       this.setState({ searchTerm: "" });
-      this.setState({ searchFolderDisplay: {display: "none"} });
+      this.setState({ searchFolderDisplay: {display: "none"}  });
       this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
+
     } else if (this.state.searchButton === '../assets/search.png') {
       this.setState({ searchButton: '../assets/search – 2.png' });
       /* eslint-disable */
@@ -90,7 +92,7 @@ export class Bookmarks extends Component {
           });
         }
         console.log("state searchArray is " + newSearchArray);
-        thisOfSearchArray.setState({ searchFolderDisplay: {display: "inline"} });
+        this.setState({ searchFolderDisplay: {display: "inline"}  });
         let formatted = <ul className="bookmarkList">{thisOfSearchArray.bookmarksFormatter(newSearchArray)}</ul>;
         thisOfSearchArray.setState({ FormattedChildrenBookmarks: formatted });
       });
@@ -114,14 +116,14 @@ export class Bookmarks extends Component {
   FormattedParentFolder = () => {
     let listOfParentFolders = localStorageBookmarks.map((parentFolder, index) =>
       <div>
-        <a className="bookmarkParentFolder" key={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
+        <a className="bookmarkParentFolder" id={index} onClick={() => this.FormattedChildrenBookmarks(index)}>
           {parentFolder.title}
         </a>
         <br />
       </div>
     );
-    console.log("display style is from state " + this.searchFolderDisplay)
-    let searchFolder = <div><a id="searchFolder" className="bookmarkParentFolder" style={this.searchFolderDisplay} >Search Results</a><br /></div>;
+    console.log("display style is from state " + this.state.searchFolderDisplay)
+    let searchFolder = <div><a id="searchFolder" className="bookmarkParentFolder" style={this.state.searchFolderDisplay} >Search Results</a><br /></div>;
     this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
     return <div className="listOfBookmarkFolders">{searchFolder}{listOfParentFolders}</div>;
   }

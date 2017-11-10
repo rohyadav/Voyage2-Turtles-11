@@ -3,8 +3,6 @@ import '../styles/Weather.css';
 import { CurrentWeather } from './CurrentWeather.js';
 import { Forecast } from './Forecast.js';
 
-let requestURL = '';
-
 let currentWeather = {
 	"coord": { "lon": 145.77, "lat": -16.92 },
 	"weather": [{ "id": 0, "main": "-", "description": "-", "icon": "-" }],
@@ -46,8 +44,6 @@ let forecastWeather = {
 	"deg":158,
 	"clouds":20
  }
-
-let weatherIndex = currentWeather.weather[0];
 
 export class Weather extends React.Component {
 	constructor(props) {
