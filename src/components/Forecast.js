@@ -1,12 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/Weather.css';
 import { Col, Row, Grid } from 'react-bootstrap';
 import { WeatherIcon } from './WeatherIcon.js'
 export class Forecast extends React.Component {
-	constructor(props) {
-		super(props);
-	};
-
 	render() {
 		// console.log('Forecast loaded');
 		return (

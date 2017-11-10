@@ -51,7 +51,7 @@ class Icons extends React.Component {
     }
 
     var icon;
-    if (typeof this.props.linkIcon == "undefined") {
+    if (typeof this.props.linkIcon === "undefined") {
       icon = (
         <div>
           <img src={require('../assets/appstab-broken-icon.svg')} alt="app icon" width="30" />
@@ -89,7 +89,9 @@ class AppsTabEnableDisableButton extends React.Component {
   }
   render() {
     // check the checkbox when mouse hover over
-    var trashIconSize;
+    /* eslint-disable */
+    let trashIconSize;
+    /* eslint-enable */
     if (this.state.mouseHover) {
       trashIconSize = "26"
     }
@@ -223,11 +225,10 @@ class AppsTab extends React.Component {
   }
 
   render() {
-
-
     // displays the apps
     var displayApps;
     displayApps = (
+      <center>
       <div className="AppsTabBackground">
         {this.state.appList.map((elm, i) =>
           <div className="AppsTabflex" >
@@ -239,15 +240,10 @@ class AppsTab extends React.Component {
                 <NameAppsExt textAppsExt={elm.name} enable={this.state.appListDisableEnable[i]} />
               </div>
             </div>
-            <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
-              <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
-            </div>
-            <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
-              <AppsTabTrashImg />
-            </div>
-          </div>
-        )}
-      </div>
+           </div>
+          )}
+        </div>
+      </center>
     );
 
 
@@ -255,6 +251,7 @@ class AppsTab extends React.Component {
 
     var displayExtensions;
     displayExtensions = (
+      <center>
       <div className="AppsTabBackground">
         {this.state.extensionList.map((elm, i) =>
           <div className="AppsTabflex" >
@@ -266,19 +263,11 @@ class AppsTab extends React.Component {
                 <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
               </div>
             </div>
-            <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
-              <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]} />
-            </div>
-            <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
-              <AppsTabTrashImg />
-            </div>
-          </div>
-        )}
-      </div>
+           </div>
+          )}
+        </div>
+      </center>
     );
-
-
-
 
     return (
       <div>
@@ -290,14 +279,10 @@ class AppsTab extends React.Component {
         <div className='Apps-Body'>
           <div class="AppsTab-add-to-body">
             <h2 className="AppsTabSubText">apps:</h2>
-              {displayApps}
-
+            {displayApps}
             <h2 className="AppsTabSubText ">extensions:</h2>
-              {displayExtensions}
+            {displayExtensions}
           </div>
-
-
-
         </div>
       </div>
     );

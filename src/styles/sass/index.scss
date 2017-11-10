@@ -14,13 +14,13 @@ IMPORT PARTIAL SASS FILES
 }
 
 body {
-	font-size: 1.4rem !important;
-	font-family: $tab-font !important;
-	color: white !important;
+	font-size: 1.4rem ;
+	font-family: $tab-font ;
+	color: white ;
   padding: 0;
   margin: 0;
   background-color: $light-grey;
-  overflow: none;
+  overflow: hidden;
 }
 h1, h2, h3, h4, h5 {
   color: white;

@@ -3,11 +3,6 @@ import '../styles/Weather.css';
 import { WeatherIcon } from './WeatherIcon.js';
 import { Col, Row, Grid } from 'react-bootstrap';
 export class CurrentWeather extends React.Component {
-	constructor(props) {
-		super(props);
-		// console.log(props.desc)
-	};
-
 	render() {
 		// console.log('CurrentWeather loaded');
 		let iconID = WeatherIcon(this.props.icon);
