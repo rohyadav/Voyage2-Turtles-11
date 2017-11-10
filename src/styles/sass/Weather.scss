@@ -12,43 +12,130 @@ GENERAL
 ==========================
 */
 
-textarea {
-  resize: vertical; max-height: 300px; min-height: 40px;
-  color: #959595;
+/*
+==========================
+HEADER & BODY
+==========================
+*/
+.Weather-Header {
+  @include tab-header($weather-light-blue);
+}
+.WeatherExitButton {
+  @include tab-exit-button(white);
+  
+    &:hover {
+      // background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
+    }
+}
+.Weather-Title-Text {
+  @include tab-title
 }
 
-body {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
+.Weather-Body {
+  @include tab-body($weather-light-blue);
+  font-family: $tab-font;
+  color: white;
 }
-
-h1, h2, h3, h4, h5 {
-  font-family: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
-  color: #ffffff;
+/*
+==========================
+SCROLLBAR
+==========================
+*/
+.Weather-Body::-webkit-scrollbar {
+  @include scrollbar;
 }
-
+.Weather-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Weather-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
+}
+/*
+==========================
+GRID
+==========================
+*/
 .container {
+  width: 300px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.container-fluid {
+  width: 300px !important;
+  margin: 0px !important;
+}
+.row {
+  width: 300px !important;
+  margin: 0px !important;
   text-align: center;
 }
-
 /*
 ==========================
 CURRENT WEATHER
 ==========================
 */
-
+.weatherCityName {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.weatherDescription {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
 .currentWeather {
-  background-color: $weather-light-blue;
-  top: 0px;
-  right: 0px;
-  width: 19rem;
-  position: fixed;
-  height: 50vh;
+  display: block;
+  margin: auto;
+  float: left;
+  width: 300px;
 }
 
 .currentTempMinMax {
-    border: solid 0.1em #ffffff;
-    border-left: hidden;
-    border-right: hidden;
+  border: solid 0.1em #ffffff;
+  border-left: hidden;
+  border-right: hidden;
+  display: flex;
+}
+
+
+.currentMin, .currentMax {
+  font-size: 24px;
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 90px;
+}
+
+.currentTemp {
+  text-align: center;
+  text-justify: center;
+  display: inline-block;
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.center {
+  text-align: center;
+  padding-left: 1rem;
+}
+
+.smallMinMax {
+  font-size: 12px;
+  margin-top: -40px;
+}
+
+.mainWeatherImage {
+  border: none;
+  width: 150px;
+  height: 150px;
+  position: relative;
+  display: block;
+  z-index: 3;
+  margin: auto;
 }
 
 /*
@@ -56,12 +143,45 @@ CURRENT WEATHER
 FORECAST
 ==========================
 */
-
+.day {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.minMaxTemp {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 8px;
+}
 .forecast {
-    position: fixed;
-    background-color: $weather-light-blue;
-    top: 50vh;
-    right: 0;
-    height: 60vh;
-    width: 19rem;
+    // position: fixed;
+    // top: 45vh;
+    // right: 0;
+    // height: 60vh;
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 300px;
+    float: right;
+}
+
+.forecastInfo {
+  display: block;
+  margin: auto;
+  width: 300px;
+  float: right;
+  margin-top: 10px;
+}
+
+.forecastWeatherImage {
+  border: none;
+  width: 75px;
+  height: 75px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
+  margin-top: 10px;
+  line-height: 300px;
 }

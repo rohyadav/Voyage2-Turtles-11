@@ -14,13 +14,6 @@ textarea {
   color: $default-grey;
 }
 
-body {
-  font-family: $tab-font;
-}
-
-h1, h2, h3, h4, h5 {
-  color: $default-grey;
-}
 /*
 ==========================
 HEADER & BODY
@@ -32,6 +25,7 @@ HEADER & BODY
 
 .Notes-Body {
   @include tab-body($bkg-grey);
+  bottom: 0px;
 }
 .Notes-Title-Text {
   @include tab-title
@@ -123,7 +117,8 @@ EXISTING NOTES
   box-shadow: none;
   color: $default-grey;
   padding-left: 10px;
-  padding-top: 30px;
+  padding-top: 40px;
+  padding-bottom: 15px;
   font-family: $tab-font;
   font-size: 12px;
   background-color: white;

@@ -15,6 +15,7 @@ const { SHOW_ACTIVE } = NotesVisibilityFilters
 var globalCounter = 0;
 // adding the string.includes() method to search for strings
 if (!String.prototype.includes) {
+    /* eslint-disable */
     String.prototype.includes = function (search, start) {
         if (typeof start !== 'number') {
             start = 0;
@@ -25,6 +26,7 @@ if (!String.prototype.includes) {
             return this.indexOf(search, start) !== -1;
         }
     };
+    /* eslint-enable */
 }
 
 function notes(state = [], action) {
