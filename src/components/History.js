@@ -40,6 +40,7 @@ chrome.topSites.get(
 
 
 
+
 /* eslint-enable */
 class History extends Component { // Parent component
 
@@ -51,11 +52,11 @@ class History extends Component { // Parent component
     }
 
     handleRecentClick = () => {
-        this.setState({selected: 'Recent History'})
+        this.setState({ selected: 'Recent History' })
     }
 
     handleFrequentClick = () => {
-        this.setState({selected: 'Frequent History'})
+        this.setState({ selected: 'Frequent History' })
     }
 
     handleChange = () => {
@@ -90,29 +91,31 @@ class History extends Component { // Parent component
                 <div className='Notes-Body'>
                     <form className="h-form"
                         onSubmit={this.handleSubmit}>
-                            <input className="SearchBox h-searchbox"
-                                type="text"
-                                placeholder='Search History'
-                                onChange={this.handleChange} />
-                            <button className='h-button-s' type='submit'>
-                                <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
-                                <span className="sr-only">search icon</span>
-                            </button>
+                        <input className="SearchBox h-searchbox"
+                            type="text"
+                            placeholder='Search History'
+                            onChange={this.handleChange} />
+                        <button className='h-button-s' type='submit'>
+                            <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
+                            <span className="sr-only">search icon</span>
+                        </button>
                     </form>
                     {/* <div className='url-container'> */}
                     <div className='h-options'>
-                        <span
-                            className='descrip-active'
-                            onClick={this.handleRecentClick}>
+                        <center >
+                            <span
+                                className='historyFilter descrip-active'
+                                onClick={this.handleRecentClick}>
                                 Recently Visited
-                        </span>
-                        <span
-                            className='descrip-inactive'
-                            onClick={this.handleFrequentClick}>
+                            </span>
+                            <span
+                                className='historyFilter descrip-inactive'
+                                onClick={this.handleFrequentClick}>
                                 Most Visited
-                        </span>
-                        <span className='descrip-inactive'>Clear History</span>
+                            </span>
+                        </center>
                     </div>
+                    <div className='historyClearHistory descrip-inactive'>Clear History</div>
                     {
                         (this.state.selected === 'Frequent History')
                         ? <HistoryListF
@@ -135,8 +138,8 @@ const HistoryListF = (props) => {
 
     return (
         <div className='url-container'>
-        {/* <div> */}
-            { props.historyArrF.map( (element, index) =>
+            {/* <div> */}
+            {props.historyArrF.map((element, index) =>
                 <HistoryItemF
                     element={element}
                     key={element.url}/>
@@ -176,8 +179,6 @@ const HistoryList = (props) => {
     );
 
 }
-
-    
 
 const HistoryItem = (props) => {
 

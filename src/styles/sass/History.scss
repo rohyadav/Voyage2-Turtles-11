@@ -50,9 +50,9 @@
 .h-options {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+  padding-top: 28px;
+  // padding-bottom: 20px;
+  // padding-left: 20px;
 }
 
 @mixin descrip-base($color, $weight) {
@@ -76,6 +76,18 @@
   @include descrip-base($history-orange, 700)
 }
 
+.historyFilter {
+  padding: 8px;
+}
+.historyClearHistory {
+  float: right;
+  padding-bottom: 8px;
+  padding-right: 8px;
+  padding-top: 16px;
+  font-size: 10px;
+  color: $default-grey;
+  display: relative !important;
+}
 /* URL List */
 
 .url-container {

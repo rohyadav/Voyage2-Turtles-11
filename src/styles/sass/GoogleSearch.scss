@@ -45,7 +45,7 @@
 }
 
 .auto-link {
-    color: $apps-green;
+    color: $default-grey;
     padding: 5px 5px;
     font-size: 1vw;
     text-decoration: none;
@@ -53,6 +53,6 @@
     cursor: pointer;
     &:hover {
       color: white;
-      background-color: $apps-green;
+      background-color: $default-grey;
     }
 }
