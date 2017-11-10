@@ -20,30 +20,30 @@ let currentWeather = {
 		"name": "Sherman Oaks"
 	}
 };
-let forecastWeather = {  
-	"dt":1510340400,
-	"temp":{  
-	   "day":60.85,
-	   "min":40.6,
-	   "max":67.84,
-	   "night":45.45,
-	   "eve":65.53,
-	   "morn":40.6
+let forecastWeather = {
+	"dt": 1510340400,
+	"temp": {
+		"day": 60.85,
+		"min": 40.6,
+		"max": 67.84,
+		"night": 45.45,
+		"eve": 65.53,
+		"morn": 40.6
 	},
-	"pressure":962.64,
-	"humidity":69,
-	"weather":[  
-	   {  
-		  "id":500,
-		  "main":"Rain",
-		  "description":"light rain",
-		  "icon":"10d"
-	   }
+	"pressure": 962.64,
+	"humidity": 69,
+	"weather": [
+		{
+			"id": 500,
+			"main": "Rain",
+			"description": "light rain",
+			"icon": "10d"
+		}
 	],
-	"speed":1.99,
-	"deg":158,
-	"clouds":20
- }
+	"speed": 1.99,
+	"deg": 158,
+	"clouds": 20
+}
 
 export class Weather extends React.Component {
 	constructor(props) {
@@ -55,7 +55,8 @@ export class Weather extends React.Component {
 			day1Weather: forecastWeather,
 			day2Weather: forecastWeather,
 			day3Weather: forecastWeather,
-			day4Weather: forecastWeather
+			day4Weather: forecastWeather,
+			searchButton: '../assets/search.png',
 		};
 	};
 
@@ -139,33 +140,41 @@ export class Weather extends React.Component {
 					<h1 className='Weather-Title-Text'>Weather</h1>
 				</header>
 				<div className="Weather-Body">
-					<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
-						icon={this.state.day0Weather.weather[0].icon}
-						temp={Math.floor(this.state.day0Weather.main.temp)}
-						desc={this.state.day0Weather.weather[0].description}
-						tempMin={Math.floor(this.state.day0Weather.main.temp_min)}
-						tempMax={Math.floor(this.state.day0Weather.main.temp_max)} />
-					<Forecast
-						day1Min={Math.floor(this.state.day1Weather.temp.min)}
-						day1Max={Math.floor(this.state.day1Weather.temp.max)}
-						day1icon={this.state.day1Weather.weather[0].icon}
-						day1Day={this.dateGrabber(this.state.day1Weather.dt)}
+					{/* SEARCH FEATURE */}
+					<div class="weathersSearchBackground">
+						{/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
+						<input id="searchTextInput" type="text" placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
+						<a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
+					</div>
+					<div className="weatherCards">
+						<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
+							icon={this.state.day0Weather.weather[0].icon}
+							temp={Math.floor(this.state.day0Weather.main.temp)}
+							desc={this.state.day0Weather.weather[0].description}
+							tempMin={Math.floor(this.state.day0Weather.main.temp_min)}
+							tempMax={Math.floor(this.state.day0Weather.main.temp_max)} />
+						<Forecast
+							day1Min={Math.floor(this.state.day1Weather.temp.min)}
+							day1Max={Math.floor(this.state.day1Weather.temp.max)}
+							day1icon={this.state.day1Weather.weather[0].icon}
+							day1Day={this.dateGrabber(this.state.day1Weather.dt)}
 
-						day2Min={Math.floor(this.state.day2Weather.temp.min)}
-						day2Max={Math.floor(this.state.day2Weather.temp.max)}
-						day2icon={this.state.day2Weather.weather[0].icon}
-						day2Day={this.dateGrabber(this.state.day2Weather.dt)}
+							day2Min={Math.floor(this.state.day2Weather.temp.min)}
+							day2Max={Math.floor(this.state.day2Weather.temp.max)}
+							day2icon={this.state.day2Weather.weather[0].icon}
+							day2Day={this.dateGrabber(this.state.day2Weather.dt)}
 
-						day3Min={Math.floor(this.state.day3Weather.temp.min)}
-						day3Max={Math.floor(this.state.day3Weather.temp.max)}
-						day3icon={this.state.day3Weather.weather[0].icon}
-						day3Day={this.dateGrabber(this.state.day3Weather.dt)}
+							day3Min={Math.floor(this.state.day3Weather.temp.min)}
+							day3Max={Math.floor(this.state.day3Weather.temp.max)}
+							day3icon={this.state.day3Weather.weather[0].icon}
+							day3Day={this.dateGrabber(this.state.day3Weather.dt)}
 
-						day4Min={Math.floor(this.state.day4Weather.temp.min)}
-						day4Max={Math.floor(this.state.day4Weather.temp.max)}
-						day4icon={this.state.day4Weather.weather[0].icon}
-						day4Day={this.dateGrabber(this.state.day4Weather.dt)}
-					/>
+							day4Min={Math.floor(this.state.day4Weather.temp.min)}
+							day4Max={Math.floor(this.state.day4Weather.temp.max)}
+							day4icon={this.state.day4Weather.weather[0].icon}
+							day4Day={this.dateGrabber(this.state.day4Weather.dt)}
+						/>
+					</div>
 				</div>
 			</div>
 		);
