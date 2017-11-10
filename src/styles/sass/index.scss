@@ -14,16 +14,17 @@ IMPORT PARTIAL SASS FILES
 }
 
 body {
-	font-size: 1.4rem;
-	font-family: "Varela Round", sans-serif;
-	color: white;
+	font-size: 1.4rem ;
+	font-family: $tab-font ;
+	color: white ;
   padding: 0;
   margin: 0;
   background-color: $light-grey;
-  // min-height: 100vh;
-  // overflow: hidden;
+  overflow: hidden;
 }
-
+h1, h2, h3, h4, h5 {
+  color: white;
+}
 
 /* =====================================
    Main Layout Styles
@@ -31,6 +32,9 @@ body {
 
 .main {
   text-align: center;
+  font-size: 1.7rem;
+	font-family: $tab-font;
+	color: white;
 	// height: 100vh;
 	// display: flex;
   // flex-direction: column; (to apply flex grow to #icons)
@@ -116,9 +120,10 @@ body {
 	background-position: 10px 50%; /* (img) (horizontal, vertical) */
 	background-repeat: no-repeat;
   padding-left: 40px;
+  padding-right: 40px;
     &::-webkit-search-cancel-button {
       position: relative;
-      right: 2vw;
+      right: 3.5vw;
     }
     &::placeholder {
       font-size: .8rem;
@@ -191,30 +196,39 @@ body {
 
 .leftFooter, .rightFooter {
   font-size: 0.75rem;
-  display: inline-block;
+  // display: inline-block;
   text-transform: lowercase;
   color: $light-grey;
 }
 
-.leftFooter {
-  float: left;
-  // left: 20px;
-	padding-left: 20px;
-}
-
 footer {
 	display: flex;
-  flex-direction: column;
-  height: 1vh;
+  height: 10vh;
+	justify-content: space-between;
+	flex-flow: row-reverse;
 	p {
 		-webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 	}
 }
 
-.footerIcon {
-	height: 40px;
-  align-self: flex-end;
-  cursor: pointer;
-	padding-right: 20px;
+.leftFooter {
+  // float: left;
+  // left: 20px;
+	align-self: flex-end;
+  padding-left: 20px;
+	padding-bottom: 20px;
 }
+
+.footer-icon {
+	height: 40px;
+	// height: 60%;
+  cursor: pointer;
+	align-self: flex-end;
+	padding-right: 20px;
+	margin-bottom: 20px;
+}
+
+// .footer-margin {
+// 	height: 20px;
+// }

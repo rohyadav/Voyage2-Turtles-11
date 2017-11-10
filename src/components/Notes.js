@@ -9,6 +9,7 @@ import { NotesVisibleSearch } from './NotesVisibleSearch';
 import {
   addNotes,
   searchNotes,
+  closeNotesSearch
 } from '../actions/Notes_Actions';
 import throttle from 'lodash/throttle';
 
@@ -19,7 +20,7 @@ export const loadState = () => {
     const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
       return undefined;
-    } 
+    }
     return JSON.parse(serializedState);
   } catch (err) {
     return undefined;
@@ -62,18 +63,16 @@ export class Notes extends Component {
   }
 
   // HANDLES SEARCH
-  setSearchQuery = (event) => {
-    this.setState({ searchTerm: event.target.value });
-  }
   handleNoteSearch = () => {
-    if (this.state.searchTerm === '') {
-      return null;
-    } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
+    let notesSearchTerm = document.getElementById("notesSearchTerm").value;
+    if (notesSearchTerm === '') {
+      store.dispatch(closeNotesSearch());
+    } else if (this.state.searchButton === '../assets/search – 2.png') {
+      store.dispatch(closeNotesSearch());
       this.setState({ searchButton: "../assets/search.png" });
-      store.dispatch(searchNotes());
     } else {
-      store.dispatch(searchNotes(this.state.searchTerm));
-      (this.state.searchButton === '../assets/search.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search.png" });
+      store.dispatch(searchNotes(notesSearchTerm));
+      this.setState({ searchButton: "../assets/search – 2.png" });
     }
   }
   // HANDLES ADDING NEW NOTES
@@ -84,7 +83,7 @@ export class Notes extends Component {
     store.dispatch(addNotes(this.state.note));
     // updates the notes qty button on main Notes icon
     document.getElementById("notesQty").innerText = store.getState().notes.length;
-    this.setState({note: ''});
+    this.setState({ note: '' });
   }
 
   render() {
@@ -96,16 +95,15 @@ export class Notes extends Component {
             <button className='notesExitButton' onClick={this.props.closeHandler}>X</button>
             <h1 className='Notes-Title-Text'>Notes</h1>
           </header>
+          <br />
+          {/* BODY */}
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
-              <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
-              <a><img alt="searchIcon" className='searchButton' onChange={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <input type="text" id="notesSearchTerm" placeholder="Search" className='SearchBox SearchBoxText' required placeholder="Search Notes" />
+              <a><img alt="searchIcon" className='searchButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
               <NotesVisibleSearch />
             </div>
-            <br />
-            
-
             {/* NEW NOTE */}
             <div>
               <button className='addNotesButton' onClick={this.handleNoteSubmit} notesquantity={this.state.notesQuantity}>+</button>

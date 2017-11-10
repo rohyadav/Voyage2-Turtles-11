@@ -11,10 +11,15 @@ $notes-red: #ea3939;
 $notes-red-bkg: #f17777;
 
 $history-orange:#f9a819;
+$history-orange-bkg: #fcb537;
 
 $apps-green: #39b54a;
 
-$weather-light-blue: #99dcff;
+$weather-light-blue: #222b91;
+$weather-bkg: #75799c;
+
+$weather-color-day: #75799c;
+$weather-color-night: #003b6b;
 
 $todos-blue: #00a7ff;
 $todos-blue-bkg: #3ac1ff;
@@ -109,7 +114,6 @@ COMPONENTS
     right: 10px;
     color: $color;
     position: fixed;
-    // background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
     display:inline-block;
     font-size:16px;
     font-weight: 700;
@@ -124,6 +128,23 @@ COMPONENTS
     background: $color;
 }
 
+/*
+==========================
+SCROLL
+==========================
+*/
+@mixin scrollbar {
+    width: 4px;
+}
+
+@mixin scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+@mixin scrollbar-thumb {
+    background-color: $default-grey;
+    border-radius: 8px;
+}
 /*
 ==========================
 ICONS
@@ -157,5 +178,5 @@ ICONS
     font-weight: 700;
     text-align: center;
     border: none;
-    display: block; 
+    display: block;
 }
