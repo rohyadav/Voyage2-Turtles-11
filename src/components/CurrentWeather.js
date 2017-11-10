@@ -11,26 +11,25 @@ export class CurrentWeather extends React.Component {
 		// console.log(this.props.tempMin)
 
 		return (
-			<div className="currentWeather">
+			<div>
 				{/* Current Weather */}
-				<br />
-				<center><img className="mainWeatherImage" src={iconID} alt="" /></center>
-				<center><h4 className="weatherCityName">{this.props.cityName}</h4></center>
-				<h5 className="weatherDescription">{this.props.desc}</h5>
-				
-				<div className="currentWeather container-fluid">
+				<div className="container-fluid">
 					<Grid>
-						<Row className="forecastInfo">
-							<Col xs={4}>
-								<h1 className="currentMin">{this.props.tempMin}°F</h1>
-								<p className="smallMinMax">Min</p>
+						<Row>
+							<Col xs={8}>
+								<center><h4 className="weatherCityName">{this.props.cityName}</h4></center>
+								<h5 className="weatherDescription">{this.props.desc}</h5>
 							</Col>
 							<Col xs={4}>
-								<h1 className="currentTemp">{this.props.temp + "°"}</h1>
+								<h1 className="currentMin">{this.props.tempMin}°F ~ {this.props.tempMax}°F</h1>
 							</Col>
-							<Col xs={4}>
-								<h1 className="currentMax">{this.props.tempMax}°F</h1>
-								<p className="smallMinMax">Max</p>
+						</Row>
+						<Row className="currentWeatherIconAndTemp">
+							<Col xs={6}>
+								<center><img className="mainWeatherImage" src={iconID} alt="" /></center>
+							</Col>
+							<Col xs={6}>
+								<h1 className="currentTemp">{this.props.temp + "°F"}</h1>
 							</Col>
 						</Row>
 					</Grid>
