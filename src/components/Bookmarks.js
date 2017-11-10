@@ -39,7 +39,7 @@ export class Bookmarks extends Component {
         border: "1px solid $bookmarks-yellow"
       },
       FormattedParentFolder: this.FormattedParentFolder(),
-      FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0),
+      FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0)
     }
   }
   setSearchQuery = (event) => {
@@ -92,9 +92,9 @@ export class Bookmarks extends Component {
           });
         }
         console.log("state searchArray is " + newSearchArray);
-        this.setState({ searchFolderDisplay: {display: "inline"}  });
         let formatted = <ul className="bookmarkList">{thisOfSearchArray.bookmarksFormatter(newSearchArray)}</ul>;
         thisOfSearchArray.setState({ FormattedChildrenBookmarks: formatted });
+        thisOfSearchArray.setState({ searchFolderDisplay: {display: "inline"}  });
       });
       /* eslint-enable */
     }
@@ -122,8 +122,8 @@ export class Bookmarks extends Component {
         <br />
       </div>
     );
-    console.log("display style is from state " + this.state.searchFolderDisplay)
-    let searchFolder = <div><a id="searchFolder" className="bookmarkParentFolder" style={this.state.searchFolderDisplay} >Search Results</a><br /></div>;
+    console.log("display style is from state " + this.searchFolderDisplay)
+    let searchFolder = <div><a id="searchFolder" className="bookmarkParentFolder" style={this.searchFolderDisplay} >Search Results</a><br /></div>;
     this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
     return <div className="listOfBookmarkFolders">{searchFolder}{listOfParentFolders}</div>;
   }

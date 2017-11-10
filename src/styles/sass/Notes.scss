@@ -25,6 +25,7 @@ HEADER & BODY
 
 .Notes-Body {
   @include tab-body($bkg-grey);
+  height: 100%;
 }
 .Notes-Title-Text {
   @include tab-title
