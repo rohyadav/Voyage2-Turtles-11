@@ -73,6 +73,9 @@ class AppsTabEnableDisableButton extends React.Component {
   }
   render() {
     // check the checkbox when mouse hover over
+    /* eslint-disable */
+    let trashIconSize;
+    /* eslint-enable */
     if (this.state.mouseHover) {
       trashIconSize = "26"
     }

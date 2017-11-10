@@ -134,7 +134,7 @@ const HistoryItemF = (props) => {
 
     return (
         <div className='url-item'>
-            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
+            <img className='url-icon' alt="url-icon" src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
             <div className='url-url'>{props.element}</div>
         </div>
     );
@@ -170,14 +170,15 @@ const HistoryItem = (props) => {
     return (
         <div className='url-item'>
             <img className='url-icon'
-            src={`chrome://favicon/${props.element}`} />
+            src={`chrome://favicon/${props.element}`}  alt="url-icon" />
             <a href={props.element} className='url-url'>{props.element}</a>
         </div>
     );
 }
 
 export default History
-
+/* eslint-disable */
 {/* <li className="bookmarks"
     key={bookmarks.index}
     style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}> */}
+/* eslint-enable */
