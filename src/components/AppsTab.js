@@ -45,6 +45,11 @@ class NameAppsExt extends React.Component {
 
 class Icons extends React.Component {
   render() {
+    var isEnabled = "AppsTabOpacity";
+    if (this.props.isEnabled) {
+      isEnabled = "";
+    }
+
     var icon;
     if (typeof this.props.linkIcon == "undefined") {
       icon = (
@@ -55,7 +60,7 @@ class Icons extends React.Component {
     }
     else {
       icon = (
-        <div>
+        <div className={isEnabled}>
           <img src={this.props.linkIcon[0].url} alt="app icon" width="30" />
         </div>
       )
@@ -227,7 +232,7 @@ class AppsTab extends React.Component {
         {this.state.appList.map((elm, i) =>
           <div className="AppsTabflex" >
             <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} />
+              <Icons linkIcon={elm.icons} isEnabled={this.state.appListDisableEnable[i]} />
             </div>
             <div className="AppsTabNames">
               <div className="AppsTabDescription">
@@ -254,7 +259,7 @@ class AppsTab extends React.Component {
         {this.state.extensionList.map((elm, i) =>
           <div className="AppsTabflex" >
             <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} />
+              <Icons linkIcon={elm.icons} isEnabled={this.state.extensionListDisableEnable[i]} />
             </div>
             <div className="AppsTabNames">
               <div className="AppsTabDescription">
