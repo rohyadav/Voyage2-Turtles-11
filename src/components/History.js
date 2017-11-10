@@ -66,15 +66,14 @@ class History extends Component { // Parent component
 
     }
 
-    // clickDeleteIcon = (elm, i, event) => {
-    //     /* eslint-disable */
-    //     let callme = this;
-    //     chrome.management.uninstall(elm.id, function(){
-    //       callme.update();
-    //     });
-    //     /* eslint-enable */
-    //     event.preventDefault();
+    // clickDeleteIcon = () => {
     //   }
+    handleClickDelete = (elementUrl) => {
+        /* eslint-disable */
+        chrome.history.deleteUrl({url: elementUrl})
+        /* eslint-enable */
+        // event.preventDefault();
+      }
 
     render() {
 
@@ -115,7 +114,8 @@ class History extends Component { // Parent component
                         ? <HistoryListF
                             historyArrF={historyArrF} />
                         : <HistoryList
-                            historyArr={historyArr} />
+                            historyArr={historyArr} 
+                            handleClickDelete={this.handleClickDelete}/>
                     }
                     {/* </div> */} {/* .url-container */}
                 </div> {/* .Notes-Body */}
@@ -159,31 +159,27 @@ const HistoryItemF = (props) => {
 
 const HistoryList = (props) => {
 
-        return (
+    return (
+        <div className='url-container'>
+        {/* <div> */}
+            { props.historyArr.map( (element, index) =>
+                <HistoryItem
+                    element={element}
+                    key={element.id}
+                    handleClickDelete={props.handleClickDelete}/>
+            ) }
+        </div>
+    );
 
-            <div className='url-container'>
-            {/* <div> */}
-                { props.historyArr.map( (element, index) =>
-                    <HistoryItem
-                        element={element}
-                        key={element.id}/>
-                ) }
-            </div>
-        );
+}
 
-    }
+    
 
 const HistoryItem = (props) => {
 
-    const clickDeleteIcon = (elm, i, event) => {
-        /* eslint-disable */
-        let callme = this;
-        chrome.management.uninstall(elm.id, function(){
-          callme.update();
-        });
-        /* eslint-enable */
-        event.preventDefault();
-      }
+    // clickDeleteIcon = (event) => {
+
+    //   }
 
     return (
         <div className='url-item'>
@@ -194,7 +190,7 @@ const HistoryItem = (props) => {
                     {props.element.title}
             </a>
             <div className='h-del-icon'
-                onclick={clickDeleteIcon}> 
+                onClick={props.handleClickDelete.bind(this, props.element.url)}> 
                     <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
         </div>
@@ -202,7 +198,3 @@ const HistoryItem = (props) => {
 }
 
 export default History
-
-{/* <li className="bookmarks"
-    key={bookmarks.index}
-    style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}> */}
