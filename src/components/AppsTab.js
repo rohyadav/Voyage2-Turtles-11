@@ -238,6 +238,7 @@ class AppsTab extends React.Component {
               <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
                 <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
               </div>
+            </div>
           )}
         </div>
       </center>
@@ -248,16 +249,17 @@ class AppsTab extends React.Component {
 
     var displayExtensions;
     displayExtensions = (
-     <center>
-      <div className="AppsTabBackground">
-        {this.state.extensionList.map((elm, i) =>
-          <div className="AppsTabflex" >
-            <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} />
-            </div>
-            <div className="AppsTabNames">
-              <div className="AppsTabDescription">
-                <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
+      <center>
+        <div className="AppsTabBackground">
+          {this.state.extensionList.map((elm, i) =>
+            <div className="AppsTabflex" >
+              <div className="AppsTabAppsAndExtensionIcon">
+                <Icons linkIcon={elm.icons} />
+              </div>
+              <div className="AppsTabNames">
+                <div className="AppsTabDescription">
+                  <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
+                </div>
               </div>
             </div>
           )}
@@ -275,9 +277,9 @@ class AppsTab extends React.Component {
         <div className='Apps-Body'>
           <div class="AppsTab-add-to-body">
             <h2 className="AppsTabSubText">apps:</h2>
-              {displayApps}
+            {displayApps}
             <h2 className="AppsTabSubText ">extensions:</h2>
-              {displayExtensions}
+            {displayExtensions}
           </div>
         </div>
       </div>

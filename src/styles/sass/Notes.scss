@@ -25,7 +25,7 @@ HEADER & BODY
 
 .Notes-Body {
   @include tab-body($bkg-grey);
-  height: 100%;
+  bottom: 0px;
 }
 .Notes-Title-Text {
   @include tab-title
@@ -117,7 +117,8 @@ EXISTING NOTES
   box-shadow: none;
   color: $default-grey;
   padding-left: 10px;
-  padding-top: 30px;
+  padding-top: 40px;
+  padding-bottom: 15px;
   font-family: $tab-font;
   font-size: 12px;
   background-color: white;

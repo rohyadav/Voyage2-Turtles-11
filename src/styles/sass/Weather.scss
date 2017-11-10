@@ -39,6 +39,20 @@ HEADER & BODY
 }
 /*
 ==========================
+SCROLLBAR
+==========================
+*/
+.Weather-Body::-webkit-scrollbar {
+  @include scrollbar;
+}
+.Weather-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Weather-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
+}
+/*
+==========================
 GRID
 ==========================
 */
