@@ -57,6 +57,7 @@ export class Weather extends React.Component {
 			day3Weather: forecastWeather,
 			day4Weather: forecastWeather,
 			searchButton: '../assets/search.png',
+			currentLocation: ""
 		};
 	};
 
@@ -68,10 +69,13 @@ export class Weather extends React.Component {
 			let latitude = position.coords.latitude;
 			let longitude = position.coords.longitude;
 			let currentLocation = '?lat=' + latitude + '&lon=' + longitude;
+			if (referenceToThis.state.currentLocation === "" ) {
+				referenceToThis.setState({ currentLocation: currentLocation });
+			}
 			let fahrenheit = '&units=imperial';
 
 			const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
-			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast/daily' + currentLocation + "&cnt=5" + fahrenheit + "&APPID=55a55f3a05bdb182e76908ff3b938523";
+			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast/daily' + referenceToThis.state.currentLocation + "&cnt=5" + fahrenheit + "&APPID=55a55f3a05bdb182e76908ff3b938523";
 			console.log("endpoint is " + endpoint);
 			request.open('GET', endpoint);
 			request.responseType = 'json';
@@ -91,7 +95,7 @@ export class Weather extends React.Component {
 			}
 
 			const request2 = new XMLHttpRequest();
-			const currentWeatherEndpoint = 'https://api.openweathermap.org/data/2.5/weather' + currentLocation + fahrenheit + apiKey;
+			const currentWeatherEndpoint = 'https://api.openweathermap.org/data/2.5/weather' + referenceToThis.state.currentLocation + fahrenheit + apiKey;
 			console.log("currentWeatherEndpoint is " + request2);
 			request2.open('GET', currentWeatherEndpoint);
 			request2.responseType = 'json';
@@ -108,6 +112,30 @@ export class Weather extends React.Component {
 		}
 
 		navigator.geolocation.getCurrentPosition(success, error);
+	}
+
+	handleWeatherSearch = () => {
+		let thisThis = this;
+		let input = document.getElementById("searchTextInput").value;
+		let newLocation = "";
+		let searchButton = "";
+		let inputIsANumber = Number.isInteger(Number.parseInt(input));
+		if (input.length !== 0) {
+			if (inputIsANumber) {
+				newLocation = "?zip=" + input;
+			} else {
+				newLocation = "?q=" + input;
+			}
+			searchButton = '../assets/search – 2.png';
+		} else {
+			searchButton = '../assets/search.png';
+		}
+		thisThis.setState({ 
+			currentLocation: newLocation, 
+			searchButton: searchButton 
+		});
+		console.log(thisThis.state.currentLocation);
+		return this.getCurrentWeather;
 	}
 
 	requestGeolocation() {
@@ -144,7 +172,7 @@ export class Weather extends React.Component {
 					<div class="weathersSearchBackground">
 						{/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
 						<input id="searchTextInput" type="text" placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
-						<a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
+						<a><img className='searchBookmarksButton' onClick={this.handleWeatherSearch} src={this.state.searchButton} alt="search"></img></a>
 					</div>
 					<div className="weatherCards">
 						<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
