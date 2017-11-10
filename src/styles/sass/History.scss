@@ -130,8 +130,18 @@
   text-overflow: ellipsis;
   color: $default-grey;
   text-decoration: none;
+  padding-right: 10px;
   &:hover {
     color: $history-orange;
     transition:.2s;
+  }
+}
+
+.h-del-icon {
+  padding-left: 10px;
+  &:hover {
+    color: $history-orange;
+    transition:.2s;
+    cursor: pointer;
   }
 }
