@@ -25,14 +25,25 @@ chrome.management.getAll(function (info) {
 });
 /* eslint-enable */
 
+class NameAppsExt extends React.Component {
+  render() {
+    var typeText;
+    if (this.props.enable) {
+      typeText = "";
+    }
+    else {
+      typeText = "AppsTabLineThrough";
+    }
+
+    return (
+      <div >
+        <p className={typeText}>{this.props.textAppsExt}</p>
+      </div>
+    );
+  }
+}
 
 class Icons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
   render() {
     var icon;
     if (typeof this.props.linkIcon == "undefined") {
@@ -207,7 +218,6 @@ class AppsTab extends React.Component {
   }
 
   render() {
-    console.log("extensionList is " + JSON.stringify(extensionList))
 
 
     // displays the apps
@@ -220,7 +230,9 @@ class AppsTab extends React.Component {
               <Icons linkIcon={elm.icons} />
             </div>
             <div className="AppsTabNames">
-              <p className="AppsTabDescription" >{elm.name}</p>
+              <div className="AppsTabDescription">
+                <NameAppsExt textAppsExt={elm.name} enable={this.state.appListDisableEnable[i]} />
+              </div>
             </div>
             <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
               <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
@@ -234,7 +246,7 @@ class AppsTab extends React.Component {
     );
 
 
-    // displays the apps
+    // displays the extensions
 
     var displayExtensions;
     displayExtensions = (
@@ -245,7 +257,9 @@ class AppsTab extends React.Component {
               <Icons linkIcon={elm.icons} />
             </div>
             <div className="AppsTabNames">
-              <p className="AppsTabDescription">{elm.name}</p>
+              <div className="AppsTabDescription">
+                <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
+              </div>
             </div>
             <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
               <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]} />
