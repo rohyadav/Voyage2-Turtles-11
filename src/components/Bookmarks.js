@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/Bookmarks.css';
+import { Col, Row, Grid } from 'react-bootstrap';
 
 /* eslint-disable */
 let arrayOfBookmarks = [];
@@ -34,15 +35,12 @@ export class Bookmarks extends Component {
       searchButton: '../assets/search.png',
       FormattedParentFolder: this.FormattedParentFolder(),
       FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0),
-      searchFolderDisplay: {
-        display: "none"
-      }
+      searchFolderDisplay: {display: "none"}
     }
   }
   setSearchQuery = (event) => {
     this.setState({ searchTerm: event.target.value });
   }
-
   shortenBookmarkTitles = (title, number) => {
     let newTitle = title;
     if (title.length >= number) {
@@ -66,20 +64,24 @@ export class Bookmarks extends Component {
     let value = this.state.searchTerm;
     let newSearchArray = [];
     let thisOfSearchArray = this;
-    // /* eslint-disable */
 
     if (this.state.searchTerm === '') {
       return null;
+      this.setState({ searchArray: [] });
+      this.setState({
+        searchFolderDisplay: {display: "none"}
+      });
+      this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
     } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
       this.setState({ searchButton: "../assets/search.png" });
       this.setState({ searchTerm: "" });
       this.setState({ searchArray: [] });
-      this.setState({ searchFolderDisplay: {
-        display: "none"
-      } });
+      this.setState({
+        searchFolderDisplay: {display: "none"}
+      });
       this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
-    } else {
-      (this.state.searchButton === '../assets/search.png') ? this.setState({ searchButton: '../assets/search – 2.png' }) : this.setState({ searchButton: "../assets/search.png" });
+    } else if (this.state.searchButton === '../assets/search.png') {
+      this.setState({ searchButton: '../assets/search – 2.png' });
       /* eslint-disable */
       chrome.bookmarks.search(value, function (tree) {
         let arrayOfSearchResults = tree;
@@ -94,9 +96,7 @@ export class Bookmarks extends Component {
         console.log("state searchArray is " + newSearchArray);
         thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
         thisOfSearchArray.setState({
-          searchFolderDisplay: {
-            display: "list-item"
-          }
+          searchFolderDisplay: {display: "inline"}
         });
         thisOfSearchArray.setState({ FormattedChildrenBookmarks: thisOfSearchArray.state.searchArray });
       });
@@ -128,8 +128,10 @@ export class Bookmarks extends Component {
         <br />
       </div>
     );
+    console.log("display style is from state " + this.searchFolderDisplay)
+    let searchFolder = <div><a id="searchFolder" className="bookmarkParentFolder" style={this.searchFolderDisplay} >Search Results</a><br /></div>;
     this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
-    return <div className="listOfBookmarkFolders">{listOfParentFolders}</div>;
+    return <div className="listOfBookmarkFolders">{searchFolder}{listOfParentFolders}</div>;
   }
 
   render() {
@@ -146,16 +148,17 @@ export class Bookmarks extends Component {
           <div class="searchBookmarksBackground">
             <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" />
             <a><img className='searchButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
-            <div id="searchFolder" style={this.state.searchFolderDisplay}>
-              <a className="bookmarkParentFolder">Search Results</a>
-              <br />
-            </div>
           </div>
           {/* BOOKMARKS LIST */}
-          <section className="BookmarksListBody">
-            {this.state.FormattedParentFolder}
-            {this.state.FormattedChildrenBookmarks}
-            {this.state.searchArray}
+          <section className="BookmarksListBody container-fluid">
+            <Grid >
+              <Col xs={4}>
+                {this.state.FormattedParentFolder}
+              </Col>
+              <Col xs={8}>
+                {this.state.FormattedChildrenBookmarks}
+              </Col>
+            </Grid>
           </section>
         </div> {/* END OF BODY */}
       </div>
