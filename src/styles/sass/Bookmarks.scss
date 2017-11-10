@@ -126,16 +126,34 @@ SEARCH
 */
 .SearchBox {
   @include search-box;
+  margin-top: 12px;
+  padding: 0px;
 }
 
 .SearchBoxText {
   @include tab-search-text;
+  padding-top: 0px;
 }
 
 .searchBookmarksBackground {
   @include searchBackground($bookmarks-yellow-bkg);
 }
-
+.searchBookmarksButton {
+  background-image: img("./assets/search.png");
+  width: 25px;
+  max-width: 25px;
+  min-width: 25px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  float: right;
+  margin-right: 16px;
+  margin-top: -43px;
+  z-index: 2;
+  &:hover {
+    background-image: img("./assets/search – 1.png");
+  }
+}
 /*
 ==========================
 BUTTONS

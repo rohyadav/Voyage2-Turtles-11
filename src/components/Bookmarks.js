@@ -132,7 +132,7 @@ export class Bookmarks extends Component {
 
   FormattedParentFolder = () => {
     let listOfParentFolders = this.state.bookmarks.map((parentFolder, index) => {
-      if (index == this.state.parentFolderIdx && this.state.searchArray.length === 0) {
+      if (index === this.state.parentFolderIdx && this.state.searchArray.length === 0) {
         return (
           <div>
             <a className="bookmarkParentFolder" id={index} style={this.state.highlighted} onClick={() => this.setState({ parentFolderIdx: index })}>
@@ -186,8 +186,8 @@ export class Bookmarks extends Component {
           {/* SEARCH FEATURE */}
           <div class="searchBookmarksBackground">
             {/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-            <input id="searchTextInput" type="text" className='SearchBox SearchBoxText' />
-            <a><img className='searchButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
+            <input id="searchTextInput" type="text" placeholder="Search Bookmarks" className='SearchBox SearchBoxText' />
+            <a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
           </div>
           {/* BOOKMARKS LIST */}
           <section className="BookmarksListBody container-fluid">

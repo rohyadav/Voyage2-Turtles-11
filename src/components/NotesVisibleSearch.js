@@ -9,9 +9,8 @@ const getVisibleSearchResults = (notes, filter) => {
     let results = notes.filter(n => n.search);
     if (results.length === 0) {
         return null;
-    } else {
-        return results;
     }
+    return notes.filter((n) => n.search);
 }
 
 const mapStateToProps = state => {
@@ -33,6 +32,7 @@ const mapDispatchToProps = dispatch => {
         },
         onDeleteNoteClick: id => {
             dispatch(deleteNotes(id))
+            document.getElementById("notesQty").innerText = document.getElementById("notesQty").innerText - 1;
             // console.log("deleteNotes id is : " + id )
         },
         onUpdateClick: (text, id) => {
