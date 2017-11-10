@@ -33,9 +33,9 @@ export class Bookmarks extends Component {
       searchTerm: '',
       searchArray: [],
       searchButton: '../assets/search.png',
+      searchFolderDisplay: {display: "none"},
       FormattedParentFolder: this.FormattedParentFolder(),
       FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0),
-      searchFolderDisplay: {display: "none"}
     }
   }
   setSearchQuery = (event) => {
@@ -67,18 +67,14 @@ export class Bookmarks extends Component {
 
     if (this.state.searchTerm === '') {
       return null;
-      this.setState({ searchArray: [] });
       this.setState({
         searchFolderDisplay: {display: "none"}
       });
       this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
-    } else if (this.setState({ searchButton: '../assets/search – 2.png' })) {
+    } else if (this.state.searchButton === '../assets/search – 2.png') {
       this.setState({ searchButton: "../assets/search.png" });
       this.setState({ searchTerm: "" });
-      this.setState({ searchArray: [] });
-      this.setState({
-        searchFolderDisplay: {display: "none"}
-      });
+      this.setState({ searchFolderDisplay: {display: "none"} });
       this.setState({ FormattedChildrenBookmarks: this.FormattedChildrenBookmarks(0) });
     } else if (this.state.searchButton === '../assets/search.png') {
       this.setState({ searchButton: '../assets/search – 2.png' });
@@ -94,14 +90,11 @@ export class Bookmarks extends Component {
           });
         }
         console.log("state searchArray is " + newSearchArray);
-        thisOfSearchArray.setState({ searchArray: thisOfSearchArray.bookmarksFormatter(newSearchArray) });
-        thisOfSearchArray.setState({
-          searchFolderDisplay: {display: "inline"}
-        });
-        thisOfSearchArray.setState({ FormattedChildrenBookmarks: thisOfSearchArray.state.searchArray });
+        thisOfSearchArray.setState({ searchFolderDisplay: {display: "inline"} });
+        let formatted = <ul className="bookmarkList">{thisOfSearchArray.bookmarksFormatter(newSearchArray)}</ul>;
+        thisOfSearchArray.setState({ FormattedChildrenBookmarks: formatted });
       });
       /* eslint-enable */
-      return <div className="bookmarkList">{this.bookmarksFormatter(this.state.searchArray)}</div>;
     }
   }
 
@@ -114,7 +107,6 @@ export class Bookmarks extends Component {
     console.log("parentFolderIndex is " + parentFolderIndex);
     let maplistOfChildrenBookmarks = localStorageBookmarks[parentFolderIndex].children
     let listOfChildrenBookmarks = this.bookmarksFormatter(maplistOfChildrenBookmarks);
-    // console.log("listOfChildrenBookmarks is " + listOfChildrenBookmarks);
     let result = (<ul className="bookmarkList">{listOfChildrenBookmarks}</ul>)
     this.setState({ FormattedChildrenBookmarks: result });
   }
