@@ -61,50 +61,53 @@ export class Weather extends React.Component {
 		};
 	};
 
+	updateStateWithWeatherFor = (location) => {
+		const request = new XMLHttpRequest();
+		let fahrenheit = '&units=imperial';
+
+		const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
+		const endpoint = 'https://api.openweathermap.org/data/2.5/forecast/daily' + location + "&cnt=5" + fahrenheit + "&APPID=55a55f3a05bdb182e76908ff3b938523";
+		console.log("endpoint is " + endpoint);
+		let referenceToThis = this;
+		// console.log("this state weather is " + referenceToThis.state.weather);
+		request.onload = function (event) {
+			var response = request.response;
+			let arrayLink = response.list;
+
+			const request2 = new XMLHttpRequest();
+			const currentWeatherEndpoint = 'https://api.openweathermap.org/data/2.5/weather' + location + fahrenheit + apiKey;
+			console.log("currentWeatherEndpoint is " + request2);
+
+			request2.onload = function (event) {
+				var currentWeatherResponse = request2.response;
+				// console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
+				referenceToThis.setState({
+					currentLocation: location,
+					weather: response,
+					day0Weather: currentWeatherResponse,
+					day1Weather: arrayLink[1],
+					day2Weather: arrayLink[2],
+					day3Weather: arrayLink[3],
+					day4Weather: arrayLink[4]
+				});
+			}
+			request2.open('GET', currentWeatherEndpoint);
+			request2.responseType = 'json';
+			request2.send();
+		}
+		
+		request.open('GET', endpoint);
+		request.responseType = 'json';
+		request.send();
+	}
 
 	getCurrentWeather = () => {
 		let referenceToThis = this;
 		function success(position) {
-			const request = new XMLHttpRequest();
 			let latitude = position.coords.latitude;
 			let longitude = position.coords.longitude;
 			let currentLocation = '?lat=' + latitude + '&lon=' + longitude;
-			if (referenceToThis.state.currentLocation === "" ) {
-				referenceToThis.setState({ currentLocation: currentLocation });
-			}
-			let fahrenheit = '&units=imperial';
-
-			const apiKey = '&APPID=bdce9fa01aeef8c8db196211af9d7fb6';
-			const endpoint = 'https://api.openweathermap.org/data/2.5/forecast/daily' + referenceToThis.state.currentLocation + "&cnt=5" + fahrenheit + "&APPID=55a55f3a05bdb182e76908ff3b938523";
-			console.log("endpoint is " + endpoint);
-			request.open('GET', endpoint);
-			request.responseType = 'json';
-			request.send();
-
-			// console.log("this state weather is " + referenceToThis.state.weather);
-			request.onload = function (event) {
-				var response = request.response;
-				referenceToThis.setState({ weather: response });
-				// console.log("this state weather is " + JSON.stringify(referenceToThis.state.weather));
-				let arrayLink = referenceToThis.state.weather.list;
-				referenceToThis.setState({ day1Weather: arrayLink[1] });
-				// console.log("day1Weather is " + JSON.stringify(referenceToThis.state.day1Weather));
-				referenceToThis.setState({ day2Weather: arrayLink[2] });
-				referenceToThis.setState({ day3Weather: arrayLink[3] });
-				referenceToThis.setState({ day4Weather: arrayLink[4] });
-			}
-
-			const request2 = new XMLHttpRequest();
-			const currentWeatherEndpoint = 'https://api.openweathermap.org/data/2.5/weather' + referenceToThis.state.currentLocation + fahrenheit + apiKey;
-			console.log("currentWeatherEndpoint is " + request2);
-			request2.open('GET', currentWeatherEndpoint);
-			request2.responseType = 'json';
-			request2.send();
-			request2.onload = function (event) {
-				var currentWeatherResponse = request2.response;
-				referenceToThis.setState({ day0Weather: currentWeatherResponse });
-				// console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
-			}
+			referenceToThis.updateStateWithWeatherFor(currentLocation);
 		}
 
 		function error() {
@@ -115,27 +118,22 @@ export class Weather extends React.Component {
 	}
 
 	handleWeatherSearch = () => {
-		let thisThis = this;
 		let input = document.getElementById("searchTextInput").value;
 		let newLocation = "";
 		let searchButton = "";
-		let inputIsANumber = Number.isInteger(Number.parseInt(input));
-		if (input.length !== 0) {
+		let inputIsANumber = Number.isInteger(Number.parseInt(input, 10));
+		if (input.length !== 0 && this.state.searchButton === '../assets/search.png') {
 			if (inputIsANumber) {
 				newLocation = "?zip=" + input;
 			} else {
 				newLocation = "?q=" + input;
 			}
-			searchButton = '../assets/search – 2.png';
+			this.updateStateWithWeatherFor(newLocation);
+			this.setState({ searchButton: '../assets/search – 2.png' });
 		} else {
-			searchButton = '../assets/search.png';
+			this.setState({ searchButton: '../assets/search.png' });
 		}
-		thisThis.setState({ 
-			currentLocation: newLocation, 
-			searchButton: searchButton 
-		});
-		console.log(thisThis.state.currentLocation);
-		return this.getCurrentWeather;
+		console.log(this.state.currentLocation);
 	}
 
 	requestGeolocation() {
