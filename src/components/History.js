@@ -11,12 +11,12 @@ import '../styles/History.css';
 let historyArr = []; // need array to use .push
 let historyArrF = []; 
 
-// const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-// const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
 
 chrome.history.search({
         text: '',              // Return every history item
-        // startTime: oneWeekAgo, // that was accessed less than one week ago.
+        startTime: oneWeekAgo, // that was accessed less than one week ago.
         maxResults: 40
     },
     function(historyItems) {
@@ -47,12 +47,13 @@ class History extends Component { // Parent component
     constructor(props) {
         super(props);
         this.state = {
-            selected: 'Recent History'
+            selected: 'Recent History',
+            historyArrSt: historyArr
         };
     }
 
     handleRecentClick = () => {
-        this.setState({ selected: 'Recent History' })
+        this.setState({ selected: 'Recent History' });
     }
 
     handleFrequentClick = () => {
@@ -67,17 +68,16 @@ class History extends Component { // Parent component
 
     }
 
-    handleClickDelete = (elementUrl) => {
+    handleClickDelete = (element, index, event) => {
+        var hIndex = parseInt(event.target.value, 10);
         /* eslint-disable */
-        // let callme = deleteNode / this;
-        // let callme = this.deleteNode;
-        chrome.history.deleteUrl({url: elementUrl});
+        chrome.history.deleteUrl({url: element.url});
         /* eslint-enable */
-        // deleteNode.parentNode.removeChild(deleteNode);
-        // elementUrl.parentNode.parentNode.removeChild(elementUrl.parentNode.parentNode);
-        // callme.parentNode.removeChild(callme);
-        // console.log('handleClickDelete was run');
-        
+        // console.log('history array state', this.state.historyArrSt);
+        this.setState(state => {
+            state.historyArrSt.splice(hIndex, 1);
+            return {historyArrSt: state.historyArrSt};
+        });
       }
 
     render() {
@@ -120,6 +120,7 @@ class History extends Component { // Parent component
                         (this.state.selected === 'Frequent History')
                         ? <HistoryListF
                             historyArrF={historyArrF} />
+                            
                         : <HistoryList
                             historyArr={historyArr} 
                             handleClickDelete={this.handleClickDelete}/>
@@ -173,7 +174,7 @@ const HistoryList = (props) => {
                 <HistoryItem
                     element={element}
                     key={element.id}
-                    handleClickDelete={props.handleClickDelete}/>
+                    handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
             ) }
         </div>
     );
@@ -196,7 +197,8 @@ const HistoryItem = (props) => {
                     {props.element.title}
             </a>
             <div className='h-del-icon'
-                onClick={props.handleClickDelete(props.element.url)}> 
+                onClick={props.handleClickDelete}> 
+                {/* .bind(this, element, index) */}
                 <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
             {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
