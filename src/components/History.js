@@ -111,12 +111,12 @@ class History extends Component { // Parent component
                     <div className='h-options'>
                         <center >
                             <span
-                                className='historyFilter descrip-active'
+                                className={`historyFilter ${this.state.selected === 'Recent History' ? 'descrip-active' : 'descrip-inactive'}`}
                                 onClick={this.handleRecentClick}>
                                 Recently Visited
                             </span>
                             <span
-                                className='historyFilter descrip-inactive'
+                                className={`historyFilter ${this.state.selected === 'Frequent History' ? 'descrip-active' : 'descrip-inactive'}`}
                                 onClick={this.handleFrequentClick}>
                                 Most Visited
                             </span>
