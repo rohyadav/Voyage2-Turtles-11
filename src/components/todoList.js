@@ -174,7 +174,9 @@ export class TodoList extends Component {
     }
     render() {
         // toogle between display Todo list or Done list
+        /* eslint-disable */
         document.getElementById('todoQty').innerHTML = Number.parseInt(this.state.todoArr.length);
+        /* eslint-enable */
         var displayArr;
         if (this.state.isInTodoTab) {
             displayArr = (
@@ -257,7 +259,6 @@ export class TodoList extends Component {
                         { displayArr }
                     </div>
 
-                    
                 </div> 
 
             </div>

@@ -1,38 +1,47 @@
 import React, { Component } from 'react';
 import '../styles/History.css';
 
-// Get URLs through Chrome API
-// Pass URLs down as a prop
-
-const HISTORY = [
-    'https://www.youtube.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11',
-    'https://chingu-voyage-2.slack.com/messages',
-    'http://localhost:3000/',
-    'https://mail.google.com/mail/u/0/',
-    'https://github.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11/commits/DevelopmentBranch',
-    'https://www.nytimes.com/',
-    'about:srcdoc',
-    'about:blank',
-]
-
-const HISTORY_F = [
-    'about:blank',
-    'about:srcdoc',
-    'http://localhost:3000/',
-    'https://www.youtube.com/',
-    'https://github.com/',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11',
-    'https://github.com/chingu-coders/Voyage2-Turtles-11/commits/DevelopmentBranch',
-    'https://chingu-voyage-2.slack.com/messages',
-    'https://mail.google.com/mail/u/0/',
-    'https://www.nytimes.com/',
-]
-
-// Recent | Most/Frequent | Clear
+// Phrase Brainstorm
+// Recent | Most | Clear
 // Recent History | Frequent History | Clear History
+// Recently Visted | Most Visited | Clear History
 
+/* eslint-disable */
+
+let historyArr = []; // need array to use .push
+let historyArrF = []; 
+
+// const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+// const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+
+chrome.history.search({
+        text: '',              // Return every history item
+        // startTime: oneWeekAgo, // that was accessed less than one week ago.
+        maxResults: 40
+    },
+    function(historyItems) {
+        console.log('historyItems', historyItems);
+
+        // Extract historyItems object
+        for (let i = 0; i < historyItems.length; i++) {
+            historyArr.push(historyItems[i]);
+        }
+
+    });
+    console.log('updated historyArray', historyArr);
+
+chrome.topSites.get(
+    function(mostVisitedItems) {
+        console.log('mostVisitedItems', mostVisitedItems);
+        for (let i = 0; i < mostVisitedItems.length; i++) {
+            historyArrF.push(mostVisitedItems[i]);
+        }
+    });
+
+
+
+
+/* eslint-enable */
 class History extends Component { // Parent component
 
     constructor(props) {
@@ -43,13 +52,33 @@ class History extends Component { // Parent component
     }
 
     handleRecentClick = () => {
-        this.setState({selected: 'Recent History'})
+        this.setState({ selected: 'Recent History' })
     }
 
     handleFrequentClick = () => {
-        this.setState({selected: 'Frequent History'})
+        this.setState({ selected: 'Frequent History' })
     }
 
+    handleChange = () => {
+
+    }
+
+    handleSubmit = () => {
+
+    }
+
+    handleClickDelete = (elementUrl, deleteNode) => {
+        /* eslint-disable */
+        // let callme = deleteNode / this;
+        // let callme = this.deleteNode;
+        chrome.history.deleteUrl({url: elementUrl});
+        /* eslint-enable */
+        // deleteNode.parentNode.removeChild(deleteNode);
+        // elementUrl.parentNode.parentNode.removeChild(elementUrl.parentNode.parentNode);
+        // callme.parentNode.removeChild(callme);
+        // console.log('handleClickDelete was run');
+        
+      }
     render() {
 
         return (
@@ -59,42 +88,91 @@ class History extends Component { // Parent component
                     <h1 className='Notes-Title-Text'>History</h1>
                 </header>
                 <div className='Notes-Body'>
+                    <form className="h-form"
+                        onSubmit={this.handleSubmit}>
+                        <input className="SearchBox h-searchbox"
+                            type="text"
+                            placeholder='Search History'
+                            onChange={this.handleChange} />
+                        <button className='h-button-s' type='submit'>
+                            <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
+                            <span className="sr-only">search icon</span>
+                        </button>
+                    </form>
+                    {/* <div className='url-container'> */}
                     <div className='h-options'>
-                        <span
-                            className='descrip-active'
-                            onClick={this.handleRecentClick}>
+                        <center >
+                            <span
+                                className='historyFilter descrip-active'
+                                onClick={this.handleRecentClick}>
                                 Recently Visited
-                        </span>
-                        <span
-                            className='descrip-inactive'
-                            onClick={this.handleFrequentClick}>
+                            </span>
+                            <span
+                                className='historyFilter descrip-inactive'
+                                onClick={this.handleFrequentClick}>
                                 Most Visited
-                        </span>
-                        <span className='descrip-inactive'>Clear History</span>
+                            </span>
+                        </center>
                     </div>
+                    <div className='historyClearHistory descrip-inactive'>Clear History</div>
                     {
                         (this.state.selected === 'Frequent History')
-                        ? <HistoryList
-                            history={HISTORY} />
-                        : <HistoryListF
-                            historyF={HISTORY_F} />
+                        ? <HistoryListF
+                            historyArrF={historyArrF} />
+                        : <HistoryList
+                            historyArr={historyArr} 
+                            handleClickDelete={this.handleClickDelete}/>
                     }
-                </div>
+                    {/* </div> */} {/* .url-container */}
+                </div> {/* .Notes-Body */}
             </div>
         )
     }
 
 } //  History component
 
-const HistoryList = (props) => {
-    
-    // const history = props.history;
+/* ----- FREQUENT HISTORY ----- */
+
+const HistoryListF = (props) => {
+
     return (
         <div className='url-container'>
-            { props.history.map( (element, index) =>
+            {/* <div> */}
+            {props.historyArrF.map((element, index) =>
+                <HistoryItemF
+                    element={element}
+                    key={element.url}/>
+            ) }
+        </div>
+    );
+
+}
+
+const HistoryItemF = (props) => {
+
+    return (
+        <div className='url-item'>
+            <img className='url-icon'
+            src={`chrome://favicon/${props.element.url}`} />
+            <a href={props.element.url} className='url-url'>
+                {props.element.title}
+            </a>
+        </div>
+    );
+}
+
+/* ----- RECENT HISTORY ----- */
+
+const HistoryList = (props) => {
+
+    return (
+        <div className='url-container'>
+        {/* <div> */}
+            { props.historyArr.map( (element, index) =>
                 <HistoryItem
                     element={element}
-                    key={index}/>
+                    key={element.id}
+                    handleClickDelete={props.handleClickDelete}/>
             ) }
         </div>
     );
@@ -103,34 +181,26 @@ const HistoryList = (props) => {
 
 const HistoryItem = (props) => {
 
+    // clickDeleteIcon = (event) => {
+
+    //   }
+
     return (
         <div className='url-item'>
-            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
-            <div className='url-url'>{props.element}</div>
-        </div>
-    );
-}
-
-const HistoryListF = (props) => {
-    
-        return (
-            <div className='url-container'>
-                { props.historyF.map( (element, index) =>
-                    <HistoryItemF
-                        element={element}
-                        key={index}/>
-                ) }
+            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
+            <img className='url-icon'
+                src={`chrome://favicon/${props.element.url}`} />
+            <a href={props.element.url} 
+                className='url-url'>
+                    {props.element.title}
+            </a>
+            <div className='h-del-icon'
+                onClick={props.handleClickDelete(props.element.url)}> 
+                <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
-        );
-
-    }
-
-const HistoryItemF = (props) => {
-
-    return (
-        <div className='url-item'>
-            <img className='url-icon'src='http://res.cloudinary.com/t3unfxn28/image/upload/v1509732740/turtle-green-16_k0nvvb.png'/>
-            <div className='url-url'>{props.element}</div>
+            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
+            {/* onClick={this.parentNode.parentNode.removeChild(this.parentNode)} */}
+            {/* onClick={props.handleClickDelete.bind(this, props.element.url, this.deleteNode)} */}
         </div>
     );
 }

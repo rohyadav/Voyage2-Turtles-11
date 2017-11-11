@@ -15,6 +15,7 @@ const { SHOW_ACTIVE } = NotesVisibilityFilters
 var globalCounter = 0;
 // adding the string.includes() method to search for strings
 if (!String.prototype.includes) {
+    /* eslint-disable */
     String.prototype.includes = function (search, start) {
         if (typeof start !== 'number') {
             start = 0;
@@ -25,10 +26,11 @@ if (!String.prototype.includes) {
             return this.indexOf(search, start) !== -1;
         }
     };
+    /* eslint-enable */
 }
 
 function notes(state = [], action) {
-    console.log("Executing Notes Function")
+    // console.log("Executing Notes Function")
     switch (action.type) {
         case ADD_NOTES:
             return [
@@ -77,7 +79,7 @@ function notes(state = [], action) {
             return state.map((notes) => {
                 var lowerCaseSearch = (action.text).toLowerCase();
                 var lowerCaseNotes = (notes.text).toLowerCase();
-                if (lowerCaseNotes.includes(lowerCaseSearch) === true) {
+                 if (lowerCaseNotes.includes(lowerCaseSearch) === true) {
                     return Object.assign({}, notes, {
                         search: !notes.search
                     });
@@ -94,12 +96,12 @@ function notes(state = [], action) {
                 });
             })
         default:
-            return state;
+            return state.filter(note => note !== null);
     }
 }
 
 export function notesVisibilityFilters(state = SHOW_ACTIVE, action) {
-    console.log("Executing notesVisibilityFilters Function")
+    // console.log("Executing notesVisibilityFilters Function")
     switch (action.type) {
         case SET_NOTES_VISIBILITY_FILTER:
             return action.filter

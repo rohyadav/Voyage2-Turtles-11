@@ -9,13 +9,12 @@ const getVisibleSearchResults = (notes, filter) => {
     let results = notes.filter(n => n.search);
     if (results.length === 0) {
         return null;
-    } else {
-        return results;
     }
+    return notes.filter((n) => n.search);
 }
 
 const mapStateToProps = state => {
-    console.log("Mapping state to props because state changed.");
+    // console.log("Mapping state to props because state changed.");
     return {
         notes: getVisibleSearchResults(state.notes, state.notesVisibilityFilters)
     }
@@ -25,17 +24,18 @@ const mapDispatchToProps = dispatch => {
     return {
         onPinClick: id => {
             dispatch(pinNotes(id))
-            console.log("pinNotes id is : " + id )
+            // console.log("pinNotes id is : " + id )
         },
         onArchiveClick: id => {
             dispatch(toggleNotes(id))
-            console.log("toggleNotes id is : " + id )
+            // console.log("toggleNotes id is : " + id )
         },
         onDeleteNoteClick: id => {
             dispatch(deleteNotes(id))
-            console.log("deleteNotes id is : " + id )
+            document.getElementById("notesQty").innerText = document.getElementById("notesQty").innerText - 1;
+            // console.log("deleteNotes id is : " + id )
         },
-        onUpdateClick: (id, text) => {
+        onUpdateClick: (text, id) => {
             dispatch(updateNotes(text, id))
         }
     }

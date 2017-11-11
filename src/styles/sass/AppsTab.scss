@@ -1,0 +1,170 @@
+/*
+==========================
+IMPORT PARTIAL SASS FILES
+==========================
+*/
+@import "variables"; //standard variables throughout project
+/*
+==========================
+GENERAL
+==========================
+*/
+
+/*
+==========================
+HEADER
+==========================
+*/
+.Apps-Header {
+  @include tab-header($apps-green);
+}
+
+.Apps-Body {
+  @include tab-body($bkg-grey);
+}
+
+.AppsTab-Title-Text {
+  @include tab-title
+}
+
+.AppsTab-Text {
+  color: $default-grey;
+}
+/*
+==========================
+BOOKMARKS
+==========================
+*/
+/* /1* NOTE maybe use this one later so will not remove now *1/ */
+/* .Bookmarks { */
+/*   border: solid 0.2px $default-grey; */
+/*   color: $default-grey; */
+/* } */
+
+/*
+/*
+==========================
+SCROLLBAR
+==========================
+*/
+.Apps-Body::-webkit-scrollbar {
+  @include scrollbar;
+}
+.Apps-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Apps-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
+}
+/*
+==========================
+BUTTONS & ICONS
+==========================
+*/
+/* NOTE this is kind of not optimal.  look at notes tab alter maybe */
+.AppsExitButton {
+  @include tab-exit-button(white);
+  
+  &:hover {
+    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    background-color:#f6f6f6;
+  }
+}
+
+
+/* here are the enabled/disabled buttons (just before the trash icon) */
+.AppsTabButtonEnabled{
+  color: red;
+  &:hover {
+    color: orange;
+  }
+}
+
+.AppsTabButtonDisabled{
+  color: blue;
+  &:hover {
+    color: orange;
+  }
+}
+
+.AppsTabBackground {
+  background-color: white;
+  width: 284;
+  padding: 8px;
+
+}
+.AppsTabSubText {
+  font-size: 14px;
+  letter-spacing: 2.7px;
+  font-weight: 700;
+  color: $apps-green;
+}
+
+.AppsTabDescription {
+  font-size: 12px;
+  color: $default-grey;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* NOTE changes here!! */
+.AppsTab-add-to-body {
+  font-size: 12px;
+  color: black;
+  margin-left: 20px;
+  margin-right: 15px; }
+
+.AppsTabLineThrough {
+  text-decoration: line-through;
+}
+
+.AppsTabOpacity {
+    opacity: 0.2;
+    filter: alpha(opacity=20); /* For IE8 and earlier */
+}
+
+
+/*
+==============================
+flexboxes with apps-extensions
+==============================
+*/
+
+/* here are the main flexboxes containing apps/ext icon  & text & disable/enable & trash-icon */
+.AppsTabflex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px; }
+
+/* first flexbox containing apps/ext icon */
+.AppsTabAppsAndExtensionIcon {
+  padding-right: 10px;
+  flex: 1; 
+  align-items: center;
+  justify-content: center;
+}
+
+/* second flexbox containing apps/ext names */
+.AppsTabNames {
+  flex: 6; 
+}
+
+.AppsTabEnable {
+  flex: 3; 
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* last flexbox with trash icon */
+.AppsTabTrashIcon {
+  flex: 1; 
+  min-width: 26px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+

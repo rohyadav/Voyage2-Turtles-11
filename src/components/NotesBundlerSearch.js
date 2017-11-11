@@ -1,19 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text }) => (
-    <div>
-        <div className="existingNotesButtonBox">
-            {/* this is the delete button */}
-            {<button className='deleteNotesButton' onClick={onDeleteClick}></button>}
-            {/* this is the archive button */}
-            {<button className='archiveNotesButton' onClick={onArchiveClick}></button>}
-            {/* this is the pin button */}
-            {<button className='pinNotesButton' onClick={onPinClick}></button>}
+export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id, pinned, completed, newText }) => {
+    // console.log("Note text is: " + text);
+    let pinStyle;
+    let archiveStyle;
+    if (pinned) {
+        pinStyle = { backgroundImage: "url('../assets/pin – 1.png')"}
+    } else {
+        pinStyle = { backgroundImage: "url('../assets/pin.png')" }
+    }
+    if (completed) {
+        archiveStyle = { backgroundImage: "url('../assets/archive – 1.png')"}
+    } else {
+        archiveStyle = { backgroundImage: "url('../assets/archive.png')" }
+    }
+    return (
+        <div id={id} name={"note_" + id}>
+            <div>
+                {/* this is the delete button */}
+                {<button 
+                    className='deleteNotesButton' 
+                    onClick={onDeleteClick}>
+                </button>}
+                {/* this is the archive button */}
+                {<button 
+                    className='archiveNotesButton' 
+                    style={archiveStyle} 
+                    onClick={onArchiveClick}>
+                </button>}
+                {/* this is the pin button */}
+                {<button 
+                    className='pinNotesButton' 
+                    style={pinStyle} 
+                    onClick={onPinClick}>
+                </button>}
+            </div>
+            {/* <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/> */}
+            <div contentEditable="true" className="existingNotes" onMouseLeave={onUpdateClick}>{text}</div>
         </div>
-        <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick} />
-    </div>
-)
+    )
+}
 
 // Property Type check. Ensures that the input type is what its supposed to be
 Note.propTypes = {
@@ -35,7 +62,7 @@ export const NotesSearchList = ({ notes, onPinClick, onArchiveClick, onDeleteNot
                 {notes.map((singleNote, index) => (
                     <Note key={index} {...singleNote}
                         onDeleteClick={() => onDeleteNoteClick(singleNote.id)}
-                        onUpdateClick={() => onUpdateClick(singleNote.id)}
+                        onUpdateClick={(event) => onUpdateClick(event.target.innerHTML, singleNote.id)} 
                         onArchiveClick={() => onArchiveClick(singleNote.id)}
                         onPinClick={() => onPinClick(singleNote.id)}
                     />

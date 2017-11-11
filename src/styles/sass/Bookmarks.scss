@@ -16,14 +16,6 @@ textarea {
   resize: vertical; max-height: 300px; min-height: 40px;
   color: $default-grey;
 }
-
-body {
-  font-family: $tab-font;
-}
-
-h1, h2, h3, h4, h5 {
-  color: $default-grey;
-}
 /*
 ==========================
 HEADER
@@ -45,11 +37,88 @@ HEADER
 BOOKMARKS
 ==========================
 */
-.Bookmarks {
-  border: solid 0.2px $default-grey;
-  color: $default-grey;
+.BookmarksListBody {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  width: 284px;
+  z-index: 1;
 }
-
+.listOfBookmarkFolders, .bookmarkList , .bookmarkParentFolder {
+  border: 1px solid #e9e9e9;
+  background-color: white;
+  color: $default-grey;
+  font-size: 12px;
+  text-align: left;
+  white-space: pre-line;
+  text-decoration: none;
+  list-style-type: none;
+  display: inline-block;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  z-index: 2; 
+}
+// left-pane => folders
+.listOfBookmarkFolders {
+  width: 88px;
+}
+.bookmarkParentFolder {
+  padding-bottom: 8px;
+  padding-top: 12px;
+  padding-left: 8px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 238, 0, 0.514);
+    border: 1px solid $bookmarks-yellow;
+  }
+  &:enabled {
+    background-color: $bookmarks-yellow;
+  }
+}
+// right-pane => individual bookmarks
+.bookmarkList {
+  width: 196px;
+  left: -13px;
+  top: 0px;
+  padding-top: 8px;
+}
+.bookmarks {
+  background-color: white;
+  color: $default-grey;
+  font-size: 12px;
+  text-align: left;
+  height: 25px;
+  align-items: center;
+  align-content: center;
+  line-height: 25px;
+  list-style-position: inside;
+  padding-left: 8px;
+  &:hover {
+    background-color: rgba(255, 238, 0, 0.514);
+    border: 1px solid $bookmarks-yellow;
+  }
+}
+.bookmarks > a {
+  color: $default-grey;
+  cursor: auto;
+  text-decoration: none;
+}
+/*
+==========================
+SCROLLBAR
+==========================
+*/
+.Bookmarks-Body::-webkit-scrollbar {
+  @include scrollbar;
+}
+.Bookmarks-Body::-webkit-scrollbar-track {
+  @include scrollbar-track;
+}
+.Bookmarks-Body::-webkit-scrollbar-thumb {
+  @include scrollbar-thumb;
+}
 /*
 ==========================
 SEARCH
@@ -57,17 +126,34 @@ SEARCH
 */
 .SearchBox {
   @include search-box;
+  margin-top: 12px;
+  padding: 0px;
 }
 
 .SearchBoxText {
   @include tab-search-text;
+  padding-top: 0px;
 }
 
 .searchBookmarksBackground {
-  @include searchBackground($bookmarks-yellow-bkg)
-  // overflow: auto;
+  @include searchBackground($bookmarks-yellow-bkg);
 }
-
+.searchBookmarksButton {
+  background-image: img("./assets/search.png");
+  width: 25px;
+  max-width: 25px;
+  min-width: 25px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  float: right;
+  margin-right: 16px;
+  margin-top: -43px;
+  z-index: 2;
+  &:hover {
+    background-image: img("./assets/search – 1.png");
+  }
+}
 /*
 ==========================
 BUTTONS
@@ -77,8 +163,7 @@ BUTTONS
   @include tab-exit-button(white);
   
   &:hover {
-    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
-    background-color:#f6f6f6;
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
   }
 }
 
