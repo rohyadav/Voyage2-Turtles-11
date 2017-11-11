@@ -68,14 +68,13 @@ class History extends Component { // Parent component
 
     }
 
-    handleClickDelete = (element, index, event) => {
-        var hIndex = parseInt(event.target.value, 10);
+    handleClickDelete = (element, index) => {
         /* eslint-disable */
         chrome.history.deleteUrl({url: element.url});
         /* eslint-enable */
         // console.log('history array state', this.state.historyArrSt);
         this.setState(state => {
-            state.historyArrSt.splice(hIndex, 1);
+            state.historyArrSt.splice(index, 1);
             return {historyArrSt: state.historyArrSt};
         });
       }
