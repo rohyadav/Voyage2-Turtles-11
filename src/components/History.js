@@ -79,7 +79,6 @@ class History extends Component { // Parent component
         // console.log('handleClickDelete was run');
         
       }
-
     render() {
 
         return (
