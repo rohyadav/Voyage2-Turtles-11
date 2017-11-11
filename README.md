@@ -1,12 +1,13 @@
-# TurtleTab
-![Image alt text](https://i.imgur.com/OUSwGYI.png "TurtleTab Logo")
+# TurtleTab: Google Chrome Extension Built with React
+<!-- ![Image alt text](https://i.imgur.com/OUSwGYI.png "TurtleTab Logo") -->
+![Image alt text](https://i.imgur.com/TYo5NbK.jpg "Main Page")
 
-##### Google Chrome Extension Built with React
 
 ## Table of Contents
 * Introduction
 * Features
 * Contributors
+* Build Process
 ## Introduction
 A new tab extension for Google Chrome which features current weather, todo and notes functionality. It also accesses your browser data to see bookmarks, enable/disable apps and extensions, and see/clear your history . It is a collaborative effort by a remote team of aspiring developers who met on Chingu, an international community of coders.
 
@@ -27,10 +28,10 @@ A few of the things you can do with this Google Chrome Extension:
 * [Thorbw](https://github.com/thorbw)
 * [Miles Burke](https://github.com/milesj76)
 ## Build Process
-* We used[Create React App](https://github.com/facebookincubator/create-react-app) to build this project. Please take a look at their guide for installation
+* We used [Create React App](https://github.com/facebookincubator/create-react-app) to build this project. Please take a look at their guide for installation
 * Clone or download the repo
 * Once in the directory of the repo, install create-react-app globally: ```npm install -g create-react-app``` 
-* As this is a google chrome extension which pulls data from the ChromeAPI, you must run ```npm run build``` to build the project and upload it into your chrome browser from chrome://extensions:
-![Image alt text](https://i.imgur.com/hPKCWkt.jpg "Chrome Extension Upload Instructions")
-
+* As this is a google chrome extension which pulls data from the ChromeAPI, ```npm start``` will throw errors as it cannot connect with ChromeAPIs. You must build the project and upload the build folder into Chrome as an extension for it to run. Run ```npm run build``` to build the Build Folder, enable developer mode within chrome://extensions and then click "Load unpacked extension.."
+* Other features are built with only React
+* Notes Tab and related features are built with React and Redux
 
