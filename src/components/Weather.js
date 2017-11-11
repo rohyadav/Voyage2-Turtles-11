@@ -132,12 +132,12 @@ export class Weather extends React.Component {
 		} else {
 			this.setState({ searchButton: '../assets/search.png' });
 		}
-		console.log(this.state.currentLocation);
+		//console.log(this.state.currentLocation);
 	}
 
 	requestGeolocation() {
 		if ('geolocation' in navigator) {
-			console.log('geolocation present');
+			//console.log('geolocation present');
 			this.getCurrentWeather();
 		} else {
 			console.log('geolocation not present');
@@ -208,7 +208,7 @@ export class Weather extends React.Component {
 
 export class Empty extends React.Component {
 	render() {
-		console.log('Weather tab closed');
+		//console.log('Weather tab closed');
 		return (
 			<div></div>
 		);
