@@ -22,9 +22,9 @@ A few of the things you can do with this Google Chrome Extension:
 ![Image alt text](https://i.imgur.com/lHR8CB2.jpg "Chrome Tools")
 
 ## Contributors
-* [Francesca Sadikin (PM)](https://github.com/serpient)
-* [Eun Park](https://github.com/eunipa)
+* [Francesca Sadikin (PM and Designer)](https://github.com/serpient)
 * [Thorbw](https://github.com/thorbw)
+* [Eun Park](https://github.com/eunipa)
 * [Miles Burke](https://github.com/milesj76)
 ## Build Process
 * This project is build with [Create React App](https://github.com/facebookincubator/create-react-app) to build this project. Please take a look at their guide for installation
