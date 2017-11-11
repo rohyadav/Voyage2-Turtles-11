@@ -213,11 +213,3 @@ const HistoryItem = (props) => {
 }
 
 export default History
-
-(this.state.selected === 'Frequent History')
-? <HistoryListF
-    historyArrF={historyArrF} />
-    
-: <HistoryList
-    historyArr={historyArr} 
-    handleClickDelete={this.handleClickDelete}/>
