@@ -1,7 +1,4 @@
-# TurtleTab
-<!-- ![Image alt text](https://i.imgur.com/OUSwGYI.png "TurtleTab Logo") -->
 ![Image alt text](https://i.imgur.com/8ZEF5ki.jpg "Main Page")
-
 
 ## Table of Contents
 * Introduction
