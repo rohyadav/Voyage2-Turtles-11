@@ -193,29 +193,31 @@ const HistoryList = (props) => {
 
 const HistoryItem = (props) => {
 
-    // clickDeleteIcon = (event) => {
-
-    //   }
-
     return (
         <div className='url-item'>
-            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
             <img className='url-icon'
                 src={`chrome://favicon/${props.element.url}`} />
             <a href={props.element.url} 
                 className='url-url'>
-                    {props.element.title}
+                    {props.element.title
+                    ? props.element.title
+                    : props.element.url}
             </a>
             <div className='h-del-icon'
                 onClick={props.handleClickDelete}> 
                 {/* .bind(this, element, index) */}
                 <i class="fa fa-minus" aria-hidden="true"></i>
             </div>
-            {/* ref={ (deleteNode) => { this.deleteNode = deleteNode; } } */}
-            {/* onClick={this.parentNode.parentNode.removeChild(this.parentNode)} */}
-            {/* onClick={props.handleClickDelete.bind(this, props.element.url, this.deleteNode)} */}
         </div>
     );
 }
 
 export default History
+
+(this.state.selected === 'Frequent History')
+? <HistoryListF
+    historyArrF={historyArrF} />
+    
+: <HistoryList
+    historyArr={historyArr} 
+    handleClickDelete={this.handleClickDelete}/>
