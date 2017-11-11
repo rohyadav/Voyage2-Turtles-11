@@ -7,25 +7,48 @@ $default-grey: #959595;
 $light-grey: #cecece;
 $bkg-grey: #f1f1f1;
 
-$notes-red: #ea3939;
-$notes-red-bkg: #f17777;
+$notes-red: white;
+$notes-red-bkg: $bkg-grey;
 
-$history-orange:#f9a819;
-$history-orange-bkg: #fcb537;
+$history-orange:white;
+$history-orange-bkg: $bkg-grey;
 
-$apps-green: #39b54a;
+$apps-green: white;
 
-$weather-light-blue: #636577;
-$weather-bkg: #9395a8;
+$weather-light-blue: white;
+$weather-bkg: $bkg-grey;
 
-$weather-color-day: #9395a8;
-$weather-color-night: #003b6b;
+$weather-color-day: #9dcdec;
 
-$todos-blue: #00a7ff;
-$todos-blue-bkg: #3ac1ff;
+$todos-blue: white;
+$todos-blue-bkg: $bkg-grey;
 
-$bookmarks-yellow: #ffd518;
-$bookmarks-yellow-bkg: #ffe868;
+$bookmarks-yellow: white;
+$bookmarks-yellow-bkg: $bkg-grey;
+
+// $default-grey: #959595;
+// $light-grey: #cecece;
+// $bkg-grey: #f1f1f1;
+
+// $notes-red: #ea3939;
+// $notes-red-bkg: #f17777;
+
+// $history-orange:#f9a819;
+// $history-orange-bkg: #fcb537;
+
+// $apps-green: #39b54a;
+
+// $weather-light-blue: #636577;
+// $weather-bkg: #9395a8;
+
+// $weather-color-day: #9395a8;
+// $weather-color-night: #003b6b;
+
+// $todos-blue: #00a7ff;
+// $todos-blue-bkg: #3ac1ff;
+
+// $bookmarks-yellow: #ffd518;
+// $bookmarks-yellow-bkg: #ffe868;
 
 /*
 ==========================
@@ -41,7 +64,7 @@ $tab-font: "Helvetica Neue", Helvetica, 'Varela Round', sans-serif;
     font-weight: bold;
     letter-spacing: 1.6px;
     text-align: left;
-    color: #ffffff;
+    color: $light-grey;
     padding-left: 10px;
     padding-top: 5px;
 }
@@ -112,7 +135,7 @@ COMPONENTS
     height: 25px;
     top: 10px;
     right: 10px;
-    color: $color;
+    color: $light-grey;
     position: fixed;
     display:inline-block;
     font-size:16px;
