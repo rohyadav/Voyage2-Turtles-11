@@ -79,6 +79,12 @@ class History extends Component { // Parent component
             return {historyArrSt: state.historyArrSt};
         });
       }
+    
+    handleClickClearAll = () => {
+        chrome.history.deleteAll(function() {
+            this.setState({historyArrSt: []});
+        });
+    }
 
     render() {
 
@@ -115,7 +121,10 @@ class History extends Component { // Parent component
                             </span>
                         </center>
                     </div>
-                    <div className='historyClearHistory descrip-inactive'>Clear History</div>
+                    <div className='historyClearHistory descrip-inactive'
+                        onClick='handleClickClearAll'>
+                        Clear History
+                    </div>
                     {
                         (this.state.selected === 'Frequent History')
                         ? <HistoryListF
