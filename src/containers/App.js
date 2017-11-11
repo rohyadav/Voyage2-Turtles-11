@@ -10,7 +10,6 @@ import { NotesQty } from '../components/Notes.js';
 import History from '../components/History.js'
 import rndomImgIcon from '../assets/turtle_green.png';
 import AppsTab from '../components/AppsTab.js';
-import History from '../components/History.js';
 /* =========================
  WALLPAPER LINKS
  =========================== */
