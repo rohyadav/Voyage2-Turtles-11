@@ -6,13 +6,13 @@ import '../styles/History.css';
 // Recent History | Frequent History | Clear History
 // Recently Visted | Most Visited | Clear History
 
-/* eslint-disable */
-
 let historyArr = []; // need array to use .push
 let historyArrF = []; 
 
 const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+
+/* eslint-disable */
 
 chrome.history.search({
         text: '',              // Return every history item
@@ -38,9 +38,6 @@ chrome.topSites.get(
         }
     });
 
-
-
-
 /* eslint-enable */
 class History extends Component { // Parent component
 
@@ -48,7 +45,8 @@ class History extends Component { // Parent component
         super(props);
         this.state = {
             selected: 'Recent History',
-            historyArrSt: historyArr
+            historyArrSt: historyArr,
+            searchInput: ''
         };
     }
 
@@ -60,13 +58,32 @@ class History extends Component { // Parent component
         this.setState({ selected: 'Frequent History' })
     }
 
-    handleChange = () => {
-
+    handleChange = (event) => {
+        this.setState({ searchInput: event.target.value });
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault(); // Else page refreshes on submit
+        // console.log('submit fired');
 
-    }
+        const source = this.state.searchInput;
+        // Make title lowercase, and make query lowercase
+        // console.log('event', event);
+        console.log('source', source);
+        let collection = this.state.historyArrSt;
+        console.log('collection', collection);
+        // filter array
+        let collectionFiltered = collection.filter(function(obj) {
+            return obj.title.includes(source);
+        });
+        console.log('collectionFiltered', collectionFiltered);
+
+        this.setState({historyArrSt: collectionFiltered});
+        // this.setState({searchArray: collection});
+        console.log('updated history array', this.state.historyArrSt);
+   
+        // event.currentTarget.reset();
+    } 
 
     handleClickDelete = (element, index) => {
         /* eslint-disable */
@@ -99,14 +116,14 @@ class History extends Component { // Parent component
                         onSubmit={this.handleSubmit}>
                         <input className="SearchBox h-searchbox"
                             type="text"
-                            placeholder='Search History'
-                            onChange={this.handleChange} />
+                            placeholder='Search History' 
+                            onChange={this.handleChange}/>
+                            {/* onChange={this.handleChange} */}
                         <button className='h-button-s' type='submit'>
                             <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
                             <span className="sr-only">search icon</span>
                         </button>
                     </form>
-                    {/* <div className='url-container'> */}
                     <div className='h-options'>
                         <center >
                             <span
@@ -134,7 +151,6 @@ class History extends Component { // Parent component
                             historyArr={historyArr} 
                             handleClickDelete={this.handleClickDelete}/>
                     }
-                    {/* </div> */} {/* .url-container */}
                 </div> {/* .Notes-Body */}
             </div>
         )
