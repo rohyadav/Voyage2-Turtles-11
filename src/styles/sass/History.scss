@@ -17,6 +17,8 @@
 }
 
 .h-searchbox {
+  @include tab-search-text;
+  padding-top: 0;
   &::placeholder {
     line-height: 38px;
     text-align: center;

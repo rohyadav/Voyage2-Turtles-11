@@ -7,7 +7,6 @@ import GoogleSearch from '../components/GoogleSearch';
 import { TodoList } from '../components/todoList.js';
 import { Weather } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
-import History from '../components/History.js'
 import rndomImgIcon from '../assets/turtle_green.png';
 import AppsTab from '../components/AppsTab.js';
 /* =========================
