@@ -123,7 +123,7 @@ export class Bookmarks extends Component {
     if (this.state.bookmarks[parentFolderIndex] === undefined || this.state.bookmarks[parentFolderIndex] === null) {
       parentFolderIndex = 0;
     }
-    console.log("parentFolderIndex is " + parentFolderIndex);
+    //console.log("parentFolderIndex is " + parentFolderIndex);
     let maplistOfChildrenBookmarks = this.state.bookmarks[parentFolderIndex].children
     let listOfChildrenBookmarks = this.bookmarksFormatter(maplistOfChildrenBookmarks);
     let result = (<ul className="bookmarkList">{listOfChildrenBookmarks}</ul>)
