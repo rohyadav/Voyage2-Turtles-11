@@ -9,6 +9,7 @@ import { Weather } from '../components/Weather.js';
 import { NotesQty } from '../components/Notes.js';
 import rndomImgIcon from '../assets/turtle_green.png';
 import AppsTab from '../components/AppsTab.js';
+import History from '../components/History.js';
 /* =========================
  WALLPAPER LINKS
  =========================== */
