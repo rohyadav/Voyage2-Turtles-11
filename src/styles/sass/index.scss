@@ -122,10 +122,10 @@ h1, h2, h3, h4, h5 {
 	background-repeat: no-repeat;
   padding-left: 40px;
   padding-right: 40px;
-    &::-webkit-search-cancel-button {
-      position: relative;
-      right: 3.5vw;
-    }
+    // &::-webkit-search-cancel-button {
+    //   position: relative;
+    //   right: 3.5vw;
+    // }
     &::placeholder {
       font-size: .8rem;
       text-indent: .6vw;
