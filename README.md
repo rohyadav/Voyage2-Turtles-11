@@ -29,7 +29,7 @@ A few of the things you can do with this Google Chrome Extension:
 ## Build Process
 * This project is build with [Create React App](https://github.com/facebookincubator/create-react-app) to build this project. Please take a look at their guide for installation
 * Clone or download the repo
-* Once in the directory of the repo, install create-react-app globally: ```npm install -g create-react-app``` 
+* Once in the directory of the repo, run ```npm install``` 
 * As this is a google chrome extension which pulls data from the ChromeAPI, ```npm start``` will throw errors as it cannot connect with ChromeAPIs. You must build the project and upload the build folder into Chrome as an extension for it to run. Run ```npm run build``` to build the Build Folder, enable developer mode within chrome://extensions and then click "Load unpacked extension.."
 * Other features are built with only React
 * Notes Tab and related features are built with React and Redux
