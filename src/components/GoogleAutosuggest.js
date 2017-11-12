@@ -10,11 +10,11 @@ class GoogleAutosuggest extends Component {
             return (<div></div>); 
         }
         else if (this.props.suggestions[0] === 'initialized state') { // AJAX hasn't kicked in yet
-            console.log('([2] Before state is updated with Wiki\'s data)', this.props.suggestions[0]); 
+            // console.log('([2] Before state is updated with Wiki\'s data)', this.props.suggestions[0]); 
             return (<div></div>);
         }
         else if (this.props.suggestions[0] === 'Undefined') { // User hasn't typed anything
-            console.log('([2] State has been updated with Wiki\'s default data, no user input)', this.props.suggestions[0]);
+            // console.log('([2] State has been updated with Wiki\'s default data, no user input)', this.props.suggestions[0]);
             return (<div></div>);
         }
         // else if (!this.props.autoListOpen) {
