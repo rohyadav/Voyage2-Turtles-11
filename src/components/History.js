@@ -45,6 +45,7 @@ class History extends Component { // Parent component
         super(props);
         this.state = {
             selected: 'Recent History',
+            historyArr: historyArr,
             historyArrSt: historyArr,
             searchInput: ''
         };
@@ -70,14 +71,14 @@ class History extends Component { // Parent component
 
         // ATTEMPT #1
         console.log('source', source);
-        let collection = this.state.historyArrSt;
+        let collection = this.state.historyArr;
         console.log('collection', collection);
         let collectionFiltered = collection.filter(function(obj) {
             return obj.title.includes(source);
         });
         console.log('collectionFiltered', collectionFiltered);
 
-        this.setState( {historyArrSt: collectionFiltered}, () => console.log('callback', this.state.historyArrSt) );
+        this.setState( {historyArr: collectionFiltered}, () => console.log('callback', this.state.historyArr) );
         
         
         
@@ -183,7 +184,7 @@ class History extends Component { // Parent component
                             historyArrF={historyArrF} />
                             
                         : <HistoryList
-                            historyArr={historyArr} 
+                            historyArr={this.state.historyArr} 
                             handleClickDelete={this.handleClickDelete}/>
                     }
                 </div> {/* .Notes-Body */}
