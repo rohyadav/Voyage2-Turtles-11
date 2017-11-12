@@ -61,17 +61,12 @@ class History extends Component { // Parent component
     handleChange = (event) => {
         this.setState({ searchInput: event.target.value });
     }
-    // callback = (collectionFiltered) => {
-    //     this.setState({ historyArrSt: collectionFiltered });
-    //     console.log('2', this.state.historyArrSt);
-    // };
+
     handleSubmit = (event) => {
         event.preventDefault(); // Else page refreshes on submit
-        // console.log('submit fired');
 
         const source = this.state.searchInput;
         // Make title lowercase, and make query lowercase
-        // console.log('event', event);
 
         // ATTEMPT #1
         console.log('source', source);
@@ -81,8 +76,11 @@ class History extends Component { // Parent component
             return obj.title.includes(source);
         });
         console.log('collectionFiltered', collectionFiltered);
-        this.setState({ historyArrSt: collectionFiltered});
-        console.log('updated history array', this.state.historyArrSt);
+
+        this.setState( {historyArrSt: collectionFiltered}, () => console.log('callback', this.state.historyArrSt) );
+        
+        
+        
 
         // this.setState({ historyArrSt: ['test'] });
         // this.callback(collectionFiltered);
