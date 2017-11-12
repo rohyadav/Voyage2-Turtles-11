@@ -66,60 +66,20 @@ class History extends Component { // Parent component
     handleSubmit = (event) => {
         event.preventDefault(); // Else page refreshes on submit
 
-        const source = this.state.searchInput;
+        const source = this.state.searchInput.toLowerCase();
         // Make title lowercase, and make query lowercase
-
-        // ATTEMPT #1
+        
         console.log('source', source);
         let collection = this.state.historyArr;
         console.log('collection', collection);
         let collectionFiltered = collection.filter(function(obj) {
-            return obj.title.includes(source);
+            return obj.title.includes(source) || obj.url.includes(source);
         });
         console.log('collectionFiltered', collectionFiltered);
 
-        this.setState( {historyArr: collectionFiltered}, () => console.log('callback', this.state.historyArr) );
+        this.setState( {historyArr: collectionFiltered} );
         
-        
-        
-
-        // this.setState({ historyArrSt: ['test'] });
-        // this.callback(collectionFiltered);
-        // this.setState({searchArray: collection});
-        // console.log('updated history array', this.state.historyArrSt);
-   
-        // event.currentTarget.reset();
-
-        // ATTEMPT #2
-        // this.setState(state => {
-        //     state.historyArrSt.filter(function(obj){
-        //         return obj.title.includes(source);
-        //     });
-        //     console.log('pre-set', state.historyArrSt);
-        //     return {historyArrSt: state.historyArrSt};
-        // }); console.log('updated', this.state.historyArrSt);
-
-        // ATTEMPT #3
-        // this.setState((prevState) => {
-        //     let a = prevState.historyArrSt.filter(function(obj) {
-        //         return obj.title.includes(source);
-        //     });
-        //     return {historyArrSt: a};
-        //   });
-
-        // console.log('updated', this.state.historyArrSt);
-
-        // ATTEMPT #4
-        // this.setState(state => {
-        //     var a = state.historyArrSt.filter(function(obj){
-        //         return obj.title.includes(source);
-        //     });
-        //     console.log('pre-set', state.historyArrSt);
-        //     return {historyArrSt: a};
-        // }); console.log('updated', this.state.historyArrSt);
     } 
-
-
 
     handleClickDelete = (element, index) => {
         /* eslint-disable */
@@ -216,7 +176,8 @@ const HistoryItemF = (props) => {
     return (
         <div className='url-item'>
             <img className='url-icon'
-            src={`chrome://favicon/${props.element.url}`} />
+            src={`chrome://favicon/${props.element.url}`} 
+            alt='favicon' />
             <a href={props.element.url} className='url-url'>
                 {props.element.title}
             </a>
@@ -247,7 +208,8 @@ const HistoryItem = (props) => {
     return (
         <div className='url-item'>
             <img className='url-icon'
-                src={`chrome://favicon/${props.element.url}`} />
+                src={`chrome://favicon/${props.element.url}`} 
+                alt='favicon' />
             <a href={props.element.url} 
                 className='url-url'>
                     {props.element.title
