@@ -61,7 +61,10 @@ class History extends Component { // Parent component
     handleChange = (event) => {
         this.setState({ searchInput: event.target.value });
     }
-
+    // callback = (collectionFiltered) => {
+    //     this.setState({ historyArrSt: collectionFiltered });
+    //     console.log('2', this.state.historyArrSt);
+    // };
     handleSubmit = (event) => {
         event.preventDefault(); // Else page refreshes on submit
         // console.log('submit fired');
@@ -69,21 +72,55 @@ class History extends Component { // Parent component
         const source = this.state.searchInput;
         // Make title lowercase, and make query lowercase
         // console.log('event', event);
+
+        // ATTEMPT #1
         console.log('source', source);
         let collection = this.state.historyArrSt;
         console.log('collection', collection);
-        // filter array
         let collectionFiltered = collection.filter(function(obj) {
             return obj.title.includes(source);
         });
         console.log('collectionFiltered', collectionFiltered);
-
-        this.setState({historyArrSt: collectionFiltered});
-        // this.setState({searchArray: collection});
+        this.setState({ historyArrSt: collectionFiltered});
         console.log('updated history array', this.state.historyArrSt);
+
+        // this.setState({ historyArrSt: ['test'] });
+        // this.callback(collectionFiltered);
+        // this.setState({searchArray: collection});
+        // console.log('updated history array', this.state.historyArrSt);
    
         // event.currentTarget.reset();
+
+        // ATTEMPT #2
+        // this.setState(state => {
+        //     state.historyArrSt.filter(function(obj){
+        //         return obj.title.includes(source);
+        //     });
+        //     console.log('pre-set', state.historyArrSt);
+        //     return {historyArrSt: state.historyArrSt};
+        // }); console.log('updated', this.state.historyArrSt);
+
+        // ATTEMPT #3
+        // this.setState((prevState) => {
+        //     let a = prevState.historyArrSt.filter(function(obj) {
+        //         return obj.title.includes(source);
+        //     });
+        //     return {historyArrSt: a};
+        //   });
+
+        // console.log('updated', this.state.historyArrSt);
+
+        // ATTEMPT #4
+        // this.setState(state => {
+        //     var a = state.historyArrSt.filter(function(obj){
+        //         return obj.title.includes(source);
+        //     });
+        //     console.log('pre-set', state.historyArrSt);
+        //     return {historyArrSt: a};
+        // }); console.log('updated', this.state.historyArrSt);
     } 
+
+
 
     handleClickDelete = (element, index) => {
         /* eslint-disable */
