@@ -135,6 +135,13 @@ SEARCH
   padding-top: 0px;
 }
 
+input[type=search]::-webkit-search-cancel-button {
+  padding-right: 8px;
+  color: $default-grey !important;
+  font-size: 12px;
+  
+}
+
 .searchBookmarksBackground {
   @include searchBackground($bookmarks-yellow-bkg);
 }
