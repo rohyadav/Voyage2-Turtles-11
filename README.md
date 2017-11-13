@@ -17,7 +17,7 @@ A few of the things you can do with this Google Chrome Extension:
 * See your bookmarks and quickly open new links
 * Enable / Disable Chrome Apps and Extensions
 * See and Clear your browser history
-* Cycle through backgrounds
+* Cycle through backgrounds with the click of the Turtle Icon (bottom-right)
 
 ![Image alt text](https://i.imgur.com/6vV0gS9.png "Search")
 ![Image alt text](https://i.imgur.com/B9qhUlw.png "User Utility Features")
