@@ -45,6 +45,15 @@ export class Bookmarks extends Component {
     return newTitle
   }
 
+  openLinkInNewTab = (url) => {
+    /* eslint-disable */
+    chrome.tabs.create({
+      url: url,
+      active: false
+    });
+    /* eslint-enable */
+  }
+
   bookmarksFormatter = (bookmarks) => {
     let newFormattedBookmarks = bookmarks.map((bookmarks, index) =>
       <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
@@ -104,15 +113,7 @@ export class Bookmarks extends Component {
             searchArray: searchResults
           })
         }
-        // Tell the user that no results were found somehow.
       }
-      // else {
-      //   // searchTextInputBox.value = "";
-      //   console.log("in handlebookmarksearch else condition")
-      //   this.setState({
-      //     searchArray: []
-      //   });
-      // }
     }
   }
 
@@ -120,7 +121,7 @@ export class Bookmarks extends Component {
     let searchTextInputBox = document.getElementById("searchTextInput");
     let searchQuery = searchTextInputBox.value;
     if (searchQuery.length !== 0) {
-      console.log("in clearBookmarksSearch")
+      //console.log("in clearBookmarksSearch")
       this.setState({
         searchArray: []
       });
