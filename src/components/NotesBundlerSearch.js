@@ -37,7 +37,7 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
                 </button>}
             </div>
             {/* <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/> */}
-            <div contentEditable="true" className="existingNotes" onMouseLeave={onUpdateClick}>{text}</div>
+            <div contentEditable="true" className="existingNotes" onKeyDown={onUpdateClick}>{text}</div>
         </div>
     )
 }
