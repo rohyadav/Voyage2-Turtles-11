@@ -303,7 +303,6 @@ const Time = () => {
       bookmarksTabOpen: "false",
       historyTabOpen: "false",
       weatherTabOpen: "false",
-      autoListOpen: "false",
       appsTabOpen: "false",
       image: bg1
     };
@@ -495,27 +494,6 @@ const Time = () => {
     this.setState({image: bgImage});
   }
 
-  /* ---- AutoSuggestion visibility ---- */
-  handleFocus = () => {
-    if (!this.state.autoListOpen) {
-      document.addEventListener('click', this.handleClickOutside);
-    } 
-    else {
-      document.removeEventListener('click', this.handleClickOutside);
-    }
-    this.setState( prevState => ({
-      autoListOpen: !prevState.autoListOpen,
-   }) );
-  }
-
-  handleClickOutside = event => {
-    // ignore clicks on search area
-    if (this.node.contains(event.target)) {
-      return;
-    }
-    this.handleFocus();
-  }
-
   render() {
 
     let bgStyle = {
@@ -534,7 +512,7 @@ const Time = () => {
               <div className="time">
                 <Time />
               </div>
-              <div className="search-area" ref={ node => { this.node = node; } }>
+              <div className="search-area">
                 <GoogleSearch
                   types={
                     [
@@ -546,9 +524,7 @@ const Time = () => {
                         'Maps': 'https://www.google.com/maps/preview?q='
                       }
                     ]
-                  }
-                  autoListOpen={this.state.autoListOpen}
-                  handleFocus={this.handleFocus}/>
+                  } />
               </div>
             </div> {/* .main-top */}
             <div id='icons'>

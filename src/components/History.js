@@ -108,16 +108,16 @@ class History extends Component { // Parent component
                     <h1 className='Notes-Title-Text'>History</h1>
                 </header>
                 <div className='Notes-Body'>
-                    <form className="h-form"
+                    <form className='h-form'
                         onSubmit={this.handleSubmit}>
-                        <input className="SearchBox h-searchbox"
-                            type="text"
+                        <input className='SearchBox h-searchbox'
+                            type='text'
                             placeholder='Search History' 
                             onChange={this.handleChange}/>
                             {/* onChange={this.handleChange} */}
                         <button className='h-button-s' type='submit'>
-                            <i className="fa fa-search h-search-icon" aria-hidden="true"></i>
-                            <span className="sr-only">search icon</span>
+                            <i className='fa fa-search h-search-icon' aria-hidden='true'></i>
+                            <span className='sr-only'>search icon</span>
                         </button>
                     </form>
                     <div className='h-options'>
@@ -219,7 +219,7 @@ const HistoryItem = (props) => {
             <div className='h-del-icon'
                 onClick={props.handleClickDelete}> 
                 {/* .bind(this, element, index) */}
-                <i class="fa fa-minus" aria-hidden="true"></i>
+                <i class='fa fa-minus' aria-hidden='true' title='Click to delete'></i>
             </div>
         </div>
     );

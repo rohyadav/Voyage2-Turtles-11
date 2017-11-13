@@ -35,14 +35,9 @@ class GoogleAutosuggest extends Component {
 
         return (
             <div className='auto-container'>
-                {/* <div className='auto-list'>
-                    {autoList}
-                </div> */}
-                { this.props.autoListOpen &&
                     <div className='auto-list'>
                         {autoList}
                     </div>
-                }
             </div>
         );
 
