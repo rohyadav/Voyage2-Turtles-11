@@ -88,7 +88,7 @@ export class Bookmarks extends Component {
   handleBookmarksSearch = (event) => {
     let searchTextInputBox = document.getElementById("searchTextInput");
     let searchQuery = searchTextInputBox.value;
-    if (event.key === 'Enter' || searchQuery.length !== 0) {
+    if (event.key === 'Enter') {
       if (this.state.searchArray.length === 0) {
         // Gather search results
         let searchResults = [];
@@ -106,14 +106,26 @@ export class Bookmarks extends Component {
         }
         // Tell the user that no results were found somehow.
       }
-      else {
-        // searchTextInputBox.value = "";
-        console.log("in handlebookmarksearch else condition")
-        this.setState({
-          searchArray: []
-        });
-      }
+      // else {
+      //   // searchTextInputBox.value = "";
+      //   console.log("in handlebookmarksearch else condition")
+      //   this.setState({
+      //     searchArray: []
+      //   });
+      // }
     }
+  }
+
+  clearBookmarksSearch = (event) => {
+    let searchTextInputBox = document.getElementById("searchTextInput");
+    let searchQuery = searchTextInputBox.value;
+    if (searchQuery.length !== 0) {
+      console.log("in clearBookmarksSearch")
+      this.setState({
+        searchArray: []
+      });
+    }
+    
   }
 
   FormattedChildrenBookmarks = (index) => {
@@ -166,7 +178,8 @@ export class Bookmarks extends Component {
 
     let formattedChildrenBookmarks = (null);
     if (this.state.searchArray.length) {
-      formattedChildrenBookmarks = this.bookmarksFormatter(this.state.searchArray);
+      let formatted = this.bookmarksFormatter(this.state.searchArray)
+      formattedChildrenBookmarks = <ul className="bookmarkList">{formatted}</ul>;
     }
     else {
       formattedChildrenBookmarks = this.FormattedChildrenBookmarks(this.state.parentFolderIdx);
@@ -185,7 +198,7 @@ export class Bookmarks extends Component {
           {/* SEARCH FEATURE */}
           <div class="searchBookmarksBackground">
             {/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-            <input id="searchTextInput" type="search" onKeyDown={this.handleBookmarksSearch} placeholder="Search Bookmarks" className='SearchBox SearchBoxText' />
+            <input id="searchTextInput" type="search" onKeyDown={this.handleBookmarksSearch} onClick={this.clearBookmarksSearch} placeholder="Search Bookmarks" className='SearchBox SearchBoxText' />
             {/* <a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a> */}
           </div>
           {/* BOOKMARKS LIST */}
