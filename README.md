@@ -18,7 +18,7 @@ A few of the things you can do with this Google Chrome Extension:
 * See and Clear your browser history
 
 ![Image alt text](https://i.imgur.com/yW8m4Gc.jpg "Search")
-![Image alt text](https://i.imgur.com/nsld3KW.jpg "User Utility Features")
+![Image alt text](https://i.imgur.com/1pHr5Bx.jpg "User Utility Features")
 ![Image alt text](https://i.imgur.com/lHR8CB2.jpg "Chrome Tools")
 
 ## Contributors
