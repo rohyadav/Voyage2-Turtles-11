@@ -76,14 +76,12 @@ class GoogleSearch extends Component { // Parent component
                     handleClick={this.handleClick}/> {/* .bind(this) unnecessary since it's an arrow fxn */}
                 <SearchBox
                     onSearch={this.googleSearch}
-                    onAutoSuggest={this.autoSuggest} 
-                    handleFocus={this.props.handleFocus} /> 
+                    onAutoSuggest={this.autoSuggest} /> 
                     {/* onToggleExpand={this.toggleExpand} */}
                 <GoogleAutosuggest
                     onAutoSearch={this.autoSearch}
                     suggestions={this.state.suggestions}                    
-                    handleClickAuto={this.handleClickAuto} 
-                    autoListOpen={this.props.autoListOpen}/>
+                    handleClickAuto={this.handleClickAuto} />
                     {/* expanded={this.state.expanded} */}
             </div>
         )
@@ -146,8 +144,7 @@ class SearchBox extends React.Component {
                         className='search-input-box'
                         type='search'                        
                         placeholder='Google'
-                        onChange={this.handleChange} 
-                        onFocus={this.props.handleFocus} /> {/* EVENTS */}
+                        onChange={this.handleChange} /> {/* EVENTS */}
                     <button type='submit'> {/* event handler unnecessary */}
                         <i className="fa fa-search search-icon" aria-hidden="true"></i>
                         <span className="sr-only">search icon</span>
