@@ -84,27 +84,28 @@ export class Weather extends React.Component {
 
 				function errorMessage(object) {
 					if (object.cod === "404") {
-						referenceToThis.setState({ errorMessage: "Code: " + object.cod + " - " + object.message })
+						referenceToThis.setState({ errorMessage: object.message + ", please try again" });
+						//console.log("referenceToThis.state.errorMessage is " + referenceToThis.state.errorMessage)
 					} else {
 						referenceToThis.setState({ errorMessage: "" })
 					}
 				}
 				// console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
-				console.log("response" + JSON.stringify(response));
-				if (response.cod === "404" || currentWeatherResponse.cod === "404") {
+				// console.log("response" + JSON.stringify(response));
+				if (response === undefined || response.cod === "404" || currentWeatherResponse.cod === "404") {
 					errorMessage(response);
+					//console.log("error message is sent to function")
 				} else {
-					errorMessage();
+					referenceToThis.setState({
+						currentLocation: location,
+						weather: response,
+						day0Weather: currentWeatherResponse,
+						day1Weather: arrayLink[1],
+						day2Weather: arrayLink[2],
+						day3Weather: arrayLink[3],
+						day4Weather: arrayLink[4]
+					});
 				}
-				referenceToThis.setState({
-					currentLocation: location,
-					weather: response,
-					day0Weather: currentWeatherResponse,
-					day1Weather: arrayLink[1],
-					day2Weather: arrayLink[2],
-					day3Weather: arrayLink[3],
-					day4Weather: arrayLink[4]
-				});
 			}
 			request2.open('GET', currentWeatherEndpoint);
 			request2.responseType = 'json';
@@ -182,7 +183,7 @@ export class Weather extends React.Component {
 						<input id="searchTextInput" type="search" onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
 						{/* <a><img className='searchBookmarksButton' src={this.state.searchButton} alt="search"></img></a> */}
 					</div>
-					<div className="errorMessage" >{this.errorMessage}</div>
+					<div className="errorMessage" >{this.state.errorMessage}</div>
 					<div className="weatherCards">
 						<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
 							icon={this.state.day0Weather.weather[0].icon}
