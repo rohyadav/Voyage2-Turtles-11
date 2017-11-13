@@ -126,7 +126,6 @@ export class Bookmarks extends Component {
         searchArray: []
       });
     }
-    
   }
 
   FormattedChildrenBookmarks = (index) => {
