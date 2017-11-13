@@ -96,7 +96,7 @@ class History extends Component { // Parent component
         /* eslint-disable */
         chrome.history.deleteAll(function() {});
          /* eslint-enable */
-        this.setState({historyArrSt: []});
+        this.setState({historyArr: []});
     }
 
     render() {
