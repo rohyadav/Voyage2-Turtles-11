@@ -48,7 +48,8 @@ NEW TODO COMPONENT
 }
 /* input box where I write new Todos */
 .input-box {
-    @include search-box;
+	@include search-box;
+	margin-top: 12px;
 }
   
 // text inside input box
