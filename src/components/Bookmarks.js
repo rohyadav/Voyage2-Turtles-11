@@ -85,10 +85,10 @@ export class Bookmarks extends Component {
     return false;
   }
 
-  handleBookmarksSearch = () => {
+  handleBookmarksSearch = (event) => {
     let searchTextInputBox = document.getElementById("searchTextInput");
     let searchQuery = searchTextInputBox.value;
-    if (searchQuery !== '') {
+    if (event.key === 'Enter' || searchQuery.length !== 0) {
       if (this.state.searchArray.length === 0) {
         // Gather search results
         let searchResults = [];
@@ -101,17 +101,16 @@ export class Bookmarks extends Component {
         }
         if (searchResults.length) {
           this.setState({
-            searchArray: searchResults,
-            searchButton: '../assets/search – 2.png'
+            searchArray: searchResults
           })
         }
         // Tell the user that no results were found somehow.
       }
       else {
-        searchTextInputBox.value = "";
+        // searchTextInputBox.value = "";
+        console.log("in handlebookmarksearch else condition")
         this.setState({
-          searchArray: [],
-          searchButton: '../assets/search.png'
+          searchArray: []
         });
       }
     }
@@ -186,8 +185,8 @@ export class Bookmarks extends Component {
           {/* SEARCH FEATURE */}
           <div class="searchBookmarksBackground">
             {/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-            <input id="searchTextInput" type="text" placeholder="Search Bookmarks" className='SearchBox SearchBoxText' />
-            <a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a>
+            <input id="searchTextInput" type="search" onKeyDown={this.handleBookmarksSearch} placeholder="Search Bookmarks" className='SearchBox SearchBoxText' />
+            {/* <a><img className='searchBookmarksButton' onClick={this.handleBookmarksSearch} src={this.state.searchButton} alt="search"></img></a> */}
           </div>
           {/* BOOKMARKS LIST */}
           <section className="BookmarksListBody container-fluid">
