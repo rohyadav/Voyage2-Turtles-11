@@ -4,7 +4,7 @@
 * [Introduction](https://github.com/chingu-coders/Voyage2-Turtles-11#introduction)
 * [Features](https://github.com/chingu-coders/Voyage2-Turtles-11#features)
 * [Contributors](https://github.com/chingu-coders/Voyage2-Turtles-11#contributors)
-* Build Process(https://github.com/chingu-coders/Voyage2-Turtles-11#build-process)
+* [Build Process](https://github.com/chingu-coders/Voyage2-Turtles-11#build-process)
 * [Deployment to Chrome](https://github.com/chingu-coders/Voyage2-Turtles-11#deployment-to-chrome)
 
 ## Introduction
