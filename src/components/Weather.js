@@ -17,7 +17,7 @@ let currentWeather = {
 	"name": "-",
 	"cod": 200,
 	"city": {
-		"name": "Sherman Oaks"
+		"name": "City Loading"
 	}
 };
 let forecastWeather = {
@@ -117,21 +117,22 @@ export class Weather extends React.Component {
 		navigator.geolocation.getCurrentPosition(success, error);
 	}
 
-	handleWeatherSearch = () => {
+	handleWeatherSearch = (event) => {
 		let input = document.getElementById("searchTextInput").value;
 		let newLocation = "";
 		let inputIsANumber = Number.isInteger(Number.parseInt(input, 10));
-		if (input.length !== 0 && this.state.searchButton === '../assets/search.png') {
+		if (input.length !== 0 || event.key === 'Enter') {
 			if (inputIsANumber) {
 				newLocation = "?zip=" + input;
 			} else {
 				newLocation = "?q=" + input;
 			}
 			this.updateStateWithWeatherFor(newLocation);
-			this.setState({ searchButton: '../assets/search – 2.png' });
-		} else {
-			this.setState({ searchButton: '../assets/search.png' });
-		}
+			// this.setState({ searchButton: '../assets/search – 2.png' });
+		} 
+		// else {
+		// 	this.setState({ searchButton: '../assets/search.png' });
+		// }
 		//console.log(this.state.currentLocation);
 	}
 
@@ -168,7 +169,7 @@ export class Weather extends React.Component {
 					{/* SEARCH FEATURE */}
 					<div class="weathersSearchBackground">
 						{/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-						<input id="searchTextInput" type="text" placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
+						<input id="searchTextInput" type="text" onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
 						<a><img className='searchBookmarksButton' onClick={this.handleWeatherSearch} src={this.state.searchButton} alt="search"></img></a>
 					</div>
 					<div className="weatherCards">
