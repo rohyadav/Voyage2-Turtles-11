@@ -1,4 +1,4 @@
-![Image alt text](https://i.imgur.com/8ZEF5ki.jpg "Main Page")
+![Image alt text](https://i.imgur.com/FSoEtO5.png "Main Page")
 
 ## Table of Contents
 * Introduction
@@ -17,9 +17,9 @@ A few of the things you can do with this Google Chrome Extension:
 * Enable / Disable Chrome Apps and Extensions
 * See and Clear your browser history
 
-![Image alt text](https://i.imgur.com/yW8m4Gc.jpg "Search")
-![Image alt text](https://i.imgur.com/1pHr5Bx.jpg "User Utility Features")
-![Image alt text](https://i.imgur.com/lHR8CB2.jpg "Chrome Tools")
+![Image alt text](https://i.imgur.com/6vV0gS9.png "Search")
+![Image alt text](https://i.imgur.com/B9qhUlw.png "User Utility Features")
+![Image alt text](https://i.imgur.com/qxFL13R.png "Chrome Tools")
 
 ## Contributors
 * [Francesca Sadikin (PM and Designer)](https://github.com/serpient)
