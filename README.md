@@ -1,11 +1,12 @@
 ![Image alt text](https://i.imgur.com/FSoEtO5.png "Main Page")
 
 ## Table of Contents
-* Introduction
-* Features
-* Contributors
-* Build Process
-* Deployment to Chrome
+* [Introduction](https://github.com/chingu-coders/Voyage2-Turtles-11#introduction)
+* [Features](https://github.com/chingu-coders/Voyage2-Turtles-11#features)
+* [Contributors](https://github.com/chingu-coders/Voyage2-Turtles-11#contributors)
+* Build Process(https://github.com/chingu-coders/Voyage2-Turtles-11#build-process)
+* [Deployment to Chrome](https://github.com/chingu-coders/Voyage2-Turtles-11#deployment-to-chrome)
+
 ## Introduction
 TurtleTab is a Google Chrome Extension Built with React. It creates a new homepage which features current Weather, Todo and Notes functionality. It also accesses your browser data to see Bookmarks, enable/disable Apps and Extensions, and see/clear your History. It is a collaborative effort by a remote team of aspiring developers who met on Chingu, an international community of coders.
 
