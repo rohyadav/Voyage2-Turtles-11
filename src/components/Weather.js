@@ -86,7 +86,7 @@ export class Weather extends React.Component {
 					if (object.cod === "404") {
 						referenceToThis.setState({ errorMessage: object.message + ", please try again" });
 						//console.log("referenceToThis.state.errorMessage is " + referenceToThis.state.errorMessage)
-					} else {
+					} else if (object === "No error") {
 						referenceToThis.setState({ errorMessage: "" })
 					}
 				}
@@ -96,6 +96,7 @@ export class Weather extends React.Component {
 					errorMessage(response);
 					//console.log("error message is sent to function")
 				} else {
+					errorMessage("No error");
 					referenceToThis.setState({
 						currentLocation: location,
 						weather: response,
