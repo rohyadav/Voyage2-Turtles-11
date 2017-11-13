@@ -47,6 +47,15 @@ HEADER & BODY
   position: relative;
   background-color: $weather-color-day;
 }
+
+.errorMessage { 
+  max-width: 284px;
+  margin: 8px;
+  padding: 8px;
+  text-align: center;
+  color: $default-grey;
+  display: block;
+}
 /*
 ==========================
 SCROLLBAR

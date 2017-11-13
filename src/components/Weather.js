@@ -57,7 +57,8 @@ export class Weather extends React.Component {
 			day3Weather: forecastWeather,
 			day4Weather: forecastWeather,
 			searchButton: '../assets/search.png',
-			currentLocation: ""
+			currentLocation: "",
+			errorMessage: ""
 		};
 	};
 
@@ -80,7 +81,21 @@ export class Weather extends React.Component {
 
 			request2.onload = function (event) {
 				var currentWeatherResponse = request2.response;
+
+				function errorMessage(object) {
+					if (object.cod === "404") {
+						referenceToThis.setState({ errorMessage: "Code: " + object.cod + " - " + object.message })
+					} else {
+						referenceToThis.setState({ errorMessage: "" })
+					}
+				}
 				// console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
+				console.log("response" + JSON.stringify(response));
+				if (response.cod === "404" || currentWeatherResponse.cod === "404") {
+					errorMessage(response);
+				} else {
+					errorMessage();
+				}
 				referenceToThis.setState({
 					currentLocation: location,
 					weather: response,
@@ -121,21 +136,17 @@ export class Weather extends React.Component {
 		let input = document.getElementById("searchTextInput").value;
 		let newLocation = "";
 		let inputIsANumber = Number.isInteger(Number.parseInt(input, 10));
-		if (input.length !== 0 || event.key === 'Enter') {
+		if (event.key === 'Enter') {
 			if (inputIsANumber) {
 				newLocation = "?zip=" + input;
 			} else {
 				newLocation = "?q=" + input;
 			}
 			this.updateStateWithWeatherFor(newLocation);
-			// this.setState({ searchButton: '../assets/search – 2.png' });
-		} 
-		// else {
-		// 	this.setState({ searchButton: '../assets/search.png' });
-		// }
-		//console.log(this.state.currentLocation);
+		}
 	}
 
+	
 	requestGeolocation() {
 		if ('geolocation' in navigator) {
 			//console.log('geolocation present');
@@ -168,10 +179,10 @@ export class Weather extends React.Component {
 				<div className="Weather-Body">
 					{/* SEARCH FEATURE */}
 					<div class="weathersSearchBackground">
-						{/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-						<input id="searchTextInput" type="text" onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
-						<a><img className='searchBookmarksButton' onClick={this.handleWeatherSearch} src={this.state.searchButton} alt="search"></img></a>
+						<input id="searchTextInput" type="search" onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
+						{/* <a><img className='searchBookmarksButton' src={this.state.searchButton} alt="search"></img></a> */}
 					</div>
+					<div className="errorMessage" >{this.errorMessage}</div>
 					<div className="weatherCards">
 						<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
 							icon={this.state.day0Weather.weather[0].icon}
