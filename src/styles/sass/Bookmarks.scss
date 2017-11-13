@@ -80,7 +80,7 @@ BOOKMARKS
 // right-pane => individual bookmarks
 .bookmarkList {
   width: 196px;
-  left: -13px;
+  left: -8px;
   top: 0px;
   padding-top: 8px;
 }
@@ -133,6 +133,12 @@ SEARCH
 .SearchBoxText {
   @include tab-search-text;
   padding-top: 0px;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+  padding-right: 8px;
+  color: $default-grey !important;
+  font-size: 12px;
 }
 
 .searchBookmarksBackground {

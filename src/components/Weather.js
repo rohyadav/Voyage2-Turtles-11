@@ -17,7 +17,7 @@ let currentWeather = {
 	"name": "-",
 	"cod": 200,
 	"city": {
-		"name": "Sherman Oaks"
+		"name": "City Loading"
 	}
 };
 let forecastWeather = {
@@ -57,7 +57,8 @@ export class Weather extends React.Component {
 			day3Weather: forecastWeather,
 			day4Weather: forecastWeather,
 			searchButton: '../assets/search.png',
-			currentLocation: ""
+			currentLocation: "",
+			errorMessage: ""
 		};
 	};
 
@@ -80,16 +81,32 @@ export class Weather extends React.Component {
 
 			request2.onload = function (event) {
 				var currentWeatherResponse = request2.response;
+
+				function errorMessage(object) {
+					if (object.cod === "404") {
+						referenceToThis.setState({ errorMessage: object.message + ", please try again" });
+						//console.log("referenceToThis.state.errorMessage is " + referenceToThis.state.errorMessage)
+					} else if (object === "No error") {
+						referenceToThis.setState({ errorMessage: "" })
+					}
+				}
 				// console.log("this state day0Weather is " + JSON.stringify(referenceToThis.state.day0Weather));
-				referenceToThis.setState({
-					currentLocation: location,
-					weather: response,
-					day0Weather: currentWeatherResponse,
-					day1Weather: arrayLink[1],
-					day2Weather: arrayLink[2],
-					day3Weather: arrayLink[3],
-					day4Weather: arrayLink[4]
-				});
+				// console.log("response" + JSON.stringify(response));
+				if (response === undefined || response.cod === "404" || currentWeatherResponse.cod === "404") {
+					errorMessage(response);
+					//console.log("error message is sent to function")
+				} else {
+					errorMessage("No error");
+					referenceToThis.setState({
+						currentLocation: location,
+						weather: response,
+						day0Weather: currentWeatherResponse,
+						day1Weather: arrayLink[1],
+						day2Weather: arrayLink[2],
+						day3Weather: arrayLink[3],
+						day4Weather: arrayLink[4]
+					});
+				}
 			}
 			request2.open('GET', currentWeatherEndpoint);
 			request2.responseType = 'json';
@@ -117,24 +134,21 @@ export class Weather extends React.Component {
 		navigator.geolocation.getCurrentPosition(success, error);
 	}
 
-	handleWeatherSearch = () => {
+	handleWeatherSearch = (event) => {
 		let input = document.getElementById("searchTextInput").value;
 		let newLocation = "";
 		let inputIsANumber = Number.isInteger(Number.parseInt(input, 10));
-		if (input.length !== 0 && this.state.searchButton === '../assets/search.png') {
+		if (event.key === 'Enter') {
 			if (inputIsANumber) {
 				newLocation = "?zip=" + input;
 			} else {
 				newLocation = "?q=" + input;
 			}
 			this.updateStateWithWeatherFor(newLocation);
-			this.setState({ searchButton: '../assets/search – 2.png' });
-		} else {
-			this.setState({ searchButton: '../assets/search.png' });
 		}
-		//console.log(this.state.currentLocation);
 	}
 
+	
 	requestGeolocation() {
 		if ('geolocation' in navigator) {
 			//console.log('geolocation present');
@@ -167,10 +181,10 @@ export class Weather extends React.Component {
 				<div className="Weather-Body">
 					{/* SEARCH FEATURE */}
 					<div class="weathersSearchBackground">
-						{/* <textarea onChange={this.setSearchQuery} className='SearchBox SearchBoxText' required placeholder="Search Something" /> */}
-						<input id="searchTextInput" type="text" placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
-						<a><img className='searchBookmarksButton' onClick={this.handleWeatherSearch} src={this.state.searchButton} alt="search"></img></a>
+						<input id="searchTextInput" type="search" onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
+						{/* <a><img className='searchBookmarksButton' src={this.state.searchButton} alt="search"></img></a> */}
 					</div>
+					<div className="errorMessage" >{this.state.errorMessage}</div>
 					<div className="weatherCards">
 						<CurrentWeather cityName={this.state.weather.city.name + ", " + this.state.weather.city.country}
 							icon={this.state.day0Weather.weather[0].icon}

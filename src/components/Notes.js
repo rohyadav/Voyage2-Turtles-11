@@ -63,16 +63,19 @@ export class Notes extends Component {
   }
 
   // HANDLES SEARCH
-  handleNoteSearch = () => {
+  handleNoteSearch = (event) => {
     let notesSearchTerm = document.getElementById("notesSearchTerm").value;
     if (notesSearchTerm === '') {
       store.dispatch(closeNotesSearch());
-    } else if (this.state.searchButton === '../assets/search – 2.png') {
-      store.dispatch(closeNotesSearch());
-      this.setState({ searchButton: "../assets/search.png" });
-    } else {
+    } else if (event.key === 'Enter') {
       store.dispatch(searchNotes(notesSearchTerm));
-      this.setState({ searchButton: "../assets/search – 2.png" });
+    }
+  }
+
+  clearSearch = (event) => {
+    let notesSearchTerm = document.getElementById("notesSearchTerm").value;
+    if (notesSearchTerm.length !== 0) {
+      store.dispatch(closeNotesSearch());
     }
   }
   // HANDLES ADDING NEW NOTES
@@ -100,8 +103,7 @@ export class Notes extends Component {
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
-              <input type="text" id="notesSearchTerm" placeholder="Search" className='SearchBox SearchBoxText' required placeholder="Search Notes" />
-              <a><img alt="searchIcon" className='searchButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
+              <input type="search" id="notesSearchTerm" onKeyDown={this.handleNoteSearch} onClick={this.clearSearch} className='SearchBox SearchBoxText' required placeholder="Search Notes" />
               <NotesVisibleSearch />
             </div>
             {/* NEW NOTE */}

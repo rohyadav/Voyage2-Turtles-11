@@ -62,7 +62,7 @@ export const NotesSearchList = ({ notes, onPinClick, onArchiveClick, onDeleteNot
                 {notes.map((singleNote, index) => (
                     <Note key={index} {...singleNote}
                         onDeleteClick={() => onDeleteNoteClick(singleNote.id)}
-                        onUpdateClick={(event) => onUpdateClick(event.target.innerHTML, singleNote.id)} 
+                        onUpdateClick={(event) => (event.key === "Enter") ? onUpdateClick(event.target.innerHTML, singleNote.id) : null}
                         onArchiveClick={() => onArchiveClick(singleNote.id)}
                         onPinClick={() => onPinClick(singleNote.id)}
                     />
