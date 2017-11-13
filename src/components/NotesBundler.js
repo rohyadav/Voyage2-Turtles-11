@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id, pinned, completed, newText }) => {
-    // console.log("Note text is: " + text);
+    console.log("Note text is: " + text);
     let pinStyle;
     let archiveStyle;
     if (pinned) {
@@ -37,7 +37,7 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
                 </button>}
             </div>
             {/* <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/> */}
-            <div contentEditable="true" className="existingNotes" onFocusOut={onUpdateClick}>{text}</div>
+            <div contentEditable="true" className="existingNotes" onKeyDown={onUpdateClick}>{text}</div>
         </div>
     )
 }
@@ -55,7 +55,7 @@ export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick
             {notes.map((singleNote, index) => (
                 <Note id={singleNote.id} name={"note_" + singleNote.id} key={index} {...singleNote} 
                 onDeleteClick={() => onDeleteNoteClick(singleNote.id)} 
-                onUpdateClick={(event) => onUpdateClick(event.target.innerHTML, singleNote.id)} 
+                onUpdateClick={(event) => (event.key === "Enter") ? onUpdateClick(event.target.innerHTML, singleNote.id) : null} 
                 onArchiveClick={() => onArchiveClick(singleNote.id)} 
                 onPinClick={() => onPinClick(singleNote.id)} 
             />

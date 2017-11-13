@@ -1,7 +1,7 @@
 {
   "name": "TurtleTab",
   "description": "Chrome extension with built-in weather, todo, notes, and google search functions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "browser_action": {
     "default_icon": {
     "16": "./assets/turtle16.png",
