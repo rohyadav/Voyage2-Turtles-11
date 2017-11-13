@@ -135,7 +135,7 @@ class History extends Component { // Parent component
                         </center>
                     </div>
                     <div className='historyClearHistory descrip-inactive'
-                        onClick='handleClickClearAll'>
+                        onClick={this.handleClickClearAll}>
                         Clear History
                     </div>
                     {
