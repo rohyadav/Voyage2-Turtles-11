@@ -77,6 +77,9 @@ class History extends Component { // Parent component
         // console.log('collectionFiltered', collectionFiltered);
 
         this.setState( {historyArr: collectionFiltered} );
+        // if (collectionFiltered.length !== 0) {
+        //     this.setState( {historyArr: collectionFiltered} );
+        // } else this.setState( {historyArr: ['No results found']})
         
     } 
 
@@ -110,14 +113,9 @@ class History extends Component { // Parent component
                     <form className='h-form'
                         onSubmit={this.handleSubmit}>
                         <input className='SearchBox h-searchbox'
-                            type='text'
+                            type='search'
                             placeholder='Search History' 
                             onChange={this.handleChange}/>
-                            {/* onChange={this.handleChange} */}
-                        <button className='h-button-s' type='submit'>
-                            <i className='fa fa-search h-search-icon' aria-hidden='true'></i>
-                            <span className='sr-only'>search icon</span>
-                        </button>
                     </form>
                     <div className='h-options'>
                         <center >
@@ -159,7 +157,6 @@ const HistoryListF = (props) => {
 
     return (
         <div className='url-container'>
-            {/* <div> */}
             {props.historyArrF.map((element, index) =>
                 <HistoryItemF
                     element={element}
@@ -188,15 +185,20 @@ const HistoryItemF = (props) => {
 
 const HistoryList = (props) => {
 
+    let historyItemCheckLength;
+
+    if (props.historyArr.length) {
+        historyItemCheckLength = props.historyArr.map( (element, index) =>
+            <HistoryItem 
+                element={element}
+                key={element.id}
+                handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
+        )
+    } else historyItemCheckLength = <NoHistoryItems />
+
     return (
         <div className='url-container'>
-        {/* <div> */}
-            { props.historyArr.map( (element, index) =>
-                <HistoryItem
-                    element={element}
-                    key={element.id}
-                    handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
-            ) }
+            {historyItemCheckLength}
         </div>
     );
 
@@ -221,6 +223,19 @@ const HistoryItem = (props) => {
                 {/* .bind(this, element, index) */}
                 <i class='fa fa-minus' aria-hidden='true' title='Click to delete'></i>
             </div>
+        </div>
+    );
+}
+
+const NoHistoryItems = () => {
+
+    // const noHover = {
+    //     display: 'none'
+    // }
+    // style={noHover}
+    return (
+         <div className='url-item no-hover'>
+            <p>No results found</p>
         </div>
     );
 }
