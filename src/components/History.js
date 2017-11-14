@@ -67,15 +67,14 @@ class History extends Component { // Parent component
         event.preventDefault(); // Else page refreshes on submit
 
         const source = this.state.searchInput.toLowerCase();
-        // Make title lowercase, and make query lowercase
         
-        console.log('source', source);
+        // console.log('source', source);
         let collection = this.state.historyArr;
-        console.log('collection', collection);
+        // console.log('collection', collection);
         let collectionFiltered = collection.filter(function(obj) {
-            return obj.title.includes(source) || obj.url.includes(source);
+            return obj.title.toLowerCase().includes(source) || obj.url.includes(source);
         });
-        console.log('collectionFiltered', collectionFiltered);
+        // console.log('collectionFiltered', collectionFiltered);
 
         this.setState( {historyArr: collectionFiltered} );
         

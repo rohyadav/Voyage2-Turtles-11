@@ -293,7 +293,9 @@ const Time = () => {
   )
 }
 
-/* --------- Background Image LocalStorage --------- */
+/* =========================
+ BACKGROUND IMAGE LOCALSTORAGE
+ =========================== */
 
 let bgImgVariable;
 
@@ -498,14 +500,11 @@ if(!localStorage.getItem('bgImgStored')) {
 
   /* ---- Background Image ---- */
   backgroundChange = () => {
-    // let bgImage = this.state.image;
     const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9,
                     bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
     let bgImage = bgArray[randomNumber];
     this.setState( {image: bgImage}, () => localStorage.setItem('bgImgStored', this.state.image) );
-    // this.setState({image: bgImage});
-    // localStorage.setItem('bgImgStored', this.state.image);  
   }
 
   render() {
