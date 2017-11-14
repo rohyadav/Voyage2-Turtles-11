@@ -570,7 +570,8 @@ if(!localStorage.getItem('bgImgStored')) {
               className="footer-icon"
               src={rndomImgIcon}
               alt="Turtles Cohort"
-              onClick={this.backgroundChange} />
+              onClick={this.backgroundChange} 
+              title="Click to change background" />
             <p className="leftFooter">Photos by Natasha Sadikin</p>
             {/*<div className="footer-margin"></div>*/}
           </footer>
