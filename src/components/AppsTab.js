@@ -54,14 +54,14 @@ class Icons extends React.Component {
     if (typeof this.props.linkIcon == "undefined") {
       icon = (
         <div>
-          <img src={require('../assets/appstab-broken-icon.svg')} alt="app icon" width="30" />
+          <img src={require('../assets/appstab-broken-icon.svg')} alt="app icon" width="23" />
         </div>
       )
     }
     else {
       icon = (
         <div className={isEnabled}>
-          <img src={this.props.linkIcon[0].url} alt="app icon" width="30" />
+          <img src={this.props.linkIcon[0].url} alt="app icon" width="23" />
         </div>
       )
     }
@@ -91,10 +91,10 @@ class AppsTabEnableDisableButton extends React.Component {
     // check the checkbox when mouse hover over
     var trashIconSize;
     if (this.state.mouseHover) {
-      trashIconSize = "26"
+      trashIconSize = "20"
     }
     else {
-      trashIconSize = "22"
+      trashIconSize = "15"
     }
 
     var text;
@@ -135,10 +135,10 @@ class AppsTabTrashImg extends React.Component {
     // check the checkbox when mouse hover over
     var trashIconSize;
     if (this.state.mouseHover) {
-      trashIconSize = "26"
+      trashIconSize = "20"
     }
     else {
-      trashIconSize = "22"
+      trashIconSize = "18"
     }
 
     return (
