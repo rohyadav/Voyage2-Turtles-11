@@ -36,7 +36,7 @@ function notes(state = [], action) {
             return [
                 ...state,
                 {
-                    id: globalCounter++,
+                    id: state.length,
                     text: action.text,
                     completed: false,
                     search: false,
