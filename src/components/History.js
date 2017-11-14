@@ -47,7 +47,6 @@ class History extends Component { // Parent component
             selected: 'Recent History',
             historyArr: historyArr,
             historyArrSt: historyArr,
-            historyArrDefault: historyArr,
             searchInput: ''
         };
     }
@@ -78,7 +77,7 @@ class History extends Component { // Parent component
         // console.log('collectionFiltered', collectionFiltered);
 
         this.setState( {historyArr: collectionFiltered} );
-        
+        // event.currentTarget.reset();
     } 
 
     handleClickDelete = (element, index) => {
@@ -99,6 +98,13 @@ class History extends Component { // Parent component
         this.setState({historyArr: []});
     }
 
+    clearHistoryQuery = () => {
+        this.setState( {
+            searchInput: '',
+            historyArr: historyArr
+        } );
+      }
+
     render() {
 
         return (
@@ -113,7 +119,8 @@ class History extends Component { // Parent component
                         <input className='SearchBox h-searchbox'
                             type='search'
                             placeholder='Search History' 
-                            onChange={this.handleChange}/>
+                            onChange={this.handleChange}
+                            onClick={this.clearHistoryQuery} />
                     </form>
                     <div className='h-options'>
                         <center >
@@ -140,7 +147,6 @@ class History extends Component { // Parent component
                             
                         : <HistoryList
                             historyArr={this.state.historyArr} 
-                            historyArrDefault={this.state.historyArrDefault}
                             handleClickDelete={this.handleClickDelete}
                             searchInput={this.state.searchInput} />
                     }
@@ -199,7 +205,7 @@ const HistoryList = (props) => {
             ); 
         } 
         // If there's no query, render the complete array
-        else historyItemCheckLength = props.historyArrDefault.map( (element, index) =>
+        else historyItemCheckLength = props.historyArr.map( (element, index) =>
             <HistoryItem 
                 element={element}
                 key={element.id}
