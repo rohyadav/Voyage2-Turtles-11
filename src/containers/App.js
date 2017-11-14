@@ -284,16 +284,40 @@ function tab_close() {
 /* =========================
  MAIN TIME FORMATTING
  =========================== */
-const Time = () => {
-  let currentDate = new Date();
-  let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
-  let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
-  let timeString = timeHourString + ":" + timeMinuteString;
-  currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
-
-  return (
-    <div>{timeString}</div>
-  )
+class Time extends React.Component {
+  formatTime = () => {
+    let currentDate = new Date();
+    let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
+    let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
+    let timeString = timeHourString + ":" + timeMinuteString;
+    currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
+    return timeString;
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: this.formatTime()
+    }
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: this.formatTime()
+    });
+  }
+  render() {
+    return (
+      <div className="time">{this.state.time}</div>
+    )
+  }
 }
 
 /* =========================
@@ -321,15 +345,20 @@ if(!localStorage.getItem('bgImgStored')) {
       historyTabOpen: "false",
       weatherTabOpen: "false",
       appsTabOpen: "false",
-      image: bgImgVariable
+      image: bgImgVariable,
+      time: ""
     };
   }
 
-  time = () => {
-    let d = new Date();
-    this.setState({ time: d.toLocaleTimeString() });
-    return this.state.time;
-  }
+  // setTime = () => {
+  //   let currentDate = new Date();
+  //   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
+  //   let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
+  //   let timeString = timeHourString + ":" + timeMinuteString;
+  //   currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
+
+  //   this.setState({ time: timeString });
+  // }
   allTabsClosed = () => {
     this.setState({ todoTabOpen: "false" });
     this.setState({ notesTabOpen: "false" });
@@ -525,9 +554,7 @@ if(!localStorage.getItem('bgImgStored')) {
         <div className="main" id="main">
           <div className="main-content">
             <div className="main-top" >
-              <div className="time">
                 <Time />
-              </div>
               <div className="search-area">
                 <GoogleSearch
                   types={
