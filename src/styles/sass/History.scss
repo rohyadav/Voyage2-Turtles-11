@@ -120,7 +120,7 @@
   flex-direction: row;
   align-items: center;
   padding: 0 10px;
-  &:hover {
+  &:not(.no-hover):hover {
     background-color: $history-orange-bkg;
     border: 1px solid $history-orange;
     transition:.2s;
