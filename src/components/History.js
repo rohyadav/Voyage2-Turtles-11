@@ -177,7 +177,7 @@ const HistoryItemF = (props) => {
             <img className='url-icon'
             src={`chrome://favicon/${props.element.url}`} 
             alt='favicon' />
-            <a href={props.element.url} className='url-url'>
+            <a href={props.element.url} className='url-url' target='_blank'>
                 {props.element.title}
             </a>
         </div>
@@ -210,7 +210,8 @@ const HistoryItem = (props) => {
                 src={`chrome://favicon/${props.element.url}`} 
                 alt='favicon' />
             <a href={props.element.url} 
-                className='url-url'>
+                className='url-url'
+                target='_blank' >
                     {props.element.title
                     ? props.element.title
                     : props.element.url}
