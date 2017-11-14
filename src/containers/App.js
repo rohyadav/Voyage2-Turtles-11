@@ -109,6 +109,7 @@ class TodosButton extends React.Component {
   }
 
   render() {
+    let todoArrLenInit = JSON.parse(localStorage["todoData-todoArr"]).length;
     return (<div className="item">
       <a
         onClick={this.props.clickHandler}
@@ -117,7 +118,7 @@ class TodosButton extends React.Component {
         <img src={this.state.iconLink} alt="Todos button" />
       </a>
       <p>Todos</p>
-      <button id="todoQty" className="countButton">0</button>
+      <button id="todoQty" className="countButton">{todoArrLenInit}</button>
     </div>);
   }
 }
