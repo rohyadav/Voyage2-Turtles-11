@@ -5,6 +5,7 @@ import '../styles/AppsTab.css';
 
 // *** get the initial app/extension list ***
 const appList = [];
+const searchList = [];
 const appListDisableEnable = [];
 const extensionList = [];
 const extensionListDisableEnable = [];
@@ -16,10 +17,12 @@ chrome.management.getAll(function (info) {
     if (info[i].isApp) {
       appList.push(info[i]);
       appListDisableEnable.push(info[i].enabled);
+      searchList.push(info[i]);
     }
     else {
       extensionList.push(info[i]);
       extensionListDisableEnable.push(info[i].enabled);
+      searchList.push(info[i]);
     }
   }
 });
@@ -156,6 +159,7 @@ class AppsTab extends React.Component {
     super(props);
     this.state = {
       appList: appList,
+      searchList: searchList,
       appListDisableEnable: appListDisableEnable,
       extensionList: extensionList,
       extensionListDisableEnable: extensionListDisableEnable
@@ -167,6 +171,7 @@ class AppsTab extends React.Component {
     /* eslint-disable */
     chrome.management.getAll(function (info) {
       let appListUpdate = [];
+      let searchListUpdate = [];
       let appListDisableEnableUpdate = [];
       let extensionListUpdate = [];
       let extensionListDisableEnableUpdate = [];
@@ -175,22 +180,51 @@ class AppsTab extends React.Component {
         if (info[i].isApp) {
           appListUpdate.push(info[i]);
           appListDisableEnableUpdate.push(info[i].enabled);
+          searchList.push(info[i]);
         }
         else {
           extensionListUpdate.push(info[i]);
           extensionListDisableEnableUpdate.push(info[i].enabled);
+          searchList.push(info[i].enabled);
         }
       }
       callme.setState({ appList: appListUpdate });
       callme.setState({ appListDisableEnable: appListDisableEnableUpdate });
       callme.setState({ extensionList: extensionListUpdate });
       callme.setState({ extensionListDisableEnable: extensionListDisableEnableUpdate });
-
-
-
-
+      callme.setState({ searchList: searchListUpdate });
     });
     /* eslint-enable */
+  }
+
+    handleChange = (event) => {
+      let appListUpdate = [];
+      let appListDisableEnableUpdate = [];
+      let extensionListUpdate = [];
+      let extensionListDisableEnableUpdate = [];
+
+       let appListFiltered = this.state.searchList.filter(function(obj) {
+            return obj.name.toLowerCase().includes(event.target.value);
+        });
+      for (var i = 0; i < appListFiltered.length; i++) {
+        if (appListFiltered[i].isApp) {
+          appListUpdate.push(appListFiltered[i]);
+          appListDisableEnableUpdate.push(appListFiltered[i].enabled);
+        }
+        else {
+          extensionListUpdate.push(appListFiltered[i]);
+          extensionListDisableEnableUpdate.push(appListFiltered[i].enabled);
+        }
+      }
+      this.setState({ appList: appListUpdate });
+      this.setState({ appListDisableEnable: appListDisableEnableUpdate });
+      this.setState({ extensionList: extensionListUpdate });
+      this.setState({ extensionListDisableEnable: extensionListDisableEnableUpdate });
+    }
+
+  handleSubmit = (event) => {
+    alert(event);
+    event.preventDefault();
   }
 
   clickDeleteIcon = (elm, i, event) => {
@@ -288,6 +322,10 @@ class AppsTab extends React.Component {
           <h2 className='AppsTab-Title-Text'>Apps</h2>
         </div>
         <div className='Apps-Body'>
+          <form className="AppsTab-Search-Background" onSubmit={this.handleSubmit}>
+            <input className="AppsTab-input-box AppsTab-inputBoxText" type="text" placeholder="Search Apps" 
+              value={this.state.value} onChange={this.handleChange} />
+          </form>
           <div class="AppsTab-add-to-body">
             <h2 className="AppsTabSubText">apps:</h2>
               {displayApps}

@@ -72,6 +72,23 @@ BUTTONS & ICONS
 }
 
 
+.AppsTab-Search-Background {
+    @include searchBackground($apps-green-bkg)
+}
+
+/* input box where I write new Todos */
+.AppsTab-input-box {
+	@include search-box;
+	margin-top: 12px;
+}
+  
+.AppsTab-inputBoxText {
+    @include tab-search-text;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+
 /* here are the enabled/disabled buttons (just before the trash icon) */
 .AppsTabButtonEnabled{
   color: red;
