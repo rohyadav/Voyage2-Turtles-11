@@ -383,12 +383,14 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({ todoTabOpen: "true" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" });
-            this.setState({ weatherTabOpen: "false"});
-            this.setState({ appsTabOpen: "false"});
+            this.setState({
+              todoTabOpen: "true",
+              notesTabOpen: "false",
+              bookmarksTabOpen: "false",
+              historyTabOpen: "false",
+              weatherTabOpen: "false",
+              appsTabOpen: "false",
+            });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -408,12 +410,14 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "true" });
-            this.setState({ bookmarksTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" });
-            this.setState({ weatherTabOpen: "false"});
-            this.setState({ appsTabOpen: "false"});
+            this.setState({
+              todoTabOpen: "false",
+              notesTabOpen: "true",
+              bookmarksTabOpen: "false",
+              historyTabOpen: "false",
+              weatherTabOpen: "false",
+              appsTabOpen: "false",
+            });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -433,12 +437,14 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "true" });
-            this.setState({ historyTabOpen: "false" });
-            this.setState({ weatherTabOpen: "false"});
-            this.setState({ appsTabOpen: "false"});
+            this.setState({
+              todoTabOpen: "false",
+              notesTabOpen: "false",
+              bookmarksTabOpen: "true",
+              historyTabOpen: "false",
+              weatherTabOpen: "false",
+              appsTabOpen: "false",
+            });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<Bookmarks closeHandler={this.toogleVisibility} />, document.getElementById('bookmarks'));
@@ -458,12 +464,14 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            this.setState({ historyTabOpen: "true" });
-            this.setState({ weatherTabOpen: "false"});
-            this.setState({ appsTabOpen: "false"});
+            this.setState({
+              todoTabOpen: "false",
+              notesTabOpen: "false",
+              bookmarksTabOpen: "false",
+              historyTabOpen: "true",
+              weatherTabOpen: "false",
+              appsTabOpen: "false",
+            });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -482,12 +490,14 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" });
-            this.setState({ weatherTabOpen: "true"});
-            this.setState({ appsTabOpen: "false"});
+            this.setState({
+              todoTabOpen: "false",
+              notesTabOpen: "false",
+              bookmarksTabOpen: "false",
+              historyTabOpen: "false",
+              weatherTabOpen: "true",
+              appsTabOpen: "false",
+            });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -506,12 +516,14 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({ todoTabOpen: "false" });
-            this.setState({ notesTabOpen: "false" });
-            this.setState({ bookmarksTabOpen: "false" });
-            this.setState({ historyTabOpen: "false" });
-            this.setState({ weatherTabOpen: "true"});
-            this.setState({ appsTabOpen: "true"});
+            this.setState({
+              todoTabOpen: "false",
+              notesTabOpen: "false",
+              bookmarksTabOpen: "false",
+              historyTabOpen: "false",
+              weatherTabOpen: "false",
+              appsTabOpen: "true",
+            });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
