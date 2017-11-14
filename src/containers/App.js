@@ -339,12 +339,16 @@ if(!localStorage.getItem('bgImgStored')) {
   constructor(props) {
     super(props);
     this.state = {
-      todoTabOpen: "false",
-      notesTabOpen: "false",
-      bookmarksTabOpen: "false",
-      historyTabOpen: "false",
-      weatherTabOpen: "false",
-      appsTabOpen: "false",
+      tabStatus: [
+        {
+          todoTabOpen: "false",
+          notesTabOpen: "false",
+          bookmarksTabOpen: "false",
+          historyTabOpen: "false",
+          weatherTabOpen: "false",
+          appsTabOpen: "false",
+        }
+      ],
       image: bgImgVariable,
       time: ""
     };
@@ -360,12 +364,26 @@ if(!localStorage.getItem('bgImgStored')) {
   //   this.setState({ time: timeString });
   // }
   allTabsClosed = () => {
-    this.setState({ todoTabOpen: "false" });
-    this.setState({ notesTabOpen: "false" });
-    this.setState({ bookmarksTabOpen: "false" });
-    this.setState({ historyTabOpen: "false"});
-    this.setState({ weatherTabOpen: "false"});
-    this.setState({ appsTabOpen: "false"});
+    // this.setState({ 
+    //   todoTabOpen: "false",
+    //   notesTabOpen: "false",
+    //   bookmarksTabOpen: "false",
+    //   historyTabOpen: "false",
+    //   weatherTabOpen: "false",
+    //   appsTabOpen: "false",
+    // });
+    this.setState({
+      tabStatus: [
+        {
+          todoTabOpen: "false",
+          notesTabOpen: "false",
+          bookmarksTabOpen: "false",
+          historyTabOpen: "false",
+          weatherTabOpen: "false",
+          appsTabOpen: "false",
+        }
+      ]
+    });
     ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -378,18 +396,13 @@ if(!localStorage.getItem('bgImgStored')) {
     switch (param) {
       // todo icon pressed
       case "todo":
-        switch (this.state.todoTabOpen) {
+        switch (this.state.tabStatus[0].todoTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
           case "false":
             this.setState({
-              todoTabOpen: "true",
-              notesTabOpen: "false",
-              bookmarksTabOpen: "false",
-              historyTabOpen: "false",
-              weatherTabOpen: "false",
-              appsTabOpen: "false",
+              tabStatus: {...this.state.tabStatus, todoTabOpen: "true"}
             });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -405,18 +418,13 @@ if(!localStorage.getItem('bgImgStored')) {
         break;
       // notes icon pressed
       case "notes":
-        switch (this.state.notesTabOpen) {
+        switch (this.state.tabStatus[0].notesTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
           case "false":
             this.setState({
-              todoTabOpen: "false",
-              notesTabOpen: "true",
-              bookmarksTabOpen: "false",
-              historyTabOpen: "false",
-              weatherTabOpen: "false",
-              appsTabOpen: "false",
+              tabStatus: {...this.state.tabStatus, notesTabOpen: "true"}
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
@@ -432,18 +440,13 @@ if(!localStorage.getItem('bgImgStored')) {
         break;
       // bookmarks icon pressed
       case "bookmarks":
-        switch (this.state.bookmarksTabOpen) {
+        switch (this.state.tabStatus[0].bookmarksTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
           case "false":
             this.setState({
-              todoTabOpen: "false",
-              notesTabOpen: "false",
-              bookmarksTabOpen: "true",
-              historyTabOpen: "false",
-              weatherTabOpen: "false",
-              appsTabOpen: "false",
+              tabStatus: {...this.state.tabStatus, bookmarksTabOpen: "true"}
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -459,18 +462,13 @@ if(!localStorage.getItem('bgImgStored')) {
         break;
       // history icon pressed
       case "history":
-        switch (this.state.historyTabOpen) {
+        switch (this.state.tabStatus[0].historyTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
           case "false":
             this.setState({
-              todoTabOpen: "false",
-              notesTabOpen: "false",
-              bookmarksTabOpen: "false",
-              historyTabOpen: "true",
-              weatherTabOpen: "false",
-              appsTabOpen: "false",
+              tabStatus: {...this.state.tabStatus, historyTabOpen: "true"}
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -485,18 +483,13 @@ if(!localStorage.getItem('bgImgStored')) {
         }
         break;  
         case "weather":
-        switch (this.state.weatherTabOpen) {
+        switch (this.state.tabStatus[0].weatherTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
           case "false":
             this.setState({
-              todoTabOpen: "false",
-              notesTabOpen: "false",
-              bookmarksTabOpen: "false",
-              historyTabOpen: "false",
-              weatherTabOpen: "true",
-              appsTabOpen: "false",
+              tabStatus: {...this.state.tabStatus, weatherTabOpen: "true"}
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -511,18 +504,13 @@ if(!localStorage.getItem('bgImgStored')) {
         }
         break;  
         case "apps":
-        switch (this.state.appsTabOpen) {
+        switch (this.state.tabStatus[0].appsTabOpen) {
           case "true":
             this.allTabsClosed();
             break;
           case "false":
             this.setState({
-              todoTabOpen: "false",
-              notesTabOpen: "false",
-              bookmarksTabOpen: "false",
-              historyTabOpen: "false",
-              weatherTabOpen: "false",
-              appsTabOpen: "true",
+              tabStatus: {...this.state.tabStatus, appsTabOpen: "true"}
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
