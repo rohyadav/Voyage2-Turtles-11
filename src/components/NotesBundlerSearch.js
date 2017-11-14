@@ -52,7 +52,7 @@ Note.propTypes = {
 export const NotesSearchList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick , onUpdateClick }) => {
     if (notes === null || notes.length === 0) {
         return (
-            null
+            <div className="notesErrorMessage">No results found</div>
         )
     } else {
         var notesArray = [];
