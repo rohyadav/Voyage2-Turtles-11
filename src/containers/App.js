@@ -109,6 +109,7 @@ class TodosButton extends React.Component {
   }
 
   render() {
+    let todoArrLenInit = JSON.parse(localStorage["todoData-todoArr"]).length;
     return (<div className="item">
       <a
         onClick={this.props.clickHandler}
@@ -117,7 +118,7 @@ class TodosButton extends React.Component {
         <img src={this.state.iconLink} alt="Todos button" />
       </a>
       <p>Todos</p>
-      <button id="todoQty" className="countButton">0</button>
+      <button id="todoQty" className="countButton">{todoArrLenInit}</button>
     </div>);
   }
 }
@@ -140,7 +141,8 @@ class GmailButton extends React.Component {
       <div className="item">
         <a href="https://accounts.google.com/signin/v2/sl/pwd?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%3Ftab%3Dwm&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
           onMouseOver={this.iconChangeOnHover}
-          onMouseOut={this.iconChangeOnOut} >
+          onMouseOut={this.iconChangeOnOut} 
+          target="_blank" >
           <img src={this.state.iconLink} alt="gmail" />
         </a>
         <p>Gmail</p>
@@ -167,7 +169,8 @@ class GithubButton extends React.Component {
       <div className="item">
         <a href="https://github.com/"
           onMouseOver={this.iconChangeOnHover}
-          onMouseOut={this.iconChangeOnOut} >
+          onMouseOut={this.iconChangeOnOut} 
+          target="_blank" >
           <img src={this.state.iconLink} alt="github" />
         </a>
         <p>Github</p>
@@ -292,6 +295,18 @@ const Time = () => {
 }
 
 /* =========================
+ BACKGROUND IMAGE LOCALSTORAGE
+ =========================== */
+
+let bgImgVariable;
+
+if(!localStorage.getItem('bgImgStored')) {
+  bgImgVariable = bg1;
+} else {
+  bgImgVariable = localStorage.getItem('bgImgStored')
+}
+
+/* =========================
  MAIN APP COMPONENT - RENDERS ENTIRE PAGE
  =========================== */
  class App extends Component {
@@ -304,7 +319,7 @@ const Time = () => {
       historyTabOpen: "false",
       weatherTabOpen: "false",
       appsTabOpen: "false",
-      image: bg1
+      image: bgImgVariable
     };
   }
 
@@ -486,12 +501,11 @@ const Time = () => {
 
   /* ---- Background Image ---- */
   backgroundChange = () => {
-    let bgImage = this.state.image;
     const bgArray = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9,
                     bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
-    bgImage = bgArray[randomNumber];
-    this.setState({image: bgImage});
+    let bgImage = bgArray[randomNumber];
+    this.setState( {image: bgImage}, () => localStorage.setItem('bgImgStored', this.state.image) );
   }
 
   render() {
@@ -557,7 +571,8 @@ const Time = () => {
               className="footer-icon"
               src={rndomImgIcon}
               alt="Turtles Cohort"
-              onClick={this.backgroundChange} />
+              onClick={this.backgroundChange} 
+              title="Click to change background" />
             <p className="leftFooter">Photos by Natasha Sadikin</p>
             {/*<div className="footer-margin"></div>*/}
           </footer>

@@ -34,7 +34,7 @@ class GoogleSearch extends Component { // Parent component
         let collection = this.props.types[0]; // {web: url, images: url, etc}
         let urlType = collection[selected];
         let url = urlType + query
-        window.open(url,'_self'); // alternative: _blank
+        window.open(url,'_blank'); // alternative: _blank
     }
 
     /* --------- Autosuggestions --------- */
@@ -62,7 +62,7 @@ class GoogleSearch extends Component { // Parent component
         let collection = this.props.types[0];
         let urlType = collection[selected];
         let url = urlType + currentAuto;
-        window.open(url, '_self');
+        window.open(url, '_blank');
     }
 
     /* --------- Render --------- */
