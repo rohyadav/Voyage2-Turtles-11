@@ -56,7 +56,7 @@ export class Bookmarks extends Component {
   bookmarksFormatter = (bookmarks) => {
     let newFormattedBookmarks = bookmarks.map((bookmarks, index) =>
       <li className="bookmarks" key={bookmarks.index} style={{ listStyleImage: "url(chrome://favicon/" + bookmarks.url + ")" }}>
-        <a href={bookmarks.url}>
+        <a href={bookmarks.url} target='_blank'>
           {this.shortenBookmarkTitles(bookmarks.title, 23)}
         </a>
       </li >
