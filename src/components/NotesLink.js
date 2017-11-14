@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Link = ({ active, children, onClick }) => {
     if (active) {
-        return <span id={children} className="Description" >{children}</span>
+        return <a id={children} className="highlightedFilter">{children}</a>
     }
 
     return (

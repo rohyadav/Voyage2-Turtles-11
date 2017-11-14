@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => {
         },
         onUpdateClick: (text, id) => {
             dispatch(updateNotes(text, id))
-            console.log("onUpdateClick value is : " + text + "; id is: " + id )
+            //console.log("onUpdateClick value is : " + text + "; id is: " + id )
         }
     }
 }
