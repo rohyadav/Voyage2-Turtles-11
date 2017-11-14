@@ -74,23 +74,25 @@ VISIBILITY FILTER
 ==========================
 */
 // filter text
-.Description {
-  font-size: 14px;
+.Description, .highlightedFilter {
+  font-size: 12px;
   text-align: center;
-  color: $default-grey;
   padding-top: 12px;
-  padding-left: 25px;  
-  font-weight: 300;
+  padding-left: 30px;  
   letter-spacing: 1px; 
-
-  &:target {
-    color:$notes-red;
-    text-decoration: none;
-    font-weight: 700;
-  }
+  display: inline-block;
+}
+.Description {
+  color: $default-grey;
+  font-weight: 300;
   &:hover {
     color: $notes-red; 
   }
+}
+.highlightedFilter {
+  color: $notes-red;
+  text-decoration: none;
+  font-weight: 700;
 }
 .filterBox {
   align-content: center;
@@ -98,6 +100,13 @@ VISIBILITY FILTER
   margin: auto;
   padding-left: 26px;
   padding-top: 12px;
+}
+.notesFilterIcon {
+  display: inline-block;
+  height: 25px;
+  opacity: 0.8;
+  justify-content: center;
+  // margin: auto;
 }
 
 /*
