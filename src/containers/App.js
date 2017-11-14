@@ -401,9 +401,9 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState({
-              tabStatus: {...this.state.tabStatus, todoTabOpen: "true"}
-            });
+            this.setState( prevState => ({
+              tabStatus: {...prevState.tabStatus, todoTabOpen: "true"}
+            }));
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
