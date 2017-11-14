@@ -10,7 +10,7 @@ let historyArr = []; // need array to use .push
 let historyArrF = []; 
 
 const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+const oneWeekAgo = (new Date()).getTime() - microsecondsPerWeek;
 
 /* eslint-disable */
 
@@ -127,18 +127,18 @@ class History extends Component { // Parent component
                             <span
                                 className={`historyFilter ${this.state.selected === 'Recent History' ? 'descrip-active' : 'descrip-inactive'}`}
                                 onClick={this.handleRecentClick}>
-                                Recently Visited
+                                    Recently Visited
                             </span>
                             <span
                                 className={`historyFilter ${this.state.selected === 'Frequent History' ? 'descrip-active' : 'descrip-inactive'}`}
                                 onClick={this.handleFrequentClick}>
-                                Most Visited
+                                    Most Visited
                             </span>
                         </center>
                     </div>
                     <div className='historyClearHistory descrip-inactive'
                         onClick={this.handleClickClearAll}>
-                        Clear History
+                            Clear History
                     </div>
                     {
                         (this.state.selected === 'Frequent History')
@@ -180,7 +180,7 @@ const HistoryItemF = (props) => {
             <img className='url-icon'
             src={`chrome://favicon/${props.element.url}`} 
             alt='favicon' />
-            <a href={props.element.url} className='url-url' target='_blank'>
+            <a href={props.element.url} className='url-url' target='_blank' rel='noopener'>
                 {props.element.title}
             </a>
         </div>
@@ -232,7 +232,8 @@ const HistoryItem = (props) => {
                 alt='favicon' />
             <a href={props.element.url} 
                 className='url-url'
-                target='_blank' >
+                target='_blank'
+                rel='noopener' >
                     {props.element.title
                     ? props.element.title
                     : props.element.url}

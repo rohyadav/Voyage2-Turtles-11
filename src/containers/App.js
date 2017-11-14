@@ -536,7 +536,7 @@ if(!localStorage.getItem('bgImgStored')) {
                     bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17];
     let randomNumber = Math.floor(Math.random() * (bgArray.length));
     let bgImage = bgArray[randomNumber];
-    this.setState( {image: bgImage}, () => localStorage.setItem('bgImgStored', this.state.image) );
+    this.setState( {image: bgImage}, () => localStorage.setItem('bgImgStored', this.state.image) ); // Works with callback
   }
 
   render() {
