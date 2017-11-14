@@ -45,14 +45,14 @@ A few of the things you can do with this Google Chrome Extension:
 ## Versions
 * Version 1.0.0: 
 
-⋅⋅⋅Re-sized wallpaper resolution for faster load/reload
-⋅⋅⋅All tabs have search features which is activated when pressing "Enter"
-⋅⋅⋅Current wallpaper choice will be remembered on reload
-⋅⋅⋅Clock is re-rendered whenever it changes
-⋅⋅⋅Weather Tab: Search will output error message when a searched location is not found
-⋅⋅⋅Notes Tab: Existing notes will be remember any changes the user makes - Added an update button; Visibility Filters is highlighted when active. ⋅⋅⋅Added icons to each filter for better user understanding
-⋅⋅⋅Todo Tab: Quantity counter is accurate; Search feature has been added
-⋅⋅⋅History Tab: Search results is cleared when clicking the "clear" button
+   Re-sized wallpaper resolution for faster load/reload  
+   All tabs have search features which is activated when pressing "Enter"  
+   Current wallpaper choice will be remembered on reload  
+   Clock is re-rendered whenever it changes  
+   Weather Tab: Search will output error message when a searched location is not found  
+   Notes Tab: Existing notes will be remember any changes the user makes - Added an update button; Visibility Filters is highlighted when active.; Added icons to each filter for better user understanding  
+   Todo Tab: Quantity counter is accurate; Search feature has been added  
+   History Tab: Search results is cleared when clicking the "clear" button  
 
 
 * Version 0.0.1: Initial deployment
