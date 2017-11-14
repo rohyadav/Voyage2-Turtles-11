@@ -29,7 +29,6 @@ export class Bookmarks extends Component {
       parentFolderIdx: 0,
       bookmarks: bookmarksList,
       searchArray: [],
-      searchButton: '../assets/search.png',
       highlighted: {
         backgroundColor: "rgba(255, 238, 0, 0.514)",
         border: "1px solid $bookmarks-yellow"
@@ -112,6 +111,8 @@ export class Bookmarks extends Component {
           this.setState({
             searchArray: searchResults
           })
+        } else if (searchResults.length === 0) {
+          this.setState({ searchArray: "No results found" });
         }
       }
     }
@@ -177,11 +178,12 @@ export class Bookmarks extends Component {
     }
 
     let formattedChildrenBookmarks = (null);
-    if (this.state.searchArray.length) {
+    if (this.state.searchArray.length && Array.isArray(this.state.searchArray)) {
       let formatted = this.bookmarksFormatter(this.state.searchArray)
       formattedChildrenBookmarks = <ul className="bookmarkList">{formatted}</ul>;
-    }
-    else {
+    } else if (this.state.searchArray === "No results found") {
+      formattedChildrenBookmarks = <div className="errorMessage">{this.state.searchArray}</div>
+    } else {
       formattedChildrenBookmarks = this.FormattedChildrenBookmarks(this.state.parentFolderIdx);
     }
 
