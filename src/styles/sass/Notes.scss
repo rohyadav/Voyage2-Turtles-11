@@ -173,7 +173,16 @@ SEARCH
   height: 60px;
   padding: 20px;
 }
-
+.notesErrorMessage {
+  max-width: 284px;
+  margin: 8px;
+  margin-top: 0px;
+  padding-bottom: 8px;
+  text-align: center;
+  color: white;
+  display: block;
+  font-size: 12px;
+}
 /*
 ==========================
 BUTTONS

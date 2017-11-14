@@ -142,7 +142,8 @@ class GmailButton extends React.Component {
         <a href="https://accounts.google.com/signin/v2/sl/pwd?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%3Ftab%3Dwm&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
           onMouseOver={this.iconChangeOnHover}
           onMouseOut={this.iconChangeOnOut} 
-          target="_blank" >
+          target="_blank" 
+          rel="noopener noreferrer">
           <img src={this.state.iconLink} alt="gmail" />
         </a>
         <p>Gmail</p>
@@ -170,7 +171,8 @@ class GithubButton extends React.Component {
         <a href="https://github.com/"
           onMouseOver={this.iconChangeOnHover}
           onMouseOut={this.iconChangeOnOut} 
-          target="_blank" >
+          target="_blank" 
+          rel="noopener noreferrer">
           <img src={this.state.iconLink} alt="github" />
         </a>
         <p>Github</p>
@@ -282,16 +284,40 @@ function tab_close() {
 /* =========================
  MAIN TIME FORMATTING
  =========================== */
-const Time = () => {
-  let currentDate = new Date();
-  let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
-  let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
-  let timeString = timeHourString + ":" + timeMinuteString;
-  currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
-
-  return (
-    <div>{timeString}</div>
-  )
+class Time extends React.Component {
+  formatTime = () => {
+    let currentDate = new Date();
+    let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
+    let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
+    let timeString = timeHourString + ":" + timeMinuteString;
+    currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
+    return timeString;
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: this.formatTime()
+    }
+  }
+  componentDidMount() {
+    this.intervalID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: this.formatTime()
+    });
+  }
+  render() {
+    return (
+      <div className="time">{this.state.time}</div>
+    )
+  }
 }
 
 /* =========================
@@ -319,15 +345,20 @@ if(!localStorage.getItem('bgImgStored')) {
       historyTabOpen: "false",
       weatherTabOpen: "false",
       appsTabOpen: "false",
-      image: bgImgVariable
+      image: bgImgVariable,
+      time: ""
     };
   }
 
-  time = () => {
-    let d = new Date();
-    this.setState({ time: d.toLocaleTimeString() });
-    return this.state.time;
-  }
+  // setTime = () => {
+  //   let currentDate = new Date();
+  //   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
+  //   let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
+  //   let timeString = timeHourString + ":" + timeMinuteString;
+  //   currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
+
+  //   this.setState({ time: timeString });
+  // }
   allTabsClosed = () => {
     this.setState({ todoTabOpen: "false" });
     this.setState({ notesTabOpen: "false" });
@@ -523,9 +554,7 @@ if(!localStorage.getItem('bgImgStored')) {
         <div className="main" id="main">
           <div className="main-content">
             <div className="main-top" >
-              <div className="time">
                 <Time />
-              </div>
               <div className="search-area">
                 <GoogleSearch
                   types={

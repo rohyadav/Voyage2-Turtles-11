@@ -16,11 +16,9 @@ const getVisibleNotes = (notes, filter) => {
         default:
             return notes;
     }
-    // return notes;
 }
 
 const mapStateToProps = state => {
-    // console.log("Mapping state to props because state changed.");
     return {
         notes: getVisibleNotes(state.notes, state.notesVisibilityFilters)
     }
@@ -30,16 +28,16 @@ const mapDispatchToProps = dispatch => {
     return {
         onPinClick: id => {
             dispatch(pinNotes(id));
-            // console.log("pinNotes id is : " + id )
+            //console.log("pinNotes id is : " + id )
         },
         onArchiveClick: id => {
             dispatch(toggleNotes(id));
-            // console.log("toggleNotes id is : " + id )
+            //console.log("toggleNotes id is : " + id )
         },
         onDeleteNoteClick: id => {
             dispatch(deleteNotes(id));
             document.getElementById("notesQty").innerText = document.getElementById("notesQty").innerText - 1;
-            // console.log("deleteNotes id is : " + id )
+            //console.log("deleteNotes id is : " + id )
         },
         onUpdateClick: (text, id) => {
             dispatch(updateNotes(text, id))

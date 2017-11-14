@@ -13,6 +13,7 @@ import {
 } from '../actions/Notes_Actions';
 import throttle from 'lodash/throttle';
 
+
 //creating the redux store for entire application
 
 export const loadState = () => {
@@ -59,6 +60,7 @@ export class Notes extends Component {
       searchTerm: '',
       note: '',
       searchButton: '../assets/search.png',
+      searchResults: ''
     }
   }
 
@@ -67,8 +69,10 @@ export class Notes extends Component {
     let notesSearchTerm = document.getElementById("notesSearchTerm").value;
     if (notesSearchTerm === '') {
       store.dispatch(closeNotesSearch());
+      this.setState({ searchResults: ""});
     } else if (event.key === 'Enter') {
       store.dispatch(searchNotes(notesSearchTerm));
+      this.setState({ searchResults: <NotesVisibleSearch />})
     }
   }
 
@@ -76,6 +80,7 @@ export class Notes extends Component {
     let notesSearchTerm = document.getElementById("notesSearchTerm").value;
     if (notesSearchTerm.length !== 0) {
       store.dispatch(closeNotesSearch());
+      this.setState({ searchResults: ""});
     }
   }
   // HANDLES ADDING NEW NOTES
@@ -104,7 +109,7 @@ export class Notes extends Component {
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
               <input type="search" id="notesSearchTerm" onKeyDown={this.handleNoteSearch} onClick={this.clearSearch} className='SearchBox SearchBoxText' required placeholder="Search Notes" />
-              <NotesVisibleSearch />
+              {this.state.searchResults}
             </div>
             {/* NEW NOTE */}
             <div>

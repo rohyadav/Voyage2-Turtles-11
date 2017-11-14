@@ -148,6 +148,9 @@ export class Weather extends React.Component {
 		}
 	}
 
+	clearSearch = () => {
+		this.setState({ errorMessage: "" })
+	}
 	
 	requestGeolocation() {
 		if ('geolocation' in navigator) {
@@ -181,7 +184,7 @@ export class Weather extends React.Component {
 				<div className="Weather-Body">
 					{/* SEARCH FEATURE */}
 					<div class="weathersSearchBackground">
-						<input id="searchTextInput" type="search" onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
+						<input id="searchTextInput" type="search" onClick={this.clearSearch} onKeyDown={this.handleWeatherSearch} placeholder="Show the Weather in..." className='SearchBox SearchBoxText' />
 						{/* <a><img className='searchBookmarksButton' src={this.state.searchButton} alt="search"></img></a> */}
 					</div>
 					<div className="errorMessage" >{this.state.errorMessage}</div>
