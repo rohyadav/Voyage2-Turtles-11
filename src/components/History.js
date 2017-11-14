@@ -47,6 +47,7 @@ class History extends Component { // Parent component
             selected: 'Recent History',
             historyArr: historyArr,
             historyArrSt: historyArr,
+            historyArrDefault: historyArr,
             searchInput: ''
         };
     }
@@ -77,9 +78,6 @@ class History extends Component { // Parent component
         // console.log('collectionFiltered', collectionFiltered);
 
         this.setState( {historyArr: collectionFiltered} );
-        // if (collectionFiltered.length !== 0) {
-        //     this.setState( {historyArr: collectionFiltered} );
-        // } else this.setState( {historyArr: ['No results found']})
         
     } 
 
@@ -142,7 +140,9 @@ class History extends Component { // Parent component
                             
                         : <HistoryList
                             historyArr={this.state.historyArr} 
-                            handleClickDelete={this.handleClickDelete}/>
+                            historyArrDefault={this.state.historyArrDefault}
+                            handleClickDelete={this.handleClickDelete}
+                            searchInput={this.state.searchInput} />
                     }
                 </div> {/* .Notes-Body */}
             </div>
@@ -187,14 +187,27 @@ const HistoryList = (props) => {
 
     let historyItemCheckLength;
 
+    // If history array is not empty, render list of elements
     if (props.historyArr.length) {
-        historyItemCheckLength = props.historyArr.map( (element, index) =>
+        // If there's a query, render filtered array
+        if (props.searchInput) {
+            historyItemCheckLength = props.historyArr.map( (element, index) =>
+                <HistoryItem 
+                    element={element}
+                    key={element.id}
+                    handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
+            ); 
+        } 
+        // If there's no query, render the complete array
+        else historyItemCheckLength = props.historyArrDefault.map( (element, index) =>
             <HistoryItem 
                 element={element}
                 key={element.id}
                 handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
-        )
-    } else historyItemCheckLength = <NoHistoryItems />
+        );
+    } 
+    // If history array is empty (no search results), render error message
+    else historyItemCheckLength = <NoHistoryItems />
 
     return (
         <div className='url-container'>
@@ -229,10 +242,6 @@ const HistoryItem = (props) => {
 
 const NoHistoryItems = () => {
 
-    // const noHover = {
-    //     display: 'none'
-    // }
-    // style={noHover}
     return (
          <div className='url-item no-hover'>
             <p>No results found</p>
