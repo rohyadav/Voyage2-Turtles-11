@@ -204,7 +204,7 @@ class AppsTab extends React.Component {
       let extensionListDisableEnableUpdate = [];
 
        let appListFiltered = this.state.searchList.filter(function(obj) {
-            return obj.name.toLowerCase().includes(event.target.value);
+            return obj.name.toLowerCase().includes(event.target.value.toLowerCase());
         });
       for (var i = 0; i < appListFiltered.length; i++) {
         if (appListFiltered[i].isApp) {
@@ -223,7 +223,8 @@ class AppsTab extends React.Component {
     }
 
   handleSubmit = (event) => {
-    alert(event);
+    // remove focus from input bar.
+   document.getElementById("AppsTab-input").blur();
     event.preventDefault();
   }
 
@@ -323,7 +324,7 @@ class AppsTab extends React.Component {
         </div>
         <div className='Apps-Body'>
           <form className="AppsTab-Search-Background" onSubmit={this.handleSubmit}>
-            <input className="AppsTab-input-box AppsTab-inputBoxText" type="text" placeholder="Search Apps" 
+            <input id="AppsTab-input" className="AppsTab-input-box AppsTab-inputBoxText" type="search" placeholder="Search Apps" 
               value={this.state.value} onChange={this.handleChange} />
           </form>
           <div class="AppsTab-add-to-body">
