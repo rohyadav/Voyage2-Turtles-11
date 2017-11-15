@@ -372,7 +372,38 @@ if(!localStorage.getItem('bgImgStored')) {
     //   weatherTabOpen: "false",
     //   appsTabOpen: "false",
     // });
-    this.setState({
+
+    // this.setState({
+    //   tabStatus: [
+    //     {
+    //       todoTabOpen: "false",
+    //       notesTabOpen: "false",
+    //       bookmarksTabOpen: "false",
+    //       historyTabOpen: "false",
+    //       weatherTabOpen: "false",
+    //       appsTabOpen: "false",
+    //     }
+    //   ]
+    // });
+
+    // this.setState( {image: bgImage}, () => localStorage.setItem('bgImgStored', this.state.image) );
+
+    // this.setState( prevState => ({
+    //   tabStatus: {...prevState.tabStatus, todoTabOpen: "true"}
+    // }));
+
+    // this.setState( prevState => ({
+    //   tabStatus: {...prevState.tabStatus, 
+    //   todoTabOpen: "false",
+    //   notesTabOpen: "false",
+    //   bookmarksTabOpen: "false",
+    //   historyTabOpen: "false",
+    //   weatherTabOpen: "false",
+    //   appsTabOpen: "false"}
+    // }));
+
+    this.setState(
+      {
       tabStatus: [
         {
           todoTabOpen: "false",
@@ -383,7 +414,9 @@ if(!localStorage.getItem('bgImgStored')) {
           appsTabOpen: "false",
         }
       ]
-    });
+      }
+    );
+
     ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -401,9 +434,12 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-            this.setState( prevState => ({
-              tabStatus: {...prevState.tabStatus, todoTabOpen: "true"}
-            }));
+            // this.setState( prevState => ({
+            //   tabStatus: {...prevState.tabStatus, todoTabOpen: "true"}
+            // }));
+            this.setState({
+              tabStatus: {...this.state.tabStatus, notesTabOpen: "true"}
+            });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
