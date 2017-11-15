@@ -24,8 +24,14 @@ HEADER & BODY
   @include tab-header($todos-blue);
 }
 
-.exitButton {
+
+.TododExitButton {
   @include tab-exit-button(white);
+  
+  &:hover {
+    // background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
+  }
 }
 
 /* main title Todos in the header */
