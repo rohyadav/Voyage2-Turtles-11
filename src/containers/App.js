@@ -351,6 +351,7 @@ const TabType = {
 }
 
 const TABS = [
+<<<<<<< HEAD
   { divName: "todo", domElem: <TodoList closeHandler={AppToggleVisibility} /> },
   { divName: "notes", domElem: <Notes closeHandler={AppToggleVisibility} /> },
   { divName: "bookmarks", domElem: <Bookmarks closeHandler={AppToggleVisibility} /> },
@@ -365,6 +366,16 @@ function AppToggleVisibility(param, event)
   APP_COMPONENT_INSTANCE.toogleVisibility(param, event);
 }
 
+=======
+  { divName: "todo", domElem: <TodoList closeHandler={this.toogleVisibility} /> },
+  { divName: "notes", domElem: <Notes closeHandler={this.toogleVisibility} /> },
+  { divName: "bookmarks", domElem: <Bookmarks closeHandler={this.toogleVisibility} /> },
+  { divName: "history", domElem: <History closeHandler={this.toogleVisibility} /> },
+  { divName: "weather", domElem: <Weather closeHandler={this.toogleVisibility} /> },
+  { divName: "apps", domElem: <AppsTab closeHandler={this.toogleVisibility} /> },
+];
+
+>>>>>>> 0cea0e0024996fbbe1d7b83de2601221b328c883
 class App extends Component {
   constructor(props) {
     super(props);
@@ -374,7 +385,10 @@ class App extends Component {
       time: ""
     };
 
+<<<<<<< HEAD
     APP_COMPONENT_INSTANCE = this;
+=======
+>>>>>>> 0cea0e0024996fbbe1d7b83de2601221b328c883
     for (var i = 0; i < TabType.COUNT; ++i) {
       this.state.tabIsOpen.push(false);
     }
