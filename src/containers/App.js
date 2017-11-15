@@ -440,9 +440,13 @@ if(!localStorage.getItem('bgImgStored')) {
             // );
 
             this.setState({
-              tabStatus: [...this.state.tabStatus, this.state.tabStatus.todoTabOpen = "true"],
+              tabStatus: [{...this.state.tabStatus, todoTabOpen: "true"}]
+              // tabStatus: [{...this.state.tabStatus, this.state.tabStatus.todoTabOpen = "true"}]
+              // tabStatus: [...this.state.tabStatus, this.state.tabStatus.todoTabOpen = "true"],
+              // tabStatus: [ ...this.state.tabStatus, { todoTabOpen: "true"} ]
+              // tabStatus: Object.assign({todoTabOpen: "true"}, this.state.tabStatus)
             },
-            
+
             () => console.log('case false', this.state.tabStatus)
             );
 
