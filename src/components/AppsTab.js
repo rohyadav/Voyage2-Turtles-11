@@ -259,61 +259,71 @@ class AppsTab extends React.Component {
 
   render() {
 
-
     // displays the apps
     var displayApps;
-    displayApps = (
-      <div className="AppsTabBackground">
-        {this.state.appList.map((elm, i) =>
-          <div className="AppsTabflex" >
-            <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} isEnabled={this.state.appListDisableEnable[i]} />
-            </div>
-            <div className="AppsTabNames">
-              <div className="AppsTabDescription">
-                <NameAppsExt textAppsExt={elm.name} enable={this.state.appListDisableEnable[i]} />
+    if (this.state.appList.length) {
+        displayApps = (
+          <div className="AppsTabBackground">
+            {this.state.appList.map((elm, i) =>
+              <div className="AppsTabflex" >
+                <div className="AppsTabAppsAndExtensionIcon">
+                  <Icons linkIcon={elm.icons} isEnabled={this.state.appListDisableEnable[i]} />
+                </div>
+                <div className="AppsTabNames">
+                  <div className="AppsTabDescription">
+                    <NameAppsExt textAppsExt={elm.name} enable={this.state.appListDisableEnable[i]} />
+                  </div>
+                </div>
+                <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
+                  <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
+                </div>
+                <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
+                  <AppsTabTrashImg />
+                </div>
               </div>
-            </div>
-            <div className="AppsTabEnable" onClick={this.clickEnableDisableApp.bind(this, elm, i)}>
-              <AppsTabEnableDisableButton enable={this.state.appListDisableEnable[i]} />
-            </div>
-            <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
-              <AppsTabTrashImg />
-            </div>
+            )}
           </div>
-        )}
-      </div>
-    );
-
+        )
+    } else {
+        displayApps = (
+          <div className="AppsTabBackground AppsTabDescription">
+            <p>No apps found</p> 
+          </div>
+        )
+    }
 
     // displays the extensions
-
     var displayExtensions;
-    displayExtensions = (
-      <div className="AppsTabBackground">
-        {this.state.extensionList.map((elm, i) =>
-          <div className="AppsTabflex" >
-            <div className="AppsTabAppsAndExtensionIcon">
-              <Icons linkIcon={elm.icons} isEnabled={this.state.extensionListDisableEnable[i]} />
-            </div>
-            <div className="AppsTabNames">
-              <div className="AppsTabDescription">
-                <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
+    if (this.state.extensionList.length) {
+        displayExtensions = (
+          <div className="AppsTabBackground">
+            {this.state.extensionList.map((elm, i) =>
+            <div className="AppsTabflex" >
+              <div className="AppsTabAppsAndExtensionIcon">
+                <Icons linkIcon={elm.icons} isEnabled={this.state.extensionListDisableEnable[i]} />
+              </div>
+              <div className="AppsTabNames">
+                <div className="AppsTabDescription">
+                  <NameAppsExt textAppsExt={elm.name} enable={this.state.extensionListDisableEnable[i]} />
+                </div>
+              </div>
+              <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
+                <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]} />
+              </div>
+              <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
+                <AppsTabTrashImg />
               </div>
             </div>
-            <div className="AppsTabEnable" onClick={this.clickEnableDisableExt.bind(this, elm, i)}>
-              <AppsTabEnableDisableButton enable={this.state.extensionListDisableEnable[i]} />
-            </div>
-            <div onClick={this.clickDeleteIcon.bind(this, elm, i)} className="AppsTabTrashIcon">
-              <AppsTabTrashImg />
-            </div>
+          )}
+        </div>
+        )
+    } else {
+        displayExtensions = (
+          <div className="AppsTabBackground AppsTabDescription">
+            <p>No extensions found</p> 
           </div>
-        )}
-      </div>
-    );
-
-
-
+        )
+    }
 
     return (
       <div>
