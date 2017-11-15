@@ -21,9 +21,9 @@ A few of the things you can do with this Google Chrome Extension:
 * See and Clear your browser history
 * Cycle through backgrounds with the click of the Turtle Icon (bottom-right)
 
-![Image alt text](https://i.imgur.com/6vV0gS9.png "Search")
-![Image alt text](https://i.imgur.com/B9qhUlw.png "User Utility Features")
-![Image alt text](https://i.imgur.com/qxFL13R.png "Chrome Tools")
+![Image alt text](https://i.imgur.com/HOR4gE8.png "Search")
+![Image alt text](https://i.imgur.com/Dypb5nh.png "User Utility Features")
+![Image alt text](https://i.imgur.com/cTSXV15.png "Chrome Tools")
 
 ## Contributors
 * [Francesca Sadikin (PM and Designer)](https://github.com/serpient)
