@@ -350,15 +350,6 @@ if(!localStorage.getItem('bgImgStored')) {
     };
   }
 
-  // setTime = () => {
-  //   let currentDate = new Date();
-  //   let timeHourString = (currentDate.getHours() % 12) === 0 ? "12" : (currentDate.getHours() % 12);
-  //   let timeMinuteString = (currentDate.getMinutes() < 10 ? "0" + currentDate.getMinutes() : currentDate.getMinutes());
-  //   let timeString = timeHourString + ":" + timeMinuteString;
-  //   currentDate.getHours() >= 12 ? timeString += " PM" : timeString += " AM";
-
-  //   this.setState({ time: timeString });
-  // }
   allTabsClosed = () => {
     this.setState({ todoTabOpen: "false" });
     this.setState({ notesTabOpen: "false" });
