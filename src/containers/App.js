@@ -364,56 +364,17 @@ if(!localStorage.getItem('bgImgStored')) {
   //   this.setState({ time: timeString });
   // }
   allTabsClosed = () => {
-    // this.setState({ 
-    //   todoTabOpen: "false",
-    //   notesTabOpen: "false",
-    //   bookmarksTabOpen: "false",
-    //   historyTabOpen: "false",
-    //   weatherTabOpen: "false",
-    //   appsTabOpen: "false",
-    // });
-
-    // this.setState({
-    //   tabStatus: [
-    //     {
-    //       todoTabOpen: "false",
-    //       notesTabOpen: "false",
-    //       bookmarksTabOpen: "false",
-    //       historyTabOpen: "false",
-    //       weatherTabOpen: "false",
-    //       appsTabOpen: "false",
-    //     }
-    //   ]
-    // });
-
-    // this.setState( {image: bgImage}, () => localStorage.setItem('bgImgStored', this.state.image) );
-
-    // this.setState( prevState => ({
-    //   tabStatus: {...prevState.tabStatus, todoTabOpen: "true"}
-    // }));
-
-    // this.setState( prevState => ({
-    //   tabStatus: {...prevState.tabStatus, 
-    //   todoTabOpen: "false",
-    //   notesTabOpen: "false",
-    //   bookmarksTabOpen: "false",
-    //   historyTabOpen: "false",
-    //   weatherTabOpen: "false",
-    //   appsTabOpen: "false"}
-    // }));
 
     this.setState({
-      tabStatus: [
-        {
+      tabStatus: [{
           todoTabOpen: "false",
           notesTabOpen: "false",
           bookmarksTabOpen: "false",
           historyTabOpen: "false",
           weatherTabOpen: "false",
           appsTabOpen: "false",
-        }
-      ]
-    }, () => console.log('all tabs closed set state', this.state.tabStatus));
+      }]
+    });
 
     ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
     ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -423,6 +384,7 @@ if(!localStorage.getItem('bgImgStored')) {
     ReactDOM.render(<EmptyContainer />, document.getElementById('apps'));
     tab_close();
   }
+
   toogleVisibility = (param, event) => {
     switch (param) {
       // todo icon pressed
@@ -432,30 +394,9 @@ if(!localStorage.getItem('bgImgStored')) {
             this.allTabsClosed();
             break;
           case "false":
-
-            // this.setState( prevState => ({
-            //   tabStatus: {...prevState.tabStatus, todoTabOpen: !prevState.tabStatus.todoTabOpen}
-            // }),
-            // () => console.log('case false', this.state.tabStatus)
-            // );
-
             this.setState({
               tabStatus: [{...this.state.tabStatus, todoTabOpen: "true"}]
-              // tabStatus: [{...this.state.tabStatus, this.state.tabStatus.todoTabOpen = "true"}]
-              // tabStatus: [...this.state.tabStatus, this.state.tabStatus.todoTabOpen = "true"],
-              // tabStatus: [ ...this.state.tabStatus, { todoTabOpen: "true"} ]
-              // tabStatus: Object.assign({todoTabOpen: "true"}, this.state.tabStatus)
-            },
-
-            () => console.log('case false', this.state.tabStatus)
-            );
-
-            // this.setState({
-            //   tabStatus: [...this.state.tabStatus, this.state.tabStatus.todoTabOpen = "true"],
-            // },
-            // () => console.log('case false', this.state.tabStatus)
-            // );
-
+            });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('bookmarks'));
@@ -476,7 +417,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: {...this.state.tabStatus, notesTabOpen: "true"}
+              tabStatus: [{...this.state.tabStatus, notesTabOpen: "true"}]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
@@ -498,7 +439,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: {...this.state.tabStatus, bookmarksTabOpen: "true"}
+              tabStatus: [{...this.state.tabStatus, bookmarksTabOpen: "true"}]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -520,7 +461,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: {...this.state.tabStatus, historyTabOpen: "true"}
+              tabStatus: [{...this.state.tabStatus, historyTabOpen: "true"}]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -541,7 +482,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: {...this.state.tabStatus, weatherTabOpen: "true"}
+              tabStatus: [{...this.state.tabStatus, weatherTabOpen: "true"}]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -562,7 +503,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: {...this.state.tabStatus, appsTabOpen: "true"}
+              tabStatus: [{...this.state.tabStatus, appsTabOpen: "true"}]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
