@@ -351,13 +351,19 @@ const TabType = {
 }
 
 const TABS = [
-  { divName: "todo", domElem: <TodoList closeHandler={this.toogleVisibility} /> },
-  { divName: "notes", domElem: <Notes closeHandler={this.toogleVisibility} /> },
-  { divName: "bookmarks", domElem: <Bookmarks closeHandler={this.toogleVisibility} /> },
-  { divName: "history", domElem: <History closeHandler={this.toogleVisibility} /> },
-  { divName: "weather", domElem: <Weather closeHandler={this.toogleVisibility} /> },
-  { divName: "apps", domElem: <AppsTab closeHandler={this.toogleVisibility} /> },
+  { divName: "todo", domElem: <TodoList closeHandler={AppToggleVisibility} /> },
+  { divName: "notes", domElem: <Notes closeHandler={AppToggleVisibility} /> },
+  { divName: "bookmarks", domElem: <Bookmarks closeHandler={AppToggleVisibility} /> },
+  { divName: "history", domElem: <History closeHandler={AppToggleVisibility} /> },
+  { divName: "weather", domElem: <Weather closeHandler={AppToggleVisibility} /> },
+  { divName: "apps", domElem: <AppsTab closeHandler={AppToggleVisibility} /> },
 ];
+
+let APP_COMPONENT_INSTANCE = {};
+function AppToggleVisibility(param, event)
+{
+  APP_COMPONENT_INSTANCE.toogleVisibility(param, event);
+}
 
 class App extends Component {
   constructor(props) {
@@ -368,6 +374,7 @@ class App extends Component {
       time: ""
     };
 
+    APP_COMPONENT_INSTANCE = this;
     for (var i = 0; i < TabType.COUNT; ++i) {
       this.state.tabIsOpen.push(false);
     }
