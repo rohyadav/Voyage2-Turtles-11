@@ -51,7 +51,8 @@ A few of the things you can do with this Google Chrome Extension:
    * Clock is re-rendered whenever it changes  
    * Weather Tab: Search will output error message when a searched location is not found  
    * Notes Tab: Existing notes will be remember any changes the user makes - Added an update button; Visibility Filters is highlighted when active.; Added icons to each filter for better user understanding  
-   * Todo Tab: Quantity counter is accurate; Search feature has been added  
+   * Todo Tab: Quantity counter is accurate   
+   * Apps Tab: Search feature has been added
    * History Tab: Search results is cleared when clicking the "clear" button  
 
 
