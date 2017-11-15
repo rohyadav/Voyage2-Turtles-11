@@ -12,7 +12,7 @@ import {
 } from '../actions/Notes_Actions';
 
 const { SHOW_ACTIVE } = NotesVisibilityFilters
-var globalCounter = 0;
+
 // adding the string.includes() method to search for strings
 if (!String.prototype.includes) {
     /* eslint-disable */
@@ -36,7 +36,7 @@ function notes(state = [], action) {
             return [
                 ...state,
                 {
-                    id: globalCounter++,
+                    id: state.length,
                     text: action.text,
                     completed: false,
                     search: false,

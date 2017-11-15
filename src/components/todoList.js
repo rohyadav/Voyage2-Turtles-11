@@ -230,7 +230,7 @@ export class TodoList extends Component {
         return (
             <div>
                 <div className='Todos-Header'>
-                    <button className='exitButton' onClick={this.props.closeHandler}>X</button>
+                    <button className='TododExitButton' onClick={this.props.closeHandler}>X</button>
                     <h1 className='Todos-Title-Text'>Todos</h1>
                 </div>
 

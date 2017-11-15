@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick, text, id, pinned, completed, newText }) => {
-    // console.log("Note text is: " + text);
+    //console.log("Note text is: " + text);
     let pinStyle;
     let archiveStyle;
     if (pinned) {
@@ -18,6 +18,7 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
     return (
         <div id={id} name={"note_" + id}>
             <div>
+                <button name="notesUpdateNotesButton" className="notesDoneUpdatingExisting" onClick={onUpdateClick}>Update</button>
                 {/* this is the delete button */}
                 {<button 
                     className='deleteNotesButton' 
@@ -36,8 +37,9 @@ export const Note = ({ onDeleteClick, onArchiveClick, onPinClick, onUpdateClick,
                     onClick={onPinClick}>
                 </button>}
             </div>
-            {/* <textarea type='text' className="existingNotes" value={text} onChange={onUpdateClick}/> */}
-            <div contentEditable="true" className="existingNotes" onFocusOut={onUpdateClick}>{text}</div>
+            <div type="text" contentEditable="true" className="existingNotes">
+                {text}
+            </div>
         </div>
     )
 }
@@ -55,7 +57,7 @@ export const NotesList = ({ notes, onPinClick, onArchiveClick, onDeleteNoteClick
             {notes.map((singleNote, index) => (
                 <Note id={singleNote.id} name={"note_" + singleNote.id} key={index} {...singleNote} 
                 onDeleteClick={() => onDeleteNoteClick(singleNote.id)} 
-                onUpdateClick={(event) => onUpdateClick(event.target.innerHTML, singleNote.id)} 
+                onUpdateClick={(event) => onUpdateClick(event.target.parentNode.parentNode.lastChild.innerText, singleNote.id) }
                 onArchiveClick={() => onArchiveClick(singleNote.id)} 
                 onPinClick={() => onPinClick(singleNote.id)} 
             />

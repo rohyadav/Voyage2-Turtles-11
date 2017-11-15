@@ -13,6 +13,7 @@ import {
 } from '../actions/Notes_Actions';
 import throttle from 'lodash/throttle';
 
+
 //creating the redux store for entire application
 
 export const loadState = () => {
@@ -59,20 +60,27 @@ export class Notes extends Component {
       searchTerm: '',
       note: '',
       searchButton: '../assets/search.png',
+      searchResults: ''
     }
   }
 
   // HANDLES SEARCH
-  handleNoteSearch = () => {
+  handleNoteSearch = (event) => {
     let notesSearchTerm = document.getElementById("notesSearchTerm").value;
     if (notesSearchTerm === '') {
       store.dispatch(closeNotesSearch());
-    } else if (this.state.searchButton === '../assets/search – 2.png') {
-      store.dispatch(closeNotesSearch());
-      this.setState({ searchButton: "../assets/search.png" });
-    } else {
+      this.setState({ searchResults: ""});
+    } else if (event.key === 'Enter') {
       store.dispatch(searchNotes(notesSearchTerm));
-      this.setState({ searchButton: "../assets/search – 2.png" });
+      this.setState({ searchResults: <NotesVisibleSearch />})
+    }
+  }
+
+  clearSearch = (event) => {
+    let notesSearchTerm = document.getElementById("notesSearchTerm").value;
+    if (notesSearchTerm.length !== 0) {
+      store.dispatch(closeNotesSearch());
+      this.setState({ searchResults: ""});
     }
   }
   // HANDLES ADDING NEW NOTES
@@ -100,9 +108,8 @@ export class Notes extends Component {
           <div className='Notes-Body'>
             {/* SEARCH FEATURE */}
             <div class="searchBackground">
-              <input type="text" id="notesSearchTerm" placeholder="Search" className='SearchBox SearchBoxText' required placeholder="Search Notes" />
-              <a><img alt="searchIcon" className='searchButton' onClick={this.handleNoteSearch} src={this.state.searchButton}></img></a>
-              <NotesVisibleSearch />
+              <input type="search" id="notesSearchTerm" onKeyDown={this.handleNoteSearch} onClick={this.clearSearch} className='SearchBox SearchBoxText' required placeholder="Search Notes" />
+              {this.state.searchResults}
             </div>
             {/* NEW NOTE */}
             <div>

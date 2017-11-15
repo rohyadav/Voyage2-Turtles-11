@@ -74,23 +74,25 @@ VISIBILITY FILTER
 ==========================
 */
 // filter text
-.Description {
-  font-size: 14px;
+.Description, .highlightedFilter {
+  font-size: 12px;
   text-align: center;
-  color: $default-grey;
   padding-top: 12px;
-  padding-left: 25px;  
-  font-weight: 300;
+  padding-left: 30px;  
   letter-spacing: 1px; 
-
-  &:target {
-    color:$notes-red;
-    text-decoration: none;
-    font-weight: 700;
-  }
+  display: inline-block;
+}
+.Description {
+  color: $default-grey;
+  font-weight: 300;
   &:hover {
     color: $notes-red; 
   }
+}
+.highlightedFilter {
+  color: $notes-red;
+  text-decoration: none;
+  font-weight: 700;
 }
 .filterBox {
   align-content: center;
@@ -98,6 +100,13 @@ VISIBILITY FILTER
   margin: auto;
   padding-left: 26px;
   padding-top: 12px;
+}
+.notesFilterIcon {
+  display: inline-block;
+  height: 25px;
+  opacity: 0.8;
+  justify-content: center;
+  // margin: auto;
 }
 
 /*
@@ -141,7 +150,6 @@ SEARCH
 
 .searchBackground {
   @include searchBackground($notes-red-bkg);
-  padding-bottom: 8px;
   // overflow: auto;
 }
 // search icon in search bar
@@ -165,7 +173,16 @@ SEARCH
   height: 60px;
   padding: 20px;
 }
-
+.notesErrorMessage {
+  max-width: 284px;
+  margin: 8px;
+  margin-top: 0px;
+  padding-bottom: 8px;
+  text-align: center;
+  color: white;
+  display: block;
+  font-size: 12px;
+}
 /*
 ==========================
 BUTTONS
@@ -249,4 +266,23 @@ BUTTONS
 // notes quantity button
 .item .countButton {
   @include qtyForIcon;
+}
+
+.notesDoneUpdatingExisting {
+  position: relative;
+  font-size: 12px;
+  margin-bottom: -35px;
+  z-index: 3;
+  display: block;
+  background-color: white;
+  border: 1px solid #e9e9e9;
+  color: $default-grey;
+  margin-top: 14px;
+  margin-left: 16px;
+  cursor: pointer;
+  float: left;
+  &:hover {
+    background-color: $notes-red;
+    color: white;
+  }
 }

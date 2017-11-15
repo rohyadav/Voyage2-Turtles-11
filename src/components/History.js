@@ -10,7 +10,7 @@ let historyArr = []; // need array to use .push
 let historyArrF = []; 
 
 const microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-const oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+const oneWeekAgo = (new Date()).getTime() - microsecondsPerWeek;
 
 /* eslint-disable */
 
@@ -67,18 +67,17 @@ class History extends Component { // Parent component
         event.preventDefault(); // Else page refreshes on submit
 
         const source = this.state.searchInput.toLowerCase();
-        // Make title lowercase, and make query lowercase
         
-        console.log('source', source);
+        // console.log('source', source);
         let collection = this.state.historyArr;
-        console.log('collection', collection);
+        // console.log('collection', collection);
         let collectionFiltered = collection.filter(function(obj) {
-            return obj.title.includes(source) || obj.url.includes(source);
+            return obj.title.toLowerCase().includes(source) || obj.url.includes(source);
         });
-        console.log('collectionFiltered', collectionFiltered);
+        // console.log('collectionFiltered', collectionFiltered);
 
         this.setState( {historyArr: collectionFiltered} );
-        
+        // event.currentTarget.reset();
     } 
 
     handleClickDelete = (element, index) => {
@@ -99,6 +98,13 @@ class History extends Component { // Parent component
         this.setState({historyArr: []});
     }
 
+    clearHistoryQuery = () => {
+        this.setState( {
+            searchInput: '',
+            historyArr: historyArr
+        } );
+      }
+
     render() {
 
         return (
@@ -111,32 +117,28 @@ class History extends Component { // Parent component
                     <form className='h-form'
                         onSubmit={this.handleSubmit}>
                         <input className='SearchBox h-searchbox'
-                            type='text'
+                            type='search'
                             placeholder='Search History' 
-                            onChange={this.handleChange}/>
-                            {/* onChange={this.handleChange} */}
-                        <button className='h-button-s' type='submit'>
-                            <i className='fa fa-search h-search-icon' aria-hidden='true'></i>
-                            <span className='sr-only'>search icon</span>
-                        </button>
+                            onChange={this.handleChange}
+                            onClick={this.clearHistoryQuery} />
                     </form>
                     <div className='h-options'>
                         <center >
                             <span
                                 className={`historyFilter ${this.state.selected === 'Recent History' ? 'descrip-active' : 'descrip-inactive'}`}
                                 onClick={this.handleRecentClick}>
-                                Recently Visited
+                                    Recently Visited
                             </span>
                             <span
                                 className={`historyFilter ${this.state.selected === 'Frequent History' ? 'descrip-active' : 'descrip-inactive'}`}
                                 onClick={this.handleFrequentClick}>
-                                Most Visited
+                                    Most Visited
                             </span>
                         </center>
                     </div>
                     <div className='historyClearHistory descrip-inactive'
                         onClick={this.handleClickClearAll}>
-                        Clear History
+                            Clear History
                     </div>
                     {
                         (this.state.selected === 'Frequent History')
@@ -145,7 +147,8 @@ class History extends Component { // Parent component
                             
                         : <HistoryList
                             historyArr={this.state.historyArr} 
-                            handleClickDelete={this.handleClickDelete}/>
+                            handleClickDelete={this.handleClickDelete}
+                            searchInput={this.state.searchInput} />
                     }
                 </div> {/* .Notes-Body */}
             </div>
@@ -160,7 +163,6 @@ const HistoryListF = (props) => {
 
     return (
         <div className='url-container'>
-            {/* <div> */}
             {props.historyArrF.map((element, index) =>
                 <HistoryItemF
                     element={element}
@@ -178,7 +180,7 @@ const HistoryItemF = (props) => {
             <img className='url-icon'
             src={`chrome://favicon/${props.element.url}`} 
             alt='favicon' />
-            <a href={props.element.url} className='url-url'>
+            <a href={props.element.url} className='url-url' target='_blank' rel='noopener'>
                 {props.element.title}
             </a>
         </div>
@@ -189,15 +191,33 @@ const HistoryItemF = (props) => {
 
 const HistoryList = (props) => {
 
-    return (
-        <div className='url-container'>
-        {/* <div> */}
-            { props.historyArr.map( (element, index) =>
-                <HistoryItem
+    let historyItemCheckLength;
+
+    // If history array is not empty, render list of elements
+    if (props.historyArr.length) {
+        // If there's a query, render filtered array
+        if (props.searchInput) {
+            historyItemCheckLength = props.historyArr.map( (element, index) =>
+                <HistoryItem 
                     element={element}
                     key={element.id}
                     handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
-            ) }
+            ); 
+        } 
+        // If there's no query, render the complete array
+        else historyItemCheckLength = props.historyArr.map( (element, index) =>
+            <HistoryItem 
+                element={element}
+                key={element.id}
+                handleClickDelete={props.handleClickDelete.bind(this, element, index)}/>
+        );
+    } 
+    // If history array is empty (no search results), render error message
+    else historyItemCheckLength = <NoHistoryItems />
+
+    return (
+        <div className='url-container'>
+            {historyItemCheckLength}
         </div>
     );
 
@@ -211,7 +231,9 @@ const HistoryItem = (props) => {
                 src={`chrome://favicon/${props.element.url}`} 
                 alt='favicon' />
             <a href={props.element.url} 
-                className='url-url'>
+                className='url-url'
+                target='_blank'
+                rel='noopener' >
                     {props.element.title
                     ? props.element.title
                     : props.element.url}
@@ -221,6 +243,15 @@ const HistoryItem = (props) => {
                 {/* .bind(this, element, index) */}
                 <i class='fa fa-minus' aria-hidden='true' title='Click to delete'></i>
             </div>
+        </div>
+    );
+}
+
+const NoHistoryItems = () => {
+
+    return (
+         <div className='url-item no-hover'>
+            <p>No results found</p>
         </div>
     );
 }

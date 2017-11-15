@@ -36,17 +36,19 @@
 .auto-list {
     /* display: block; */
     width: 40vw;
-    border-radius: 1vw;
+    // border-radius: 1vw;
     margin-top: -20px;
     position: absolute;
     z-index: 10;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .auto-link {
+    text-align: left;
     color: $default-grey;
     padding: 5px 5px;
+    padding-left: 40px;
     font-size: 1vw;
     text-decoration: none;
     display: block;

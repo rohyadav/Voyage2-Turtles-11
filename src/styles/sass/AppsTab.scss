@@ -66,9 +66,26 @@ BUTTONS & ICONS
   @include tab-exit-button(white);
   
   &:hover {
-    background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
-    background-color:#f6f6f6;
+    // background: linear-gradient(to bottom, #f3f3f3 20%, #ffffff 100%);
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.1);
   }
+}
+
+
+.AppsTab-Search-Background {
+    @include searchBackground($apps-green-bkg)
+}
+
+/* input box where I write new Todos */
+.AppsTab-input-box {
+	@include search-box;
+	margin-top: 12px;
+}
+  
+.AppsTab-inputBoxText {
+    @include tab-search-text;
+    padding-bottom: 12px;
+    text-align: center;
 }
 
 
@@ -81,7 +98,7 @@ BUTTONS & ICONS
 }
 
 .AppsTabButtonDisabled{
-  color: blue;
+  color: $apps-green;
   &:hover {
     color: orange;
   }
@@ -135,7 +152,7 @@ flexboxes with apps-extensions
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 10px; }
+  padding-bottom: 0px; }
 
 /* first flexbox containing apps/ext icon */
 .AppsTabAppsAndExtensionIcon {
