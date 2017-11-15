@@ -109,7 +109,12 @@ class TodosButton extends React.Component {
   }
 
   render() {
-    let todoArrLenInit = JSON.parse(localStorage["todoData-todoArr"]).length;
+    let todoArrLenInit; 
+    if (localStorage["todoData-todoArr"] === undefined ||  localStorage["todoData-todoArr"] === null) {
+      todoArrLenInit = 0;
+    } else {
+      todoArrLenInit = JSON.parse(localStorage["todoData-todoArr"]).length
+    };
     return (<div className="item">
       <a
         onClick={this.props.clickHandler}
@@ -376,6 +381,7 @@ if(!localStorage.getItem('bgImgStored')) {
     tab_close();
   }
 
+
   toogleVisibility = (param, event) => {
     switch (param) {
       // todo icon pressed
@@ -386,7 +392,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: [{...this.state.tabStatus, todoTabOpen: "true"}]
+              tabStatus: [Object.assign({}, this.state.tabStatus, { todoTabOpen: "true" }) ]
             });
             ReactDOM.render(<TodoList closeHandler={this.toogleVisibility} />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -408,7 +414,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: [{...this.state.tabStatus, notesTabOpen: "true"}]
+              tabStatus: [Object.assign({}, this.state.tabStatus, { notesTabOpen: "true" }) ] 
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<Notes closeHandler={this.toogleVisibility} />, document.getElementById('notes'));
@@ -430,7 +436,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: [{...this.state.tabStatus, bookmarksTabOpen: "true"}]
+              tabStatus: [Object.assign({}, this.state.tabStatus, { bookmarksTabOpen: "true" }) ]  
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -452,7 +458,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: [{...this.state.tabStatus, historyTabOpen: "true"}]
+              tabStatus: [Object.assign({}, this.state.tabStatus, { historyTabOpen: "true" }) ]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -473,7 +479,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: [{...this.state.tabStatus, weatherTabOpen: "true"}]
+              tabStatus: [Object.assign({}, this.state.tabStatus, { weatherTabOpen: "true" }) ]
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
@@ -494,7 +500,7 @@ if(!localStorage.getItem('bgImgStored')) {
             break;
           case "false":
             this.setState({
-              tabStatus: [{...this.state.tabStatus, appsTabOpen: "true"}]
+              tabStatus: [Object.assign({}, this.state.tabStatus, { appsTabOpen: "true" }) ] 
             });
             ReactDOM.render(<EmptyContainer />, document.getElementById('todo'));
             ReactDOM.render(<EmptyContainer />, document.getElementById('notes'));
