@@ -9,14 +9,28 @@ let bookmarksList = [];
 // calling google chrome API , pushing data to arrayOfBookmarks variable
 chrome.bookmarks.getTree(function (tree) {
   let arrayOfParentFolder = tree[0].children;
+  //console.log("arrayOfParentFolder is " + JSON.stringify(arrayOfParentFolder));
   for (var i = 0; i < arrayOfParentFolder.length; i++) {
-    bookmarksList.push({
-      parentId: arrayOfParentFolder[i].parentId,
-      title: arrayOfParentFolder[i].title,
-      children: arrayOfParentFolder[i].children,
-      index: arrayOfParentFolder[i].index,
-      url: arrayOfParentFolder[i].url,
-    });
+    if (Array.isArray(arrayOfParentFolder[i].children)) {
+      var childrenLink = arrayOfParentFolder[i].children;
+      for (var j = 0; i < childrenLink.length; j++) {
+        bookmarksList.push({
+          parentId: childrenLink[j].parentId,
+          title: childrenLink[j].title,
+          children: childrenLink[j].children,
+          index: childrenLink[j].index,
+          url: childrenLink[j].url,
+        });
+      }
+    } else {
+      bookmarksList.push({
+        parentId: arrayOfParentFolder[i].parentId,
+        title: arrayOfParentFolder[i].title,
+        children: arrayOfParentFolder[i].children,
+        index: arrayOfParentFolder[i].index,
+        url: arrayOfParentFolder[i].url,
+      });
+    }
   }
 });
 /* eslint-enable */
@@ -143,7 +157,12 @@ export class Bookmarks extends Component {
   }
 
   FormattedParentFolder = () => {
-    let listOfParentFolders = this.state.bookmarks.map((parentFolder, index) => {
+    var filteredParentFoldersByIndex = this.state.bookmarks.filter(function(element) {
+      if (Array.isArray(element.children)) {
+        return true;
+      }
+    })
+    let listOfParentFolders = filteredParentFoldersByIndex.map((parentFolder, index) => {
       if (index === this.state.parentFolderIdx && this.state.searchArray.length === 0) {
         return (
           <div>
